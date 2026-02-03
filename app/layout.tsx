@@ -26,11 +26,22 @@ export const metadata: Metadata = {
   title: "She Ships | Donde las Mujeres Construyen y Hacen Ship",
   description:
     "Únete a mujeres builders que hacen ship de productos reales con herramientas AI-native. Mentoría, comunidad y visibilidad. Sin código.",
+  metadataBase: new URL("https://she-ships.crafter.run"),
   openGraph: {
     title: "She Ships | Donde las Mujeres Construyen y Hacen Ship",
     description:
       "Únete a mujeres builders que hacen ship de productos reales con herramientas AI-native.",
     type: "website",
+    url: "https://she-ships.crafter.run",
+    images: [{ url: "https://she-ships.crafter.run/og.png", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["https://she-ships.crafter.run/og-twitter.png"],
+  },
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
   },
 };
 
