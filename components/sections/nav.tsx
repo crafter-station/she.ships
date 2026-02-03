@@ -1,11 +1,11 @@
-import { Button } from "@/components/ui/button"
-import { GithubBadge } from "@/components/shared/github-badge"
+import { Button } from "@/components/ui/button";
+import { GithubBadge } from "@/components/shared/github-badge";
 
 const links = [
-  { label: "Nosotras", href: "#about" },
-  { label: "Cómo Funciona", href: "#how-it-works" },
-  { label: "Beneficios", href: "#features" },
-]
+  { label: "About", href: "#about" },
+  { label: "How It Works", href: "#how-it-works" },
+  { label: "Benefits", href: "#features" },
+];
 
 export function Nav() {
   return (
@@ -34,10 +34,10 @@ export function Nav() {
             className="bg-rose-coral text-white hover:bg-deep-rose"
             size="sm"
           >
-            <a href="#cta">Únete</a>
+            <a href="#cta">Join</a>
           </Button>
         </div>
       </div>
     </nav>
-  )
+  );
 }

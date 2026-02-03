@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
-import { esES } from "@clerk/localizations";
+import { enUS } from "@clerk/localizations";
 import { shadcn } from "@clerk/themes";
 import { Geist, Geist_Mono, Playfair_Display } from "next/font/google";
 import "./globals.css";
@@ -23,17 +23,19 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "She Ships | Donde las Mujeres Construyen y Hacen Ship",
+  title: "She Ships | Where Women Build and Ship",
   description:
-    "Únete a mujeres builders que hacen ship de productos reales con herramientas AI-native. Mentoría, comunidad y visibilidad. Sin código.",
+    "Join women builders shipping real products with AI-native tools. Mentorship, community, and visibility. No code required.",
   metadataBase: new URL("https://she-ships.crafter.run"),
   openGraph: {
-    title: "She Ships | Donde las Mujeres Construyen y Hacen Ship",
+    title: "She Ships | Where Women Build and Ship",
     description:
-      "Únete a mujeres builders que hacen ship de productos reales con herramientas AI-native.",
+      "Join women builders shipping real products with AI-native tools.",
     type: "website",
     url: "https://she-ships.crafter.run",
-    images: [{ url: "https://she-ships.crafter.run/og.png", width: 1200, height: 630 }],
+    images: [
+      { url: "https://she-ships.crafter.run/og.png", width: 1200, height: 630 },
+    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -51,12 +53,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es">
+    <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} antialiased`}
       >
         <ClerkProvider
-          localization={esES}
+          localization={enUS}
           appearance={{
             baseTheme: shadcn,
             variables: {

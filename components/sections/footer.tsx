@@ -1,17 +1,17 @@
-import { SectionWrapper } from "@/components/decorative/section-wrapper"
-import { CrafterStationLogo } from "@/components/logos/crafter-station"
+import { SectionWrapper } from "@/components/decorative/section-wrapper";
+import { CrafterStationLogo } from "@/components/logos/crafter-station";
 
 const footerLinks = {
-  Comunidad: [
-    { label: "Nosotras", href: "#about" },
-    { label: "Cómo Funciona", href: "#how-it-works" },
-    { label: "Beneficios", href: "#features" },
-    { label: "Lista de Espera", href: "#cta" },
+  Community: [
+    { label: "About", href: "#about" },
+    { label: "How It Works", href: "#how-it-works" },
+    { label: "Benefits", href: "#features" },
+    { label: "Waitlist", href: "#cta" },
   ],
-  Recursos: [
+  Resources: [
     { label: "Blog", href: "#" },
     { label: "FAQ", href: "#" },
-    { label: "Mentoras", href: "#" },
+    { label: "Mentors", href: "#" },
     { label: "Showcase", href: "#" },
   ],
   Social: [
@@ -20,7 +20,7 @@ const footerLinks = {
     { label: "LinkedIn", href: "#" },
     { label: "Discord", href: "#" },
   ],
-}
+};
 
 export function Footer() {
   return (
@@ -33,7 +33,7 @@ export function Footer() {
               She<span className="text-rose-coral">Ships</span>
             </p>
             <p className="text-sm leading-relaxed text-warm-gray">
-              Una comunidad global de mujeres que convierten ideas en productos reales.
+              A global community of women turning ideas into real products.
             </p>
           </div>
 
@@ -62,7 +62,7 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 md:flex-row">
           <p className="text-xs text-warm-gray">
-            &copy; {new Date().getFullYear()} She Ships. Todos los derechos reservados.
+            &copy; {new Date().getFullYear()} She Ships. All rights reserved.
           </p>
           <a
             href="https://www.crafterstation.com"
@@ -74,5 +74,5 @@ export function Footer() {
         </div>
       </div>
     </SectionWrapper>
-  )
+  );
 }

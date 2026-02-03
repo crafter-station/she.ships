@@ -1,6 +1,6 @@
-import { SectionWrapper } from "@/components/decorative/section-wrapper"
-import { Card, CardContent } from "@/components/ui/card"
-import { Lightbulb, Rocket, Award } from "lucide-react"
+import { SectionWrapper } from "@/components/decorative/section-wrapper";
+import { Card, CardContent } from "@/components/ui/card";
+import { Lightbulb, Rocket, Award } from "lucide-react";
 
 const steps = [
   {
@@ -8,31 +8,33 @@ const steps = [
     step: "01",
     title: "Build",
     description:
-      "Elige una idea, cualquier idea. Usa herramientas AI-native para pasar del concepto al producto sin escribir una línea de código.",
+      "Pick an idea, any idea. Use AI-native tools to go from concept to product without writing a single line of code.",
   },
   {
     icon: Rocket,
     step: "02",
     title: "Ship",
     description:
-      "Lanza públicamente con el apoyo de mentoras y una comunidad que celebra tu progreso. Ship in public, aprende en público.",
+      "Launch publicly with the support of mentors and a community that celebrates your progress. Ship in public, learn in public.",
   },
   {
     icon: Award,
     step: "03",
     title: "Showcase",
     description:
-      "Presenta tu producto a la comunidad. Recibe feedback, reconocimiento y visibilidad. Tu producto shipped es tu portafolio.",
+      "Present your product to the community. Get feedback, recognition, and visibility. Your shipped product is your portfolio.",
   },
-]
+];
 
 export function HowItWorks() {
   return (
     <SectionWrapper variant="dark" grid id="how-it-works">
       <div className="text-center mb-16">
-        <span className="data-label mb-4 block text-warm-gray">El Proceso</span>
+        <span className="data-label mb-4 block text-warm-gray">
+          The Process
+        </span>
         <h2 className="text-3xl font-bold tracking-tight text-white md:text-4xl lg:text-5xl">
-          Tres pasos para hacer <span className="text-rose-coral">ship.</span>
+          Three steps to <span className="text-rose-coral">ship.</span>
         </h2>
       </div>
 
@@ -60,5 +62,5 @@ export function HowItWorks() {
         ))}
       </div>
     </SectionWrapper>
-  )
+  );
 }

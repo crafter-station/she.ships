@@ -1,54 +1,53 @@
-import { SectionWrapper } from "@/components/decorative/section-wrapper"
-import { Card, CardContent } from "@/components/ui/card"
-import { Users, Eye, Cpu, Code2, Megaphone, Heart } from "lucide-react"
+import { SectionWrapper } from "@/components/decorative/section-wrapper";
+import { Card, CardContent } from "@/components/ui/card";
+import { Users, Eye, Cpu, Code2, Megaphone, Heart } from "lucide-react";
 
 const features = [
   {
     icon: Heart,
-    title: "Mentoría",
+    title: "Mentorship",
     description:
-      "Conecta con builders experimentadas que te guían de la idea al lanzamiento. A tu ritmo, en tus términos.",
+      "Connect with experienced builders who guide you from idea to launch. At your pace, on your terms.",
   },
   {
     icon: Users,
-    title: "Comunidad",
+    title: "Community",
     description:
-      "Una red global de mujeres que construyen juntas, comparten logros, resuelven problemas y celebran cada ship.",
+      "A global network of women building together, sharing wins, solving problems, and celebrating every ship.",
   },
   {
     icon: Eye,
-    title: "Visibilidad",
+    title: "Visibility",
     description:
-      "Muestra tu trabajo a una audiencia que le importa. Destácate, hazte notar, pon tu producto frente a la gente.",
+      "Show your work to an audience that cares. Stand out, get noticed, put your product in front of people.",
   },
   {
     icon: Cpu,
-    title: "Herramientas AI",
+    title: "AI Tools",
     description:
-      "Accede a plataformas AI-native para construir productos reales, desde UI hasta backend, sin escribir código.",
+      "Access AI-native platforms to build real products, from UI to backend, without writing code.",
   },
   {
     icon: Code2,
-    title: "Sin Código",
+    title: "No Code",
     description:
-      "No necesitas ser developer. Nuestras herramientas y comunidad te encuentran donde estás. Cero prerrequisitos.",
+      "You don't need to be a developer. Our tools and community meet you where you are. Zero prerequisites.",
   },
   {
     icon: Megaphone,
     title: "Ship in Public",
     description:
-      "Construye en abierto. Comparte tu progreso, recibe feedback temprano e inspira a otras mientras creas.",
+      "Build in the open. Share your progress, get early feedback, and inspire others while you create.",
   },
-]
+];
 
 export function Features() {
   return (
     <SectionWrapper variant="beige" id="features">
       <div className="text-center mb-16">
-        <span className="data-label mb-4 block">Lo Que Obtienes</span>
+        <span className="data-label mb-4 block">What You Get</span>
         <h2 className="text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">
-          Todo lo que necesitas para hacer{" "}
-          <span className="text-rose-coral">ship.</span>
+          Everything you need to <span className="text-rose-coral">ship.</span>
         </h2>
       </div>
 
@@ -71,5 +70,5 @@ export function Features() {
         ))}
       </div>
     </SectionWrapper>
-  )
+  );
 }
