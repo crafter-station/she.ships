@@ -65,7 +65,7 @@ export function Footer() {
             &copy; {new Date().getFullYear()} She Ships. Todos los derechos reservados.
           </p>
           <a
-            href="https://crafter.station"
+            href="https://www.crafterstation.com"
             className="flex items-center gap-2 text-xs text-warm-gray transition-colors hover:text-white"
           >
             <CrafterStationLogo className="size-4" />

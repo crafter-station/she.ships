@@ -67,7 +67,7 @@ export function Hero() {
 
         {/* By Crafter Station */}
         <a
-          href="https://crafter.station"
+          href="https://www.crafterstation.com"
           className="mt-10 flex items-center gap-2 text-sm text-warm-gray transition-colors hover:text-white"
         >
           <span>by</span>
