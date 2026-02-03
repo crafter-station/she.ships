@@ -1,4 +1,5 @@
 import { SectionWrapper } from "@/components/decorative/section-wrapper"
+import { CrafterStationLogo } from "@/components/logos/crafter-station"
 
 export function About() {
   return (
@@ -12,10 +13,17 @@ export function About() {
             <span className="text-rose-coral">listo para ship.</span>
           </h2>
           <p className="text-lg leading-relaxed text-charcoal/80">
-            She Ships es una comunidad global que le da a las mujeres las
-            herramientas, la mentoría y el escenario para ir de la idea al
-            producto lanzado. Sin gatekeeping. Sin prerrequisitos. Solo builders
-            construyendo.
+            She Ships es una iniciativa de{" "}
+            <a
+              href="https://www.crafterstation.com"
+              className="inline-flex items-center gap-1 font-medium text-charcoal hover:text-rose-coral transition-colors"
+            >
+              <CrafterStationLogo className="size-4 inline" />
+              Crafter Station
+            </a>{" "}
+            que le da a las mujeres las herramientas, la mentoría y el escenario
+            para ir de la idea al producto lanzado. Sin gatekeeping. Sin
+            prerrequisitos. Solo builders construyendo.
           </p>
           <p className="mt-4 text-lg leading-relaxed text-charcoal/80">
             Ya seas fundadora por primera vez, diseñadora que programa, o
@@ -26,7 +34,7 @@ export function About() {
         {/* Pull quote */}
         <div className="border-l-4 border-rose-coral pl-8">
           <blockquote className="font-script text-2xl leading-relaxed text-charcoal/90 md:text-3xl">
-            &ldquo;El futuro no solo lo construyen mujeres. Las mujeres lo hacen ship.&rdquo;
+            &ldquo;Las mujeres no solo construyen el futuro. Lo shipean.&rdquo;
           </blockquote>
           <p className="mt-4 font-mono text-sm uppercase tracking-widest text-warm-gray">
             Manifiesto She Ships
