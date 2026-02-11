@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import { ClerkProvider } from "@clerk/nextjs";
-import { enUS } from "@clerk/localizations";
-import { shadcn } from "@clerk/themes";
 import { Geist, Geist_Mono, Playfair_Display } from "next/font/google";
+import { LanguageProvider } from "@/lib/i18n/context";
+import { ClerkLanguageProvider } from "@/components/providers/clerk-language-provider";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -57,25 +56,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} antialiased`}
       >
-        <ClerkProvider
-          localization={enUS}
-          appearance={{
-            baseTheme: shadcn,
-            variables: {
-              colorPrimary: "#E05A7A",
-              colorTextOnPrimaryBackground: "#FFFFFF",
-              colorBackground: "#F5F2ED",
-              colorInputBackground: "#FFFFFF",
-              colorInputText: "#171717",
-              colorText: "#171717",
-              colorTextSecondary: "#9B9688",
-              borderRadius: "0px",
-              fontFamily: "var(--font-geist-sans), system-ui, sans-serif",
-            },
-          }}
-        >
-          {children}
-        </ClerkProvider>
+        <LanguageProvider>
+          <ClerkLanguageProvider>{children}</ClerkLanguageProvider>
+        </LanguageProvider>
       </body>
     </html>
   );

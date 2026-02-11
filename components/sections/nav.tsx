@@ -1,13 +1,19 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { GithubBadge } from "@/components/shared/github-badge";
-
-const links = [
-  { label: "About", href: "#about" },
-  { label: "How It Works", href: "#how-it-works" },
-  { label: "Benefits", href: "#features" },
-];
+import { LanguageSwitcher } from "@/components/shared/language-switcher";
+import { useTranslation } from "@/lib/i18n/context";
 
 export function Nav() {
+  const { t } = useTranslation();
+
+  const links = [
+    { label: t.nav.about, href: "#about" },
+    { label: t.nav.howItWorks, href: "#how-it-works" },
+    { label: t.nav.benefits, href: "#features" },
+  ];
+
   return (
     <nav className="fixed top-0 z-50 w-full border-b border-white/10 bg-charcoal/90 backdrop-blur-md">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
@@ -29,12 +35,13 @@ export function Nav() {
 
         <div className="flex items-center gap-3">
           <GithubBadge />
+          <LanguageSwitcher />
           <Button
             asChild
             className="bg-rose-coral text-white hover:bg-deep-rose"
             size="sm"
           >
-            <a href="#cta">Join</a>
+            <a href="#cta">{t.nav.join}</a>
           </Button>
         </div>
       </div>

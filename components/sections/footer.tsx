@@ -1,28 +1,33 @@
+"use client";
+
 import { SectionWrapper } from "@/components/decorative/section-wrapper";
 import { CrafterStationLogo } from "@/components/logos/crafter-station";
-
-const footerLinks = {
-  Community: [
-    { label: "About", href: "#about" },
-    { label: "How It Works", href: "#how-it-works" },
-    { label: "Benefits", href: "#features" },
-    { label: "Waitlist", href: "#cta" },
-  ],
-  Resources: [
-    { label: "Blog", href: "#" },
-    { label: "FAQ", href: "#" },
-    { label: "Mentors", href: "#" },
-    { label: "Showcase", href: "#" },
-  ],
-  Social: [
-    { label: "Twitter / X", href: "#" },
-    { label: "Instagram", href: "#" },
-    { label: "LinkedIn", href: "#" },
-    { label: "Discord", href: "#" },
-  ],
-};
+import { useTranslation } from "@/lib/i18n/context";
 
 export function Footer() {
+  const { t } = useTranslation();
+
+  const footerLinks = {
+    [t.footer.community]: [
+      { label: t.footer.communityLinks.about, href: "#about" },
+      { label: t.footer.communityLinks.howItWorks, href: "#how-it-works" },
+      { label: t.footer.communityLinks.benefits, href: "#features" },
+      { label: t.footer.communityLinks.waitlist, href: "#cta" },
+    ],
+    [t.footer.resources]: [
+      { label: t.footer.resourceLinks.blog, href: "#" },
+      { label: t.footer.resourceLinks.faq, href: "#" },
+      { label: t.footer.resourceLinks.mentors, href: "#" },
+      { label: t.footer.resourceLinks.showcase, href: "#" },
+    ],
+    [t.footer.social]: [
+      { label: t.footer.socialLinks.twitter, href: "#" },
+      { label: t.footer.socialLinks.instagram, href: "#" },
+      { label: t.footer.socialLinks.linkedin, href: "#" },
+      { label: t.footer.socialLinks.discord, href: "#" },
+    ],
+  };
+
   return (
     <SectionWrapper variant="dark" grid className="!py-0">
       <div className="py-16">
@@ -33,7 +38,7 @@ export function Footer() {
               She<span className="text-rose-coral">Ships</span>
             </p>
             <p className="text-sm leading-relaxed text-warm-gray">
-              A global community of women turning ideas into real products.
+              {t.footer.brandDescription}
             </p>
           </div>
 
@@ -62,7 +67,7 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 md:flex-row">
           <p className="text-xs text-warm-gray">
-            &copy; {new Date().getFullYear()} She Ships. All rights reserved.
+            &copy; {new Date().getFullYear()} {t.footer.copyright}
           </p>
           <a
             href="https://www.crafterstation.com"

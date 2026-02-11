@@ -1,24 +1,28 @@
+"use client";
+
 import { SectionWrapper } from "@/components/decorative/section-wrapper";
 import { Globe } from "@/components/ui/globe";
+import { useTranslation } from "@/lib/i18n/context";
 
 export function GlobalEvent() {
+  const { t } = useTranslation();
+
   return (
     <SectionWrapper variant="dark" grid>
       <div className="grid items-center gap-12 md:grid-cols-2">
         {/* Text */}
         <div>
           <span className="data-label mb-4 block text-warm-gray">
-            March 8 · Global Online Event
+            {t.globalEvent.label}
           </span>
           <h2 className="mb-6 text-3xl font-bold tracking-tight text-white md:text-4xl lg:text-5xl">
-            From anywhere.{" "}
-            <span className="text-rose-coral">For everyone.</span>
+            {t.globalEvent.headline}{" "}
+            <span className="text-rose-coral">
+              {t.globalEvent.headlineAccent}
+            </span>
           </h2>
           <p className="text-lg leading-relaxed text-warm-gray">
-            She Ships is a 100% online event on March 8, International
-            Women&apos;s Day. No matter where you are, if you have an idea and
-            the drive to build, this is your space. Builders from Latin America
-            and around the world, connected to ship together.
+            {t.globalEvent.description}
           </p>
         </div>
 
