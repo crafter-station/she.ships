@@ -2,126 +2,191 @@ import type { Translations } from "./en";
 
 export const es: Translations = {
   nav: {
-    about: "Acerca",
-    howItWorks: "C\u00F3mo Funciona",
-    benefits: "Beneficios",
-    join: "\u00DAnete",
+    event: "Evento",
+    agenda: "Agenda",
+    categories: "Categorías",
+    faq: "FAQ",
+    join: "Únete",
   },
   hero: {
-    badgeMarch: "8 de Marzo",
-    badgeAI: "IA Nativa",
-    badgeNoCode: "Sin C\u00F3digo",
-    badgeShip: "Ship in Public",
-    tagline: "Donde las mujeres construyen y hacen ship",
+    tagline: "Donde las mujeres construyen y lanzan",
     headline: "Solo",
     headlineAccent: "Hazlo.",
     description:
-      "Un evento global para mujeres que transforman ideas en productos reales. Con mentor\u00EDa, herramientas de IA y cero barreras.",
-    descriptionDate: "8 de marzo, 2026.",
-    ctaPrimary: "Empieza a Construir",
-    ctaSecondary: "C\u00F3mo Funciona",
+      "Un hackathon global para mujeres que transforman ideas en productos reales. Herramientas IA, cero barreras.",
+    date: "8 de marzo, 2026",
+    ctaSpeaker: "Sé Speaker",
+    ctaSponsor: "Sé Sponsor",
+    ctaCommunity: "Sé Community Manager",
     by: "por",
   },
-  about: {
-    label: "Sobre el Movimiento",
-    headline: "Creemos que cada mujer tiene un producto",
-    headlineAccent: "listo para lanzar.",
-    description:
-      "es una iniciativa que brinda a las mujeres las herramientas, mentor\u00EDa y el escenario para pasar de la idea al producto lanzado. Sin barreras. Sin requisitos previos. Solo constructoras construyendo.",
-    descriptionAlt:
-      "Ya seas una fundadora primeriza, una dise\u00F1adora que programa, o alguien que nunca ha tocado una terminal, este es tu lugar.",
-    quote: "\u201CLas mujeres no solo construyen el futuro. Lo lanzan.\u201D",
-    quoteAttribution: "Manifiesto She Ships",
+  countdown: {
+    label: "El reloj no se detiene",
+    headline: "Cuenta regresiva para el",
+    headlineAccent: "Ship Day",
+    days: "Días",
+    hours: "Horas",
+    minutes: "Minutos",
+    seconds: "Segundos",
+    tagline: "8 de marzo, 2026 — ¿Lista para lanzar?",
   },
-  globalEvent: {
-    label: "8 de Marzo \u00B7 Evento Global Online",
-    headline: "Desde cualquier lugar.",
-    headlineAccent: "Para todas.",
-    description:
-      "She Ships es un evento 100% online el 8 de marzo, D\u00EDa Internacional de la Mujer. No importa d\u00F3nde est\u00E9s, si tienes una idea y las ganas de construir, este es tu espacio. Constructoras de Latinoam\u00E9rica y todo el mundo, conectadas para lanzar juntas.",
+  eventInfo: {
+    label: "Lo Esencial",
+    headline: "Todo lo que necesitas",
+    headlineAccent: "saber.",
+    where: {
+      title: "Dónde",
+      description:
+        "100% online. Participa desde cualquier lugar del mundo. Solo necesitas conexión a internet y una idea.",
+    },
+    duration: {
+      title: "Duración",
+      description:
+        "24 horas de construcción sin parar. Desde la ceremonia de apertura hasta el showcase final, un día completo para lanzar.",
+    },
+    who: {
+      title: "Quién Participa",
+      description:
+        "Mujeres builders, diseñadoras, fundadoras, creadoras — todos los niveles. No se requiere experiencia en código.",
+    },
   },
-  howItWorks: {
-    label: "El Proceso",
-    headline: "Tres pasos para",
-    headlineAccent: "lanzar.",
-    steps: [
+  agenda: {
+    label: "El Programa",
+    headline: "Agenda del",
+    headlineAccent: "Evento",
+    slots: [
       {
-        title: "Construye",
-        description:
-          "Elige una idea, cualquier idea. Usa herramientas de IA nativa para pasar del concepto al producto sin escribir una sola l\u00EDnea de c\u00F3digo.",
+        time: "9:00 AM",
+        title: "Ceremonia de Apertura",
+        description: "Bienvenida, presentaciones y reglas del hackathon.",
       },
       {
-        title: "Lanza",
+        time: "9:30 AM",
+        title: "Keynote: Mujeres que Lanzan",
         description:
-          "Lanza p\u00FAblicamente con el apoyo de mentores y una comunidad que celebra tu progreso. Lanza en p\u00FAblico, aprende en p\u00FAblico.",
+          "Charla inspiradora de mujeres builders que han lanzado productos reales.",
       },
       {
-        title: "Presenta",
+        time: "10:00 AM",
+        title: "Workshop: Bootcamp de Herramientas IA",
         description:
-          "Presenta tu producto a la comunidad. Obt\u00E9n retroalimentaci\u00F3n, reconocimiento y visibilidad. Tu producto lanzado es tu portafolio.",
+          "Sesión práctica para empezar con herramientas de construcción AI-native.",
+      },
+      {
+        time: "11:00 AM",
+        title: "Comienza el Tiempo de Construcción",
+        description:
+          "Equipos y builders individuales comienzan a trabajar en sus proyectos.",
+      },
+      {
+        time: "3:00 PM",
+        title: "Check-in de Mitad de Jornada",
+        description:
+          "Actualizaciones de progreso, sesiones de mentoría y apoyo comunitario.",
+      },
+      {
+        time: "7:00 PM",
+        title: "Showcase de Proyectos",
+        description: "Presenta tu proyecto ante jueces y la comunidad.",
+      },
+      {
+        time: "8:30 PM",
+        title: "Premios y Cierre",
+        description: "Anuncio de ganadoras, celebraciones y próximos pasos.",
       },
     ],
   },
-  features: {
-    label: "Lo Que Obtienes",
-    headline: "Todo lo que necesitas para",
-    headlineAccent: "lanzar.",
+  categories: {
+    label: "Construye Lo Que Importa",
+    headline: "Categorías de",
+    headlineAccent: "Proyectos",
     items: [
       {
-        title: "Mentor\u00EDa",
+        title: "Salud y Bienestar",
         description:
-          "Con\u00E9ctate con constructoras experimentadas que te gu\u00EDan desde la idea hasta el lanzamiento. A tu ritmo, en tus t\u00E9rminos.",
+          "Herramientas y productos que mejoran la salud física o mental.",
       },
       {
-        title: "Comunidad",
+        title: "Educación",
         description:
-          "Una red global de mujeres construyendo juntas, compartiendo logros, resolviendo problemas y celebrando cada lanzamiento.",
+          "Plataformas y recursos que hacen el aprendizaje más accesible.",
       },
       {
-        title: "Visibilidad",
+        title: "Fintech",
         description:
-          "Muestra tu trabajo a una audiencia que le importa. Dest\u00E1cate, haz que te noten, pon tu producto frente a la gente.",
+          "Herramientas financieras que empoderan a comunidades desatendidas.",
       },
       {
-        title: "Herramientas de IA",
+        title: "Herramientas Creativas",
         description:
-          "Accede a plataformas de IA nativa para construir productos reales, desde UI hasta backend, sin escribir c\u00F3digo.",
+          "Productos para artistas, escritoras, músicas y creadoras.",
       },
       {
-        title: "Sin C\u00F3digo",
-        description:
-          "No necesitas ser desarrolladora. Nuestras herramientas y comunidad te encuentran donde est\u00E9s. Cero requisitos previos.",
+        title: "Impacto Social",
+        description: "Soluciones que abordan desafíos sociales y ambientales.",
       },
       {
-        title: "Lanza en P\u00FAblico",
+        title: "Herramientas para Developers",
         description:
-          "Construye en abierto. Comparte tu progreso, obt\u00E9n retroalimentaci\u00F3n temprana e inspira a otras mientras creas.",
+          "Herramientas que hacen la construcción de software más rápida y fácil.",
       },
     ],
   },
-  cta: {
-    date: "8 de marzo, 2026",
-    headline: "\u00BFLista para",
-    headlineAccent: "lanzar?",
-    description:
-      "Reg\u00EDstrate y asegura tu lugar en el evento. Sin spam, solo energ\u00EDa para construir.",
-    footer: "S\u00E9 de las primeras en unirte",
+  faq: {
+    label: "¿Tienes Preguntas?",
+    headline: "Preguntas",
+    headlineAccent: "Frecuentes",
+    items: [
+      {
+        question: "¿Necesito saber programar?",
+        answer:
+          "¡Para nada! She Ships está diseñado para todos los niveles. Proporcionamos herramientas AI-native que te permiten construir sin escribir código. Si puedes describir tu idea, puedes lanzarla.",
+      },
+      {
+        question: "¿Es gratis participar?",
+        answer:
+          "Sí, She Ships es completamente gratis. Creemos en eliminar todas las barreras para construir y lanzar.",
+      },
+      {
+        question: "¿Puedo participar desde cualquier país?",
+        answer:
+          "Por supuesto. She Ships es un evento 100% online. Solo necesitas conexión a internet. Damos la bienvenida a builders de todas partes.",
+      },
+      {
+        question: "¿Necesito un equipo?",
+        answer:
+          "Puedes participar sola o en equipo. Tendremos canales para ayudarte a encontrar compañeras si quieres colaborar.",
+      },
+      {
+        question: "¿Qué tipo de proyectos puedo construir?",
+        answer:
+          "¡Lo que quieras! Desde apps web hasta herramientas móviles, desde asistentes IA hasta plataformas creativas. Revisa nuestras categorías de proyectos para inspirarte.",
+      },
+      {
+        question: "¿Qué puedo ganar?",
+        answer:
+          "Además de la experiencia de lanzar, los mejores proyectos obtienen visibilidad, oportunidades de mentoría y premios de nuestros sponsors. El verdadero premio es tu producto lanzado.",
+      },
+      {
+        question: "¿Cómo puedo ser speaker o sponsor?",
+        answer:
+          "Usa los botones en nuestra sección principal para aplicar como speaker, sponsor o community manager. ¡Nos encantaría tenerte!",
+      },
+    ],
   },
   footer: {
     brandDescription:
       "Una comunidad global de mujeres que transforman ideas en productos reales.",
-    community: "Comunidad",
+    event: "Evento",
     resources: "Recursos",
     social: "Social",
-    communityLinks: {
-      about: "Acerca",
-      howItWorks: "C\u00F3mo Funciona",
-      benefits: "Beneficios",
-      waitlist: "Lista de Espera",
+    eventLinks: {
+      agenda: "Agenda",
+      categories: "Categorías",
+      faq: "Preguntas Frecuentes",
     },
     resourceLinks: {
       blog: "Blog",
-      faq: "Preguntas Frecuentes",
       mentors: "Mentoras",
       showcase: "Escaparate",
     },

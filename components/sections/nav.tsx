@@ -9,16 +9,20 @@ export function Nav() {
   const { t } = useTranslation();
 
   const links = [
-    { label: t.nav.about, href: "#about" },
-    { label: t.nav.howItWorks, href: "#how-it-works" },
-    { label: t.nav.benefits, href: "#features" },
+    { label: t.nav.event, href: "#event-info" },
+    { label: t.nav.agenda, href: "#agenda" },
+    { label: t.nav.categories, href: "#categories" },
+    { label: t.nav.faq, href: "#faq" },
   ];
 
   return (
-    <nav className="fixed top-0 z-50 w-full border-b border-white/10 bg-charcoal/90 backdrop-blur-md">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
-        <a href="#" className="text-lg font-bold tracking-tight text-white">
-          She<span className="text-rose-coral">Ships</span>
+    <nav className="fixed top-0 z-50 w-full border-b border-charcoal/10 bg-off-white/95 backdrop-blur-sm">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+        <a
+          href="#"
+          className="font-[family-name:var(--font-title)] text-2xl font-black tracking-tight text-charcoal"
+        >
+          SheShips
         </a>
 
         <div className="hidden items-center gap-8 md:flex">
@@ -26,7 +30,7 @@ export function Nav() {
             <a
               key={link.href}
               href={link.href}
-              className="text-sm text-warm-gray transition-colors hover:text-white"
+              className="text-sm font-medium text-charcoal/70 transition-colors hover:text-charcoal"
             >
               {link.label}
             </a>
@@ -38,10 +42,10 @@ export function Nav() {
           <LanguageSwitcher />
           <Button
             asChild
-            className="bg-rose-coral text-white hover:bg-deep-rose"
+            className="bg-charcoal text-white hover:bg-charcoal/85"
             size="sm"
           >
-            <a href="#cta">{t.nav.join}</a>
+            <a href="#countdown">{t.nav.join}</a>
           </Button>
         </div>
       </div>

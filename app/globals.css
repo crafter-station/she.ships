@@ -1,54 +1,78 @@
 @import "tailwindcss";
+@import "@fontsource-variable/space-grotesk";
 
 :root {
-  --rose-coral: #E05A7A;
-  --deep-rose: #C24466;
-  --warm-beige: #D8D2C4;
-  --charcoal: #171717;
-  --off-white: #F5F2ED;
-  --muted-gold: #C4A86B;
-  --warm-gray: #9B9688;
-  --grid-gray: #2A2A2A;
+    --rose-coral: #e05a7a;
+    --deep-rose: #c24466;
+    --warm-beige: #d8d2c4;
+    --charcoal: #171717;
+    --off-white: #f5f2ed;
+    --muted-gold: #c4a86b;
+    --warm-gray: #9b9688;
+    --grid-gray: #2a2a2a;
+    --hot-pink: #ff6b9d;
+    --sunny-yellow: #ffd23f;
 }
 
 @theme inline {
-  --color-rose-coral: var(--rose-coral);
-  --color-deep-rose: var(--deep-rose);
-  --color-warm-beige: var(--warm-beige);
-  --color-charcoal: var(--charcoal);
-  --color-off-white: var(--off-white);
-  --color-muted-gold: var(--muted-gold);
-  --color-warm-gray: var(--warm-gray);
-  --color-grid-gray: var(--grid-gray);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-script: var(--font-playfair);
+    --color-rose-coral: var(--rose-coral);
+    --color-deep-rose: var(--deep-rose);
+    --color-warm-beige: var(--warm-beige);
+    --color-charcoal: var(--charcoal);
+    --color-off-white: var(--off-white);
+    --color-muted-gold: var(--muted-gold);
+    --color-warm-gray: var(--warm-gray);
+    --color-grid-gray: var(--grid-gray);
+    --color-hot-pink: var(--hot-pink);
+    --color-sunny-yellow: var(--sunny-yellow);
+    --font-title: "Space Grotesk Variable", sans-serif;
+    --font-body: var(--font-inter);
+    --animate-accordion-down: accordion-down 200ms ease-out;
+    --animate-accordion-up: accordion-up 200ms ease-out;
 }
 
 body {
-  background: var(--charcoal);
-  color: var(--charcoal);
-  font-family: var(--font-sans), system-ui, sans-serif;
+    background: var(--off-white);
+    color: var(--charcoal);
+    font-family: var(--font-body), system-ui, sans-serif;
 }
 
 /* Grid overlay utility for dark sections */
 .grid-overlay {
-  background-image:
-    linear-gradient(to right, var(--grid-gray) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--grid-gray) 1px, transparent 1px);
-  background-size: 64px 64px;
+    background-image:
+        linear-gradient(to right, var(--grid-gray) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid-gray) 1px, transparent 1px);
+    background-size: 64px 64px;
 }
 
 /* Data annotation label style */
 .data-label {
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--warm-gray);
+    font-family: var(--font-body), monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--warm-gray);
+}
+
+/* Accordion animations */
+@keyframes accordion-down {
+    from {
+        height: 0;
+    }
+    to {
+        height: var(--radix-accordion-content-height);
+    }
+}
+@keyframes accordion-up {
+    from {
+        height: var(--radix-accordion-content-height);
+    }
+    to {
+        height: 0;
+    }
 }
 
 /* Smooth scrolling for nav links */
 html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }

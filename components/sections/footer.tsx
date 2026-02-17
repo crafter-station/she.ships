@@ -8,15 +8,13 @@ export function Footer() {
   const { t } = useTranslation();
 
   const footerLinks = {
-    [t.footer.community]: [
-      { label: t.footer.communityLinks.about, href: "#about" },
-      { label: t.footer.communityLinks.howItWorks, href: "#how-it-works" },
-      { label: t.footer.communityLinks.benefits, href: "#features" },
-      { label: t.footer.communityLinks.waitlist, href: "#cta" },
+    [t.footer.event]: [
+      { label: t.footer.eventLinks.agenda, href: "#agenda" },
+      { label: t.footer.eventLinks.categories, href: "#categories" },
+      { label: t.footer.eventLinks.faq, href: "#faq" },
     ],
     [t.footer.resources]: [
       { label: t.footer.resourceLinks.blog, href: "#" },
-      { label: t.footer.resourceLinks.faq, href: "#" },
       { label: t.footer.resourceLinks.mentors, href: "#" },
       { label: t.footer.resourceLinks.showcase, href: "#" },
     ],
@@ -34,8 +32,8 @@ export function Footer() {
         <div className="grid gap-12 md:grid-cols-4">
           {/* Brand column */}
           <div>
-            <p className="mb-3 text-lg font-bold tracking-tight text-white">
-              She<span className="text-rose-coral">Ships</span>
+            <p className="mb-3 text-2xl font-black tracking-tight text-white">
+              She<span className="text-hot-pink">Ships</span>
             </p>
             <p className="text-sm leading-relaxed text-warm-gray">
               {t.footer.brandDescription}

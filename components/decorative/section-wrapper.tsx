@@ -1,11 +1,13 @@
-import { cn } from "@/lib/utils"
-import { GridOverlay } from "./grid-overlay"
+import { cn } from "@/lib/utils";
+import { GridOverlay } from "./grid-overlay";
 
 const variantStyles = {
   light: "bg-off-white text-charcoal",
   dark: "bg-charcoal text-off-white",
   beige: "bg-warm-beige text-charcoal",
-} as const
+  pink: "bg-hot-pink text-charcoal",
+  yellow: "bg-sunny-yellow text-charcoal",
+} as const;
 
 export function SectionWrapper({
   variant = "light",
@@ -14,11 +16,11 @@ export function SectionWrapper({
   children,
   id,
 }: {
-  variant?: keyof typeof variantStyles
-  grid?: boolean
-  className?: string
-  children: React.ReactNode
-  id?: string
+  variant?: keyof typeof variantStyles;
+  grid?: boolean;
+  className?: string;
+  children: React.ReactNode;
+  id?: string;
 }) {
   return (
     <section
@@ -30,5 +32,5 @@ export function SectionWrapper({
         {children}
       </div>
     </section>
-  )
+  );
 }
