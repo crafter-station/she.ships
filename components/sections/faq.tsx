@@ -2,42 +2,50 @@
 
 import { SectionWrapper } from "@/components/decorative/section-wrapper";
 import { Accordion } from "radix-ui";
-import { ChevronDown } from "lucide-react";
 import { useTranslation } from "@/lib/i18n/context";
 
 export function FAQ() {
   const { t } = useTranslation();
 
   return (
-    <SectionWrapper variant="red" bordered id="faq">
+    <SectionWrapper variant="cream" id="faq" className="!bg-[#FAF9F6]">
       <div className="text-center mb-16">
-        <h2 className="font-[family-name:var(--font-title)] text-5xl font-black tracking-tight text-white md:text-6xl lg:text-7xl uppercase">
-          {t.faq.headline}{" "}
-          <span className="text-secondary-light-pink">
-            {t.faq.headlineAccent}
-          </span>
+        <h2 className="font-[family-name:var(--font-title)] text-5xl font-black tracking-tight text-primary-black md:text-6xl lg:text-7xl mb-4">
+          Frequently asked questions
         </h2>
+        <p className="text-lg text-primary-black/70">
+          Don't see your question?{" "}
+          <a
+            href="mailto:hello@sheship.com"
+            className="underline hover:text-primary-pink transition-colors"
+          >
+            Contact us
+          </a>
+        </p>
       </div>
 
-      <div className="mx-auto max-w-3xl">
-        <Accordion.Root type="multiple" className="space-y-4">
+      <div className="mx-auto max-w-4xl">
+        <Accordion.Root type="multiple" className="space-y-0">
           {t.faq.items.map((item, i) => (
             <Accordion.Item
               key={i}
               value={`faq-${i}`}
-              className="brutalist-card bg-white"
+              className="border-t-2 border-primary-black py-8 first:border-t-0"
             >
-              <Accordion.Trigger className="group flex w-full items-center justify-between p-6 text-left font-[family-name:var(--font-title)] text-xl font-black text-primary-black transition-colors hover:text-primary-pink uppercase">
-                {item.question}
-                <ChevronDown
-                  className="size-6 shrink-0 text-primary-black transition-transform duration-200 group-data-[state=open]:rotate-180"
-                  strokeWidth={3}
-                />
+              <Accordion.Trigger className="group flex w-full items-start justify-between gap-4 text-left">
+                <div className="flex items-start gap-4">
+                  <div className="w-8 h-8 bg-primary-black flex-shrink-0" />
+                  <span className="font-[family-name:var(--font-title)] text-2xl font-bold text-primary-black md:text-3xl">
+                    {item.question}
+                  </span>
+                </div>
               </Accordion.Trigger>
               <Accordion.Content className="overflow-hidden data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
-                <p className="px-6 pb-6 text-neutral-gray text-lg font-medium leading-relaxed">
-                  {item.answer}
-                </p>
+                <div className="pl-12 pt-4">
+                  <p className="text-lg text-primary-black/80 leading-relaxed">
+                    {item.answer}
+                  </p>
+                </div>
               </Accordion.Content>
             </Accordion.Item>
           ))}
