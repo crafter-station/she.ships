@@ -27,15 +27,15 @@ export function Footer() {
   };
 
   return (
-    <SectionWrapper variant="dark" grid className="!py-0">
+    <SectionWrapper variant="dark" bordered className="!py-0">
       <div className="py-16">
         <div className="grid gap-12 md:grid-cols-4">
           {/* Brand column */}
           <div>
-            <p className="mb-3 text-2xl font-black tracking-tight text-white">
-              She<span className="text-hot-pink">Ships</span>
+            <p className="mb-4 font-[family-name:var(--font-title)] text-3xl font-black tracking-tight text-white">
+              She<span className="text-primary-pink">Ships</span>
             </p>
-            <p className="text-sm leading-relaxed text-warm-gray">
+            <p className="text-sm leading-relaxed text-neutral-gray font-medium">
               {t.footer.brandDescription}
             </p>
           </div>
@@ -43,7 +43,7 @@ export function Footer() {
           {/* Link columns */}
           {Object.entries(footerLinks).map(([heading, links]) => (
             <div key={heading}>
-              <p className="mb-4 font-mono text-xs font-semibold uppercase tracking-widest text-warm-gray">
+              <p className="mb-4 font-bold text-sm uppercase tracking-widest text-white">
                 {heading}
               </p>
               <ul className="space-y-2">
@@ -51,7 +51,7 @@ export function Footer() {
                   <li key={link.label}>
                     <a
                       href={link.href}
-                      className="text-sm text-white/70 transition-colors hover:text-white"
+                      className="text-sm font-medium text-neutral-gray transition-colors hover:text-primary-pink"
                     >
                       {link.label}
                     </a>
@@ -63,13 +63,13 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 md:flex-row">
-          <p className="text-xs text-warm-gray">
+        <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t-3 border-white/10 pt-8 md:flex-row">
+          <p className="text-xs font-bold text-neutral-gray uppercase tracking-wide">
             &copy; {new Date().getFullYear()} {t.footer.copyright}
           </p>
           <a
             href="https://www.crafterstation.com"
-            className="flex items-center gap-2 text-xs text-warm-gray transition-colors hover:text-white"
+            className="flex items-center gap-2 text-xs font-bold text-neutral-gray transition-colors hover:text-white uppercase tracking-wide"
           >
             <CrafterStationLogo className="size-4" />
             Crafter Station

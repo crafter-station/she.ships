@@ -67,10 +67,61 @@
     --animate-accordion-up: accordion-up 200ms ease-out;
 }
 
+* {
+    border-radius: 0 !important;
+}
+
 body {
     background: var(--primary-cream);
     color: var(--primary-black);
     font-family: var(--font-body), system-ui, sans-serif;
+}
+
+/* Neobrutalism utilities */
+.brutalist-border {
+    border: 3px solid var(--primary-black);
+}
+
+.brutalist-shadow {
+    box-shadow: 6px 6px 0px var(--primary-black);
+}
+
+.brutalist-shadow-sm {
+    box-shadow: 4px 4px 0px var(--primary-black);
+}
+
+.brutalist-shadow-lg {
+    box-shadow: 8px 8px 0px var(--primary-black);
+}
+
+.brutalist-card {
+    border: 3px solid var(--primary-black);
+    box-shadow: 6px 6px 0px var(--primary-black);
+    transition: all 0.1s ease;
+}
+
+.brutalist-card:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 4px 4px 0px var(--primary-black);
+}
+
+.brutalist-button {
+    border: 3px solid var(--primary-black);
+    box-shadow: 4px 4px 0px var(--primary-black);
+    transition: all 0.1s ease;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.brutalist-button:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px var(--primary-black);
+}
+
+.brutalist-button:active {
+    transform: translate(4px, 4px);
+    box-shadow: 0px 0px 0px var(--primary-black);
 }
 
 /* Grid overlay utility for dark sections */
@@ -111,4 +162,17 @@ body {
 /* Smooth scrolling for nav links */
 html {
     scroll-behavior: smooth;
+}
+
+/* Decorative squiggles */
+.squiggle {
+    position: relative;
+}
+
+.squiggle::after {
+    content: "~";
+    position: absolute;
+    font-size: 2rem;
+    color: var(--primary-black);
+    opacity: 0.3;
 }

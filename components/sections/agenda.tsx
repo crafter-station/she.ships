@@ -7,14 +7,13 @@ export function Agenda() {
   const { t } = useTranslation();
 
   return (
-    <SectionWrapper variant="pink" id="agenda">
+    <SectionWrapper variant="purple" bordered id="agenda">
       <div className="mb-16">
-        <span className="data-label mb-4 block text-charcoal/50">
-          {t.agenda.label}
-        </span>
-        <h2 className="text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">
+        <h2 className="font-[family-name:var(--font-title)] text-5xl font-black tracking-tight text-white md:text-6xl lg:text-7xl uppercase">
           {t.agenda.headline}{" "}
-          <span className="text-white">{t.agenda.headlineAccent}</span>
+          <span className="text-secondary-light-pink">
+            {t.agenda.headlineAccent}
+          </span>
         </h2>
       </div>
 
@@ -22,16 +21,20 @@ export function Agenda() {
         {t.agenda.slots.map((slot, i) => (
           <div
             key={i}
-            className="group grid grid-cols-[100px_1fr] gap-6 border-t border-charcoal/15 py-6 md:grid-cols-[140px_1fr] md:gap-10 md:py-8"
+            className="grid grid-cols-[120px_1fr] gap-6 border-t-3 border-white/20 py-8 md:grid-cols-[160px_1fr] md:gap-10"
           >
-            <p className="font-mono text-sm font-bold text-charcoal/60 md:text-base">
-              {slot.time}
-            </p>
+            <div className="brutalist-card bg-white px-4 py-3 self-start">
+              <p className="font-[family-name:var(--font-title)] text-lg font-black text-primary-black text-center">
+                {slot.time}
+              </p>
+            </div>
             <div>
-              <h3 className="text-xl font-bold text-charcoal md:text-2xl">
+              <h3 className="font-[family-name:var(--font-title)] text-2xl font-black text-white md:text-3xl uppercase mb-2">
                 {slot.title}
               </h3>
-              <p className="mt-1 text-charcoal/70">{slot.description}</p>
+              <p className="text-white/80 text-lg font-medium">
+                {slot.description}
+              </p>
             </div>
           </div>
         ))}

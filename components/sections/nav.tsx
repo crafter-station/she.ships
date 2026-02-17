@@ -16,11 +16,11 @@ export function Nav() {
   ];
 
   return (
-    <nav className="fixed top-0 z-50 w-full border-b border-charcoal/10 bg-off-white/95 backdrop-blur-sm">
+    <nav className="fixed top-0 z-50 w-full border-b-4 border-primary-black bg-white shadow-[0_4px_0_0_#1A1A1A]">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <a
           href="#"
-          className="font-[family-name:var(--font-title)] text-2xl font-black tracking-tight text-charcoal"
+          className="font-[family-name:var(--font-title)] text-3xl font-black tracking-tight text-primary-black hover:text-primary-pink transition-colors"
         >
           SheShips
         </a>
@@ -30,7 +30,7 @@ export function Nav() {
             <a
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-charcoal/70 transition-colors hover:text-charcoal"
+              className="font-bold text-sm uppercase tracking-wide text-primary-black hover:text-primary-pink transition-colors"
             >
               {link.label}
             </a>
@@ -40,11 +40,7 @@ export function Nav() {
         <div className="flex items-center gap-3">
           <GithubBadge />
           <LanguageSwitcher />
-          <Button
-            asChild
-            className="bg-charcoal text-white hover:bg-charcoal/85"
-            size="sm"
-          >
+          <Button asChild variant="pink" size="sm">
             <a href="#countdown">{t.nav.join}</a>
           </Button>
         </div>

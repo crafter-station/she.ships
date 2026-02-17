@@ -9,29 +9,33 @@ export function FAQ() {
   const { t } = useTranslation();
 
   return (
-    <SectionWrapper variant="beige" id="faq">
+    <SectionWrapper variant="red" bordered id="faq">
       <div className="text-center mb-16">
-        <span className="data-label mb-4 block">{t.faq.label}</span>
-        <h2 className="text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">
+        <h2 className="font-[family-name:var(--font-title)] text-5xl font-black tracking-tight text-white md:text-6xl lg:text-7xl uppercase">
           {t.faq.headline}{" "}
-          <span className="text-rose-coral">{t.faq.headlineAccent}</span>
+          <span className="text-secondary-light-pink">
+            {t.faq.headlineAccent}
+          </span>
         </h2>
       </div>
 
       <div className="mx-auto max-w-3xl">
-        <Accordion.Root type="multiple" className="space-y-0">
+        <Accordion.Root type="multiple" className="space-y-4">
           {t.faq.items.map((item, i) => (
             <Accordion.Item
               key={i}
               value={`faq-${i}`}
-              className="border-t border-charcoal/15"
+              className="brutalist-card bg-white"
             >
-              <Accordion.Trigger className="group flex w-full items-center justify-between py-5 text-left text-lg font-bold text-charcoal transition-colors hover:text-rose-coral md:text-xl">
+              <Accordion.Trigger className="group flex w-full items-center justify-between p-6 text-left font-[family-name:var(--font-title)] text-xl font-black text-primary-black transition-colors hover:text-primary-pink uppercase">
                 {item.question}
-                <ChevronDown className="size-5 shrink-0 text-charcoal/40 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                <ChevronDown
+                  className="size-6 shrink-0 text-primary-black transition-transform duration-200 group-data-[state=open]:rotate-180"
+                  strokeWidth={3}
+                />
               </Accordion.Trigger>
               <Accordion.Content className="overflow-hidden data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
-                <p className="pb-5 text-charcoal/70 leading-relaxed">
+                <p className="px-6 pb-6 text-neutral-gray text-lg font-medium leading-relaxed">
                   {item.answer}
                 </p>
               </Accordion.Content>
