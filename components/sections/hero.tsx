@@ -7,7 +7,7 @@ export function Hero() {
   const { t } = useTranslation();
 
   return (
-    <section className="relative min-h-screen w-full pt-0 bg-primary-cream">
+    <section className="relative min-h-screen w-full bg-primary-cream">
       <div className="grid min-h-screen md:grid-cols-2">
         {/* Left — Pink block */}
         <div className="relative flex flex-col justify-center bg-primary-pink border-4 border-primary-black px-12 py-20 md:px-20 lg:px-28">

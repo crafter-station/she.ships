@@ -5,6 +5,7 @@ import { EventInfo } from "@/components/sections/event-info";
 import { Agenda } from "@/components/sections/agenda";
 import { Categories } from "@/components/sections/categories";
 import { FAQ } from "@/components/sections/faq";
+import { Organizers } from "@/components/sections/organizers";
 import { Footer } from "@/components/sections/footer";
 
 export default function Home() {
@@ -18,6 +19,7 @@ export default function Home() {
         <Agenda />
         <Categories />
         <FAQ />
+        <Organizers />
       </main>
       <Footer />
     </>

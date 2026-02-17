@@ -60,7 +60,7 @@
 
     /* Fonts */
     --font-title: "Space Grotesk Variable", sans-serif;
-    --font-body: var(--font-inter);
+    --font-body: "Space Mono", monospace;
 
     /* Animations */
     --animate-accordion-down: accordion-down 200ms ease-out;

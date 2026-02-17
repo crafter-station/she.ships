@@ -1,15 +1,9 @@
 import type { Metadata } from "next";
 import "@fontsource-variable/space-grotesk";
-import { Inter } from "next/font/google";
+import "@fontsource/space-mono";
 import { LanguageProvider } from "@/lib/i18n/context";
 // import { ClerkLanguageProvider } from "@/components/providers/clerk-language-provider";
 import "./globals.css";
-
-// Using Inter as Satoshi substitute (similar rounded, friendly sans-serif)
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "She Ships | Where Women Build and Ship",
@@ -43,7 +37,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} antialiased`}>
+      <body className="antialiased">
         <LanguageProvider>
           {/* <ClerkLanguageProvider>{children}</ClerkLanguageProvider> */}
           {children}

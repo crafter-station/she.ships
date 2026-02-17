@@ -9,12 +9,12 @@ export const es: Translations = {
     join: "Únete",
   },
   hero: {
-    tagline: "Donde las mujeres construyen y lanzan",
+    tagline: "Construye. Comparte. Lanza.",
     headline: "Solo",
     headlineAccent: "Hazlo.",
     description:
-      "Un hackathon global para mujeres que transforman ideas en productos reales. Herramientas IA, cero barreras.",
-    date: "8 de marzo, 2026",
+      "Un hackathon global de 48 horas donde mujeres y creadoras multidisciplinarias construyen y publican algo real.",
+    date: "6-8 de marzo, 2026",
     ctaSpeaker: "Sé Speaker",
     ctaSponsor: "Sé Sponsor",
     ctaCommunity: "Sé Community Manager",
@@ -28,107 +28,115 @@ export const es: Translations = {
     hours: "Horas",
     minutes: "Minutos",
     seconds: "Segundos",
-    tagline: "8 de marzo, 2026 — ¿Lista para lanzar?",
+    tagline: "6-8 de marzo, 2026 — Este 8M, construimos y lanzamos. 💜",
   },
   eventInfo: {
-    label: "Lo Esencial",
-    headline: "Todo lo que necesitas",
-    headlineAccent: "saber.",
+    label: "Qué esperar",
+    headline: "Esto no es solo un hackathon.",
+    headlineAccent: "Es un espacio para lanzar.",
+    intro:
+      "Del 6 al 8 de marzo, celebramos el Día Internacional de la Mujer creando. She Ships es un Hackathon Global de 48 horas (remoto) donde mujeres y creadoras multidisciplinarias se unen para construir y publicar algo real.",
     where: {
-      title: "Dónde",
+      title: "100% Remoto",
       description:
-        "100% online. Participa desde cualquier lugar del mundo. Solo necesitas conexión a internet y una idea.",
+        "Participa desde cualquier lugar del mundo. Solo necesitas conexión a internet y una idea.",
     },
     duration: {
-      title: "Duración",
+      title: "48 Horas",
       description:
-        "24 horas de construcción sin parar. Desde la ceremonia de apertura hasta el showcase final, un día completo para lanzar.",
+        "6-8 de marzo, 2026. Desde el kickoff global hasta el showcase final en el Día Internacional de la Mujer.",
     },
     who: {
       title: "Quién Participa",
       description:
-        "Mujeres builders, diseñadoras, fundadoras, creadoras — todos los niveles. No se requiere experiencia en código.",
+        "Desarrolladoras, diseñadoras, artistas, product builders, investigadoras y creativas que creen en aprender haciendo y lanzar antes de perfeccionar. Limitado a 200 participantes en todo el mundo.",
     },
+  },
+  whatYouCanBuild: {
+    label: "En 48 horas, puedes",
+    headline: "Construir",
+    headlineAccent: "Lo que sea",
+    intro:
+      "Solo hay un requisito: 👉 Lanza algo. Un link público. Un output real. Algo que exista.",
+    items: [
+      "Construir una app",
+      "Diseñar una experiencia",
+      "Crear un cómic digital",
+      "Lanzar una herramienta con IA",
+      "Publicar un proyecto cultural",
+      "Prototipar la idea que has estado posponiendo",
+    ],
   },
   agenda: {
     label: "El Programa",
-    headline: "Agenda del",
-    headlineAccent: "Evento",
+    headline: "Qué",
+    headlineAccent: "Esperar",
     slots: [
       {
-        time: "9:00 AM",
-        title: "Ceremonia de Apertura",
-        description: "Bienvenida, presentaciones y reglas del hackathon.",
-      },
-      {
-        time: "9:30 AM",
-        title: "Keynote: Mujeres que Lanzan",
+        time: "6 de marzo",
+        title: "Kickoff Global",
         description:
-          "Charla inspiradora de mujeres builders que han lanzado productos reales.",
+          "Bienvenida, presentaciones, y empecemos a construir juntas.",
       },
       {
-        time: "10:00 AM",
-        title: "Workshop: Bootcamp de Herramientas IA",
+        time: "Continuo",
+        title: "Espacios de Mentoría",
         description:
-          "Sesión práctica para empezar con herramientas de construcción AI-native.",
+          "Recibe guía de builders experimentadas durante todo el hackathon.",
       },
       {
-        time: "11:00 AM",
-        title: "Comienza el Tiempo de Construcción",
+        time: "Continuo",
+        title: "Sesiones de Coworking Virtual",
         description:
-          "Equipos y builders individuales comienzan a trabajar en sus proyectos.",
+          "Construye junto a otras participantes en sesiones en tiempo real.",
       },
       {
-        time: "3:00 PM",
-        title: "Check-in de Mitad de Jornada",
+        time: "8 de marzo",
+        title: "Showcase Final",
         description:
-          "Actualizaciones de progreso, sesiones de mentoría y apoyo comunitario.",
+          "Presenta tu proyecto lanzado en el Día Internacional de la Mujer.",
       },
       {
-        time: "7:00 PM",
-        title: "Showcase de Proyectos",
-        description: "Presenta tu proyecto ante jueces y la comunidad.",
-      },
-      {
-        time: "8:30 PM",
-        title: "Premios y Cierre",
-        description: "Anuncio de ganadoras, celebraciones y próximos pasos.",
+        time: "8 de marzo",
+        title: "Recursos y Beneficios",
+        description:
+          "Acceso a herramientas, recursos y beneficios de partners educativos y tech.",
       },
     ],
   },
   categories: {
     label: "Construye Lo Que Importa",
-    headline: "Categorías de",
+    headline: "Ideas de",
     headlineAccent: "Proyectos",
     items: [
       {
-        title: "Salud y Bienestar",
+        title: "Apps y Herramientas",
         description:
-          "Herramientas y productos que mejoran la salud física o mental.",
+          "Apps web, herramientas móviles, extensiones de navegador, herramientas de productividad.",
+      },
+      {
+        title: "Con IA",
+        description:
+          "Asistentes IA, herramientas de automatización, productos con ML.",
+      },
+      {
+        title: "Proyectos Creativos",
+        description:
+          "Cómics digitales, proyectos de arte, experiencias creativas, iniciativas culturales.",
+      },
+      {
+        title: "Diseño y UX",
+        description:
+          "Sistemas de diseño, experiencias de usuario, prototipos de interfaces.",
       },
       {
         title: "Educación",
         description:
-          "Plataformas y recursos que hacen el aprendizaje más accesible.",
-      },
-      {
-        title: "Fintech",
-        description:
-          "Herramientas financieras que empoderan a comunidades desatendidas.",
-      },
-      {
-        title: "Herramientas Creativas",
-        description:
-          "Productos para artistas, escritoras, músicas y creadoras.",
-      },
-      {
-        title: "Impacto Social",
-        description: "Soluciones que abordan desafíos sociales y ambientales.",
+          "Plataformas de aprendizaje, recursos educativos, herramientas de intercambio de conocimiento.",
       },
       {
         title: "Herramientas para Developers",
-        description:
-          "Herramientas que hacen la construcción de software más rápida y fácil.",
+        description: "Librerías, frameworks, dev tools, proyectos open source.",
       },
     ],
   },
@@ -140,7 +148,7 @@ export const es: Translations = {
       {
         question: "¿Necesito saber programar?",
         answer:
-          "¡Para nada! She Ships está diseñado para todos los niveles. Proporcionamos herramientas AI-native que te permiten construir sin escribir código. Si puedes describir tu idea, puedes lanzarla.",
+          "¡Para nada! Esto no es solo tech. Damos la bienvenida a desarrolladoras, diseñadoras, artistas, product builders, investigadoras y todo tipo de creadoras. Si puedes describir tu idea y lanzar algo, estás dentro.",
       },
       {
         question: "¿Es gratis participar?",
@@ -148,9 +156,9 @@ export const es: Translations = {
           "Sí, She Ships es completamente gratis. Creemos en eliminar todas las barreras para construir y lanzar.",
       },
       {
-        question: "¿Puedo participar desde cualquier país?",
+        question: "¿Cuántas personas pueden participar?",
         answer:
-          "Por supuesto. She Ships es un evento 100% online. Solo necesitas conexión a internet. Damos la bienvenida a builders de todas partes.",
+          "Los cupos están limitados a 200 participantes en todo el mundo para asegurar una experiencia curada y colaborativa. ¡Regístrate temprano!",
       },
       {
         question: "¿Necesito un equipo?",
@@ -158,25 +166,30 @@ export const es: Translations = {
           "Puedes participar sola o en equipo. Tendremos canales para ayudarte a encontrar compañeras si quieres colaborar.",
       },
       {
-        question: "¿Qué tipo de proyectos puedo construir?",
+        question: "¿Qué significa 'lanzar algo'?",
         answer:
-          "¡Lo que quieras! Desde apps web hasta herramientas móviles, desde asistentes IA hasta plataformas creativas. Revisa nuestras categorías de proyectos para inspirarte.",
+          "Necesitas publicar algo real con un link público. Puede ser una app desplegada, un sitio web live, un diseño publicado, un cómic digital, un repo open source — cualquier cosa que exista y pueda ser accedida por otros.",
       },
       {
-        question: "¿Qué puedo ganar?",
+        question: "¿Qué pasa el 8 de marzo?",
         answer:
-          "Además de la experiencia de lanzar, los mejores proyectos obtienen visibilidad, oportunidades de mentoría y premios de nuestros sponsors. El verdadero premio es tu producto lanzado.",
+          "El 8 de marzo es el Día Internacional de la Mujer y nuestro día de showcase final. ¡Presentarás tu proyecto lanzado a la comunidad, jueces, y celebraremos lo que construiste!",
       },
       {
-        question: "¿Cómo puedo ser speaker o sponsor?",
+        question: "¿Cómo puedo ser sponsor o mentora?",
         answer:
-          "Usa los botones en nuestra sección principal para aplicar como speaker, sponsor o community manager. ¡Nos encantaría tenerte!",
+          "Usa los botones en la navegación para aplicar como sponsor, community partner, juez o mentora. ¡Nos encantaría tenerte!",
       },
     ],
   },
+  organizers: {
+    label: "Organizado por",
+    headline: "Quiénes están detrás de",
+    headlineAccent: "She Ships",
+  },
   footer: {
     brandDescription:
-      "Una comunidad global de mujeres que transforman ideas en productos reales.",
+      "Un hackathon global de 48 horas celebrando el Día Internacional de la Mujer construyendo y lanzando proyectos reales.",
     event: "Evento",
     resources: "Recursos",
     social: "Social",
