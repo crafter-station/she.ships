@@ -28,12 +28,6 @@ export function Organizers() {
         <span className="data-label mb-4 block text-neutral-gray uppercase">
           {t.organizers.label}
         </span>
-        <h2 className="font-[family-name:var(--font-title)] text-4xl font-black tracking-tight text-white md:text-5xl lg:text-6xl uppercase">
-          {t.organizers.headline}{" "}
-          <span className="text-primary-pink">
-            {t.organizers.headlineAccent}
-          </span>
-        </h2>
       </div>
 
       <div className="flex flex-wrap items-center justify-center gap-16 md:gap-20 lg:gap-24">
