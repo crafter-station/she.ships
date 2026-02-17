@@ -2,19 +2,51 @@
 @import "@fontsource-variable/space-grotesk";
 
 :root {
-    --rose-coral: #e05a7a;
+    /* Primary Colors */
+    --primary-pink: #ff2d78;
+    --primary-black: #1a1a1a;
+    --primary-cream: #faf5f0;
+
+    /* Secondary Colors */
+    --secondary-purple: #8b5cf6;
+    --secondary-light-pink: #ffb3d0;
+    --secondary-red: #ff6b6b;
+
+    /* Neutrals */
+    --neutral-dark: #2d2d2d;
+    --neutral-gray: #6b7280;
+    --neutral-light: #f3f4f6;
+
+    /* Legacy colors (for compatibility) */
+    --rose-coral: #ff2d78;
     --deep-rose: #c24466;
-    --warm-beige: #d8d2c4;
-    --charcoal: #171717;
-    --off-white: #f5f2ed;
+    --warm-beige: #faf5f0;
+    --charcoal: #1a1a1a;
+    --off-white: #faf5f0;
     --muted-gold: #c4a86b;
-    --warm-gray: #9b9688;
-    --grid-gray: #2a2a2a;
-    --hot-pink: #ff6b9d;
+    --warm-gray: #6b7280;
+    --grid-gray: #2d2d2d;
+    --hot-pink: #ff2d78;
     --sunny-yellow: #ffd23f;
 }
 
 @theme inline {
+    /* Primary */
+    --color-primary-pink: var(--primary-pink);
+    --color-primary-black: var(--primary-black);
+    --color-primary-cream: var(--primary-cream);
+
+    /* Secondary */
+    --color-secondary-purple: var(--secondary-purple);
+    --color-secondary-light-pink: var(--secondary-light-pink);
+    --color-secondary-red: var(--secondary-red);
+
+    /* Neutrals */
+    --color-neutral-dark: var(--neutral-dark);
+    --color-neutral-gray: var(--neutral-gray);
+    --color-neutral-light: var(--neutral-light);
+
+    /* Legacy compatibility */
     --color-rose-coral: var(--rose-coral);
     --color-deep-rose: var(--deep-rose);
     --color-warm-beige: var(--warm-beige);
@@ -25,23 +57,27 @@
     --color-grid-gray: var(--grid-gray);
     --color-hot-pink: var(--hot-pink);
     --color-sunny-yellow: var(--sunny-yellow);
+
+    /* Fonts */
     --font-title: "Space Grotesk Variable", sans-serif;
     --font-body: var(--font-inter);
+
+    /* Animations */
     --animate-accordion-down: accordion-down 200ms ease-out;
     --animate-accordion-up: accordion-up 200ms ease-out;
 }
 
 body {
-    background: var(--off-white);
-    color: var(--charcoal);
+    background: var(--primary-cream);
+    color: var(--primary-black);
     font-family: var(--font-body), system-ui, sans-serif;
 }
 
 /* Grid overlay utility for dark sections */
 .grid-overlay {
     background-image:
-        linear-gradient(to right, var(--grid-gray) 1px, transparent 1px),
-        linear-gradient(to bottom, var(--grid-gray) 1px, transparent 1px);
+        linear-gradient(to right, var(--neutral-dark) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--neutral-dark) 1px, transparent 1px);
     background-size: 64px 64px;
 }
 
@@ -51,7 +87,7 @@ body {
     font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: var(--warm-gray);
+    color: var(--neutral-gray);
 }
 
 /* Accordion animations */
