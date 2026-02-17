@@ -1,6 +1,7 @@
 import { Nav } from "@/components/sections/nav";
 import { Hero } from "@/components/sections/hero";
 import { Countdown } from "@/components/sections/countdown";
+import { WhatIsSheShips } from "@/components/sections/what-is-sheships";
 import { EventInfo } from "@/components/sections/event-info";
 import { Agenda } from "@/components/sections/agenda";
 import { Categories } from "@/components/sections/categories";
@@ -15,6 +16,7 @@ export default function Home() {
       <main>
         <Hero />
         <Countdown />
+        <WhatIsSheShips />
         <EventInfo />
         <Agenda />
         <Categories />
