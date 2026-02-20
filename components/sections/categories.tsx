@@ -28,10 +28,10 @@ export function Categories() {
     <SectionWrapper variant="cream" id="categories" className="!bg-[#FAF9F6]">
       <div className="text-center mb-16">
         <h2 className="font-[family-name:var(--font-title)] text-4xl font-black tracking-tight text-primary-black md:text-5xl lg:text-6xl mb-4">
-          Looking for inspiration on what you can build?
+          {t.categories.sectionHeadline}
         </h2>
         <p className="text-xl text-primary-black/70">
-          Discover the best project ideas and categories for She Ships
+          {t.categories.sectionSubline}
         </p>
       </div>
 
@@ -53,7 +53,7 @@ export function Categories() {
 
               <div className="space-y-2">
                 <p className="text-xs font-bold text-primary-black/60 uppercase tracking-wide">
-                  Popular tags
+                  {t.categories.popularTags}
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {tags.map((tag) => (

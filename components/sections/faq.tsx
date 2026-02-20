@@ -11,15 +11,15 @@ export function FAQ() {
     <SectionWrapper variant="cream" id="faq" className="!bg-[#FAF9F6]">
       <div className="text-center mb-16">
         <h2 className="font-[family-name:var(--font-title)] text-5xl font-black tracking-tight text-primary-black md:text-6xl lg:text-7xl mb-4">
-          Frequently asked questions
+          {t.faq.sectionHeadline}
         </h2>
         <p className="text-lg text-primary-black/70">
-          Don't see your question?{" "}
+          {t.faq.noQuestion}{" "}
           <a
             href="mailto:hello@sheship.com"
             className="underline hover:text-primary-pink transition-colors"
           >
-            Contact us
+            {t.faq.contactUs}
           </a>
         </p>
       </div>

@@ -5,6 +5,10 @@ export const en = {
     categories: "Categories",
     faq: "FAQ",
     join: "Join",
+    ctaSponsor: "Be a Sponsor",
+    ctaCommunityPartner: "Be a Community Partner",
+    ctaJudge: "Be a Judge",
+    ctaMentor: "Be a Mentor",
   },
   hero: {
     tagline: "Build. Share. Launch.",
@@ -34,6 +38,13 @@ export const en = {
     headlineAccent: "This is a space to ship.",
     intro:
       "From March 6-8, we celebrate International Women's Day by creating. She Ships is a 48-hour Global Hackathon (remote) where women and multidisciplinary creators come together to build and publish something real.",
+    paragraph1:
+      "She Ships is a 48-hour Global Hackathon where women and multidisciplinary creators come together to build and publish something real.",
+    paragraph2:
+      "From March 6-8, we celebrate International Women's Day by creating. This is not just tech — we welcome developers, designers, artists, product builders, researchers, and all types of creators.",
+    requirementLine: "There's only one requirement: 👉 Ship something.",
+    requirementSub: "A public link. A real output. Something that exists.",
+    limited: "Limited to 200 participants worldwide",
     where: {
       title: "100% Remote",
       description:
@@ -106,6 +117,9 @@ export const en = {
     label: "Build What Matters",
     headline: "Project",
     headlineAccent: "Ideas",
+    sectionHeadline: "Looking for inspiration on what you can build?",
+    sectionSubline: "Discover the best project ideas and categories for She Ships",
+    popularTags: "Popular tags",
     items: [
       {
         title: "Apps & Tools",
@@ -140,6 +154,9 @@ export const en = {
     label: "Got Questions?",
     headline: "Frequently Asked",
     headlineAccent: "Questions",
+    sectionHeadline: "Frequently asked questions",
+    noQuestion: "Don't see your question?",
+    contactUs: "Contact us",
     items: [
       {
         question: "Do I need to know how to code?",

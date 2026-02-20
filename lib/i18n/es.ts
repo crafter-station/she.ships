@@ -7,6 +7,10 @@ export const es: Translations = {
     categories: "Categorías",
     faq: "FAQ",
     join: "Únete",
+    ctaSponsor: "Sé Sponsor",
+    ctaCommunityPartner: "Sé Community Partner",
+    ctaJudge: "Sé Juez",
+    ctaMentor: "Sé Mentora",
   },
   hero: {
     tagline: "Construye. Comparte. Lanza.",
@@ -36,6 +40,13 @@ export const es: Translations = {
     headlineAccent: "Es un espacio para lanzar.",
     intro:
       "Del 6 al 8 de marzo, celebramos el Día Internacional de la Mujer creando. She Ships es un Hackathon Global de 48 horas (remoto) donde mujeres y creadoras multidisciplinarias se unen para construir y publicar algo real.",
+    paragraph1:
+      "She Ships es un Hackathon Global de 48 horas donde mujeres y creadoras multidisciplinarias se unen para construir y publicar algo real.",
+    paragraph2:
+      "Del 6 al 8 de marzo celebramos el Día Internacional de la Mujer creando. No es solo tech: damos la bienvenida a desarrolladoras, diseñadoras, artistas, product builders, investigadoras y todo tipo de creadoras.",
+    requirementLine: "Solo hay un requisito: 👉 Lanza algo.",
+    requirementSub: "Un enlace público. Un resultado real. Algo que exista.",
+    limited: "Limitado a 200 participantes en todo el mundo",
     where: {
       title: "100% Remoto",
       description:
@@ -108,6 +119,9 @@ export const es: Translations = {
     label: "Construye Lo Que Importa",
     headline: "Ideas de",
     headlineAccent: "Proyectos",
+    sectionHeadline: "¿Buscas inspiración para saber qué construir?",
+    sectionSubline: "Descubre las mejores ideas de proyectos y categorías para She Ships",
+    popularTags: "Etiquetas populares",
     items: [
       {
         title: "Apps y Herramientas",
@@ -144,6 +158,9 @@ export const es: Translations = {
     label: "¿Tienes Preguntas?",
     headline: "Preguntas",
     headlineAccent: "Frecuentes",
+    sectionHeadline: "Preguntas frecuentes",
+    noQuestion: "¿No ves tu pregunta?",
+    contactUs: "Contáctanos",
     items: [
       {
         question: "¿Necesito saber programar?",

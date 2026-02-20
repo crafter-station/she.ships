@@ -7,31 +7,31 @@ export function Hero() {
   const { t } = useTranslation();
 
   return (
-    <section className="relative min-h-screen w-full bg-primary-cream overflow-hidden">
-      <div className="grid min-h-screen md:grid-cols-2">
+    <section className="relative min-h-screen w-full max-w-[100vw] bg-primary-cream overflow-hidden">
+      <div className="grid min-h-screen md:grid-cols-2 min-w-0">
         {/* Left — Pink block with manifesto */}
-        <div className="relative flex flex-col justify-center bg-primary-pink border-4 border-primary-black px-12 py-20 md:px-20 lg:px-28">
-          {/* Floating sticker badges */}
-          <div className="absolute top-12 right-8 bg-white border-4 border-primary-black px-4 py-2 transform rotate-6 shadow-[4px_4px_0_0_#1A1A1A]">
-            <span className="font-[family-name:var(--font-title)] text-sm font-black uppercase">
+        <div className="relative flex flex-col justify-start md:justify-center bg-primary-pink border-4 border-primary-black px-6 py-12 sm:px-8 sm:py-16 md:px-20 md:py-20 lg:px-28 pt-16 sm:pt-20 md:pt-20">
+          {/* Floating sticker badges - móvil: fuera del flujo del texto */}
+          <div className="absolute top-8 right-4 sm:top-12 sm:right-8 bg-white border-4 border-primary-black px-3 py-1.5 sm:px-4 sm:py-2 transform rotate-6 shadow-[4px_4px_0_0_#1A1A1A] z-20">
+            <span className="font-[family-name:var(--font-title)] text-xs sm:text-sm font-black uppercase">
               48H
             </span>
           </div>
 
-          <div className="absolute bottom-32 right-16 bg-secondary-red border-4 border-primary-black px-4 py-2 transform -rotate-3 shadow-[6px_6px_0_0_#1A1A1A]">
+          <div className="absolute bottom-24 right-8 sm:bottom-32 sm:right-16 bg-secondary-red border-4 border-primary-black px-3 py-1.5 sm:px-4 sm:py-2 transform -rotate-3 shadow-[6px_6px_0_0_#1A1A1A] z-20 hidden sm:block">
             <span className="font-[family-name:var(--font-title)] text-xs font-black uppercase text-white">
               No Permission Needed
             </span>
           </div>
 
-          {/* Tape strip decoration */}
-          <div className="absolute top-0 right-1/4 w-24 h-8 bg-sunny-yellow opacity-60 transform -rotate-12"></div>
+          {/* Tape strip decoration - oculto en móvil para evitar ruido */}
+          <div className="absolute top-0 right-1/4 w-24 h-8 bg-sunny-yellow opacity-60 transform -rotate-12 hidden sm:block" aria-hidden></div>
 
           {/* Motion lines */}
-          <div className="absolute top-1/3 left-0 w-20 h-1 bg-primary-black opacity-30"></div>
-          <div className="absolute top-1/3 left-0 w-16 h-1 bg-primary-black opacity-20 mt-3"></div>
+          <div className="absolute top-1/3 left-0 w-20 h-1 bg-primary-black opacity-30 hidden sm:block" aria-hidden></div>
+          <div className="absolute top-1/3 left-0 w-16 h-1 bg-primary-black opacity-20 mt-3 hidden sm:block" aria-hidden></div>
 
-          <h1 className="relative z-10 mb-6 font-[family-name:var(--font-title)] text-7xl font-black leading-[0.85] tracking-tight text-primary-black md:text-8xl lg:text-9xl">
+          <h1 className="relative z-10 mb-4 sm:mb-6 font-[family-name:var(--font-title)] text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-black leading-[0.9] sm:leading-[0.85] tracking-tight text-primary-black">
             JUST
             <br />
             <span className="text-white">SHIP</span>
@@ -39,12 +39,12 @@ export function Hero() {
             <span className="text-white">IT.</span>
           </h1>
 
-          <p className="relative z-10 mb-10 max-w-lg text-xl leading-tight text-primary-black/90 md:text-2xl font-bold uppercase tracking-wide">
+          <p className="relative z-10 mb-8 sm:mb-10 max-w-lg text-base sm:text-xl md:text-2xl leading-snug text-primary-black/90 font-bold uppercase tracking-wide break-words">
             {t.hero.description}
           </p>
 
-          {/* Abstract code snippet decoration */}
-          <div className="absolute bottom-8 left-8 opacity-20">
+          {/* Abstract code snippet decoration - z bajo para no tapar texto */}
+          <div className="absolute bottom-8 left-6 sm:left-8 opacity-20 z-0 pointer-events-none">
             <div className="font-mono text-xs text-primary-black space-y-1">
               <div>{"<build />"}</div>
               <div>{"<ship />"}</div>
@@ -71,9 +71,9 @@ export function Hero() {
         </div>
 
         {/* Right — Split sections */}
-        <div className="grid grid-rows-2 relative">
-          {/* Rocket flying diagonally across */}
-          <div className="absolute top-1/3 left-1/4 z-20 transform -rotate-45">
+        <div className="grid grid-rows-2 relative min-w-0">
+          {/* Rocket flying diagonally across - oculto en móvil para evitar superposición */}
+          <div className="absolute top-1/3 left-1/4 z-20 transform -rotate-45 hidden md:block">
             <svg
               width="80"
               height="80"
@@ -95,20 +95,20 @@ export function Hero() {
           </div>
 
           {/* Top block - Event card with green accent */}
-          <div className="relative bg-[#5B9A8B] border-4 border-primary-black flex items-center justify-center p-12">
+          <div className="relative bg-[#5B9A8B] border-4 border-primary-black flex items-center justify-center p-6 sm:p-12 min-w-0">
             {/* 100% Online badge */}
-            <div className="absolute top-8 right-8 bg-sunny-yellow border-4 border-primary-black px-4 py-2 transform rotate-3 shadow-[4px_4px_0_0_#1A1A1A]">
+            <div className="absolute top-4 right-4 sm:top-8 sm:right-8 bg-sunny-yellow border-4 border-primary-black px-3 py-1.5 sm:px-4 sm:py-2 transform rotate-3 shadow-[4px_4px_0_0_#1A1A1A]">
               <span className="font-[family-name:var(--font-title)] text-xs font-black uppercase">
                 100% Online
               </span>
             </div>
 
-            <div className="brutalist-card bg-white p-10 max-w-sm transform -rotate-2">
+            <div className="brutalist-card bg-white p-6 sm:p-10 max-w-sm transform -rotate-2 w-full">
               <div className="text-center">
-                <div className="mb-4 font-[family-name:var(--font-title)] text-7xl font-black text-primary-pink leading-none">
+                <div className="mb-2 sm:mb-4 font-[family-name:var(--font-title)] text-5xl sm:text-7xl font-black text-primary-pink leading-none">
                   8
                 </div>
-                <div className="font-[family-name:var(--font-title)] text-3xl font-black text-primary-black uppercase leading-tight">
+                <div className="font-[family-name:var(--font-title)] text-2xl sm:text-3xl font-black text-primary-black uppercase leading-tight">
                   March
                   <br />
                   2026
@@ -127,7 +127,7 @@ export function Hero() {
           </div>
 
           {/* Bottom block - Coral with Build.Ship.Win */}
-          <div className="relative bg-secondary-red border-4 border-l-4 border-primary-black flex items-center justify-center p-12">
+          <div className="relative bg-secondary-red border-4 border-l-4 border-primary-black flex items-center justify-center p-6 sm:p-12 min-w-0">
             {/* Laptop silhouette abstract */}
             <div className="absolute top-1/4 left-12 opacity-10">
               <div className="w-20 h-12 border-4 border-primary-black"></div>
@@ -153,13 +153,13 @@ export function Hero() {
                 </div>
               </div>
 
-              <h2 className="font-[family-name:var(--font-title)] text-4xl font-black text-white mb-4 uppercase leading-tight">
+              <h2 className="font-[family-name:var(--font-title)] text-2xl sm:text-4xl font-black text-white mb-4 uppercase leading-tight">
                 200 Builders
                 <br />
                 Worldwide
               </h2>
 
-              <p className="text-lg text-white/90 font-bold uppercase tracking-wide">
+              <p className="text-sm sm:text-lg text-white/90 font-bold uppercase tracking-wide">
                 48 Hours to Ship
               </p>
             </div>

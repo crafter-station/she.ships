@@ -30,7 +30,7 @@ export function Organizers() {
         </span>
       </div>
 
-      <div className="flex flex-wrap items-center justify-center gap-16 md:gap-20 lg:gap-24">
+      <div className="flex w-full flex-wrap items-center justify-center gap-16 md:gap-20 lg:gap-24">
         {organizers.map((org) => (
           <div key={org.name}>
             <Image

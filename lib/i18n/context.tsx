@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect, useCallback } from "react";
 import { en, type Translations } from "./en";
 import { es } from "./es";
 
@@ -12,32 +12,41 @@ type LanguageContextValue = {
   t: Translations;
   locale: Locale;
   setLocale: (locale: Locale) => void;
+  toggleLocale: () => void;
 };
 
 const LanguageContext = createContext<LanguageContextValue | null>(null);
 
-function getInitialLocale(): Locale {
-  if (typeof window === "undefined") return "en";
-  const stored = localStorage.getItem("locale");
-  if (stored === "en" || stored === "es") return stored;
-  return "en";
-}
-
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>(getInitialLocale);
-
-  const setLocale = (newLocale: Locale) => {
-    setLocaleState(newLocale);
-    localStorage.setItem("locale", newLocale);
-  };
+  const [locale, setLocaleState] = useState<Locale>("en");
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
     document.documentElement.lang = locale;
-  }, [locale]);
+    localStorage.setItem("locale", locale);
+  }, [locale, mounted]);
+
+  const setLocale = useCallback((newLocale: Locale) => {
+    setLocaleState(newLocale);
+  }, []);
+
+  const toggleLocale = useCallback(() => {
+    setLocaleState((prev) => (prev === "en" ? "es" : "en"));
+  }, []);
 
   return (
     <LanguageContext.Provider
-      value={{ t: dictionaries[locale], locale, setLocale }}
+      value={{
+        t: dictionaries[locale],
+        locale,
+        setLocale,
+        toggleLocale,
+      }}
     >
       {children}
     </LanguageContext.Provider>
