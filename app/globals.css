@@ -71,6 +71,11 @@
     border-radius: 0 !important;
 }
 
+html,
+body {
+    overflow-x: hidden;
+}
+
 body {
     background: var(--primary-cream);
     color: var(--primary-black);
@@ -162,6 +167,31 @@ body {
 /* Smooth scrolling for nav links */
 html {
     scroll-behavior: smooth;
+}
+
+/* Scrollbar alineado con la UI brutalista */
+html {
+    scrollbar-width: auto;
+    scrollbar-color: var(--primary-black) var(--primary-cream);
+}
+
+html::-webkit-scrollbar {
+    width: 14px;
+}
+
+html::-webkit-scrollbar-track {
+    background: var(--primary-cream);
+    border-left: 3px solid var(--primary-black);
+}
+
+html::-webkit-scrollbar-thumb {
+    background: var(--primary-black);
+    border: 3px solid var(--primary-cream);
+}
+
+html::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-pink);
+    border-color: var(--primary-cream);
 }
 
 /* Decorative squiggles */

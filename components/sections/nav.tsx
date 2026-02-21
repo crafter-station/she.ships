@@ -16,21 +16,21 @@ export function Nav() {
   ];
 
   const actionButtons = [
-    { label: "Be a Sponsor", href: "https://luma.com/ytl522gp" },
-    { label: "Be a Community Partner", href: "https://luma.com/ytl522gp" },
-    { label: "Be a Judge", href: "https://luma.com/ytl522gp" },
-    { label: "Be a Mentor", href: "https://luma.com/ytl522gp" },
+    { id: "sponsor", label: t.nav.ctaSponsor, href: "https://luma.com/ytl522gp" },
+    { id: "community", label: t.nav.ctaCommunityPartner, href: "https://luma.com/ytl522gp" },
+    { id: "judge", label: t.nav.ctaJudge, href: "https://luma.com/ytl522gp" },
+    { id: "mentor", label: t.nav.ctaMentor, href: "https://luma.com/ytl522gp" },
   ];
 
   return (
     <>
-      <nav className="fixed top-0 z-50 w-full border-b-4 border-primary-black bg-white">
-        <div className="flex items-center">
+      <nav className="fixed top-0 left-0 right-0 z-50 w-full max-w-[100vw] border-b-4 border-primary-black bg-white flex flex-col">
+        <div className="flex flex-wrap items-center min-w-0 shrink-0 min-h-[60px] sm:min-h-[68px] py-0">
           {/* Left side - Logo and Links with container */}
-          <div className="flex-1 flex items-center justify-between px-6 py-4 border-r-4 border-primary-black">
+          <div className="flex-1 flex items-center justify-between min-w-0 px-4 sm:px-6 h-full min-h-[60px] sm:min-h-[68px] border-r-4 border-primary-black">
             <a
               href="#"
-              className="font-[family-name:var(--font-title)] text-3xl font-black tracking-tight text-primary-black hover:text-primary-pink transition-colors"
+              className="font-[family-name:var(--font-title)] text-xl sm:text-3xl font-black tracking-tight text-primary-black hover:text-primary-pink transition-colors truncate leading-none"
             >
               SheShips
             </a>
@@ -40,7 +40,7 @@ export function Nav() {
                 <a
                   key={link.href}
                   href={link.href}
-                  className="font-bold text-sm uppercase tracking-wide text-primary-black hover:text-primary-pink transition-colors"
+                  className="font-bold text-sm uppercase tracking-wide text-primary-black hover:text-primary-pink transition-colors leading-none"
                 >
                   {link.label}
                 </a>
@@ -48,25 +48,25 @@ export function Nav() {
             </div>
           </div>
 
-          {/* Right side - Actions (no max-width, extends to edge) */}
-          <div className="flex items-center gap-3 px-6 py-4">
+          {/* Right side - Actions */}
+          <div className="flex items-center gap-2 sm:gap-3 px-3 sm:px-6 shrink-0">
             <GithubBadge />
             <LanguageSwitcher />
           </div>
 
-          {/* Join button - Black background extends to edge */}
-          <div className="bg-primary-black">
+          {/* Join button - Black background extends to edge, centrado con el resto */}
+          <div className="bg-primary-black shrink-0 self-stretch flex items-center">
             <Button
               asChild
               variant="pink"
               size="sm"
-              className="!shadow-none border-0 bg-primary-black hover:bg-primary-black/90"
+              className="!shadow-none border-0 bg-primary-black hover:bg-primary-black/90 h-full rounded-none"
             >
               <a
                 href="https://luma.com/ytl522gp"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-8 py-6 h-[68px]"
+                className="px-4 sm:px-8 h-[60px] sm:h-[68px] text-xs sm:text-sm flex items-center justify-center"
               >
                 {t.nav.join}
               </a>
@@ -74,12 +74,12 @@ export function Nav() {
           </div>
         </div>
 
-        {/* Action buttons row below header */}
-        <div className="border-t-4 border-primary-black bg-primary-cream">
-          <div className="mx-auto max-w-7xl px-6 py-3">
-            <div className="flex flex-wrap items-center justify-center gap-3">
+        {/* Action buttons row: en mobile scroll horizontal (una sola línea, altura fija); en desktop centrado */}
+        <div className="border-t-4 border-primary-black bg-primary-cream shrink-0 -mt-px">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 py-3 sm:py-4">
+            <div className="flex flex-nowrap items-center justify-start gap-3 overflow-x-auto pb-1 sm:flex-wrap sm:justify-center sm:pb-0 sm:gap-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
               {actionButtons.map((button) => (
-                <Button key={button.label} asChild variant="outline" size="sm">
+                <Button key={button.id} asChild variant="outline" size="sm" className="shrink-0">
                   <a
                     href={button.href}
                     target="_blank"
@@ -94,8 +94,8 @@ export function Nav() {
         </div>
       </nav>
 
-      {/* Spacer to prevent content from going under fixed nav */}
-      <div className="h-[140px]" />
+      {/* Spacer: en mobile una sola fila de CTAs = altura fija; en desktop idem */}
+      <div className="h-[120px] sm:h-[136px] md:h-[131px]" />
     </>
   );
 }
