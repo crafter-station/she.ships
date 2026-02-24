@@ -7,11 +7,11 @@ export function Agenda() {
   const { t } = useTranslation();
 
   return (
-    <SectionWrapper variant="purple" bordered id="agenda">
+    <SectionWrapper variant="dark" id="agenda">
       <div className="mb-16">
         <h2 className="font-[family-name:var(--font-title)] text-5xl font-black tracking-tight text-white md:text-6xl lg:text-7xl uppercase">
           {t.agenda.headline}{" "}
-          <span className="text-secondary-light-pink">
+          <span className="text-primary-pink">
             {t.agenda.headlineAccent}
           </span>
         </h2>

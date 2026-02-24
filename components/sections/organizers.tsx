@@ -23,7 +23,7 @@ export function Organizers() {
   ];
 
   return (
-    <SectionWrapper variant="dark" bordered id="organizers">
+    <SectionWrapper variant="dark" id="organizers">
       <div className="text-center mb-12">
         <span className="data-label mb-4 block text-neutral-gray uppercase">
           {t.organizers.label}

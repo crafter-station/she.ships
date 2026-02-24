@@ -19,9 +19,12 @@ function getTimeLeft() {
 
 export function Countdown() {
   const { t } = useTranslation();
-  const [time, setTime] = useState(getTimeLeft);
+  const [time, setTime] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setTime(getTimeLeft());
+    setMounted(true);
     const interval = setInterval(() => setTime(getTimeLeft()), 1000);
     return () => clearInterval(interval);
   }, []);
@@ -31,24 +34,24 @@ export function Countdown() {
     {
       value: time.hours,
       label: t.countdown.hours,
-      color: "bg-secondary-purple",
+      color: "bg-primary-green",
     },
     {
       value: time.minutes,
       label: t.countdown.minutes,
-      color: "bg-secondary-red",
+      color: "bg-primary-black",
     },
     {
       value: time.seconds,
       label: t.countdown.seconds,
-      color: "bg-secondary-light-pink",
+      color: "bg-primary-pink",
     },
   ];
 
   return (
-    <SectionWrapper variant="cream" bordered id="countdown">
+    <SectionWrapper variant="dark" id="countdown">
       <div className="text-center">
-        <h2 className="mb-4 font-[family-name:var(--font-title)] text-5xl font-black tracking-tight text-primary-black md:text-6xl lg:text-7xl uppercase">
+        <h2 className="mb-4 font-[family-name:var(--font-title)] text-5xl font-black tracking-tight text-primary-cream md:text-6xl lg:text-7xl uppercase">
           {t.countdown.headline}{" "}
           <span className="text-primary-pink">
             {t.countdown.headlineAccent}
@@ -59,11 +62,11 @@ export function Countdown() {
           {blocks.map((block, i) => (
             <div key={block.label} className="flex-1 min-w-[140px]">
               <div className={`brutalist-card ${block.color} p-8`}>
-                <p className="font-[family-name:var(--font-title)] text-6xl font-black text-white md:text-7xl lg:text-8xl">
+                <p className={`font-[family-name:var(--font-title)] text-6xl font-black text-white md:text-7xl lg:text-8xl ${mounted ? "opacity-100" : "opacity-0"}`}>
                   {String(block.value).padStart(2, "0")}
                 </p>
               </div>
-              <p className="mt-4 font-bold uppercase tracking-widest text-primary-black text-sm">
+              <p className="mt-4 font-bold uppercase tracking-widest text-primary-cream text-sm">
                 {block.label}
               </p>
             </div>
