@@ -11,7 +11,7 @@ export default function JudgePage() {
         <SectionWrapper variant="red" className="min-h-[60vh] flex items-center">
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="font-[family-name:var(--font-title)] text-6xl font-black tracking-tight text-white md:text-7xl lg:text-8xl uppercase mb-6">
-              Be a <span className="text-secondary-light-pink">Judge</span>
+              Be a <span className="text-primary-green">Judge</span>
             </h1>
             <p className="text-2xl text-white/90 mb-10 font-medium">
               Evaluate shipped projects and help recognize the best builders. Be part of the final showcase on International Women's Day.

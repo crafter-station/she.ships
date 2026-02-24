@@ -9,17 +9,18 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary-black text-white hover:bg-primary-black/90",
-        pink: "bg-primary-pink text-white hover:bg-primary-pink/90",
-        purple: "bg-secondary-purple text-white hover:bg-secondary-purple/90",
-        red: "bg-secondary-red text-white hover:bg-secondary-red/90",
-        outline: "bg-white text-primary-black hover:bg-neutral-light",
+        default: "bg-primary-black text-primary-cream hover:bg-primary-black/90",
+        pink: "bg-primary-pink text-primary-black hover:bg-primary-pink/90",
+        green: "bg-primary-green text-primary-black hover:bg-primary-green/90",
+        purple: "bg-primary-green text-primary-black hover:bg-primary-green/90",
+        red: "bg-primary-pink text-primary-black hover:bg-primary-pink/90",
+        outline: "bg-primary-cream text-primary-black hover:bg-neutral-light",
         ghost: "border-0 shadow-none hover:bg-neutral-light",
       },
       size: {
         default: "h-11 px-6 py-3",
         sm: "h-9 px-4 py-2 text-xs",
-        lg: "h-14 px-8 py-4 text-base",
+        lg: "h-11 px-8 py-2 text-base",
         icon: "size-11",
       },
     },

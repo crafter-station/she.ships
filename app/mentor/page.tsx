@@ -11,7 +11,7 @@ export default function MentorPage() {
         <SectionWrapper variant="purple" className="min-h-[60vh] flex items-center">
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="font-[family-name:var(--font-title)] text-6xl font-black tracking-tight text-white md:text-7xl lg:text-8xl uppercase mb-6">
-              Be a <span className="text-secondary-light-pink">Mentor</span>
+              Be a <span className="text-primary-pink">Mentor</span>
             </h1>
             <p className="text-2xl text-white/90 mb-10 font-medium">
               Share your expertise and guide builders through their 48-hour journey. Help turn ideas into shipped products.

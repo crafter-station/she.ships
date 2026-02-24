@@ -1,45 +1,49 @@
 @import "tailwindcss";
 @import "@fontsource-variable/space-grotesk";
+@import "lenis/dist/lenis.css";
 
 :root {
-    /* Primary Colors */
-    --primary-pink: #ff2d78;
-    --primary-black: #1a1a1a;
-    --primary-cream: #faf5f0;
+    /* Brand Palette */
+    --primary-pink: #e9a1c9;
+    --primary-green: #7fe179;
+    --primary-black: #131414;
+    --primary-cream: #f2f2ef;
 
-    /* Secondary Colors */
-    --secondary-purple: #8b5cf6;
-    --secondary-light-pink: #ffb3d0;
-    --secondary-red: #ff6b6b;
+    /* Derived from brand palette */
+    --secondary-purple: #7fe279;
+    --secondary-light-pink: #e9a1c9;
+    --secondary-red: #e9a1c9;
 
     /* Neutrals */
-    --neutral-dark: #2d2d2d;
+    --neutral-dark: #1e1f1f;
     --neutral-gray: #6b7280;
-    --neutral-light: #f3f4f6;
+    --neutral-light: #e8e8e5;
 
-    /* Legacy colors (for compatibility) */
-    --rose-coral: #ff2d78;
-    --deep-rose: #c24466;
-    --warm-beige: #faf5f0;
-    --charcoal: #1a1a1a;
-    --off-white: #faf5f0;
-    --muted-gold: #c4a86b;
+    /* Legacy aliases → brand palette */
+    --sunny-yellow: #7fe279;
+    --charcoal: #131414;
+    --off-white: #f2f2ef;
+    --warm-beige: #f2f2ef;
+    --hot-pink: #e9a1c9;
+    --rose-coral: #e9a1c9;
+    --deep-rose: #e9a1c9;
+    --muted-gold: #7fe279;
     --warm-gray: #6b7280;
-    --grid-gray: #2d2d2d;
-    --hot-pink: #ff2d78;
-    --sunny-yellow: #ffd23f;
+    --grid-gray: #1e1f1f;
 }
 
 @theme inline {
-    /* Primary */
+    /* Brand */
     --color-primary-pink: var(--primary-pink);
+    --color-primary-green: var(--primary-green);
     --color-primary-black: var(--primary-black);
     --color-primary-cream: var(--primary-cream);
 
-    /* Secondary */
+    /* Aliases (map to brand palette) */
     --color-secondary-purple: var(--secondary-purple);
     --color-secondary-light-pink: var(--secondary-light-pink);
     --color-secondary-red: var(--secondary-red);
+    --color-sunny-yellow: var(--sunny-yellow);
 
     /* Neutrals */
     --color-neutral-dark: var(--neutral-dark);
@@ -47,19 +51,18 @@
     --color-neutral-light: var(--neutral-light);
 
     /* Legacy compatibility */
-    --color-rose-coral: var(--rose-coral);
-    --color-deep-rose: var(--deep-rose);
-    --color-warm-beige: var(--warm-beige);
     --color-charcoal: var(--charcoal);
     --color-off-white: var(--off-white);
+    --color-warm-beige: var(--warm-beige);
+    --color-hot-pink: var(--hot-pink);
+    --color-rose-coral: var(--rose-coral);
+    --color-deep-rose: var(--deep-rose);
     --color-muted-gold: var(--muted-gold);
     --color-warm-gray: var(--warm-gray);
     --color-grid-gray: var(--grid-gray);
-    --color-hot-pink: var(--hot-pink);
-    --color-sunny-yellow: var(--sunny-yellow);
 
     /* Fonts */
-    --font-title: "Space Grotesk Variable", sans-serif;
+    --font-title: var(--font-monoblock), "Space Grotesk Variable", sans-serif;
     --font-body: "Space Mono", monospace;
 
     /* Animations */
@@ -71,13 +74,12 @@
     border-radius: 0 !important;
 }
 
-html,
 body {
-    overflow-x: hidden;
+    overflow-x: clip;
 }
 
 body {
-    background: var(--primary-cream);
+    background: var(--primary-black);
     color: var(--primary-black);
     font-family: var(--font-body), system-ui, sans-serif;
 }
@@ -111,22 +113,20 @@ body {
 }
 
 .brutalist-button {
-    border: 3px solid var(--primary-black);
-    box-shadow: 4px 4px 0px var(--primary-black);
-    transition: all 0.1s ease;
+    border: none;
+    box-shadow: none;
+    transition: all 0.15s ease;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
 
 .brutalist-button:hover {
-    transform: translate(2px, 2px);
-    box-shadow: 2px 2px 0px var(--primary-black);
+    opacity: 0.9;
 }
 
 .brutalist-button:active {
-    transform: translate(4px, 4px);
-    box-shadow: 0px 0px 0px var(--primary-black);
+    opacity: 0.8;
 }
 
 /* Grid overlay utility for dark sections */
@@ -164,34 +164,32 @@ body {
     }
 }
 
-/* Smooth scrolling for nav links */
-html {
-    scroll-behavior: smooth;
-}
+/* Smooth scrolling handled by Lenis */
 
-/* Scrollbar alineado con la UI brutalista */
+/* Scrollbar — dark theme, thin, auto-hide */
 html {
-    scrollbar-width: auto;
-    scrollbar-color: var(--primary-black) var(--primary-cream);
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-pink) transparent;
 }
 
 html::-webkit-scrollbar {
-    width: 14px;
+    width: 3px;
 }
 
 html::-webkit-scrollbar-track {
-    background: var(--primary-cream);
-    border-left: 3px solid var(--primary-black);
+    background: transparent;
 }
 
 html::-webkit-scrollbar-thumb {
-    background: var(--primary-black);
-    border: 3px solid var(--primary-cream);
+    background: transparent;
 }
 
 html::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-green);
+}
+
+html.is-scrolling::-webkit-scrollbar-thumb {
     background: var(--primary-pink);
-    border-color: var(--primary-cream);
 }
 
 /* Decorative squiggles */

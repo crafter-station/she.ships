@@ -7,12 +7,12 @@ export function Categories() {
   const { t } = useTranslation();
 
   const categoryColors = [
-    "bg-[#5B9A8B]", // teal
-    "bg-[#E76F51]", // coral/red
-    "bg-[#5B9A8B]", // teal
-    "bg-[#F4E04D]", // yellow
-    "bg-[#A8BCEE]", // light blue
-    "bg-[#E76F51]", // coral/red
+    "bg-primary-pink",
+    "bg-primary-green",
+    "bg-primary-pink",
+    "bg-primary-green",
+    "bg-primary-pink",
+    "bg-primary-green",
   ];
 
   const categoryTags = [
@@ -25,12 +25,12 @@ export function Categories() {
   ];
 
   return (
-    <SectionWrapper variant="cream" id="categories" className="!bg-[#FAF9F6]">
+    <SectionWrapper variant="dark" id="categories">
       <div className="text-center mb-16">
-        <h2 className="font-[family-name:var(--font-title)] text-4xl font-black tracking-tight text-primary-black md:text-5xl lg:text-6xl mb-4">
+        <h2 className="font-[family-name:var(--font-title)] text-2xl font-black tracking-tight text-primary-cream md:text-3xl lg:text-4xl mb-4">
           {t.categories.sectionHeadline}
         </h2>
-        <p className="text-xl text-primary-black/70">
+        <p className="text-xl text-primary-cream/70">
           {t.categories.sectionSubline}
         </p>
       </div>
@@ -52,7 +52,7 @@ export function Categories() {
               </p>
 
               <div className="space-y-2">
-                <p className="text-xs font-bold text-primary-black/60 uppercase tracking-wide">
+                <p className="text-xs font-bold text-primary-cream/60 uppercase tracking-wide">
                   {t.categories.popularTags}
                 </p>
                 <div className="flex flex-wrap gap-2">

@@ -4,14 +4,15 @@ import { GridOverlay } from "./grid-overlay";
 const variantStyles = {
   cream: "bg-primary-cream text-primary-black",
   pink: "bg-primary-pink text-primary-black",
-  purple: "bg-secondary-purple text-white",
-  lightPink: "bg-secondary-light-pink text-primary-black",
-  red: "bg-secondary-red text-white",
-  dark: "bg-primary-black text-white",
+  green: "bg-primary-green text-primary-black",
+  purple: "bg-primary-green text-primary-black",
+  lightPink: "bg-primary-pink text-primary-black",
+  red: "bg-primary-pink text-primary-black",
+  dark: "bg-primary-black text-primary-cream",
   light: "bg-neutral-light text-primary-black",
   // Legacy
   beige: "bg-primary-cream text-primary-black",
-  yellow: "bg-sunny-yellow text-charcoal",
+  yellow: "bg-primary-green text-primary-black",
 } as const;
 
 export function SectionWrapper({
@@ -33,7 +34,7 @@ export function SectionWrapper({
     <section
       id={id}
       className={cn(
-        "relative w-full",
+        "sticky top-0 w-full min-h-screen",
         variantStyles[variant],
         bordered && "border-t-4 border-b-4 border-primary-black",
         className,

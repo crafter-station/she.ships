@@ -9,7 +9,7 @@ export default function SponsorPage() {
       icon: "💎",
       name: "Platinum",
       price: "$2,500 USD",
-      color: "bg-secondary-purple",
+      color: "bg-primary-green",
       benefits: [
         "Everything in Gold +",
         'Event naming: "SheShips powered by [Brand]"',
@@ -74,7 +74,7 @@ export default function SponsorPage() {
           </div>
         </SectionWrapper>
 
-        <SectionWrapper variant="cream" bordered className="!bg-[#FAF9F6]">
+        <SectionWrapper variant="cream" bordered>
           <div className="max-w-5xl mx-auto">
             <h2 className="font-[family-name:var(--font-title)] text-5xl font-black text-primary-black uppercase mb-4 text-center md:text-6xl">
               Sponsorship Tiers
