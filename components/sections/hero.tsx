@@ -1,174 +1,387 @@
 "use client";
 
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { useTranslation } from "@/lib/i18n/context";
+import { EncryptedText } from "@/components/ui/encrypted-text";
+import Image from "next/image";
+
+const MESSAGES = [
+  "WOMEN IN TECH,",
+  "DESIGN, ART, AND CULTURE_",
+  "BUILD AND SHIP REAL PROJECTS_",
+];
+
+const REVEAL_MS_PER_CHAR = 40;
+const PAUSE_BETWEEN = 300;
+
+// Cumulative delay: each line waits for all previous lines to finish + pause
+// Lines 0-1 are one phrase, so no pause between them
+const MESSAGE_DELAYS = MESSAGES.reduce<number[]>((acc, msg, i) => {
+  if (i === 0) {
+    acc.push(0);
+  } else {
+    const prevStart = acc[i - 1];
+    const prevDuration = MESSAGES[i - 1].length * REVEAL_MS_PER_CHAR;
+    const pause = i === 1 ? 0 : PAUSE_BETWEEN;
+    acc.push(prevStart + prevDuration + pause);
+  }
+  return acc;
+}, []);
 
 export function Hero() {
-  const { t } = useTranslation();
+  // Button
+  const [btnX, setBtnX] = useState(8);
+  const [btnY, setBtnY] = useState(84);
+  const [btnScale, setBtnScale] = useState(0.96);
+  // Layout
+  const [btnGap, setBtnGap] = useState(32);
+  const [overlay, setOverlay] = useState(0);
+  // Text (encrypted)
+  const [txtX, setTxtX] = useState(232);
+  const [txtY, setTxtY] = useState(-131);
+  // Green text
+  const [greenX, setGreenX] = useState(0);
+  const [greenY, setGreenY] = useState(-109);
+  const [greenGap, setGreenGap] = useState(218);
+  const [greenML, setGreenML] = useState(64);
+
+  const [panelOpen, setPanelOpen] = useState(true);
+  const [activeTab, setActiveTab] = useState<"btn" | "layout" | "text" | "green">("btn");
+  const [copied, setCopied] = useState<string | null>(null);
+
+  const flash = (key: string) => {
+    setCopied(key);
+    setTimeout(() => setCopied(null), 1200);
+  };
+
+  const copy = (key: string, text: string) => {
+    navigator.clipboard.writeText(text);
+    flash(key);
+  };
+
+  const cssProp = (prop: string, val: string) => `${prop}: ${val};`;
+
+  const btnCss = `transform: translate(${btnX}px, ${btnY}px) scale(${btnScale});`;
+  const layoutCss = [
+    cssProp("--btn-gap", `${btnGap}px`),
+    cssProp("--overlay", `${overlay}%`),
+  ].join("\n");
+  const txtCss = `transform: translate(${txtX}px, ${txtY}px);`;
+  const greenCss = `transform: translate(${greenX}px, ${greenY}px);\nmargin-left: ${greenML}px;\ngap-spacer: ${greenGap}px;`;
+
+  const allJson = JSON.stringify(
+    {
+      button: { x: btnX, y: btnY, scale: btnScale },
+      layout: { btnGap, overlay },
+      text: { x: txtX, y: txtY },
+      green: { x: greenX, y: greenY, gap: greenGap, ml: greenML },
+    },
+    null,
+    2,
+  );
+
+  const resetAll = () => {
+    setBtnX(8); setBtnY(84); setBtnScale(0.96);
+    setBtnGap(32); setOverlay(0);
+    setTxtX(232); setTxtY(-131);
+    setGreenX(0); setGreenY(-109); setGreenGap(218); setGreenML(64);
+  };
+
+  const tabs: { id: typeof activeTab; label: string; color: string }[] = [
+    { id: "btn", label: "Button", color: "text-primary-cream" },
+    { id: "layout", label: "Layout", color: "text-primary-green" },
+    { id: "text", label: "Text", color: "text-primary-pink" },
+    { id: "green", label: "Green", color: "text-primary-green" },
+  ];
+
+  const tabCssMap: Record<string, string> = {
+    btn: btnCss,
+    green: greenCss,
+    layout: layoutCss,
+    text: txtCss,
+  };
 
   return (
-    <section className="relative min-h-screen w-full max-w-[100vw] bg-primary-cream overflow-hidden">
-      <div className="grid min-h-screen md:grid-cols-2 min-w-0">
-        {/* Left — Pink block with manifesto */}
-        <div className="relative flex flex-col justify-start md:justify-center bg-primary-pink border-4 border-primary-black px-6 py-12 sm:px-8 sm:py-16 md:px-20 md:py-20 lg:px-28 pt-16 sm:pt-20 md:pt-20">
-          {/* Floating sticker badges - móvil: fuera del flujo del texto */}
-          <div className="absolute top-8 right-4 sm:top-12 sm:right-8 bg-white border-4 border-primary-black px-3 py-1.5 sm:px-4 sm:py-2 transform rotate-6 shadow-[4px_4px_0_0_#1A1A1A] z-20">
-            <span className="font-[family-name:var(--font-title)] text-xs sm:text-sm font-black uppercase">
-              48H
-            </span>
-          </div>
+    <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden">
+      {/* Background */}
+      <Image
+        src="/brand/hero_4_raw.jpg"
+        alt=""
+        fill
+        className="object-cover"
+        priority
+      />
 
-          <div className="absolute bottom-24 right-8 sm:bottom-32 sm:right-16 bg-secondary-red border-4 border-primary-black px-3 py-1.5 sm:px-4 sm:py-2 transform -rotate-3 shadow-[6px_6px_0_0_#1A1A1A] z-20 hidden sm:block">
-            <span className="font-[family-name:var(--font-title)] text-xs font-black uppercase text-white">
-              No Permission Needed
-            </span>
-          </div>
+      {/* Overlay */}
+      <div
+        className="absolute inset-0"
+        style={{ backgroundColor: `rgba(0,0,0,${overlay / 100})` }}
+      />
 
-          {/* Tape strip decoration - oculto en móvil para evitar ruido */}
-          <div className="absolute top-0 right-1/4 w-24 h-8 bg-sunny-yellow opacity-60 transform -rotate-12 hidden sm:block" aria-hidden></div>
-
-          {/* Motion lines */}
-          <div className="absolute top-1/3 left-0 w-20 h-1 bg-primary-black opacity-30 hidden sm:block" aria-hidden></div>
-          <div className="absolute top-1/3 left-0 w-16 h-1 bg-primary-black opacity-20 mt-3 hidden sm:block" aria-hidden></div>
-
-          <h1 className="relative z-10 mb-4 sm:mb-6 font-[family-name:var(--font-title)] text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-black leading-[0.9] sm:leading-[0.85] tracking-tight text-primary-black">
-            JUST
-            <br />
-            <span className="text-white">SHIP</span>
-            <br />
-            <span className="text-white">IT.</span>
-          </h1>
-
-          <p className="relative z-10 mb-8 sm:mb-10 max-w-lg text-base sm:text-xl md:text-2xl leading-snug text-primary-black/90 font-bold uppercase tracking-wide break-words">
-            {t.hero.description}
-          </p>
-
-          {/* Abstract code snippet decoration - z bajo para no tapar texto */}
-          <div className="absolute bottom-8 left-6 sm:left-8 opacity-20 z-0 pointer-events-none">
-            <div className="font-mono text-xs text-primary-black space-y-1">
-              <div>{"<build />"}</div>
-              <div>{"<ship />"}</div>
-              <div>{"<win />"}</div>
-            </div>
-          </div>
-
-          <div className="relative z-10">
-            <Button
-              asChild
-              size="lg"
-              variant="default"
-              className="shadow-[6px_6px_0_0_#1A1A1A] hover:shadow-[4px_4px_0_0_#1A1A1A]"
+      {/* Content */}
+      <div className="relative z-10 flex flex-col items-center w-full max-w-6xl mx-auto px-4 sm:px-6">
+        {/* Encrypted text messages */}
+        <div
+          style={{ transform: `translate(${txtX}px, ${txtY}px)` }}
+          className="hidden md:flex flex-col items-start gap-1.5 sm:gap-2 mb-8 sm:mb-12"
+        >
+          {MESSAGES.map((msg, i) => (
+            <p
+              key={i}
+              className="font-[family-name:var(--font-monoblock)] text-[8px] sm:text-[10px] md:text-xs lg:text-sm font-light tracking-wide uppercase"
             >
-              <a
-                href="https://luma.com/ytl522gp"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {t.nav.join}
-              </a>
-            </Button>
+              <EncryptedText
+                text={msg}
+                encryptedClassName="text-white/40"
+                revealedClassName="text-white"
+                revealDelayMs={REVEAL_MS_PER_CHAR}
+                parentRevealDelayMs={MESSAGE_DELAYS[i]}
+              />
+            </p>
+          ))}
+        </div>
+
+        {/* Mobile: green labels at top, encrypted text near button */}
+        <div className="flex flex-col items-center md:hidden w-full -mt-32">
+          <div className="flex flex-col items-center gap-1 mb-auto">
+            <span className="font-[family-name:var(--font-title)] text-base font-black uppercase tracking-wider text-primary-green">
+              Global Hackathon
+            </span>
+            <span className="font-[family-name:var(--font-title)] text-base font-black uppercase tracking-wider text-primary-green">
+              7-8 March // Online
+            </span>
           </div>
         </div>
 
-        {/* Right — Split sections */}
-        <div className="grid grid-rows-2 relative min-w-0">
-          {/* Rocket flying diagonally across - oculto en móvil para evitar superposición */}
-          <div className="absolute top-1/3 left-1/4 z-20 transform -rotate-45 hidden md:block">
-            <svg
-              width="80"
-              height="80"
-              viewBox="0 0 100 100"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
+        {/* Mobile: encrypted light text — placed right before the button */}
+        <div className="flex flex-col items-center gap-1 mb-4 mt-80 md:hidden">
+          {MESSAGES.map((msg, i) => (
+            <p
+              key={i}
+              className="font-[family-name:var(--font-monoblock)] text-[8px] font-light tracking-wide uppercase text-center"
             >
-              <path
-                d="M50 10L60 40L90 50L60 60L50 90L40 60L10 50L40 40L50 10Z"
-                fill="#FF2D78"
-                stroke="#1A1A1A"
-                strokeWidth="3"
+              <EncryptedText
+                text={msg}
+                encryptedClassName="text-white/40"
+                revealedClassName="text-white"
+                revealDelayMs={REVEAL_MS_PER_CHAR}
+                parentRevealDelayMs={MESSAGE_DELAYS[i]}
               />
-              <circle cx="50" cy="50" r="8" fill="#1A1A1A" />
-            </svg>
-            {/* Motion trail */}
-            <div className="absolute top-1/2 right-full w-12 h-1 bg-primary-pink opacity-40"></div>
-            <div className="absolute top-1/2 right-full w-8 h-1 bg-primary-pink opacity-20 mt-2"></div>
-          </div>
+            </p>
+          ))}
+        </div>
 
-          {/* Top block - Event card with green accent */}
-          <div className="relative bg-[#5B9A8B] border-4 border-primary-black flex items-center justify-center p-6 sm:p-12 min-w-0">
-            {/* 100% Online badge */}
-            <div className="absolute top-4 right-4 sm:top-8 sm:right-8 bg-sunny-yellow border-4 border-primary-black px-3 py-1.5 sm:px-4 sm:py-2 transform rotate-3 shadow-[4px_4px_0_0_#1A1A1A]">
-              <span className="font-[family-name:var(--font-title)] text-xs font-black uppercase">
-                100% Online
-              </span>
-            </div>
+        {/* Desktop: green text row — flanking center */}
+        <div
+          className="hidden md:flex items-center justify-center w-full mb-0"
+          style={{
+            transform: `translate(${greenX}px, ${greenY}px)`,
+            marginLeft: `${greenML}px`,
+          }}
+        >
+          <span className="font-[family-name:var(--font-title)] text-sm sm:text-lg md:text-2xl lg:text-3xl font-black uppercase tracking-wider text-primary-green">
+            Global Hackathon
+          </span>
+          {/* Spacer for the sheep in the center of the image */}
+          <div className="shrink-0" style={{ width: `${greenGap}px` }} />
+          <span className="font-[family-name:var(--font-title)] text-sm sm:text-lg md:text-2xl lg:text-3xl font-black uppercase tracking-wider text-primary-green">
+            7-8 March // Online
+          </span>
+        </div>
 
-            <div className="brutalist-card bg-white p-6 sm:p-10 max-w-sm transform -rotate-2 w-full">
-              <div className="text-center">
-                <div className="mb-2 sm:mb-4 font-[family-name:var(--font-title)] text-5xl sm:text-7xl font-black text-primary-pink leading-none">
-                  8
-                </div>
-                <div className="font-[family-name:var(--font-title)] text-2xl sm:text-3xl font-black text-primary-black uppercase leading-tight">
-                  March
-                  <br />
-                  2026
-                </div>
-                <div className="mt-4 h-1 w-16 bg-primary-black mx-auto"></div>
-                <div className="mt-3 text-sm font-bold text-primary-black uppercase tracking-wider">
-                  Global Hackathon
-                </div>
-              </div>
-            </div>
+        <div style={{ height: `${btnGap}px` }} />
 
-            {/* Decorative element */}
-            <div className="absolute bottom-8 left-8 text-6xl opacity-20 select-none">
-              ✦
-            </div>
-          </div>
-
-          {/* Bottom block - Coral with Build.Ship.Win */}
-          <div className="relative bg-secondary-red border-4 border-l-4 border-primary-black flex items-center justify-center p-6 sm:p-12 min-w-0">
-            {/* Laptop silhouette abstract */}
-            <div className="absolute top-1/4 left-12 opacity-10">
-              <div className="w-20 h-12 border-4 border-primary-black"></div>
-              <div className="w-24 h-1 bg-primary-black -ml-2"></div>
-            </div>
-
-            <div className="text-center max-w-md relative z-10">
-              <div className="mb-6 inline-flex gap-2">
-                <div className="bg-white border-3 border-primary-black px-3 py-1 transform -rotate-2">
-                  <span className="font-[family-name:var(--font-title)] text-lg font-black text-primary-black">
-                    BUILD
-                  </span>
-                </div>
-                <div className="bg-white border-3 border-primary-black px-3 py-1 transform rotate-1">
-                  <span className="font-[family-name:var(--font-title)] text-lg font-black text-primary-black">
-                    SHIP
-                  </span>
-                </div>
-                <div className="bg-white border-3 border-primary-black px-3 py-1 transform -rotate-1">
-                  <span className="font-[family-name:var(--font-title)] text-lg font-black text-primary-black">
-                    WIN
-                  </span>
-                </div>
-              </div>
-
-              <h2 className="font-[family-name:var(--font-title)] text-2xl sm:text-4xl font-black text-white mb-4 uppercase leading-tight">
-                200 Builders
-                <br />
-                Worldwide
-              </h2>
-
-              <p className="text-sm sm:text-lg text-white/90 font-bold uppercase tracking-wide">
-                48 Hours to Ship
-              </p>
-            </div>
-
-            {/* Decorative tape strip */}
-            <div className="absolute bottom-0 right-1/3 w-32 h-6 bg-sunny-yellow opacity-50 transform rotate-6"></div>
-          </div>
+        {/* CTA */}
+        <div
+          style={{
+            transform: `translate(${btnX}px, ${btnY}px) scale(${btnScale})`,
+          }}
+        >
+          <Button
+            asChild
+            size="lg"
+            variant="pink"
+            className=""
+          >
+            <a
+              href="https://luma.com/ytl522gp"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {"<Join Here>"}
+            </a>
+          </Button>
         </div>
       </div>
+
+      {/* Bottom gradient fade to black */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-primary-black z-10" />
+
+      {/* ── Control Panel (disabled) ── */}
+      {false && <div className="fixed bottom-4 right-4 z-[9999]">
+        <button
+          onClick={() => setPanelOpen(!panelOpen)}
+          className="mb-2 ml-auto block bg-primary-black text-primary-cream text-xs font-bold uppercase tracking-wide px-3 py-2 border-2 border-primary-cream/20"
+        >
+          {panelOpen ? "Hide" : "Controls"}
+        </button>
+
+        {panelOpen && (
+          <div className="bg-primary-black/95 backdrop-blur-sm border-2 border-primary-cream/20 w-[320px] max-h-[80vh] overflow-y-auto text-primary-cream text-xs font-mono">
+            <div className="flex border-b border-primary-cream/10">
+              {tabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`flex-1 py-2 px-1 text-[10px] font-bold uppercase tracking-wider transition-colors ${
+                    activeTab === tab.id
+                      ? `${tab.color} bg-primary-cream/10`
+                      : "text-primary-cream/40 hover:text-primary-cream/70"
+                  }`}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+
+            <div className="p-4 space-y-3">
+              {activeTab === "btn" && (
+                <fieldset className="space-y-2">
+                  <legend className="text-primary-cream font-bold uppercase text-[11px] tracking-wider mb-1">
+                    Button Position & Size
+                  </legend>
+                  <Slider label="X" value={btnX} min={-400} max={400} unit="px" onChange={setBtnX} />
+                  <Slider label="Y" value={btnY} min={-300} max={300} unit="px" onChange={setBtnY} />
+                  <Slider label="Scale" value={btnScale} min={0.5} max={2.5} step={0.01} onChange={setBtnScale} fmt={(v) => v.toFixed(2)} />
+                </fieldset>
+              )}
+
+              {activeTab === "layout" && (
+                <fieldset className="space-y-2">
+                  <legend className="text-primary-green font-bold uppercase text-[11px] tracking-wider mb-1">
+                    Spacing & Overlay
+                  </legend>
+                  <Slider label="Btn Gap" value={btnGap} min={0} max={120} unit="px" onChange={setBtnGap} accent="accent-primary-green" />
+                  <Slider label="Overlay" value={overlay} min={0} max={80} unit="%" onChange={setOverlay} accent="accent-primary-green" />
+                </fieldset>
+              )}
+
+              {activeTab === "text" && (
+                <fieldset className="space-y-2">
+                  <legend className="text-primary-pink font-bold uppercase text-[11px] tracking-wider mb-1">
+                    Text Position
+                  </legend>
+                  <Slider label="X" value={txtX} min={-400} max={400} unit="px" onChange={setTxtX} accent="accent-primary-pink" />
+                  <Slider label="Y" value={txtY} min={-300} max={300} unit="px" onChange={setTxtY} accent="accent-primary-pink" />
+                </fieldset>
+              )}
+
+              {activeTab === "green" && (
+                <fieldset className="space-y-2">
+                  <legend className="text-primary-green font-bold uppercase text-[11px] tracking-wider mb-1">
+                    Green Text Position
+                  </legend>
+                  <Slider label="X" value={greenX} min={-400} max={400} unit="px" onChange={setGreenX} accent="accent-primary-green" />
+                  <Slider label="Y" value={greenY} min={-300} max={300} unit="px" onChange={setGreenY} accent="accent-primary-green" />
+                  <Slider label="Gap" value={greenGap} min={0} max={400} unit="px" onChange={setGreenGap} accent="accent-primary-green" />
+                  <Slider label="ML" value={greenML} min={-200} max={200} unit="px" onChange={setGreenML} accent="accent-primary-green" />
+                </fieldset>
+              )}
+
+              <div className="mt-2 bg-primary-cream/5 border border-primary-cream/10 p-2 relative group">
+                <button
+                  onClick={() => copy(`tab-${activeTab}`, tabCssMap[activeTab])}
+                  className="absolute top-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity bg-primary-cream/10 hover:bg-primary-cream/20 text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 text-primary-cream"
+                >
+                  {copied === `tab-${activeTab}` ? "Copied!" : "Copy CSS"}
+                </button>
+                <pre className="text-[10px] text-primary-cream/60 whitespace-pre-wrap leading-relaxed select-all">
+                  {tabCssMap[activeTab]}
+                </pre>
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-2 p-4 pt-0">
+              <div className="flex gap-2">
+                <button
+                  onClick={() => copy("all-json", allJson)}
+                  className="flex-1 bg-primary-green text-primary-black font-bold uppercase text-[10px] tracking-wider py-2 px-3 hover:opacity-90"
+                >
+                  {copied === "all-json" ? "Copied!" : "Copy All JSON"}
+                </button>
+                <button
+                  onClick={() => {
+                    const allCss = [
+                      `/* Button */\n${btnCss}`,
+                      `/* Layout */\n${layoutCss}`,
+                      `/* Text */\n${txtCss}`,
+                    ].join("\n\n");
+                    copy("all-css", allCss);
+                  }}
+                  className="flex-1 bg-primary-pink text-primary-black font-bold uppercase text-[10px] tracking-wider py-2 px-3 hover:opacity-90"
+                >
+                  {copied === "all-css" ? "Copied!" : "Copy All CSS"}
+                </button>
+              </div>
+              <button
+                onClick={resetAll}
+                className="w-full bg-primary-cream/10 text-primary-cream font-bold uppercase text-[10px] tracking-wider py-2 px-3 hover:bg-primary-cream/20"
+              >
+                Reset All
+              </button>
+            </div>
+          </div>
+        )}
+      </div>}
     </section>
+  );
+}
+
+/* ── Reusable slider row ── */
+function Slider({
+  label,
+  value,
+  min,
+  max,
+  step,
+  unit,
+  onChange,
+  accent = "accent-primary-cream",
+  fmt,
+}: {
+  label: string;
+  value: number;
+  min: number;
+  max: number;
+  step?: number;
+  unit?: string;
+  onChange: (v: number) => void;
+  accent?: string;
+  fmt?: (v: number) => string;
+}) {
+  const display = fmt ? fmt(value) : `${value}`;
+  const isFloat = step !== undefined && step < 1;
+  const inputMin = isFloat ? Math.round(min * 100) : min;
+  const inputMax = isFloat ? Math.round(max * 100) : max;
+  const inputValue = isFloat ? Math.round(value * 100) : value;
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const raw = Number(e.target.value);
+    onChange(isFloat ? raw / 100 : raw);
+  };
+
+  return (
+    <label className="flex items-center justify-between gap-2">
+      <span className="w-[80px] shrink-0 truncate">
+        {label}: {display}{unit ?? ""}
+      </span>
+      <input
+        type="range"
+        min={inputMin}
+        max={inputMax}
+        value={inputValue}
+        onChange={handleChange}
+        className={`w-[160px] ${accent}`}
+      />
+    </label>
   );
 }
