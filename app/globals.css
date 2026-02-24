@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "@fontsource-variable/space-grotesk";
+@import "lenis/dist/lenis.css";
 
 :root {
     /* Brand Palette */
@@ -73,9 +74,8 @@
     border-radius: 0 !important;
 }
 
-html,
 body {
-    overflow-x: hidden;
+    overflow-x: clip;
 }
 
 body {
@@ -164,10 +164,7 @@ body {
     }
 }
 
-/* Smooth scrolling for nav links */
-html {
-    scroll-behavior: smooth;
-}
+/* Smooth scrolling handled by Lenis */
 
 /* Scrollbar — dark theme, thin, auto-hide */
 html {

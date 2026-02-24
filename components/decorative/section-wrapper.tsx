@@ -34,7 +34,7 @@ export function SectionWrapper({
     <section
       id={id}
       className={cn(
-        "relative w-full",
+        "sticky top-0 w-full min-h-screen",
         variantStyles[variant],
         bordered && "border-t-4 border-b-4 border-primary-black",
         className,

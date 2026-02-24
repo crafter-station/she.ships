@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "@fontsource-variable/space-grotesk";
 import "@fontsource/space-mono";
 import { LanguageProvider } from "@/lib/i18n/context";
+import { LenisProvider } from "@/components/providers/lenis-provider";
 // import { ClerkLanguageProvider } from "@/components/providers/clerk-language-provider";
 import "./globals.css";
 
@@ -62,10 +63,12 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased">
-        <LanguageProvider>
-          {/* <ClerkLanguageProvider>{children}</ClerkLanguageProvider> */}
-          {children}
-        </LanguageProvider>
+        <LenisProvider>
+          <LanguageProvider>
+            {/* <ClerkLanguageProvider>{children}</ClerkLanguageProvider> */}
+            {children}
+          </LanguageProvider>
+        </LenisProvider>
       </body>
     </html>
   );

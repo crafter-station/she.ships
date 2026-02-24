@@ -7,12 +7,14 @@ import { Categories } from "@/components/sections/categories";
 import { FAQ } from "@/components/sections/faq";
 import { Organizers } from "@/components/sections/organizers";
 import { Footer } from "@/components/sections/footer";
+import { SideNav } from "@/components/sections/side-nav";
 
 export default function Home() {
   return (
     <>
       <Nav />
-      <main className="overflow-x-hidden min-w-0">
+      <SideNav />
+      <main className="overflow-x-clip min-w-0">
         <Hero />
         <Countdown />
         <WhatIsSheShips />
@@ -20,8 +22,8 @@ export default function Home() {
         <Categories />
         <FAQ />
         <Organizers />
+        <Footer />
       </main>
-      <Footer />
     </>
   );
 }
