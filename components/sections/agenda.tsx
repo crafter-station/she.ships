@@ -9,7 +9,7 @@ export function Agenda() {
   return (
     <SectionWrapper variant="dark" id="agenda">
       <div className="mb-16">
-        <h2 className="font-[family-name:var(--font-title)] text-5xl font-black tracking-tight text-white md:text-6xl lg:text-7xl uppercase">
+        <h2 className="font-[family-name:var(--font-title)] text-3xl font-black tracking-tight text-white md:text-4xl lg:text-5xl uppercase">
           {t.agenda.headline}{" "}
           <span className="text-primary-pink">
             {t.agenda.headlineAccent}

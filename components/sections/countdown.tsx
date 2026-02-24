@@ -51,7 +51,7 @@ export function Countdown() {
   return (
     <SectionWrapper variant="dark" id="countdown">
       <div className="text-center">
-        <h2 className="mb-4 font-[family-name:var(--font-title)] text-5xl font-black tracking-tight text-primary-cream md:text-6xl lg:text-7xl uppercase">
+        <h2 className="mb-4 font-[family-name:var(--font-title)] text-3xl font-black tracking-tight text-primary-cream md:text-4xl lg:text-5xl uppercase">
           {t.countdown.headline}{" "}
           <span className="text-primary-pink">
             {t.countdown.headlineAccent}
@@ -62,7 +62,7 @@ export function Countdown() {
           {blocks.map((block, i) => (
             <div key={block.label} className="flex-1 min-w-[140px]">
               <div className={`brutalist-card ${block.color} p-8`}>
-                <p className={`font-[family-name:var(--font-title)] text-6xl font-black text-white md:text-7xl lg:text-8xl ${mounted ? "opacity-100" : "opacity-0"}`}>
+                <p className={`font-[family-name:var(--font-title)] text-4xl font-black text-white md:text-5xl lg:text-6xl ${mounted ? "opacity-100" : "opacity-0"}`}>
                   {String(block.value).padStart(2, "0")}
                 </p>
               </div>

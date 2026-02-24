@@ -10,7 +10,7 @@ export function FAQ() {
   return (
     <SectionWrapper variant="dark" id="faq">
       <div className="text-center mb-16">
-        <h2 className="font-[family-name:var(--font-title)] text-5xl font-black tracking-tight text-primary-cream md:text-6xl lg:text-7xl mb-4">
+        <h2 className="font-[family-name:var(--font-title)] text-3xl font-black tracking-tight text-primary-cream md:text-4xl lg:text-5xl mb-4">
           {t.faq.sectionHeadline}
         </h2>
         <p className="text-lg text-primary-cream/70">

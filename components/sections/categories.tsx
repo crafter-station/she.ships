@@ -27,7 +27,7 @@ export function Categories() {
   return (
     <SectionWrapper variant="dark" id="categories">
       <div className="text-center mb-16">
-        <h2 className="font-[family-name:var(--font-title)] text-4xl font-black tracking-tight text-primary-cream md:text-5xl lg:text-6xl mb-4">
+        <h2 className="font-[family-name:var(--font-title)] text-2xl font-black tracking-tight text-primary-cream md:text-3xl lg:text-4xl mb-4">
           {t.categories.sectionHeadline}
         </h2>
         <p className="text-xl text-primary-cream/70">

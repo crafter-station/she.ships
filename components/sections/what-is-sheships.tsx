@@ -47,7 +47,7 @@ export function WhatIsSheShips() {
             </div>
           </div>
 
-          <h2 className="font-[family-name:var(--font-title)] text-5xl font-black text-white mb-6 leading-tight md:text-6xl">
+          <h2 className="font-[family-name:var(--font-title)] text-3xl font-black text-white mb-6 leading-tight md:text-4xl">
             {t.eventInfo.headline}
             <br />
             <span className="text-primary-pink">{t.eventInfo.headlineAccent}</span>
