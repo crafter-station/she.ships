@@ -105,11 +105,12 @@ export function Hero() {
     <section id="hero" className="sticky top-0 min-h-screen w-full flex items-center justify-center overflow-hidden">
       {/* Background */}
       <Image
-        src="/brand/hero_4_raw.jpg"
+        src="https://res.cloudinary.com/dzohocmtc/image/upload/f_auto,q_auto,w_1920/v1771977266/hero_raw_4_iagzd2.jpg"
         alt=""
         fill
         className="object-cover"
         priority
+        sizes="100vw"
       />
 
       {/* Overlay */}
