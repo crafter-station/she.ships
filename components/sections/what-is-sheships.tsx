@@ -14,24 +14,24 @@ export function WhatIsSheShips() {
           <div className="relative">
             {/* Pink circles with SS letters */}
             <div className="flex items-center gap-2 sm:gap-4">
-              <div className="w-20 h-20 sm:w-32 sm:h-32 bg-secondary-light-pink border-4 border-primary-black flex items-center justify-center transform -rotate-12 shrink-0">
+              <div className="w-20 h-20 sm:w-32 sm:h-32 bg-primary-pink border-4 border-primary-black flex items-center justify-center transform -rotate-12 shrink-0">
                 <span className="font-[family-name:var(--font-title)] text-3xl sm:text-5xl font-black text-primary-black">
                   S
                 </span>
               </div>
-              <div className="w-24 h-24 sm:w-40 sm:h-40 bg-secondary-light-pink border-4 border-primary-black flex items-center justify-center transform rotate-6 shrink-0">
+              <div className="w-24 h-24 sm:w-40 sm:h-40 bg-primary-pink border-4 border-primary-black flex items-center justify-center transform rotate-6 shrink-0">
                 <span className="font-[family-name:var(--font-title)] text-4xl sm:text-6xl font-black text-primary-black">
                   S
                 </span>
               </div>
-              <div className="w-[5.5rem] h-[5.5rem] sm:w-36 sm:h-36 bg-sunny-yellow border-4 border-primary-black flex items-center justify-center transform -rotate-6 shrink-0">
+              <div className="w-[5.5rem] h-[5.5rem] sm:w-36 sm:h-36 bg-primary-green border-4 border-primary-black flex items-center justify-center transform -rotate-6 shrink-0">
                 <span className="font-[family-name:var(--font-title)] text-3xl sm:text-5xl font-black text-primary-black">
                   ●
                 </span>
               </div>
             </div>
             {/* Decorative star */}
-            <div className="absolute -top-2 -right-2 sm:-top-4 sm:-right-4 text-sunny-yellow text-2xl sm:text-4xl" aria-hidden>
+            <div className="absolute -top-2 -right-2 sm:-top-4 sm:-right-4 text-primary-green text-2xl sm:text-4xl" aria-hidden>
               ✦
             </div>
           </div>
@@ -40,7 +40,7 @@ export function WhatIsSheShips() {
         {/* Right - Content */}
         <div className="min-w-0">
           <div className="mb-6">
-            <div className="inline-block brutalist-card bg-secondary-light-pink px-4 py-2 mb-4">
+            <div className="inline-block brutalist-card bg-primary-green px-4 py-2 mb-4">
               <span className="font-[family-name:var(--font-title)] text-sm font-black text-primary-black uppercase tracking-wide">
                 {t.hero.date}
               </span>

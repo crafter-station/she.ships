@@ -1,5 +1,9 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
+import { Menu, X } from "lucide-react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { GithubBadge } from "@/components/shared/github-badge";
 import { LanguageSwitcher } from "@/components/shared/language-switcher";
@@ -7,6 +11,8 @@ import { useTranslation } from "@/lib/i18n/context";
 
 export function Nav() {
   const { t } = useTranslation();
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const links = [
     { label: t.nav.event, href: "#event-info" },
@@ -15,87 +21,167 @@ export function Nav() {
     { label: t.nav.faq, href: "#faq" },
   ];
 
-  const actionButtons = [
-    { id: "sponsor", label: t.nav.ctaSponsor, href: "https://luma.com/ytl522gp" },
-    { id: "community", label: t.nav.ctaCommunityPartner, href: "https://luma.com/ytl522gp" },
-    { id: "judge", label: t.nav.ctaJudge, href: "https://luma.com/ytl522gp" },
-    { id: "mentor", label: t.nav.ctaMentor, href: "https://luma.com/ytl522gp" },
-  ];
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 10);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileOpen]);
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 w-full max-w-[100vw] border-b-4 border-primary-black bg-white flex flex-col">
-        <div className="flex flex-wrap items-center min-w-0 shrink-0 min-h-[60px] sm:min-h-[68px] py-0">
-          {/* Left side - Logo and Links with container */}
-          <div className="flex-1 flex items-center justify-between min-w-0 px-4 sm:px-6 h-full min-h-[60px] sm:min-h-[68px] border-r-4 border-primary-black">
-            <a
-              href="#"
-              className="font-[family-name:var(--font-title)] text-xl sm:text-3xl font-black tracking-tight text-primary-black hover:text-primary-pink transition-colors truncate leading-none"
-            >
-              SheShips
-            </a>
+      <nav
+        className={`fixed top-0 left-0 right-0 z-50 h-16 flex items-center transition-all duration-300 ${
+          scrolled
+            ? "bg-primary-cream/80 backdrop-blur-xl border-b border-primary-black/10"
+            : "bg-transparent"
+        }`}
+      >
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
+          {/* Logo */}
+          <a href="/">
+            <Image
+              src="/brand/she-ships-one-line-logo.svg"
+              alt="She Ships"
+              width={180}
+              height={25}
+              className={`h-5 sm:h-6 w-auto transition-all duration-300 ${
+                scrolled ? "brightness-0" : ""
+              }`}
+            />
+          </a>
 
-            <div className="hidden items-center gap-8 md:flex">
-              {links.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="font-bold text-sm uppercase tracking-wide text-primary-black hover:text-primary-pink transition-colors leading-none"
-                >
-                  {link.label}
-                </a>
-              ))}
-            </div>
+          {/* Desktop links */}
+          <div className="hidden md:flex items-center gap-8">
+            {links.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className={`font-[family-name:var(--font-title)] text-sm transition-colors duration-300 ${
+                  scrolled
+                    ? "text-primary-black/70 hover:text-primary-black"
+                    : "text-white/80 hover:text-white"
+                }`}
+              >
+                {link.label}
+              </a>
+            ))}
           </div>
 
-          {/* Right side - Actions */}
-          <div className="flex items-center gap-2 sm:gap-3 px-3 sm:px-6 shrink-0">
-            <GithubBadge />
-            <LanguageSwitcher />
-          </div>
-
-          {/* Join button - Black background extends to edge, centrado con el resto */}
-          <div className="bg-primary-black shrink-0 self-stretch flex items-center">
-            <Button
-              asChild
-              variant="pink"
-              size="sm"
-              className="!shadow-none border-0 bg-primary-black hover:bg-primary-black/90 h-full rounded-none"
-            >
+          {/* Desktop actions */}
+          <div className="hidden md:flex items-center gap-3">
+            <GithubBadge light={!scrolled} />
+            <LanguageSwitcher light={!scrolled} />
+            <Button asChild variant="pink" size="sm">
               <a
                 href="https://luma.com/ytl522gp"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 sm:px-8 h-[60px] sm:h-[68px] text-xs sm:text-sm flex items-center justify-center"
               >
                 {t.nav.join}
               </a>
             </Button>
           </div>
-        </div>
 
-        {/* Action buttons row: en mobile scroll horizontal (una sola línea, altura fija); en desktop centrado */}
-        <div className="border-t-4 border-primary-black bg-primary-cream shrink-0 -mt-px">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 py-3 sm:py-4">
-            <div className="flex flex-nowrap items-center justify-start gap-3 overflow-x-auto pb-1 sm:flex-wrap sm:justify-center sm:pb-0 sm:gap-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-              {actionButtons.map((button) => (
-                <Button key={button.id} asChild variant="outline" size="sm" className="shrink-0">
-                  <a
-                    href={button.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {button.label}
-                  </a>
-                </Button>
-              ))}
-            </div>
-          </div>
+          {/* Mobile hamburger */}
+          <button
+            type="button"
+            onClick={() => setMobileOpen((prev) => !prev)}
+            className={`md:hidden relative z-50 p-2 transition-colors duration-300 ${
+              mobileOpen || scrolled ? "text-primary-black" : "text-white"
+            }`}
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+          >
+            <AnimatePresence mode="wait" initial={false}>
+              {mobileOpen ? (
+                <motion.span
+                  key="close"
+                  initial={{ opacity: 0, rotate: -90 }}
+                  animate={{ opacity: 1, rotate: 0 }}
+                  exit={{ opacity: 0, rotate: 90 }}
+                  transition={{ duration: 0.15 }}
+                >
+                  <X size={24} />
+                </motion.span>
+              ) : (
+                <motion.span
+                  key="menu"
+                  initial={{ opacity: 0, rotate: 90 }}
+                  animate={{ opacity: 1, rotate: 0 }}
+                  exit={{ opacity: 0, rotate: -90 }}
+                  transition={{ duration: 0.15 }}
+                >
+                  <Menu size={24} />
+                </motion.span>
+              )}
+            </AnimatePresence>
+          </button>
         </div>
       </nav>
 
-      {/* Spacer: en mobile una sola fila de CTAs = altura fija; en desktop idem */}
-      <div className="h-[120px] sm:h-[136px] md:h-[131px]" />
+      {/* Mobile overlay */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            className="fixed inset-0 z-40 bg-primary-cream flex flex-col items-center justify-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            <div className="flex flex-col items-center gap-8">
+              {links.map((link, i) => (
+                <motion.a
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMobileOpen(false)}
+                  className="font-[family-name:var(--font-title)] text-3xl font-bold text-primary-black/70 hover:text-primary-black transition-colors"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ delay: 0.05 * i, duration: 0.25 }}
+                >
+                  {link.label}
+                </motion.a>
+              ))}
+            </div>
+
+            <motion.div
+              className="mt-12 flex flex-col items-center gap-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ delay: 0.05 * links.length, duration: 0.25 }}
+            >
+              <div className="flex items-center gap-4 mb-4">
+                <GithubBadge />
+                <LanguageSwitcher />
+              </div>
+              <Button asChild variant="pink" size="lg">
+                <a
+                  href="https://luma.com/ytl522gp"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {t.nav.join}
+                </a>
+              </Button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }
