@@ -102,7 +102,7 @@ export function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden">
+    <section id="hero" className="sticky top-0 min-h-screen w-full flex items-center justify-center overflow-hidden">
       {/* Background */}
       <Image
         src="/brand/hero_4_raw.jpg"
@@ -215,7 +215,7 @@ export function Hero() {
       </div>
 
       {/* Bottom gradient fade to black */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-primary-black z-10" />
+      <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-b from-transparent to-primary-black/60 z-10" />
 
       {/* ── Control Panel (disabled) ── */}
       {false && <div className="fixed bottom-4 right-4 z-[9999]">
