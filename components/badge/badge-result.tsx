@@ -14,7 +14,7 @@ export default function BadgeResult({ cardData, onEdit }: BadgeResultProps) {
 
   const shareOnTwitter = () => {
     const text = encodeURIComponent(t.badge.shareText);
-    const url = encodeURIComponent("https://she-ships.crafter.run/badge");
+    const url = encodeURIComponent("https://www.sheships.org/badge");
     const hashtags = "SheShips,WomenInTech";
     window.open(
       `https://twitter.com/intent/tweet?text=${text}&url=${url}&hashtags=${hashtags}`,
@@ -23,7 +23,7 @@ export default function BadgeResult({ cardData, onEdit }: BadgeResultProps) {
   };
 
   const shareOnLinkedIn = () => {
-    const url = encodeURIComponent("https://she-ships.crafter.run/badge");
+    const url = encodeURIComponent("https://www.sheships.org/badge");
     window.open(
       `https://www.linkedin.com/sharing/share-offsite/?url=${url}`,
       "_blank"

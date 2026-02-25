@@ -9,7 +9,7 @@
   Donde las mujeres construyen y hacen ship
   <br />
   <br />
-  <a href="https://she-ships.crafter.run">Website</a>
+  <a href="https://www.sheships.org">Website</a>
   ·
   <a href="https://github.com/crafter-station/she.ships/issues">Issues</a>
 </p>
