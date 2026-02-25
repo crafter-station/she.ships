@@ -6,95 +6,115 @@ import { useEffect, useRef, useState } from "react";
 import { useInView } from "motion/react";
 
 const TERMINAL_LINES = [
-  "> Initializing hackathon...",
-  "> Loading 200 builders worldwide...",
-  "> Connecting communities...",
-  "> 48h countdown started",
-  "> Ship something real. ✓",
+  "> Initializing she.ships hackathon...",
+  "> Region: LATAM + USA + India",
+  "> Participants: 200 builders worldwide",
+  "> Format: 100% remote",
+  "> Duration: 48 hours",
+  "> Start date: March 6, 2026",
+  "> End date: March 8, 2026",
+  "> Requirement: ship something real",
+  "> Status: OPEN FOR REGISTRATION ✓",
 ];
 
-const CHAR_DELAY = 28; // ms per character
-const LINE_GAP = 420;  // ms between lines starting
+const CHAR_DELAY = 22;
+const LINE_GAP = 350;
+const LOOP_PAUSE = 1800; // pause before restarting
 
 function TerminalAnimation() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
   const [visibleLines, setVisibleLines] = useState<string[]>([]);
   const [currentTyping, setCurrentTyping] = useState<string>("");
-  const [done, setDone] = useState(false);
+  const cancelRef = useRef(false);
   const started = useRef(false);
 
   useEffect(() => {
     if (!isInView || started.current) return;
     started.current = true;
 
-    let li = 0;
-    let ci = 0;
-    let typing = "";
-    let visible: string[] = [];
+    function runLoop() {
+      let li = 0;
+      let ci = 0;
+      let typing = "";
+      let visible: string[] = [];
 
-    function typeNext() {
-      if (li >= TERMINAL_LINES.length) {
-        setDone(true);
-        return;
+      setVisibleLines([]);
+      setCurrentTyping("");
+
+      function typeNext() {
+        if (cancelRef.current) return;
+
+        if (li >= TERMINAL_LINES.length) {
+          // Loop complete — pause then restart
+          setTimeout(() => {
+            if (!cancelRef.current) runLoop();
+          }, LOOP_PAUSE);
+          return;
+        }
+
+        const line = TERMINAL_LINES[li];
+
+        if (ci < line.length) {
+          typing += line[ci];
+          ci++;
+          setCurrentTyping(typing);
+          setTimeout(typeNext, CHAR_DELAY);
+        } else {
+          visible = [...visible, typing];
+          setVisibleLines([...visible]);
+          setCurrentTyping("");
+          typing = "";
+          ci = 0;
+          li++;
+          setTimeout(typeNext, LINE_GAP);
+        }
       }
 
-      const line = TERMINAL_LINES[li];
-
-      if (ci < line.length) {
-        typing += line[ci];
-        ci++;
-        setCurrentTyping(typing);
-        setTimeout(typeNext, CHAR_DELAY);
-      } else {
-        // Line complete — move to next
-        visible = [...visible, typing];
-        setVisibleLines([...visible]);
-        setCurrentTyping("");
-        typing = "";
-        ci = 0;
-        li++;
-        setTimeout(typeNext, LINE_GAP);
-      }
+      setTimeout(typeNext, 300);
     }
 
-    setTimeout(typeNext, 300);
+    runLoop();
+
+    return () => {
+      cancelRef.current = true;
+    };
   }, [isInView]);
 
   return (
-    <div ref={ref} className="brutalist-card bg-primary-black border-primary-green overflow-hidden w-full">
-      {/* Title bar */}
-      <div className="flex items-center gap-2 px-4 py-2 bg-neutral-dark border-b-2 border-primary-green">
-        <span className="w-3 h-3 rounded-full bg-[#ff5f56] border border-black" />
-        <span className="w-3 h-3 rounded-full bg-[#ffbd2e] border border-black" />
-        <span className="w-3 h-3 rounded-full bg-[#27c93f] border border-black" />
-        <span className="ml-3 text-xs text-neutral-gray font-mono">she.ships — bash</span>
+    <div ref={ref} className="border-3 border-primary-black bg-[#0a0a0a] overflow-hidden w-full">
+      {/* Title bar — referencia style */}
+      <div className="flex items-center justify-between px-4 py-2 bg-[#111] border-b border-white/10">
+        <div className="flex items-center gap-2">
+          <span className="w-3 h-3 bg-[#e9a1c9] border border-white/20" />
+          <span className="w-3 h-3 bg-[#222] border border-white/20" />
+          <span className="w-3 h-3 bg-[#222] border border-white/20" />
+        </div>
+        <span className="text-[10px] text-[#e9a1c9] font-mono tracking-widest uppercase">TERMINAL.SYS</span>
       </div>
 
       {/* Terminal body */}
-      <div className="p-5 font-mono text-sm leading-7 min-h-[220px]">
-        {visibleLines.map((line, i) => (
-          <div key={i} className="flex gap-2">
-            <span className="text-primary-green select-none">&gt;</span>
-            <span className="text-primary-cream/80">{line.replace(/^> /, "")}</span>
-          </div>
-        ))}
+      <div className="p-6 font-mono text-sm leading-7 min-h-[300px]">
+        {visibleLines.map((line, i) => {
+          const isHighlight = line.includes("✓") || line.includes("OPEN");
+          return (
+            <div key={`${i}-${line}`} className={isHighlight ? "text-[#e9a1c9] font-bold" : "text-white/80"}>
+              {line}
+            </div>
+          );
+        })}
 
         {/* Currently typing line */}
-        {!done && (
-          <div className="flex gap-2">
-            <span className="text-primary-green select-none">&gt;</span>
-            <span className="text-primary-cream/80">
-              {currentTyping.replace(/^> /, "")}
-              <span className="animate-pulse text-primary-green">▋</span>
-            </span>
+        {currentTyping && (
+          <div className="text-white/80">
+            {currentTyping}
+            <span className="animate-pulse text-[#e9a1c9]">_</span>
           </div>
         )}
 
-        {done && (
-          <div className="flex gap-2 mt-1">
-            <span className="text-primary-green select-none">&gt;</span>
-            <span className="animate-pulse text-primary-green">▋</span>
+        {!currentTyping && visibleLines.length < TERMINAL_LINES.length && (
+          <div>
+            <span className="animate-pulse text-[#e9a1c9]">_</span>
           </div>
         )}
       </div>
@@ -175,37 +195,26 @@ export function WhatIsSheShips() {
   const { t } = useTranslation();
 
   return (
-    <SectionWrapper variant="dark" id="what-is-sheships" className="overflow-hidden">
-      {/* Full-width header */}
-      <div className="mb-12">
-        <div className="mb-6">
-          <div className="inline-block brutalist-card bg-primary-green px-4 py-2 mb-4">
+    <SectionWrapper variant="dark" id="what-is-sheships" className="min-h-fit overflow-hidden">
+      <div className="grid min-w-0 max-w-full md:grid-cols-2 gap-10 md:gap-16 items-center">
+        {/* Left — headline + content */}
+        <div className="min-w-0">
+          <div className="inline-block brutalist-card bg-primary-green px-4 py-2 mb-6">
             <span className="font-[family-name:var(--font-title)] text-sm font-black text-primary-black uppercase tracking-wide">
               {t.hero.date}
             </span>
           </div>
+
+          <h2 className="font-[family-name:var(--font-title)] text-3xl font-black text-white mb-6 leading-tight md:text-4xl lg:text-5xl">
+            {t.eventInfo.headline}
+            <br />
+            <span className="text-primary-pink">{t.eventInfo.headlineAccent}</span>
+          </h2>
+
         </div>
 
-        <h2 className="font-[family-name:var(--font-title)] text-3xl font-black text-white mb-4 leading-tight md:text-4xl">
-          {t.eventInfo.headline}
-          <br />
-          <span className="text-primary-pink">{t.eventInfo.headlineAccent}</span>
-        </h2>
-
-        <div className="max-w-2xl space-y-3 text-base text-white/70 leading-relaxed">
-          <p>{t.eventInfo.paragraph1}</p>
-          <p className="text-white font-bold">{t.eventInfo.requirementLine}</p>
-        </div>
-
-        <p className="mt-6 text-sm text-neutral-gray font-medium">
-          {t.eventInfo.limited}
-        </p>
-      </div>
-
-      {/* Two-column: terminal | illustration */}
-      <div className="grid min-w-0 max-w-full md:grid-cols-2 gap-8 md:gap-12 items-stretch">
+        {/* Right — terminal */}
         <TerminalAnimation />
-        <HalftoneIllustration />
       </div>
     </SectionWrapper>
   );

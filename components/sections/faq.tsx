@@ -8,7 +8,7 @@ export function FAQ() {
   const { t } = useTranslation();
 
   return (
-    <SectionWrapper variant="dark" id="faq">
+    <SectionWrapper variant="dark" id="faq" className="min-h-fit">
       <div className="text-center mb-16">
         <h2 className="font-[family-name:var(--font-title)] text-3xl font-black tracking-tight text-primary-cream md:text-4xl lg:text-5xl mb-4">
           {t.faq.sectionHeadline}

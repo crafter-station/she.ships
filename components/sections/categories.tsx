@@ -25,7 +25,7 @@ export function Categories() {
   ];
 
   return (
-    <SectionWrapper variant="dark" id="categories">
+    <SectionWrapper variant="dark" id="categories" className="min-h-fit">
       <div className="text-center mb-16">
         <h2 className="font-[family-name:var(--font-title)] text-2xl font-black tracking-tight text-primary-cream md:text-3xl lg:text-4xl mb-4">
           {t.categories.sectionHeadline}

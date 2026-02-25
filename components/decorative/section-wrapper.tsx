@@ -20,6 +20,7 @@ export function SectionWrapper({
   grid = false,
   bordered = false,
   className,
+  innerClassName,
   children,
   id,
 }: {
@@ -27,6 +28,7 @@ export function SectionWrapper({
   grid?: boolean;
   bordered?: boolean;
   className?: string;
+  innerClassName?: string;
   children: React.ReactNode;
   id?: string;
 }) {
@@ -41,7 +43,7 @@ export function SectionWrapper({
       )}
     >
       {grid && <GridOverlay />}
-      <div className="relative mx-auto max-w-7xl px-6 py-20 md:py-28 lg:py-32">
+      <div className={cn("relative mx-auto max-w-7xl px-6 py-20 md:py-28 lg:py-32", innerClassName)}>
         {children}
       </div>
     </section>

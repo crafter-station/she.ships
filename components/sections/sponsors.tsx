@@ -29,7 +29,7 @@ const sponsors = [
     logo: "/sponsors/ieee.png",
     width: 340,
     height: 100,
-    className: "h-auto w-auto max-w-[280px] md:max-w-[340px]",
+    className: "h-auto w-auto max-w-[360px] md:max-w-[440px]",
   },
 ];
 
@@ -37,7 +37,7 @@ export function Sponsors() {
   const { t } = useTranslation();
 
   return (
-    <SectionWrapper variant="dark" bordered id="sponsors">
+    <SectionWrapper variant="dark" bordered id="sponsors" className="min-h-0" innerClassName="py-10 md:py-14">
       <div className="text-center mb-12">
         <span className="data-label mb-4 block text-neutral-gray uppercase">
           {t.sponsors.label}

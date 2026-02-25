@@ -7,7 +7,7 @@ export function Agenda() {
   const { t } = useTranslation();
 
   return (
-    <SectionWrapper variant="dark" id="agenda">
+    <SectionWrapper variant="dark" id="agenda" className="min-h-fit">
       <div className="mb-16">
         <h2 className="font-[family-name:var(--font-title)] text-3xl font-black tracking-tight text-white md:text-4xl lg:text-5xl uppercase">
           {t.agenda.headline}{" "}
