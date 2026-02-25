@@ -17,12 +17,12 @@ export function Sponsors() {
   const { t } = useTranslation();
 
   return (
-    <SectionWrapper variant="cream" bordered id="sponsors">
+    <SectionWrapper variant="dark" bordered id="sponsors">
       <div className="text-center mb-12">
         <span className="data-label mb-4 block text-neutral-gray uppercase">
           {t.sponsors.label}
         </span>
-        <h2 className="font-[family-name:var(--font-title)] text-3xl md:text-4xl font-black uppercase tracking-tight">
+        <h2 className="font-[family-name:var(--font-title)] text-3xl md:text-4xl font-black uppercase tracking-tight text-primary-cream">
           {t.sponsors.headline}
           <span className="text-primary-pink"> {t.sponsors.headlineAccent}</span>
         </h2>

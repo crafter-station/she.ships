@@ -1,6 +1,7 @@
 import { Nav } from "@/components/sections/nav";
 import { Hero } from "@/components/sections/hero";
 import { Countdown } from "@/components/sections/countdown";
+import { Sponsors } from "@/components/sections/sponsors";
 import { WhatIsSheShips } from "@/components/sections/what-is-sheships";
 import { Agenda } from "@/components/sections/agenda";
 import { Categories } from "@/components/sections/categories";
@@ -17,6 +18,7 @@ export default function Home() {
       <main className="overflow-x-clip min-w-0">
         <Hero />
         <Countdown />
+        <Sponsors />
         <WhatIsSheShips />
         <Agenda />
         <Categories />
