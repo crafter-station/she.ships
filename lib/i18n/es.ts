@@ -199,6 +199,11 @@ export const es: Translations = {
       },
     ],
   },
+  sponsors: {
+    label: "Posible gracias a",
+    headline: "Nuestros",
+    headlineAccent: "Sponsors",
+  },
   organizers: {
     label: "Organizado por",
     headline: "Quiénes están detrás de",

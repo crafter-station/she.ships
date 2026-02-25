@@ -195,6 +195,11 @@ export const en = {
       },
     ],
   },
+  sponsors: {
+    label: "Made possible by",
+    headline: "Our",
+    headlineAccent: "Sponsors",
+  },
   organizers: {
     label: "Organized by",
     headline: "Who's behind",
