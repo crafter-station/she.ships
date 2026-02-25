@@ -11,6 +11,24 @@ const sponsors = [
     width: 240,
     height: 60,
   },
+  {
+    name: "ElevenLabs",
+    logo: "/sponsors/elevenlabs-logo-white.svg",
+    width: 200,
+    height: 60,
+  },
+  {
+    name: "v0",
+    logo: "/sponsors/v0-logo-dark.png",
+    width: 80,
+    height: 60,
+  },
+  {
+    name: "IEEE",
+    logo: "/sponsors/ieee.png",
+    width: 280,
+    height: 80,
+  },
 ];
 
 export function Sponsors() {
@@ -28,20 +46,16 @@ export function Sponsors() {
         </h2>
       </div>
 
-      <div className="flex w-full flex-wrap items-center justify-center gap-12 md:gap-16 lg:gap-20">
+      <div className="flex w-full flex-wrap items-center justify-center gap-16 md:gap-20 lg:gap-24">
         {sponsors.map((sponsor) => (
-          <div
+          <Image
             key={sponsor.name}
-            className="brutalist-card bg-white p-8 flex items-center justify-center min-w-[200px]"
-          >
-            <Image
-              src={sponsor.logo}
-              alt={sponsor.name}
-              width={sponsor.width}
-              height={sponsor.height}
-              className="h-auto w-auto max-w-[200px] md:max-w-[240px]"
-            />
-          </div>
+            src={sponsor.logo}
+            alt={sponsor.name}
+            width={sponsor.width}
+            height={sponsor.height}
+            className="h-auto w-auto max-w-[200px] md:max-w-[240px]"
+          />
         ))}
       </div>
     </SectionWrapper>
