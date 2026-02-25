@@ -204,3 +204,12 @@ html.is-scrolling::-webkit-scrollbar-thumb {
     color: var(--primary-black);
     opacity: 0.3;
 }
+
+/* Hide scrollbar but keep scroll */
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}

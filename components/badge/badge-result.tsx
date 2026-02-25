@@ -31,8 +31,9 @@ export default function BadgeResult({ cardData, onEdit }: BadgeResultProps) {
   };
 
   return (
-    <div className="flex flex-col gap-8 w-full max-w-md">
-      <div>
+    <div className="flex flex-col gap-3 md:gap-8 w-full max-w-md">
+      {/* Headline — hidden on mobile to keep badge visible */}
+      <div className="hidden md:block">
         <p className="data-label text-primary-pink mb-2">{t.badge.label}</p>
         <h1 className="text-3xl md:text-4xl font-bold font-[family-name:var(--font-title)] uppercase tracking-tight text-white">
           {t.badge.resultHeadline}
@@ -42,29 +43,31 @@ export default function BadgeResult({ cardData, onEdit }: BadgeResultProps) {
         </p>
       </div>
 
-      <p className="text-neutral-gray text-sm leading-relaxed">
+      {/* Description — hidden on mobile */}
+      <p className="hidden md:block text-neutral-gray text-sm leading-relaxed">
         {t.badge.resultDescription}
       </p>
 
-      <div className="h-px bg-white/10" />
+      <div className="hidden md:block h-px bg-white/10" />
 
-      <div className="flex flex-col gap-3">
-        <p className="text-sm font-bold uppercase tracking-wider text-white">
+      {/* Share buttons — compact on mobile */}
+      <div className="flex items-center gap-2 md:flex-col md:items-stretch md:gap-3">
+        <p className="hidden md:block text-sm font-bold uppercase tracking-wider text-white">
           {t.badge.shareLabel}
         </p>
-        <div className="flex gap-3">
+        <div className="flex gap-2 md:gap-3 flex-1">
           <button
             onClick={shareOnTwitter}
-            className="brutalist-button flex-1 py-3 px-4 bg-white text-primary-black font-bold uppercase text-sm flex items-center justify-center gap-2"
+            className="brutalist-button flex-1 py-2 px-3 md:py-3 md:px-4 bg-white text-primary-black font-bold uppercase text-[10px] md:text-sm flex items-center justify-center gap-1.5 md:gap-2"
           >
-            <Twitter className="w-4 h-4" />
+            <Twitter className="w-3.5 h-3.5 md:w-4 md:h-4" />
             Twitter / X
           </button>
           <button
             onClick={shareOnLinkedIn}
-            className="brutalist-button flex-1 py-3 px-4 bg-white text-primary-black font-bold uppercase text-sm flex items-center justify-center gap-2"
+            className="brutalist-button flex-1 py-2 px-3 md:py-3 md:px-4 bg-white text-primary-black font-bold uppercase text-[10px] md:text-sm flex items-center justify-center gap-1.5 md:gap-2"
           >
-            <Linkedin className="w-4 h-4" />
+            <Linkedin className="w-3.5 h-3.5 md:w-4 md:h-4" />
             LinkedIn
           </button>
         </div>
@@ -72,9 +75,9 @@ export default function BadgeResult({ cardData, onEdit }: BadgeResultProps) {
 
       <button
         onClick={onEdit}
-        className="flex items-center gap-2 text-white/50 hover:text-white text-sm uppercase tracking-wider transition-colors"
+        className="flex items-center gap-2 text-white/50 hover:text-white text-[10px] md:text-sm uppercase tracking-wider transition-colors"
       >
-        <ArrowLeft className="w-4 h-4" />
+        <ArrowLeft className="w-3 h-3 md:w-4 md:h-4" />
         {t.badge.editButton}
       </button>
     </div>
