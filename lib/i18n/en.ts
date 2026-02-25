@@ -195,10 +195,15 @@ export const en = {
       },
     ],
   },
+<<<<<<< HEAD
   sponsors: {
     label: "Made possible by",
     headline: "Our",
     headlineAccent: "Sponsors",
+=======
+  communityPartners: {
+    label: "Community Partners",
+>>>>>>> 73b10f94a30726935553a66eb4d4185255ce1386
   },
   organizers: {
     label: "Organized by",
