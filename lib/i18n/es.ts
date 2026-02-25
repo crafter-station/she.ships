@@ -199,15 +199,13 @@ export const es: Translations = {
       },
     ],
   },
-<<<<<<< HEAD
   sponsors: {
     label: "Posible gracias a",
     headline: "Nuestros",
     headlineAccent: "Sponsors",
-=======
+  },
   communityPartners: {
     label: "Community Partners",
->>>>>>> 73b10f94a30726935553a66eb4d4185255ce1386
   },
   organizers: {
     label: "Organizado por",
