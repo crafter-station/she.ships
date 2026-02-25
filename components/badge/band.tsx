@@ -50,7 +50,7 @@ export function Band({
   };
 
   const { nodes, materials } = useGLTF("/badge/id-card.glb") as any;
-  const texture = useTexture("/badge/lanyard.png") as THREE.Texture;
+  const texture = useTexture("/badge/lanyard_ss.jpg") as THREE.Texture;
 
   // Compute exact card geometry bounds in body-local space
   const cardBounds = useMemo(() => {

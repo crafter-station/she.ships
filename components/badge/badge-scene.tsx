@@ -33,7 +33,7 @@ function CameraRig({ isMobile }: { isMobile: boolean }) {
 }
 
 useGLTF.preload("/badge/id-card.glb");
-useTexture.preload("/badge/lanyard.png");
+useTexture.preload("/badge/lanyard_ss.jpg");
 
 interface BadgeSceneProps {
   gravity?: [number, number, number];
