@@ -505,7 +505,7 @@ export default function ParticlePanel({
                   label="Count"
                   value={group.count}
                   min={10}
-                  max={isMobile ? 500 : 1800}
+                  max={isMobile ? 500 : 2500}
                   step={10}
                   onChange={(v) => updateGroup(idx, { count: v })}
                 />

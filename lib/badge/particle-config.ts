@@ -15,7 +15,7 @@ export const particleGroupSchema = z.object({
     .number()
     .int()
     .min(10)
-    .max(1800)
+    .max(2500)
     .describe("Number of particles in this group"),
   size: z
     .number()
@@ -95,7 +95,7 @@ export const defaultParticleConfig: ParticleConfig = {
   groups: [
     {
       color: "#ff2d78",
-      count: 1800,
+      count: 2500,
       size: 0.012,
       shape: "sphere",
       metalness: 0.95,
