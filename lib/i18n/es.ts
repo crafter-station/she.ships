@@ -214,6 +214,38 @@ export const es: Translations = {
     headline: "Quiénes están detrás de",
     headlineAccent: "She Ships",
   },
+  badge: {
+    label: "Tu Insignia",
+    headline: "Tu",
+    headlineAccent: "Insignia",
+    description:
+      "Genera tu insignia personal de She Ships. Completa tu nombre y rol, luego descarga y comparte en redes sociales.",
+    nameLabel: "Nombre Completo",
+    namePlaceholder: "Maria Garcia",
+    roleLabel: "Rol",
+    rolePlaceholder: "Selecciona tu rol...",
+    generateButton: "Generar Insignia",
+    resultHeadline: "Nos vemos online del 6 al 8 de marzo",
+    resultDate: "6-8 de marzo, 2026 — Hackathon Global de 48h",
+    resultDescription:
+      "Una insignia inspirada en quienes construyen y lanzan. Arrástrala, compártela y muestra al mundo que eres parte de She Ships.",
+    shareLabel: "Compartir en",
+    editButton: "Editar tu insignia",
+    shareText:
+      "Acabo de obtener mi insignia de She Ships! Unite al hackathon global de 48 horas para mujeres y creadoras multidisciplinarias.",
+    particlePromptSuggestions: [
+      "Una insignia inspirada en la computación retro...",
+      "Partículas metálicas doradas con pequeñas brillantes azules...",
+      "Olas del océano — fluido turquesa con burbujas de espuma...",
+      "Cyberpunk neón con brillo rosa y púrpura...",
+      "Gemas de cristal mezcladas con gotas de mercurio líquido...",
+      "Estilo pixel art con cubos de colores...",
+      "Una galaxia de estrellas y polvo cósmico...",
+      "Lava fundida con fragmentos de obsidiana...",
+    ],
+    particlePromptCustom: "O describe las tuyas...",
+    particlePromptLoading: "Generando...",
+  },
   footer: {
     brandDescription:
       "Un hackathon global de 48 horas celebrando el Día Internacional de la Mujer construyendo y lanzando proyectos reales.",
