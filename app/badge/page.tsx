@@ -92,7 +92,7 @@ export default function BadgePage() {
       });
       if (!res.ok) throw new Error("Failed to generate particles");
       const config: ParticleConfig = await res.json();
-      setParticleConfig(config);
+      setParticleConfig(isMobile ? capConfigForMobile(config) : config);
     } finally {
       setParticleLoading(false);
     }
@@ -108,7 +108,7 @@ export default function BadgePage() {
           <Footer />
         </div>
       ) : (
-        <section className="h-screen relative overflow-hidden bg-primary-black">
+        <section className="h-dvh relative overflow-hidden bg-primary-black select-none touch-manipulation overscroll-none">
           <ParticlePanel config={particleConfig} onChange={setParticleConfig} isMobile={isMobile} />
           {/* Back: 3D badge canvas */}
           {cardTextureUrl && (
@@ -125,13 +125,13 @@ export default function BadgePage() {
           <div className="absolute inset-0 z-[5] bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none md:hidden" />
 
           {/* Front: text content — transparent, click-through except buttons */}
-          <div className="absolute inset-0 z-10 flex items-end md:items-center pointer-events-none">
-            <div className="px-6 pb-8 pt-16 md:px-8 lg:px-12 lg:pl-72 w-full lg:w-1/2 pointer-events-auto">
+          <div className="absolute inset-0 z-10 flex items-end md:items-center pointer-events-none overflow-hidden">
+            <div className="px-4 pb-6 md:pb-0 md:px-8 lg:px-12 lg:pl-72 w-full lg:w-1/2 pointer-events-auto">
               <BadgeResult
                 cardData={cardData}
                 onEdit={handleEdit}
               />
-              <div className="mt-6">
+              <div className="mt-2 md:mt-6">
                 <ParticleInput
                   onGenerate={handleGenerateParticles}
                   isLoading={particleLoading}
