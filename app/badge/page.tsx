@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useEffect, useRef } from "react";
+import { useState, useCallback, useEffect, useRef, useMemo } from "react";
 import dynamic from "next/dynamic";
 import { Footer } from "@/components/sections/footer";
 import BadgeForm from "@/components/badge/badge-form";
@@ -11,6 +11,7 @@ import type { CardData } from "@/lib/badge/types";
 import {
   generateCardTexture,
   defaultDebugOffsets,
+  pickAccentColor,
   type DebugOffsets,
 } from "@/lib/badge/texture-generator";
 import {
@@ -77,6 +78,11 @@ export default function BadgePage() {
     });
   }, [particleConfig, cardData, debugOffsets]);
 
+  const accentColor = useMemo(
+    () => pickAccentColor(particleConfig.groups.map((g) => g.color)),
+    [particleConfig]
+  );
+
   const handleEdit = useCallback(() => {
     setCardData(null);
     setCardTextureUrl(undefined);
@@ -136,11 +142,15 @@ export default function BadgePage() {
               <BadgeResult
                 cardData={cardData}
                 onEdit={handleEdit}
+                accentColor={accentColor}
               />
               <div className="mt-2 md:mt-6">
                 <ParticleInput
                   onGenerate={handleGenerateParticles}
+                  onPreset={setParticleConfig}
                   isLoading={particleLoading}
+                  isMobile={isMobile}
+                  accentColor={accentColor}
                 />
               </div>
             </div>

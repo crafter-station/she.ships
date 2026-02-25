@@ -7,9 +7,10 @@ import type { CardData } from "@/lib/badge/types";
 interface BadgeResultProps {
   cardData: CardData;
   onEdit: () => void;
+  accentColor?: string;
 }
 
-export default function BadgeResult({ cardData, onEdit }: BadgeResultProps) {
+export default function BadgeResult({ cardData, onEdit, accentColor }: BadgeResultProps) {
   const { t } = useTranslation();
 
   const shareOnTwitter = () => {
@@ -34,7 +35,7 @@ export default function BadgeResult({ cardData, onEdit }: BadgeResultProps) {
     <div className="flex flex-col gap-3 md:gap-8 w-full max-w-md">
       {/* Headline — hidden on mobile to keep badge visible */}
       <div className="hidden md:block">
-        <p className="data-label text-primary-pink mb-2">{t.badge.label}</p>
+        <p className="data-label mb-2" style={{ color: accentColor || "#ff2d78" }}>{t.badge.label}</p>
         <h1 className="text-3xl md:text-4xl font-bold font-[family-name:var(--font-title)] uppercase tracking-tight text-white">
           {t.badge.resultHeadline}
         </h1>
@@ -48,11 +49,11 @@ export default function BadgeResult({ cardData, onEdit }: BadgeResultProps) {
         {t.badge.resultDescription}
       </p>
 
-      <div className="hidden md:block h-px bg-white/10" />
+      <div className="hidden md:block h-px" style={{ backgroundColor: accentColor ? `${accentColor}33` : "rgba(255,255,255,0.1)" }} />
 
       {/* Share buttons — compact on mobile */}
       <div className="flex items-center gap-2 md:flex-col md:items-stretch md:gap-3">
-        <p className="hidden md:block text-sm font-bold uppercase tracking-wider text-white">
+        <p className="hidden md:block text-sm font-bold uppercase tracking-wider" style={{ color: accentColor || "#ffffff" }}>
           {t.badge.shareLabel}
         </p>
         <div className="flex gap-2 md:gap-3 flex-1">
