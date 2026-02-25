@@ -222,6 +222,18 @@ export const en = {
     editButton: "Edit your badge",
     shareText:
       "I just got my She Ships badge! Join the 48-hour global hackathon for women and multidisciplinary creators.",
+    particlePromptSuggestions: [
+      "A badge inspired by retro computing...",
+      "Golden metallic particles with tiny blue glowing ones...",
+      "Ocean waves — fluid teal with white foam bubbles...",
+      "Neon cyberpunk with pink and purple glow...",
+      "Crystal gems mixed with liquid mercury drops...",
+      "Pixel art vibes with colorful cubes...",
+      "A galaxy of stars and cosmic dust...",
+      "Molten lava with obsidian shards...",
+    ],
+    particlePromptCustom: "Or describe your own...",
+    particlePromptLoading: "Generating...",
   },
   footer: {
     brandDescription:

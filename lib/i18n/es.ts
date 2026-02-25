@@ -226,6 +226,18 @@ export const es: Translations = {
     editButton: "Editar tu insignia",
     shareText:
       "Acabo de obtener mi insignia de She Ships! Unite al hackathon global de 48 horas para mujeres y creadoras multidisciplinarias.",
+    particlePromptSuggestions: [
+      "Una insignia inspirada en la computación retro...",
+      "Partículas metálicas doradas con pequeñas brillantes azules...",
+      "Olas del océano — fluido turquesa con burbujas de espuma...",
+      "Cyberpunk neón con brillo rosa y púrpura...",
+      "Gemas de cristal mezcladas con gotas de mercurio líquido...",
+      "Estilo pixel art con cubos de colores...",
+      "Una galaxia de estrellas y polvo cósmico...",
+      "Lava fundida con fragmentos de obsidiana...",
+    ],
+    particlePromptCustom: "O describe las tuyas...",
+    particlePromptLoading: "Generando...",
   },
   footer: {
     brandDescription:
