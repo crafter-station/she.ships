@@ -10,6 +10,15 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: "/qa",
+        destination: "https://luma.com/7rv7ahys",
+        permanent: false,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
