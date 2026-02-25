@@ -74,6 +74,21 @@ export const particleConfigSchema = z.object({
 export type ParticleGroup = z.infer<typeof particleGroupSchema>;
 export type ParticleConfig = z.infer<typeof particleConfigSchema>;
 
+const MOBILE_MAX_PARTICLES = 500;
+
+/** Scale group counts proportionally so total doesn't exceed the mobile cap. */
+export function capConfigForMobile(config: ParticleConfig): ParticleConfig {
+  const total = config.groups.reduce((s, g) => s + g.count, 0);
+  if (total <= MOBILE_MAX_PARTICLES) return config;
+  const scale = MOBILE_MAX_PARTICLES / total;
+  return {
+    groups: config.groups.map((g) => ({
+      ...g,
+      count: Math.max(10, Math.round(g.count * scale)),
+    })),
+  };
+}
+
 export const defaultParticleConfig: ParticleConfig = {
   groups: [
     {

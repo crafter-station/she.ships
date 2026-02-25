@@ -11,6 +11,7 @@ import type { CardData } from "@/lib/badge/types";
 import { generateCardTexture } from "@/lib/badge/texture-generator";
 import {
   defaultParticleConfig,
+  capConfigForMobile,
   type ParticleConfig,
 } from "@/lib/badge/particle-config";
 
@@ -23,9 +24,21 @@ export default function BadgePage() {
   const [cardData, setCardData] = useState<CardData | null>(null);
   const [cardTextureUrl, setCardTextureUrl] = useState<string | undefined>();
   const [textureKey, setTextureKey] = useState(0);
-  const [particleConfig, setParticleConfig] =
-    useState<ParticleConfig>(defaultParticleConfig);
+  const [isMobile, setIsMobile] = useState(
+    () => typeof window !== "undefined" && window.innerWidth < 768
+  );
+  const [particleConfig, setParticleConfig] = useState<ParticleConfig>(() =>
+    typeof window !== "undefined" && window.innerWidth < 768
+      ? capConfigForMobile(defaultParticleConfig)
+      : defaultParticleConfig
+  );
   const [particleLoading, setParticleLoading] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   // TODO: remove debug auto-submit
   const initialized = useRef(false);
@@ -62,8 +75,10 @@ export default function BadgePage() {
   const handleEdit = useCallback(() => {
     setCardData(null);
     setCardTextureUrl(undefined);
-    setParticleConfig(defaultParticleConfig);
-  }, []);
+    setParticleConfig(
+      isMobile ? capConfigForMobile(defaultParticleConfig) : defaultParticleConfig
+    );
+  }, [isMobile]);
 
   const handleGenerateParticles = useCallback(async (prompt: string) => {
     setParticleLoading(true);
@@ -94,10 +109,10 @@ export default function BadgePage() {
         </div>
       ) : (
         <section className="h-screen relative overflow-hidden bg-primary-black">
-          <ParticlePanel config={particleConfig} onChange={setParticleConfig} />
+          <ParticlePanel config={particleConfig} onChange={setParticleConfig} isMobile={isMobile} />
           {/* Back: 3D badge canvas */}
           {cardTextureUrl && (
-            <div className="absolute inset-0 z-0 hidden md:block">
+            <div className="absolute inset-0 z-0">
               <BadgeScene
                 key={textureKey}
                 cardTextureUrl={cardTextureUrl}
@@ -106,9 +121,12 @@ export default function BadgePage() {
             </div>
           )}
 
+          {/* Mobile gradient overlay for text readability */}
+          <div className="absolute inset-0 z-[5] bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none md:hidden" />
+
           {/* Front: text content — transparent, click-through except buttons */}
-          <div className="absolute inset-0 z-10 flex items-center pointer-events-none">
-            <div className="px-8 lg:px-12 lg:pl-72 w-full lg:w-1/2 pointer-events-auto">
+          <div className="absolute inset-0 z-10 flex items-end md:items-center pointer-events-none">
+            <div className="px-6 pb-8 pt-16 md:px-8 lg:px-12 lg:pl-72 w-full lg:w-1/2 pointer-events-auto">
               <BadgeResult
                 cardData={cardData}
                 onEdit={handleEdit}

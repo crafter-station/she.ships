@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ChevronDown, ChevronUp, Plus, Trash2, Copy } from "lucide-react";
 import {
   particleShapes,
+  capConfigForMobile,
   type ParticleConfig,
   type ParticleGroup,
 } from "@/lib/badge/particle-config";
@@ -338,11 +339,13 @@ const PRESETS: { label: string; config: ParticleConfig }[] = [
 interface ParticlePanelProps {
   config: ParticleConfig;
   onChange: (config: ParticleConfig) => void;
+  isMobile: boolean;
 }
 
 export default function ParticlePanel({
   config,
   onChange,
+  isMobile,
 }: ParticlePanelProps) {
   const [open, setOpen] = useState(false);
   const [expanded, setExpanded] = useState<number | null>(0);
@@ -388,8 +391,25 @@ export default function ParticlePanel({
     );
   }
 
+  const applyPreset = (presetConfig: ParticleConfig) => {
+    onChange(isMobile ? capConfigForMobile(presetConfig) : presetConfig);
+    setExpanded(0);
+  };
+
   return (
-    <div className="fixed top-4 right-4 z-50 w-80 max-h-[90vh] overflow-y-auto rounded-xl bg-black/90 border border-white/20 backdrop-blur-md text-white text-xs font-mono">
+    <div
+      className={
+        isMobile
+          ? "fixed inset-x-0 bottom-0 z-50 max-h-[70vh] overflow-y-auto rounded-t-xl bg-black/90 border-t border-white/20 backdrop-blur-md text-white text-xs font-mono"
+          : "fixed top-4 right-4 z-50 w-80 max-h-[90vh] overflow-y-auto rounded-xl bg-black/90 border border-white/20 backdrop-blur-md text-white text-xs font-mono"
+      }
+    >
+      {/* Mobile drag handle */}
+      {isMobile && (
+        <div className="flex justify-center pt-2 pb-0">
+          <div className="w-10 h-1 rounded-full bg-white/30" />
+        </div>
+      )}
       {/* Header */}
       <div className="sticky top-0 bg-black/90 backdrop-blur-md border-b border-white/10 px-4 py-3 flex items-center justify-between">
         <span className="font-bold text-sm">Particle Panel</span>
@@ -409,10 +429,7 @@ export default function ParticlePanel({
         {PRESETS.map((preset) => (
           <button
             key={preset.label}
-            onClick={() => {
-              onChange(preset.config);
-              setExpanded(0);
-            }}
+            onClick={() => applyPreset(preset.config)}
             className="rounded-full border border-white/15 bg-white/5 px-2.5 py-1 text-[10px] text-white/50 hover:bg-white/15 hover:text-white hover:border-white/30 transition-all"
           >
             {preset.label}
@@ -488,7 +505,7 @@ export default function ParticlePanel({
                   label="Count"
                   value={group.count}
                   min={10}
-                  max={1800}
+                  max={isMobile ? 500 : 1800}
                   step={10}
                   onChange={(v) => updateGroup(idx, { count: v })}
                 />

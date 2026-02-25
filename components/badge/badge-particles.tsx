@@ -174,7 +174,7 @@ export function BadgeParticles({
     if (!body || !s) return;
 
     const dt = Math.min(delta, 0.033);
-    const SUBSTEPS = 8;
+    const SUBSTEPS = isMobile ? 4 : 8;
     const subDt = dt / SUBSTEPS;
 
     // Card rotation → local gravity
