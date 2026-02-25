@@ -2,12 +2,12 @@ import * as THREE from "three";
 import { useMemo, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 // @ts-ignore — Three.js example module
-import { MarchingCubes as MarchingCubesImpl } from "three/examples/jsm/objects/MarchingCubes.js";
+// import { MarchingCubes as MarchingCubesImpl } from "three/examples/jsm/objects/MarchingCubes.js";
 import type { ParticleConfig } from "@/lib/badge/particle-config";
 import type { CardBounds } from "@/lib/badge/types";
 import { stepParticles, type SimState } from "@/lib/badge/particle-sim";
 
-export const MC_RES = 28;
+// export const MC_RES = 28;
 
 export function BadgeParticles({
   cardRef,
@@ -50,30 +50,30 @@ export function BadgeParticles({
     return { fluidFlags: flags, hasFluid: any };
   }, [config, groupLayout, count]);
 
-  // MarchingCubes objects for fluid groups (liquid surface)
-  const mcObjects = useMemo(() => {
-    return config.groups.map((group) => {
-      if (!group.fluid) return null;
-      const mat = new THREE.MeshPhysicalMaterial({
-        color: group.color,
-        roughness: Math.max(0.05, group.roughness),
-        metalness: group.metalness,
-        clearcoat: isMobile ? 0 : group.clearcoat,
-        clearcoatRoughness: 0.15,
-        emissive: new THREE.Color(group.emissive),
-        emissiveIntensity: group.emissiveIntensity,
-        transparent: group.opacity < 1 || group.transmission > 0,
-        opacity: group.opacity,
-        transmission: group.transmission,
-        thickness: group.transmission > 0 ? 1.0 : 0,
-        ior: 1.33,
-        side: THREE.DoubleSide,
-      });
-      const mc = new MarchingCubesImpl(MC_RES, mat, false, false, 50000);
-      mc.isolation = 50;
-      return mc;
-    });
-  }, [config, isMobile]);
+  // MarchingCubes objects for fluid groups (liquid surface) — disabled for now
+  // const mcObjects = useMemo(() => {
+  //   return config.groups.map((group) => {
+  //     if (!group.fluid) return null;
+  //     const mat = new THREE.MeshPhysicalMaterial({
+  //       color: group.color,
+  //       roughness: Math.max(0.05, group.roughness),
+  //       metalness: group.metalness,
+  //       clearcoat: isMobile ? 0 : group.clearcoat,
+  //       clearcoatRoughness: 0.15,
+  //       emissive: new THREE.Color(group.emissive),
+  //       emissiveIntensity: group.emissiveIntensity,
+  //       transparent: group.opacity < 1 || group.transmission > 0,
+  //       opacity: group.opacity,
+  //       transmission: group.transmission,
+  //       thickness: group.transmission > 0 ? 1.0 : 0,
+  //       ior: 1.33,
+  //       side: THREE.DoubleSide,
+  //     });
+  //     const mc = new MarchingCubesImpl(MC_RES, mat, false, false, 50000);
+  //     mc.isolation = 50;
+  //     return mc;
+  //   });
+  // }, [config, isMobile]);
 
   // Use the largest particle size for collision radius
   const maxSize = useMemo(
@@ -137,36 +137,35 @@ export function BadgeParticles({
     cv: new THREE.Vector3(),
   });
 
-  // MC update() loops voxels 1..size-3, outputting (v-half)/half.
-  // Compute exact usable range so liquid aligns with card bounds.
-  const mcLayout = useMemo(() => {
-    const bw = bounds.maxX - bounds.minX;
-    const bh = bounds.maxY - bounds.minY;
-    const hs = MC_RES / 2;
-    const vMin = 1;
-    const vMax = MC_RES - 3;
-    const outMin = (vMin - hs) / hs;
-    const outMax = (vMax - hs) / hs;
-    const outRange = outMax - outMin;
-    const outCenter = (outMin + outMax) / 2;
-    const sx = bw / outRange;
-    const sy = bh / outRange;
-    const cx = (bounds.minX + bounds.maxX) / 2;
-    const cy = (bounds.minY + bounds.maxY) / 2;
-    const abOffset = vMin / MC_RES;
-    const abScale = (vMax - vMin) / MC_RES;
-    return {
-      position: [
-        cx - outCenter * sx,
-        cy - outCenter * sy,
-        bounds.frontZ + 0.02,
-      ] as [number, number, number],
-      scale: [sx, sy, 0.04] as [number, number, number],
-      abOffset,
-      abScaleX: abScale / bw,
-      abScaleY: abScale / bh,
-    };
-  }, [bounds]);
+  // MC layout — disabled for now
+  // const mcLayout = useMemo(() => {
+  //   const bw = bounds.maxX - bounds.minX;
+  //   const bh = bounds.maxY - bounds.minY;
+  //   const hs = MC_RES / 2;
+  //   const vMin = 1;
+  //   const vMax = MC_RES - 3;
+  //   const outMin = (vMin - hs) / hs;
+  //   const outMax = (vMax - hs) / hs;
+  //   const outRange = outMax - outMin;
+  //   const outCenter = (outMin + outMax) / 2;
+  //   const sx = bw / outRange;
+  //   const sy = bh / outRange;
+  //   const cx = (bounds.minX + bounds.maxX) / 2;
+  //   const cy = (bounds.minY + bounds.maxY) / 2;
+  //   const abOffset = vMin / MC_RES;
+  //   const abScale = (vMax - vMin) / MC_RES;
+  //   return {
+  //     position: [
+  //       cx - outCenter * sx,
+  //       cy - outCenter * sy,
+  //       bounds.frontZ + 0.02,
+  //     ] as [number, number, number],
+  //     scale: [sx, sy, 0.04] as [number, number, number],
+  //     abOffset,
+  //     abScaleX: abScale / bw,
+  //     abScaleY: abScale / bh,
+  //   };
+  // }, [bounds]);
 
   useFrame((_, delta) => {
     const body = cardRef.current;
@@ -194,7 +193,7 @@ export function BadgeParticles({
       .sub(s.prevCardVel)
       .divideScalar(dt)
       .clampLength(0, 200);
-    t.a.multiplyScalar(1.5);
+    t.a.multiplyScalar(2.5);
     s.prevCardVel.copy(t.cv);
 
     // Dead-zone: zero out when body is nearly at rest
@@ -230,6 +229,7 @@ export function BadgeParticles({
       gy: t.g.y,
       angKick: s.smoothedAngKick,
       subDt2: subDt * subDt,
+      cornerRadius: bounds.cornerRadius,
       hasFluid,
       fluidFlags,
     }, SUBSTEPS);
@@ -238,48 +238,50 @@ export function BadgeParticles({
     const { px, py } = s;
     const { ranges } = groupLayout;
     for (let g = 0; g < ranges.length; g++) {
-      if (config.groups[g].fluid) {
-        const mc = mcObjects[g];
-        if (!mc) continue;
-        mc.reset();
-        const { start, count: gCount } = ranges[g];
-        for (let li = 0; li < gCount; li++) {
-          const gi = start + li;
-          const nx = mcLayout.abOffset + (px[gi] - bounds.minX) * mcLayout.abScaleX;
-          const ny = mcLayout.abOffset + (py[gi] - bounds.minY) * mcLayout.abScaleY;
-          mc.addBall(nx, ny, 0.5, 0.06, 12);
-        }
-        mc.update();
-      } else {
-        const mesh = meshRefs.current[g];
-        if (!mesh) continue;
-        const { start, count: gCount } = ranges[g];
-        const groupSize = config.groups[g].size;
-        for (let li = 0; li < gCount; li++) {
-          const gi = start + li;
-          t.mat.makeTranslation(px[gi], py[gi], bounds.frontZ + 0.01);
-          t.v.set(groupSize, groupSize, groupSize * 0.4);
-          t.mat.scale(t.v);
-          mesh.setMatrixAt(li, t.mat);
-        }
-        mesh.instanceMatrix.needsUpdate = true;
+      // Fluid MarchingCubes rendering — disabled for now
+      // if (config.groups[g].fluid) {
+      //   const mc = mcObjects[g];
+      //   if (!mc) continue;
+      //   mc.reset();
+      //   const { start, count: gCount } = ranges[g];
+      //   for (let li = 0; li < gCount; li++) {
+      //     const gi = start + li;
+      //     const nx = mcLayout.abOffset + (px[gi] - bounds.minX) * mcLayout.abScaleX;
+      //     const ny = mcLayout.abOffset + (py[gi] - bounds.minY) * mcLayout.abScaleY;
+      //     mc.addBall(nx, ny, 0.5, 0.06, 12);
+      //   }
+      //   mc.update();
+      // } else {
+      const mesh = meshRefs.current[g];
+      if (!mesh) continue;
+      const { start, count: gCount } = ranges[g];
+      const groupSize = config.groups[g].size;
+      for (let li = 0; li < gCount; li++) {
+        const gi = start + li;
+        t.mat.makeTranslation(px[gi], py[gi], bounds.frontZ + 0.01);
+        t.v.set(groupSize, groupSize, groupSize * 0.4);
+        t.mat.scale(t.v);
+        mesh.setMatrixAt(li, t.mat);
       }
+      mesh.instanceMatrix.needsUpdate = true;
+      // }
     }
   });
 
   return (
     <>
       {config.groups.map((group, i) => {
-        if (group.fluid && mcObjects[i]) {
-          return (
-            <primitive
-              key={`mc-${i}`}
-              object={mcObjects[i]}
-              position={mcLayout.position}
-              scale={mcLayout.scale}
-            />
-          );
-        }
+        // MarchingCubes primitive rendering — disabled for now
+        // if (group.fluid && mcObjects[i]) {
+        //   return (
+        //     <primitive
+        //       key={`mc-${i}`}
+        //       object={mcObjects[i]}
+        //       position={mcLayout.position}
+        //       scale={mcLayout.scale}
+        //     />
+        //   );
+        // }
         const isTransparent = group.opacity < 1 || group.transmission > 0;
         return (
           <instancedMesh

@@ -29,6 +29,7 @@ export interface SimParams {
   gy: number;
   angKick: number;
   subDt2: number;
+  cornerRadius: number;
   hasFluid: boolean;
   fluidFlags: Uint8Array;
 }
@@ -40,6 +41,7 @@ export function stepParticles(s: SimState, p: SimParams, substeps: number) {
     boundsMinX, boundsMaxX, boundsMinY, boundsMaxY,
     gridW, gridH, maxPerCell, cellSize,
     gx, gy, angKick, subDt2,
+    cornerRadius,
     hasFluid, fluidFlags,
   } = p;
 
@@ -48,6 +50,14 @@ export function stepParticles(s: SimState, p: SimParams, substeps: number) {
   const bx1 = boundsMaxX - R - PAD;
   const by0 = boundsMinY + R + PAD;
   const by1 = boundsMaxY - R - PAD;
+
+  // Corner arc centers — inset by cornerRadius from the rectangular bounds
+  const CR = Math.max(0, cornerRadius - R - PAD);
+  const cr2 = CR * CR;
+  const cx0 = bx0 + CR; // left corners X
+  const cx1 = bx1 - CR; // right corners X
+  const cy0 = by0 + CR; // bottom corners Y
+  const cy1 = by1 - CR; // top corners Y
   const halfW = (boundsMaxX - boundsMinX) * 0.5;
   const halfH = (boundsMaxY - boundsMinY) * 0.5;
   const centerX = (boundsMinX + boundsMaxX) * 0.5;
@@ -72,12 +82,31 @@ export function stepParticles(s: SimState, p: SimParams, substeps: number) {
       py[i] += vy + ay * subDt2;
     }
 
-    // (2) Boundary constraints (clamp + kill velocity on contact)
+    // (2) Boundary constraints (clamp + kill velocity on contact + rounded corners)
     for (let i = 0; i < count; i++) {
       if (px[i] < bx0) { px[i] = bx0; ppx[i] = bx0; }
       else if (px[i] > bx1) { px[i] = bx1; ppx[i] = bx1; }
       if (py[i] < by0) { py[i] = by0; ppy[i] = by0; }
       else if (py[i] > by1) { py[i] = by1; ppy[i] = by1; }
+
+      // Round corners: if particle is in a corner square, constrain to arc
+      if (CR > 0) {
+        let cdx = 0, cdy = 0;
+        if (px[i] < cx0 && py[i] < cy0) { cdx = px[i] - cx0; cdy = py[i] - cy0; }
+        else if (px[i] > cx1 && py[i] < cy0) { cdx = px[i] - cx1; cdy = py[i] - cy0; }
+        else if (px[i] < cx0 && py[i] > cy1) { cdx = px[i] - cx0; cdy = py[i] - cy1; }
+        else if (px[i] > cx1 && py[i] > cy1) { cdx = px[i] - cx1; cdy = py[i] - cy1; }
+        if (cdx !== 0 || cdy !== 0) {
+          const cd2 = cdx * cdx + cdy * cdy;
+          if (cd2 > cr2) {
+            const cd = Math.sqrt(cd2);
+            px[i] -= cdx - (cdx / cd) * CR;
+            py[i] -= cdy - (cdy / cd) * CR;
+            ppx[i] = px[i];
+            ppy[i] = py[i];
+          }
+        }
+      }
     }
 
     // (3) PBD collision projection
@@ -239,12 +268,30 @@ export function stepParticles(s: SimState, p: SimParams, substeps: number) {
       }
     }
 
-    // (4) Re-enforce boundary after projection (clamp + kill velocity on contact)
+    // (4) Re-enforce boundary after projection (clamp + kill velocity + rounded corners)
     for (let i = 0; i < count; i++) {
       if (px[i] < bx0) { px[i] = bx0; ppx[i] = bx0; }
       else if (px[i] > bx1) { px[i] = bx1; ppx[i] = bx1; }
       if (py[i] < by0) { py[i] = by0; ppy[i] = by0; }
       else if (py[i] > by1) { py[i] = by1; ppy[i] = by1; }
+
+      if (CR > 0) {
+        let cdx = 0, cdy = 0;
+        if (px[i] < cx0 && py[i] < cy0) { cdx = px[i] - cx0; cdy = py[i] - cy0; }
+        else if (px[i] > cx1 && py[i] < cy0) { cdx = px[i] - cx1; cdy = py[i] - cy0; }
+        else if (px[i] < cx0 && py[i] > cy1) { cdx = px[i] - cx0; cdy = py[i] - cy1; }
+        else if (px[i] > cx1 && py[i] > cy1) { cdx = px[i] - cx1; cdy = py[i] - cy1; }
+        if (cdx !== 0 || cdy !== 0) {
+          const cd2 = cdx * cdx + cdy * cdy;
+          if (cd2 > cr2) {
+            const cd = Math.sqrt(cd2);
+            px[i] -= cdx - (cdx / cd) * CR;
+            py[i] -= cdy - (cdy / cd) * CR;
+            ppx[i] = px[i];
+            ppy[i] = py[i];
+          }
+        }
+      }
     }
   }
 }
