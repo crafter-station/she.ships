@@ -8,7 +8,11 @@ import BadgeResult from "@/components/badge/badge-result";
 import ParticleInput from "@/components/badge/particle-input";
 import ParticlePanel from "@/components/badge/particle-panel";
 import type { CardData } from "@/lib/badge/types";
-import { generateCardTexture } from "@/lib/badge/texture-generator";
+import {
+  generateCardTexture,
+  defaultDebugOffsets,
+  type DebugOffsets,
+} from "@/lib/badge/texture-generator";
 import {
   defaultParticleConfig,
   capConfigForMobile,
@@ -33,6 +37,7 @@ export default function BadgePage() {
       : defaultParticleConfig
   );
   const [particleLoading, setParticleLoading] = useState(false);
+  const [debugOffsets, setDebugOffsets] = useState<DebugOffsets>(defaultDebugOffsets);
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
@@ -45,9 +50,9 @@ export default function BadgePage() {
   useEffect(() => {
     if (initialized.current) return;
     initialized.current = true;
-    const debug = { name: "Cris", role: "Participant" };
+    const debug = { name: "Cris", role: "Hacker" };
     const colors = defaultParticleConfig.groups.map((g) => g.color);
-    generateCardTexture(debug, colors).then((url) => {
+    generateCardTexture(debug, colors, debugOffsets).then((url) => {
       setCardTextureUrl(url);
       setTextureKey(1);
       setCardData(debug);
@@ -56,7 +61,7 @@ export default function BadgePage() {
 
   const handleSubmit = useCallback(async (data: CardData) => {
     const colors = particleConfig.groups.map((g) => g.color);
-    const textureUrl = await generateCardTexture(data, colors);
+    const textureUrl = await generateCardTexture(data, colors, debugOffsets);
     setCardTextureUrl(textureUrl);
     setTextureKey((prev) => prev + 1);
     setCardData(data);
@@ -66,11 +71,11 @@ export default function BadgePage() {
   useEffect(() => {
     if (!cardData) return;
     const colors = particleConfig.groups.map((g) => g.color);
-    generateCardTexture(cardData, colors).then((url) => {
+    generateCardTexture(cardData, colors, debugOffsets).then((url) => {
       setCardTextureUrl(url);
       setTextureKey((prev) => prev + 1);
     });
-  }, [particleConfig, cardData]);
+  }, [particleConfig, cardData, debugOffsets]);
 
   const handleEdit = useCallback(() => {
     setCardData(null);
@@ -109,7 +114,8 @@ export default function BadgePage() {
         </div>
       ) : (
         <section className="h-dvh relative overflow-hidden bg-primary-black select-none touch-manipulation overscroll-none">
-          <ParticlePanel config={particleConfig} onChange={setParticleConfig} isMobile={isMobile} />
+          {/* <ParticlePanel config={particleConfig} onChange={setParticleConfig} isMobile={isMobile} /> */}
+
           {/* Back: 3D badge canvas */}
           {cardTextureUrl && (
             <div className="absolute inset-0 z-0">
