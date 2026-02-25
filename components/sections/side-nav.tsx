@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import { useLenis } from "lenis/react";
 import { cn } from "@/lib/utils";
 
@@ -14,36 +14,71 @@ const SECTIONS = [
   { id: "organizers", label: "Organizers" },
 ] as const;
 
+/**
+ * Computes the scroll-position boundaries for each section.
+ * Each section "starts" at the cumulative height of all preceding sections.
+ */
+function getSectionBoundaries() {
+  const boundaries: { id: string; start: number }[] = [];
+  let cumulative = 0;
+
+  for (const section of SECTIONS) {
+    boundaries.push({ id: section.id, start: cumulative });
+    const el = document.getElementById(section.id);
+    if (el) cumulative += el.offsetHeight;
+  }
+
+  return boundaries;
+}
+
 export function SideNav() {
   const [activeId, setActiveId] = useState<string>("hero");
   const [visible, setVisible] = useState(false);
   const lenis = useLenis();
+  const boundariesRef = useRef<{ id: string; start: number }[]>([]);
 
-  // Track which section is in view
+  // Recompute boundaries when sections resize (accordion, window resize)
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            setActiveId(entry.target.id);
-          }
-        }
-      },
-      { threshold: 0.4 },
-    );
+    const recompute = () => {
+      boundariesRef.current = getSectionBoundaries();
+    };
 
+    recompute();
+
+    // Observe all section elements for size changes
+    const observer = new ResizeObserver(recompute);
     for (const section of SECTIONS) {
       const el = document.getElementById(section.id);
       if (el) observer.observe(el);
     }
 
-    return () => observer.disconnect();
+    window.addEventListener("resize", recompute);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", recompute);
+    };
   }, []);
 
-  // Show/hide based on scroll position
+  // Determine active section based on scroll position
   useEffect(() => {
     const handleScroll = () => {
-      setVisible(window.scrollY > window.innerHeight * 0.3);
+      const scrollY = window.scrollY;
+
+      setVisible(scrollY > window.innerHeight * 0.3);
+
+      // Find the last section whose start position is <= viewportMiddle
+      const viewportMiddle = scrollY + window.innerHeight * 0.4;
+      const boundaries = boundariesRef.current;
+      let active = boundaries[0]?.id ?? "hero";
+      for (const b of boundaries) {
+        if (b.start <= viewportMiddle) {
+          active = b.id;
+        } else {
+          break;
+        }
+      }
+      setActiveId(active);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -51,22 +86,23 @@ export function SideNav() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollTo = (id: string) => {
-    // Can't use offsetTop or getBoundingClientRect on sticky elements —
-    // they report the stuck position (≈0), not the flow position.
-    // Instead, sum the heights of all preceding sections.
-    let position = 0;
-    for (const section of SECTIONS) {
-      if (section.id === id) break;
-      const el = document.getElementById(section.id);
-      if (el) position += el.offsetHeight;
-    }
-    if (lenis) {
-      lenis.scrollTo(position);
-    } else {
-      window.scrollTo({ top: position, behavior: "smooth" });
-    }
-  };
+  const scrollTo = useCallback(
+    (id: string) => {
+      // Sum heights of all preceding sections to get the scroll target
+      let position = 0;
+      for (const section of SECTIONS) {
+        if (section.id === id) break;
+        const el = document.getElementById(section.id);
+        if (el) position += el.offsetHeight;
+      }
+      if (lenis) {
+        lenis.scrollTo(position);
+      } else {
+        window.scrollTo({ top: position, behavior: "smooth" });
+      }
+    },
+    [lenis],
+  );
 
   return (
     <nav
@@ -83,6 +119,7 @@ export function SideNav() {
           <div key={section.id} className="flex flex-col items-start">
             {/* Dot row */}
             <button
+              type="button"
               onClick={() => scrollTo(section.id)}
               className="group flex items-center gap-3 py-1.5"
             >
