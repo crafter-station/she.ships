@@ -20,14 +20,16 @@ const sponsors = [
   {
     name: "v0",
     logo: "/sponsors/v0-logo-dark.png",
-    width: 80,
-    height: 60,
+    width: 160,
+    height: 76,
+    className: "max-w-[60px] md:max-w-[70px]",
   },
   {
     name: "IEEE",
     logo: "/sponsors/ieee.png",
-    width: 280,
-    height: 80,
+    width: 340,
+    height: 100,
+    className: "h-auto w-auto max-w-[280px] md:max-w-[340px]",
   },
 ];
 
@@ -54,7 +56,7 @@ export function Sponsors() {
             alt={sponsor.name}
             width={sponsor.width}
             height={sponsor.height}
-            className="h-auto w-auto max-w-[200px] md:max-w-[240px]"
+            className={sponsor.className ?? "h-auto w-auto max-w-[200px] md:max-w-[240px]"}
           />
         ))}
       </div>

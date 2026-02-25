@@ -54,7 +54,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={monoblock.variable}>
+    <html lang="en" className={monoblock.variable} suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{
