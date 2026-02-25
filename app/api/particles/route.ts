@@ -4,7 +4,7 @@ import { particleConfigSchema } from "@/lib/badge/particle-config";
 
 export async function POST(req: Request) {
   const { prompt, isMobile } = await req.json();
-  const maxTotal = isMobile ? 500 : 1800;
+  const maxTotal = isMobile ? 500 : 2500;
 
   const { object } = await generateObject({
     model: gateway("openai/gpt-oss-120b"),
@@ -34,9 +34,11 @@ Fluid & glass effects:
 
 Rules:
 - The TOTAL count across all groups MUST equal exactly ${maxTotal}. Distribute proportionally based on the user's description.
-- Use vivid, saturated colors that look great on a dark badge card.
-- For "glowing" particles, set emissive to a bright color and emissiveIntensity to 1-2.5.
-- For "metallic" particles, set metalness to 0.7-1.0 and roughness to 0.1-0.3.
+- IMPORTANT: Use highly saturated, vivid, punchy colors (saturation 80-100%). Prefer pure, electric tones like #ff0055, #00ff88, #ffcc00, #7b2eff, #00e5ff — never dull or desaturated. Colors must pop against the dark badge background.
+- IMPORTANT: Always set emissive to the same color as the particle (or a brighter variant) with emissiveIntensity 0.3-0.8 by default. This makes colors glow and look vibrant. Only use emissive="#000000" for intentionally dark/matte groups.
+- IMPORTANT: Default opacity should be 0.75-0.85 for a glass-bead look. Only use opacity=1 when the user explicitly asks for solid/matte particles. Combine with transmission 0.1-0.3 for subtle depth.
+- For "glowing" particles, set emissive to a bright color and emissiveIntensity to 1.5-2.5.
+- For "metallic" particles, set metalness to 0.7-1.0 and roughness to 0.1-0.3, opacity 0.85-0.95.
 - For "matte" particles, set metalness to 0-0.1 and roughness to 0.6-0.9.
 - Default clearcoat is 0.8 for glossy, 0 for matte.
 - Use size 0.012 for all groups by default. Only vary slightly (0.010-0.014) for subtle accent differences.
@@ -44,6 +46,27 @@ Rules:
 - Be creative! Interpret poetic or abstract descriptions into beautiful particle combinations.`,
     prompt,
   });
+
+  // Force metalness and minimum opacity for all groups
+  object.groups.forEach((g: { metalness: number; opacity: number }) => {
+    g.metalness = 0.9;
+    if (g.opacity < 0.9) g.opacity = 0.9;
+  });
+
+  // Force total count to exactly maxTotal
+  const total = object.groups.reduce((s: number, g: { count: number }) => s + g.count, 0);
+  if (total !== maxTotal) {
+    const scale = maxTotal / total;
+    let remaining = maxTotal;
+    object.groups.forEach((g: { count: number; metalness: number }, i: number) => {
+      if (i === object.groups.length - 1) {
+        g.count = remaining;
+      } else {
+        g.count = Math.max(10, Math.round(g.count * scale));
+        remaining -= g.count;
+      }
+    });
+  }
 
   return Response.json(object);
 }
