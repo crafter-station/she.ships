@@ -199,6 +199,9 @@ export const es: Translations = {
       },
     ],
   },
+  communityPartners: {
+    label: "Community Partners",
+  },
   organizers: {
     label: "Organizado por",
     headline: "Quiénes están detrás de",

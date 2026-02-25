@@ -195,6 +195,9 @@ export const en = {
       },
     ],
   },
+  communityPartners: {
+    label: "Community Partners",
+  },
   organizers: {
     label: "Organized by",
     headline: "Who's behind",
