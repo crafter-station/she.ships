@@ -2,7 +2,7 @@
 
 import * as THREE from "three";
 import { useEffect, useMemo, useState } from "react";
-import { Canvas, extend } from "@react-three/fiber";
+import { Canvas, extend, useThree } from "@react-three/fiber";
 import {
   useGLTF,
   useTexture,
@@ -16,6 +16,21 @@ import { defaultParticleConfig } from "@/lib/badge/particle-config";
 import { Band } from "@/components/badge/band";
 
 extend({ MeshLineGeometry, MeshLineMaterial });
+
+function CameraRig({ isMobile }: { isMobile: boolean }) {
+  const { camera } = useThree();
+  useEffect(() => {
+    if (isMobile) {
+      camera.position.set(1.45, -0.5, 8.5);
+      (camera as THREE.PerspectiveCamera).fov = 34;
+    } else {
+      camera.position.set(0, 0, 7);
+      (camera as THREE.PerspectiveCamera).fov = 38;
+    }
+    (camera as THREE.PerspectiveCamera).updateProjectionMatrix();
+  }, [isMobile, camera]);
+  return null;
+}
 
 useGLTF.preload("/badge/id-card.glb");
 useTexture.preload("/badge/lanyard.png");
@@ -48,16 +63,14 @@ export default function BadgeScene({
   );
 
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full touch-none">
       <Canvas
-        camera={{
-          position: isMobile ? [0, 0.5, 10] : [0, 0, 7],
-          fov: isMobile ? 34 : 38,
-        }}
+        camera={{ position: [0, 0, 7], fov: 38 }}
         dpr={[1, isMobile ? 1.5 : 2]}
         gl={{ alpha: true, preserveDrawingBuffer: true }}
         onCreated={({ gl }) => gl.setClearColor(new THREE.Color(0x000000), 0)}
       >
+        <CameraRig isMobile={isMobile} />
         <ambientLight intensity={Math.PI} />
         <Physics gravity={gravity} timeStep={1 / 60} interpolate>
           <Band
