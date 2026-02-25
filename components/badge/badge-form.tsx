@@ -6,7 +6,7 @@ import { ArrowRight } from "lucide-react";
 import type { CardData } from "@/lib/badge/types";
 
 const ROLES = [
-  "Participant",
+  "Hacker",
   "Mentor",
   "Judge",
   "Speaker",
@@ -22,14 +22,19 @@ interface BadgeFormProps {
 export default function BadgeForm({ onSubmit }: BadgeFormProps) {
   const { t } = useTranslation();
   const [name, setName] = useState("");
-  const [role, setRole] = useState("");
+  const [role, setRole] = useState("Hacker");
+  const [organization, setOrganization] = useState("");
 
   const canSubmit = name.trim().length > 0 && role.length > 0;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!canSubmit) return;
-    onSubmit({ name: name.trim(), role });
+    onSubmit({
+      name: name.trim(),
+      role,
+      ...(organization.trim() && { organization: organization.trim() }),
+    });
   };
 
   return (
@@ -87,6 +92,24 @@ export default function BadgeForm({ onSubmit }: BadgeFormProps) {
               </option>
             ))}
           </select>
+        </div>
+
+        <div>
+          <label
+            htmlFor="badge-org"
+            className="block text-sm font-bold uppercase tracking-wider text-white mb-2"
+          >
+            Organization <span className="text-white/40 font-normal normal-case">(optional)</span>
+          </label>
+          <input
+            id="badge-org"
+            type="text"
+            value={organization}
+            onChange={(e) => setOrganization(e.target.value)}
+            placeholder="e.g. Crafter Station"
+            maxLength={40}
+            className="w-full px-4 py-3 bg-white/10 text-white placeholder:text-white/40 brutalist-border focus:outline-none focus:border-primary-pink transition-colors"
+          />
         </div>
       </div>
 
