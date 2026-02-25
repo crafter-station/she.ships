@@ -203,6 +203,26 @@ export const en = {
     headline: "Who's behind",
     headlineAccent: "She Ships",
   },
+  badge: {
+    label: "Your Badge",
+    headline: "Your",
+    headlineAccent: "Badge",
+    description:
+      "Generate your personal She Ships badge. Fill in your name and role, then download and share it on social media.",
+    nameLabel: "Full Name",
+    namePlaceholder: "Jane Doe",
+    roleLabel: "Role",
+    rolePlaceholder: "Select your role...",
+    generateButton: "Generate Badge",
+    resultHeadline: "See you online on March 6-8",
+    resultDate: "March 6-8, 2026 — 48h Global Hackathon",
+    resultDescription:
+      "A badge inspired by the builders who ship. Drag it, share it, and show the world you're part of She Ships.",
+    shareLabel: "Share on",
+    editButton: "Edit your badge",
+    shareText:
+      "I just got my She Ships badge! Join the 48-hour global hackathon for women and multidisciplinary creators.",
+  },
   footer: {
     brandDescription:
       "A 48-hour global hackathon celebrating International Women's Day by building and shipping real projects.",
