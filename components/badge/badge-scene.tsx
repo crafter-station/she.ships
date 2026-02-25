@@ -50,7 +50,10 @@ export default function BadgeScene({
   return (
     <div className="w-full h-full">
       <Canvas
-        camera={{ position: [0, 0, 7], fov: 38 }}
+        camera={{
+          position: isMobile ? [0, 0.5, 10] : [0, 0, 7],
+          fov: isMobile ? 34 : 38,
+        }}
         dpr={[1, isMobile ? 1.5 : 2]}
         gl={{ alpha: true, preserveDrawingBuffer: true }}
         onCreated={({ gl }) => gl.setClearColor(new THREE.Color(0x000000), 0)}
