@@ -3,7 +3,7 @@ import { eq } from "drizzle-orm";
 import { db } from "@/lib/db";
 import { badges } from "@/lib/db/schema";
 import type { Metadata } from "next";
-import BadgeView from "@/components/badge/badge-view";
+import BadgePublic from "@/components/badge/badge-public";
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -48,5 +48,5 @@ export default async function BadgeIdPage({ params }: Props) {
 
   if (!badge) notFound();
 
-  return <BadgeView badge={badge} />;
+  return <BadgePublic badge={badge} />;
 }
