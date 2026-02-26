@@ -240,6 +240,15 @@ export const en = {
     particlePromptCustom: "Or describe your own...",
     particlePromptLoading: "Generating...",
   },
+  whatsappCommunity: {
+    navAriaLabel: "Join WhatsApp community",
+    label: "Join the Community",
+    headline: "Connect with",
+    headlineAccent: "Women Who Ship",
+    description:
+      "Join our WhatsApp community to learn more about the event, meet other women who ship, and find your dream team before the hackathon starts.",
+    cta: "Join WhatsApp Group",
+  },
   footer: {
     brandDescription:
       "A 48-hour global hackathon celebrating International Women's Day by building and shipping real projects.",

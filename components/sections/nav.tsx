@@ -6,6 +6,7 @@ import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { GithubBadge } from "@/components/shared/github-badge";
+import { WhatsappBadge } from "@/components/shared/whatsapp-badge";
 import { LanguageSwitcher } from "@/components/shared/language-switcher";
 import { useTranslation } from "@/lib/i18n/context";
 
@@ -83,6 +84,7 @@ export function Nav() {
           {/* Desktop actions */}
           <div className="hidden md:flex items-center gap-3">
             <GithubBadge light={!scrolled} />
+            <WhatsappBadge light={!scrolled} />
             <LanguageSwitcher light={!scrolled} />
             <Button asChild variant="pink" size="sm">
               <a
@@ -167,6 +169,7 @@ export function Nav() {
             >
               <div className="flex items-center gap-4 mb-4">
                 <GithubBadge />
+                <WhatsappBadge />
                 <LanguageSwitcher />
               </div>
               <Button asChild variant="pink" size="lg">

@@ -244,6 +244,15 @@ export const es: Translations = {
     particlePromptCustom: "O describe las tuyas...",
     particlePromptLoading: "Generando...",
   },
+  whatsappCommunity: {
+    navAriaLabel: "Unirse a la comunidad de WhatsApp",
+    label: "Únete a la Comunidad",
+    headline: "Conecta con",
+    headlineAccent: "Mujeres que Shippean",
+    description:
+      "Únete a nuestra comunidad de WhatsApp para conocer más sobre el evento, conectar con otras mujeres que shippean, y formar tu equipo ideal antes de que empiece el hackathon.",
+    cta: "Unirse al Grupo de WhatsApp",
+  },
   footer: {
     brandDescription:
       "Un hackathon global de 48 horas celebrando el Día Internacional de la Mujer construyendo y lanzando proyectos reales.",
