@@ -21,7 +21,7 @@ export function WhatsappCommunity() {
 
         <h2 className="font-[family-name:var(--font-title)] text-4xl font-black tracking-tight md:text-5xl lg:text-6xl mb-6">
           {t.whatsappCommunity.headline}{" "}
-          <span className="text-primary-pink">
+          <span className="text-white">
             {t.whatsappCommunity.headlineAccent}
           </span>
         </h2>
