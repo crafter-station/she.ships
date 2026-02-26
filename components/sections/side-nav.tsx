@@ -11,6 +11,7 @@ const SECTIONS = [
   { id: "agenda", label: "Agenda" },
   { id: "categories", label: "Categories" },
   { id: "faq", label: "FAQ" },
+  { id: "whatsapp-community", label: "Community" },
   { id: "organizers", label: "Organizers" },
 ] as const;
 

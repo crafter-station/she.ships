@@ -6,6 +6,7 @@ import { WhatIsSheShips } from "@/components/sections/what-is-sheships";
 import { Agenda } from "@/components/sections/agenda";
 import { Categories } from "@/components/sections/categories";
 import { FAQ } from "@/components/sections/faq";
+import { WhatsappCommunity } from "@/components/sections/whatsapp-community";
 import { Organizers } from "@/components/sections/organizers";
 import { Footer } from "@/components/sections/footer";
 import { SideNav } from "@/components/sections/side-nav";
@@ -23,6 +24,7 @@ export default function Home() {
         <Agenda />
         <Categories />
         <FAQ />
+        <WhatsappCommunity />
         <Organizers />
         <Footer />
       </main>
