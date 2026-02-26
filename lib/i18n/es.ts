@@ -11,6 +11,7 @@ export const es: Translations = {
     ctaCommunityPartner: "Sé Community Partner",
     ctaJudge: "Sé Juez",
     ctaMentor: "Sé Mentora",
+    wallpapers: "Wallpapers",
   },
   hero: {
     tagline: "Construye. Comparte. Lanza.",
@@ -276,5 +277,15 @@ export const es: Translations = {
       discord: "Discord",
     },
     copyright: "She Ships. Todos los derechos reservados.",
+  },
+  wallpapers: {
+    headline: "Fondos de",
+    headlineAccent: "Pantalla",
+    subtitle:
+      "Descarga wallpapers exclusivos de She Ships para tu celular. Diseñados para recordarte: solo hazlo.",
+    download: "Descargar",
+    downloads: "descargas",
+    credit: "Diseñados por",
+    creditStudio: "Moraleja Design Studio",
   },
 };

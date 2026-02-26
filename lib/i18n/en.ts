@@ -9,6 +9,7 @@ export const en = {
     ctaCommunityPartner: "Be a Community Partner",
     ctaJudge: "Be a Judge",
     ctaMentor: "Be a Mentor",
+    wallpapers: "Wallpapers",
   },
   hero: {
     tagline: "Build. Share. Launch.",
@@ -272,6 +273,16 @@ export const en = {
       discord: "Discord",
     },
     copyright: "She Ships. All rights reserved.",
+  },
+  wallpapers: {
+    headline: "Phone",
+    headlineAccent: "Wallpapers",
+    subtitle:
+      "Download exclusive She Ships wallpapers for your phone. Designed to remind you: just ship it.",
+    download: "Download",
+    downloads: "downloads",
+    credit: "Designed by",
+    creditStudio: "Moraleja Design Studio",
   },
 };
 

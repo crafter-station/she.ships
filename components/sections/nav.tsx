@@ -8,18 +8,22 @@ import { Button } from "@/components/ui/button";
 import { GithubBadge } from "@/components/shared/github-badge";
 import { WhatsappBadge } from "@/components/shared/whatsapp-badge";
 import { LanguageSwitcher } from "@/components/shared/language-switcher";
+import { usePathname } from "next/navigation";
 import { useTranslation } from "@/lib/i18n/context";
 
 export function Nav() {
   const { t } = useTranslation();
+  const pathname = usePathname();
+  const isHome = pathname === "/";
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const links = [
-    { label: t.nav.event, href: "#event-info" },
-    { label: t.nav.agenda, href: "#agenda" },
-    { label: t.nav.categories, href: "#categories" },
-    { label: t.nav.faq, href: "#faq" },
+    { label: t.nav.event, href: isHome ? "#event-info" : "/#event-info" },
+    { label: t.nav.agenda, href: isHome ? "#agenda" : "/#agenda" },
+    { label: t.nav.categories, href: isHome ? "#categories" : "/#categories" },
+    { label: t.nav.faq, href: isHome ? "#faq" : "/#faq" },
+    { label: t.nav.wallpapers, href: "/wallpapers" },
   ];
 
   useEffect(() => {
