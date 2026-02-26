@@ -98,13 +98,6 @@ function loadSvgAsImage(color: string, size: number): Promise<HTMLImageElement> 
   });
 }
 
-function getNextBadgeNumber(): string {
-  const key = "sheships-badge-number";
-  const current = parseInt(localStorage.getItem(key) || "0", 10) + 1;
-  localStorage.setItem(key, String(current));
-  return String(current).padStart(7, "0");
-}
-
 export interface DebugOffsets {
   numberOffsetX: number;
   numberOffsetY: number;
@@ -122,7 +115,8 @@ export const defaultDebugOffsets: DebugOffsets = {
 export const generateCardTexture = async (
   cardData: CardData,
   particleColors?: string[],
-  debugOffsets?: DebugOffsets
+  debugOffsets?: DebugOffsets,
+  badgeNumber?: string
 ): Promise<string> => {
   return new Promise((resolve, reject) => {
     const canvas = document.createElement("canvas");
@@ -169,11 +163,11 @@ export const generateCardTexture = async (
 
       // Draw badge number — subtle, below org/role
       const off = debugOffsets || defaultDebugOffsets;
-      const badgeNumber = getNextBadgeNumber();
+      const displayNumber = badgeNumber || "0000000";
       ctx.globalAlpha = 0.3;
       ctx.fillStyle = textColor;
       ctx.font = "300 20px Arial";
-      ctx.fillText(`# ${badgeNumber}`, 80 + off.numberOffsetX, bottomY + off.numberOffsetY);
+      ctx.fillText(`# ${displayNumber}`, 80 + off.numberOffsetX, bottomY + off.numberOffsetY);
       ctx.globalAlpha = 1;
 
       resolve(canvas.toDataURL("image/png"));
