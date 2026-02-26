@@ -10,7 +10,7 @@ export function WhatsappCommunity() {
 
   return (
     <SectionWrapper
-      variant="green"
+      variant="dark"
       id="whatsapp-community"
       className="min-h-fit"
     >
@@ -26,7 +26,7 @@ export function WhatsappCommunity() {
           </span>
         </h2>
 
-        <p className="text-lg md:text-xl text-primary-black/80 mb-10 leading-relaxed max-w-2xl mx-auto">
+        <p className="text-lg md:text-xl text-primary-cream/80 mb-10 leading-relaxed max-w-2xl mx-auto">
           {t.whatsappCommunity.description}
         </p>
 
