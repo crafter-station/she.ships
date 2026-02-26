@@ -4,6 +4,7 @@ import "@fontsource-variable/space-grotesk";
 import "@fontsource/space-mono";
 import { LanguageProvider } from "@/lib/i18n/context";
 import { LenisProvider } from "@/components/providers/lenis-provider";
+import { QueryProvider } from "@/components/providers/query-provider";
 // import { ClerkLanguageProvider } from "@/components/providers/clerk-language-provider";
 import "./globals.css";
 
@@ -65,8 +66,10 @@ export default function RootLayout({
       <body className="antialiased">
         <LenisProvider>
           <LanguageProvider>
-            {/* <ClerkLanguageProvider>{children}</ClerkLanguageProvider> */}
-            {children}
+            <QueryProvider>
+              {/* <ClerkLanguageProvider>{children}</ClerkLanguageProvider> */}
+              {children}
+            </QueryProvider>
           </LanguageProvider>
         </LenisProvider>
       </body>
