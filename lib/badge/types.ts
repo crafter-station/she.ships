@@ -1,8 +1,4 @@
-export interface CardData {
-  name: string;
-  role: string;
-  organization?: string;
-}
+export type { CardData } from "@/lib/db/schema";
 
 export interface CardBounds {
   minX: number;
