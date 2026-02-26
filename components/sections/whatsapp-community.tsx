@@ -10,7 +10,7 @@ export function WhatsappCommunity() {
 
   return (
     <SectionWrapper
-      variant="green"
+      variant="dark"
       id="whatsapp-community"
       className="min-h-fit"
     >
@@ -21,12 +21,12 @@ export function WhatsappCommunity() {
 
         <h2 className="font-[family-name:var(--font-title)] text-4xl font-black tracking-tight md:text-5xl lg:text-6xl mb-6">
           {t.whatsappCommunity.headline}{" "}
-          <span className="text-white">
+          <span className="text-primary-pink">
             {t.whatsappCommunity.headlineAccent}
           </span>
         </h2>
 
-        <p className="text-lg md:text-xl text-primary-black/80 mb-10 leading-relaxed max-w-2xl mx-auto">
+        <p className="text-lg md:text-xl text-primary-cream/80 mb-10 leading-relaxed max-w-2xl mx-auto">
           {t.whatsappCommunity.description}
         </p>
 
