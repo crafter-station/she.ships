@@ -338,14 +338,14 @@ export default function ParticleInput({
   };
 
   const chipRow = (presets: Preset[]) => (
-    <div className="flex gap-1.5 md:gap-2 overflow-x-auto md:overflow-x-visible md:flex-wrap no-scrollbar -mx-4 px-4 md:mx-0 md:px-0">
+    <div className="flex gap-1 md:gap-1.5 overflow-x-auto no-scrollbar -mx-4 px-4 md:mx-0 md:px-0">
       {presets.map((preset) => (
         <button
           key={preset.label}
           type="button"
           disabled={isLoading}
           onClick={() => handlePresetClick(preset)}
-          className="shrink-0 md:shrink rounded-full border border-white/15 bg-white/5 px-2.5 py-1 md:px-3 md:py-1.5 text-[10px] md:text-xs text-white/50 hover:bg-white/10 hover:text-white/80 hover:border-white/30 transition-all disabled:opacity-30 disabled:pointer-events-none"
+          className="shrink-0 rounded-full border border-white/15 bg-white/5 px-2 py-0.5 md:px-2.5 md:py-1 text-[10px] md:text-[11px] text-white/50 hover:bg-white/10 hover:text-white/80 hover:border-white/30 transition-all disabled:opacity-30 disabled:pointer-events-none"
         >
           {preset.emoji} {preset.label}
         </button>
@@ -354,7 +354,7 @@ export default function ParticleInput({
   );
 
   return (
-    <div className="flex flex-col gap-2 md:gap-3">
+    <div className="flex flex-col gap-1.5 md:gap-2">
       {chipRow(FLAG_PRESETS)}
       {chipRow(STYLE_PRESETS)}
 
