@@ -33,7 +33,8 @@ export default function BadgePage() {
       },
       {
         onSuccess: () => {
-          router.push(`/badge/${id}`);
+          sessionStorage.setItem("badge_secret", secret);
+          router.push(`/badge/${id}/edit`);
         },
         onError: (err) => {
           if (err.message === "Invalid secret") {
