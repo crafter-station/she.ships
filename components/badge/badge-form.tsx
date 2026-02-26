@@ -2,39 +2,34 @@
 
 import { useState } from "react";
 import { useTranslation } from "@/lib/i18n/context";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Loader2 } from "lucide-react";
 import type { CardData } from "@/lib/badge/types";
 
-const ROLES = [
-  "Hacker",
-  "Mentor",
-  "Judge",
-  "Speaker",
-  "Sponsor",
-  "Community Partner",
-  "Organizer",
-] as const;
-
 interface BadgeFormProps {
-  onSubmit: (data: CardData) => void;
+  onSubmit: (data: CardData, secret: string) => void;
+  error?: string | null;
+  isLoading?: boolean;
 }
 
-export default function BadgeForm({ onSubmit }: BadgeFormProps) {
+export default function BadgeForm({ onSubmit, error, isLoading }: BadgeFormProps) {
   const { t } = useTranslation();
   const [name, setName] = useState("");
-  const [role, setRole] = useState("Hacker");
   const [organization, setOrganization] = useState("");
+  const [secret, setSecret] = useState("");
 
-  const canSubmit = name.trim().length > 0 && role.length > 0;
+  const canSubmit = name.trim().length > 0 && secret.trim().length > 0 && !isLoading;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!canSubmit) return;
-    onSubmit({
-      name: name.trim(),
-      role,
-      ...(organization.trim() && { organization: organization.trim() }),
-    });
+    onSubmit(
+      {
+        name: name.trim(),
+        role: "Hacker",
+        organization: organization.trim() || null,
+      },
+      secret.trim()
+    );
   };
 
   return (
@@ -66,32 +61,9 @@ export default function BadgeForm({ onSubmit }: BadgeFormProps) {
             onChange={(e) => setName(e.target.value)}
             placeholder={t.badge.namePlaceholder}
             maxLength={40}
-            className="w-full px-4 py-3 bg-white/10 text-white placeholder:text-white/40 brutalist-border focus:outline-none focus:border-primary-pink transition-colors"
+            disabled={isLoading}
+            className="w-full px-4 py-3 bg-white/10 text-white placeholder:text-white/40 brutalist-border focus:outline-none focus:border-primary-pink transition-colors disabled:opacity-50"
           />
-        </div>
-
-        <div>
-          <label
-            htmlFor="badge-role"
-            className="block text-sm font-bold uppercase tracking-wider text-white mb-2"
-          >
-            {t.badge.roleLabel}
-          </label>
-          <select
-            id="badge-role"
-            value={role}
-            onChange={(e) => setRole(e.target.value)}
-            className="w-full px-4 py-3 bg-white/10 text-white brutalist-border focus:outline-none focus:border-primary-pink transition-colors appearance-none cursor-pointer"
-          >
-            <option value="" disabled className="bg-primary-black">
-              {t.badge.rolePlaceholder}
-            </option>
-            {ROLES.map((r) => (
-              <option key={r} value={r} className="bg-primary-black">
-                {r}
-              </option>
-            ))}
-          </select>
         </div>
 
         <div>
@@ -108,8 +80,32 @@ export default function BadgeForm({ onSubmit }: BadgeFormProps) {
             onChange={(e) => setOrganization(e.target.value)}
             placeholder="e.g. Crafter Station"
             maxLength={40}
-            className="w-full px-4 py-3 bg-white/10 text-white placeholder:text-white/40 brutalist-border focus:outline-none focus:border-primary-pink transition-colors"
+            disabled={isLoading}
+            className="w-full px-4 py-3 bg-white/10 text-white placeholder:text-white/40 brutalist-border focus:outline-none focus:border-primary-pink transition-colors disabled:opacity-50"
           />
+        </div>
+
+        <div>
+          <label
+            htmlFor="badge-secret"
+            className="block text-sm font-bold uppercase tracking-wider text-white mb-2"
+          >
+            {t.badge.secretLabel}
+          </label>
+          <input
+            id="badge-secret"
+            type="text"
+            value={secret}
+            onChange={(e) => setSecret(e.target.value)}
+            placeholder={t.badge.secretPlaceholder}
+            disabled={isLoading}
+            className={`w-full px-4 py-3 bg-white/10 text-white placeholder:text-white/40 brutalist-border focus:outline-none focus:border-primary-pink transition-colors font-mono tracking-widest disabled:opacity-50 ${error ? "border-red-500" : ""}`}
+          />
+          {error ? (
+            <p className="mt-1.5 text-red-400 text-xs font-medium">{error}</p>
+          ) : (
+            <p className="mt-1.5 text-white/30 text-xs">{t.badge.secretHint}</p>
+          )}
         </div>
       </div>
 
@@ -118,8 +114,17 @@ export default function BadgeForm({ onSubmit }: BadgeFormProps) {
         disabled={!canSubmit}
         className="brutalist-button w-full py-4 px-6 bg-primary-pink text-primary-black font-bold uppercase tracking-wider text-lg disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2"
       >
-        {t.badge.generateButton}
-        <ArrowRight className="w-5 h-5" />
+        {isLoading ? (
+          <>
+            <Loader2 className="w-5 h-5 animate-spin" />
+            Loading...
+          </>
+        ) : (
+          <>
+            {t.badge.generateButton}
+            <ArrowRight className="w-5 h-5" />
+          </>
+        )}
       </button>
     </form>
   );
