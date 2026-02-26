@@ -108,7 +108,7 @@ export function SideNav() {
   return (
     <nav
       className={cn(
-        "fixed left-6 top-1/2 -translate-y-1/2 z-40 hidden lg:flex flex-col items-start gap-0 transition-opacity duration-500",
+        "fixed left-6 top-1/2 -translate-y-1/2 z-40 hidden lg:flex flex-col items-start gap-0 transition-opacity duration-500 bg-primary-black/50 backdrop-blur-sm rounded-sm px-2 py-2",
         visible ? "opacity-100" : "opacity-0 pointer-events-none",
       )}
     >
