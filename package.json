@@ -25,6 +25,8 @@
     "@react-three/rapier": "^2.2.0",
     "@sparticuz/chromium": "^143.0.4",
     "@tanstack/react-query": "^5.90.21",
+    "@upstash/ratelimit": "^2.0.8",
+    "@upstash/redis": "^1.36.2",
     "ai": "^6.0.99",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",

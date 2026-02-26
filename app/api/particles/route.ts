@@ -1,8 +1,27 @@
+import { NextRequest, NextResponse } from "next/server";
 import { generateObject } from "ai";
 import { gateway } from "@ai-sdk/gateway";
 import { particleConfigSchema } from "@/lib/badge/particle-config";
+import { llmRatelimit } from "@/lib/ratelimit";
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
+  const ip = req.headers.get("x-forwarded-for") ?? "anonymous";
+  const { success, limit, remaining, reset } = await llmRatelimit.limit(ip);
+
+  if (!success) {
+    return NextResponse.json(
+      { error: "Too many requests. Try again tomorrow." },
+      {
+        status: 429,
+        headers: {
+          "X-RateLimit-Limit": limit.toString(),
+          "X-RateLimit-Remaining": remaining.toString(),
+          "X-RateLimit-Reset": reset.toString(),
+        },
+      }
+    );
+  }
+
   const { prompt, isMobile } = await req.json();
   const maxTotal = isMobile ? 500 : 2500;
 
