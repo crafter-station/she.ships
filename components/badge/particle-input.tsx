@@ -144,6 +144,47 @@ const FLAG_PRESETS: Preset[] = [
 
 const STYLE_PRESETS: Preset[] = [
   {
+    label: "She Ships",
+    emoji: "🚀",
+    config: {
+      groups: [
+        { color: "#ff2d78", count: 2500, size: 0.012, shape: "sphere", metalness: 0.95, roughness: 0.9, emissive: "#000000", emissiveIntensity: 0, clearcoat: 0.5, opacity: 1, transmission: 0, fluid: false },
+      ],
+    },
+  },
+  {
+    label: "Crafter Station",
+    emoji: "⚒️",
+    config: {
+      groups: [
+        { color: "#FFD700", count: 1500, size: 0.012, shape: "sphere", metalness: 0.95, roughness: 0.15, emissive: "#FFD700", emissiveIntensity: 0.6, clearcoat: 1.0, opacity: 1, transmission: 0, fluid: false },
+        { color: "#000000", count: 600, size: 0.010, shape: "sphere", metalness: 0.95, roughness: 0.3, emissive: "#000000", emissiveIntensity: 0, clearcoat: 0.8, opacity: 1, transmission: 0, fluid: false },
+        { color: "#FAFAFA", count: 400, size: 0.008, shape: "sphere", metalness: 0.9, roughness: 0.1, emissive: "#FAFAFA", emissiveIntensity: 0.8, clearcoat: 1.0, opacity: 1, transmission: 0, fluid: false },
+      ],
+    },
+  },
+  {
+    label: "Moraleja",
+    emoji: "💚",
+    config: {
+      groups: [
+        { color: "#00FF7F", count: 1600, size: 0.012, shape: "sphere", metalness: 0.95, roughness: 0.2, emissive: "#00FF7F", emissiveIntensity: 0.7, clearcoat: 0.9, opacity: 1, transmission: 0, fluid: false },
+        { color: "#0A0C0C", count: 900, size: 0.010, shape: "sphere", metalness: 0.95, roughness: 0.3, emissive: "#000000", emissiveIntensity: 0, clearcoat: 0.8, opacity: 1, transmission: 0, fluid: false },
+      ],
+    },
+  },
+  {
+    label: "Kebo",
+    emoji: "🐨",
+    config: {
+      groups: [
+        { color: "#7C3AED", count: 1400, size: 0.012, shape: "sphere", metalness: 0.95, roughness: 0.2, emissive: "#7C3AED", emissiveIntensity: 0.7, clearcoat: 0.9, opacity: 1, transmission: 0, fluid: false },
+        { color: "#A78BFA", count: 700, size: 0.010, shape: "sphere", metalness: 0.9, roughness: 0.25, emissive: "#A78BFA", emissiveIntensity: 0.5, clearcoat: 0.8, opacity: 1, transmission: 0, fluid: false },
+        { color: "#FFFFFF", count: 400, size: 0.008, shape: "sphere", metalness: 0.9, roughness: 0.1, emissive: "#FFFFFF", emissiveIntensity: 0.8, clearcoat: 1.0, opacity: 1, transmission: 0, fluid: false },
+      ],
+    },
+  },
+  {
     label: "Neon Glow",
     emoji: "💜",
     config: {
