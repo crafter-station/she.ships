@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { SectionWrapper } from "@/components/decorative/section-wrapper";
 import { Accordion } from "radix-ui";
 import { useTranslation } from "@/lib/i18n/context";
@@ -26,7 +27,7 @@ export function FAQ() {
 
       <div className="mx-auto max-w-4xl">
         <Accordion.Root type="multiple" className="space-y-0">
-          {t.faq.items.map((item, i) => (
+          {t.qa.items.slice(0, 4).map((item, i) => (
             <Accordion.Item
               key={i}
               value={`faq-${i}`}
@@ -50,6 +51,15 @@ export function FAQ() {
             </Accordion.Item>
           ))}
         </Accordion.Root>
+      </div>
+
+      <div className="mt-12 text-center">
+        <Link
+          href="/qa"
+          className="inline-block border-3 border-primary-cream bg-transparent px-8 py-4 font-[family-name:var(--font-title)] text-lg font-bold uppercase tracking-wide text-primary-cream hover:bg-primary-pink hover:text-primary-black transition-colors"
+        >
+          {t.faq.viewMore}
+        </Link>
       </div>
     </SectionWrapper>
   );
