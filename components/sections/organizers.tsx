@@ -9,12 +9,6 @@ export function Organizers() {
 
   const organizers = [
     {
-      name: "Inspiratech",
-      logo: "/communities/inspiratech-logotipo.png",
-      width: 250,
-      height: 80,
-    },
-    {
       name: "Crafter Station",
       logo: "/crafter-logotipo.svg",
       width: 250,
