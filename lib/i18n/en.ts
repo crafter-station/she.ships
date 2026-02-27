@@ -165,6 +165,7 @@ export const en = {
       "Answers from our info session — everything you need to know about participating.",
     backToHome: "Back to home",
     items: [
+      // — Is this for me? —
       {
         question: "Do I need to know how to code?",
         answer:
@@ -176,11 +177,6 @@ export const en = {
           "Yes, She Ships is completely free. We believe in removing all barriers to building and shipping.",
       },
       {
-        question: "What does 'ship something' mean?",
-        answer:
-          "You need to publish something real with a public link. It could be a deployed app, a live website, a published design, a digital comic, an open source repo — anything that exists and can be accessed by others.",
-      },
-      {
         question: "Can I participate solo or do I need a team?",
         answer:
           "Both! You can go solo or form a team of up to 4–5 people. There are no restrictions on roles — your team can be all engineers, all designers, or a mix. Assign roles organically based on everyone's strengths.",
@@ -190,10 +186,27 @@ export const en = {
         answer:
           "Yes, but we encourage you to connect beforehand through our WhatsApp group — share your interests, skills, and what category you're interested in. Some cities will also have in-person meetups before the hackathon to help you find teammates.",
       },
+      // — What do I build? —
+      {
+        question: "What does 'ship something' mean?",
+        answer:
+          "You need to publish something real with a public link. It could be a deployed app, a live website, a published design, a digital comic, an open source repo — anything that exists and can be accessed by others.",
+      },
       {
         question: "Are there limits on the prototype scope?",
         answer:
           "No strict limits — it depends on your category. Creative categories can use Figma or similar design tools. App categories expect a functional prototype. The key requirement is to ship something people can use or interact with: a live app, a website, a Figma file, etc. The more complete your prototype, the better your pitch will be.",
+      },
+      {
+        question: "Does the project have to focus on women's issues?",
+        answer:
+          "The main theme is problems in the day-to-day experience of women — safety, pay gap, health, labor opportunities, etc. While this is strongly encouraged, there's some flexibility in interpretation. Examples from previous hackathons with similar themes will be shared for inspiration.",
+      },
+      // — How am I evaluated? —
+      {
+        question: "What are the judging criteria?",
+        answer:
+          "Two main criteria: (1) Alignment with the 8M theme — projects must address problems related to International Women's Day such as gender violence, pay gap, women's health, safety, or expanding opportunities for women. (2) Best use of sponsor products — the sponsor's product should be used as a core feature, not just an add-on. Creativity and completeness are also highly valued.",
       },
       {
         question: "How is code vs. design weighted in scoring?",
@@ -201,9 +214,20 @@ export const en = {
           "It depends on the category. Creative categories don't require code — a Figma design is perfectly valid. For more technical categories, judges with engineering backgrounds will evaluate accordingly. Each category has its own set of mentors and judges matched to the expected deliverables.",
       },
       {
-        question: "What are the judging criteria?",
+        question: "Is a video or pitch required?",
         answer:
-          "Two main criteria: (1) Alignment with the 8M theme — projects must address problems related to International Women's Day such as gender violence, pay gap, women's health, safety, or expanding opportunities for women. (2) Best use of sponsor products — the sponsor's product should be used as a core feature, not just an add-on. Creativity and completeness are also highly valued.",
+          "Yes, both are mandatory. You must record a video showing what you built, how it works, what problems you faced, and how you solved them. The video must be public (TikTok, YouTube, LinkedIn, etc.). The organizers will amplify all submissions across social media to help participants gain visibility.",
+      },
+      {
+        question: "Can I submit to multiple categories?",
+        answer:
+          "You must choose one primary category when submitting. Your project may span multiple areas, but pick the one where it fits best. The submission form asks for: the project URL, a demo video, and your chosen category.",
+      },
+      // — Logistics & support —
+      {
+        question: "How does the acceptance process work?",
+        answer:
+          "Registration is through Luma on a rolling basis until March 2, 2026. Spots are limited to 200 participants worldwide. When accepted, you'll receive a confirmation email from Luma.",
       },
       {
         question: "Will there be mentorship available?",
@@ -211,30 +235,11 @@ export const en = {
           "Yes! We have 10+ mentors from different backgrounds: product, design, engineering, social causes, AI, and entrepreneurship. All confirmed participants will be added to a Discord server where mentors are available during specific time blocks throughout the hackathon.",
       },
       {
-        question: "How does the acceptance process work?",
-        answer:
-          "Registration is through Luma on a rolling basis until March 2, 2026. Spots are limited to 200 participants worldwide. When accepted, you'll receive a confirmation email from Luma.",
-      },
-      {
-        question: "Can I submit to multiple categories?",
-        answer:
-          "You must choose one primary category when submitting. Your project may span multiple areas, but pick the one where it fits best. The submission form asks for: the project URL, a demo video, and your chosen category.",
-      },
-      {
-        question: "Is a video or pitch required?",
-        answer:
-          "Yes, both are mandatory. You must record a video showing what you built, how it works, what problems you faced, and how you solved them. The video must be public (TikTok, YouTube, LinkedIn, etc.). The organizers will amplify all submissions across social media to help participants gain visibility.",
-      },
-      {
-        question: "Does the project have to focus on women's issues?",
-        answer:
-          "The main theme is problems in the day-to-day experience of women — safety, pay gap, health, labor opportunities, etc. While this is strongly encouraged, there's some flexibility in interpretation. Examples from previous hackathons with similar themes will be shared for inspiration.",
-      },
-      {
         question: "What happens on March 8?",
         answer:
           "March 8 is International Women's Day and our final showcase day. You'll present your shipped project to the community, judges, and celebrate what you built!",
       },
+      // — Getting involved —
       {
         question: "How do I become a sponsor or mentor?",
         answer:
