@@ -31,6 +31,45 @@ const sponsors = [
     height: 100,
     className: "h-auto w-auto max-w-[360px] md:max-w-[440px]",
   },
+  {
+    name: "IEEE Modular",
+    logo: "/sponsors/ieee_logo_modular (1).png",
+    width: 340,
+    height: 100,
+    className: "h-auto w-auto max-w-[360px] md:max-w-[440px]",
+  },
+  {
+    name: "Topicalia",
+    logo: "/sponsors/topicalia_white.png",
+    width: 240,
+    height: 60,
+  },
+  {
+    name: "PDS",
+    logo: "/sponsors/LOGO PDS horizantal.png",
+    width: 240,
+    height: 60,
+  },
+  {
+    name: "Pull Request",
+    logo: "/sponsors/PULL_REQUEST_LOGO_2024_-_1-removebg-preview.png",
+    width: 240,
+    height: 240,
+    className: "h-auto w-auto max-w-[80px] md:max-w-[100px]",
+  },
+  {
+    name: "Ignacio Rueda",
+    logo: "/sponsors/Ignacio Rueda.png",
+    width: 120,
+    height: 120,
+    className: "h-auto w-auto max-w-[100px] md:max-w-[120px]",
+  },
+  {
+    name: "Kebo",
+    logo: "/sponsors/Kebo-Brand-BlackPurple.svg",
+    width: 240,
+    height: 60,
+  },
 ];
 
 export function Sponsors() {
