@@ -170,9 +170,19 @@ export const es: Translations = {
     backToHome: "Volver al inicio",
     items: [
       {
-        question: "¿Hay limites en el alcance del prototipo?",
+        question: "¿Necesito saber programar?",
         answer:
-          "No hay limites estrictos — depende de tu categoria. Las categorias creativas pueden usar Figma o herramientas de diseno similares. Las categorias de apps esperan un prototipo funcional. El requisito clave es entregar algo que la gente pueda usar o con lo que pueda interactuar: una app, un sitio web, un archivo de Figma, etc. Mientras mas completo sea tu prototipo, mejor sera tu pitch.",
+          "¡Para nada! Esto no es solo tech. Damos la bienvenida a desarrolladoras, disenadoras, artistas, product builders, investigadoras y todo tipo de creadoras. Si puedes describir tu idea y lanzar algo, estas dentro.",
+      },
+      {
+        question: "¿Es gratis participar?",
+        answer:
+          "Si, She Ships es completamente gratis. Creemos en eliminar todas las barreras para construir y lanzar.",
+      },
+      {
+        question: "¿Que significa 'lanzar algo'?",
+        answer:
+          "Necesitas publicar algo real con un link publico. Puede ser una app desplegada, un sitio web live, un diseno publicado, un comic digital, un repo open source — cualquier cosa que exista y pueda ser accedida por otros.",
       },
       {
         question: "¿Puedo participar sola o necesito un equipo?",
@@ -183,6 +193,11 @@ export const es: Translations = {
         question: "¿Puedo formar equipo el dia del evento?",
         answer:
           "Si, pero te animamos a conectar antes a traves de nuestro grupo de WhatsApp — comparte tus intereses, habilidades y que categoria te interesa. Algunas ciudades tambien tendran meetups presenciales antes del hackathon para ayudarte a encontrar companeras de equipo.",
+      },
+      {
+        question: "¿Hay limites en el alcance del prototipo?",
+        answer:
+          "No hay limites estrictos — depende de tu categoria. Las categorias creativas pueden usar Figma o herramientas de diseno similares. Las categorias de apps esperan un prototipo funcional. El requisito clave es entregar algo que la gente pueda usar o con lo que pueda interactuar: una app, un sitio web, un archivo de Figma, etc. Mientras mas completo sea tu prototipo, mejor sera tu pitch.",
       },
       {
         question: "¿Como se evalua el codigo vs. el diseno?",
@@ -202,7 +217,7 @@ export const es: Translations = {
       {
         question: "¿Como funciona el proceso de aceptacion?",
         answer:
-          "El registro es a traves de Luma de forma continua hasta el 2 de marzo de 2026. Cuando seas aceptada, recibiras un correo de confirmacion de Luma. Nuestra meta es 200 participantes en total.",
+          "El registro es a traves de Luma de forma continua hasta el 2 de marzo de 2026. Los cupos estan limitados a 200 participantes en todo el mundo. Cuando seas aceptada, recibiras un correo de confirmacion de Luma.",
       },
       {
         question: "¿Puedo enviar a multiples categorias?",
@@ -218,6 +233,16 @@ export const es: Translations = {
         question: "¿El proyecto tiene que enfocarse en temas de mujeres?",
         answer:
           "El tema principal son los problemas en la experiencia cotidiana de las mujeres — seguridad, brecha salarial, salud, oportunidades laborales, etc. Aunque esto se fomenta fuertemente, hay algo de flexibilidad en la interpretacion. Se compartiran ejemplos de hackathons anteriores con temas similares para inspirarte.",
+      },
+      {
+        question: "¿Que pasa el 8 de marzo?",
+        answer:
+          "El 8 de marzo es el Dia Internacional de la Mujer y nuestro dia de showcase final. ¡Presentaras tu proyecto lanzado a la comunidad, jueces, y celebraremos lo que construiste!",
+      },
+      {
+        question: "¿Como puedo ser sponsor o mentora?",
+        answer:
+          "Usa los botones en la navegacion para aplicar como sponsor, community partner, juez o mentora. ¡Nos encantaria tenerte!",
       },
     ],
   },

@@ -166,9 +166,19 @@ export const en = {
     backToHome: "Back to home",
     items: [
       {
-        question: "Are there limits on the prototype scope?",
+        question: "Do I need to know how to code?",
         answer:
-          "No strict limits — it depends on your category. Creative categories can use Figma or similar design tools. App categories expect a functional prototype. The key requirement is to ship something people can use or interact with: a live app, a website, a Figma file, etc. The more complete your prototype, the better your pitch will be.",
+          "Not at all! This is not just tech. We welcome developers, designers, artists, product builders, researchers and all types of creators. If you can describe your idea and ship something, you're in.",
+      },
+      {
+        question: "Is it free to participate?",
+        answer:
+          "Yes, She Ships is completely free. We believe in removing all barriers to building and shipping.",
+      },
+      {
+        question: "What does 'ship something' mean?",
+        answer:
+          "You need to publish something real with a public link. It could be a deployed app, a live website, a published design, a digital comic, an open source repo — anything that exists and can be accessed by others.",
       },
       {
         question: "Can I participate solo or do I need a team?",
@@ -179,6 +189,11 @@ export const en = {
         question: "Can I form a team on the day of the event?",
         answer:
           "Yes, but we encourage you to connect beforehand through our WhatsApp group — share your interests, skills, and what category you're interested in. Some cities will also have in-person meetups before the hackathon to help you find teammates.",
+      },
+      {
+        question: "Are there limits on the prototype scope?",
+        answer:
+          "No strict limits — it depends on your category. Creative categories can use Figma or similar design tools. App categories expect a functional prototype. The key requirement is to ship something people can use or interact with: a live app, a website, a Figma file, etc. The more complete your prototype, the better your pitch will be.",
       },
       {
         question: "How is code vs. design weighted in scoring?",
@@ -198,7 +213,7 @@ export const en = {
       {
         question: "How does the acceptance process work?",
         answer:
-          "Registration is through Luma on a rolling basis until March 2, 2026. When accepted, you'll receive a confirmation email from Luma. Our goal is 200 total participants.",
+          "Registration is through Luma on a rolling basis until March 2, 2026. Spots are limited to 200 participants worldwide. When accepted, you'll receive a confirmation email from Luma.",
       },
       {
         question: "Can I submit to multiple categories?",
@@ -214,6 +229,16 @@ export const en = {
         question: "Does the project have to focus on women's issues?",
         answer:
           "The main theme is problems in the day-to-day experience of women — safety, pay gap, health, labor opportunities, etc. While this is strongly encouraged, there's some flexibility in interpretation. Examples from previous hackathons with similar themes will be shared for inspiration.",
+      },
+      {
+        question: "What happens on March 8?",
+        answer:
+          "March 8 is International Women's Day and our final showcase day. You'll present your shipped project to the community, judges, and celebrate what you built!",
+      },
+      {
+        question: "How do I become a sponsor or mentor?",
+        answer:
+          "Use the buttons in the navigation to apply as a sponsor, community partner, judge, or mentor. We'd love to have you involved!",
       },
     ],
   },
