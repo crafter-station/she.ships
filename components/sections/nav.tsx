@@ -19,7 +19,7 @@ export function Nav() {
     { label: t.nav.event, href: "#event-info" },
     { label: t.nav.agenda, href: "#agenda" },
     { label: t.nav.categories, href: "#categories" },
-    { label: t.nav.faq, href: "#faq" },
+    { label: t.nav.faq, href: "/qa" },
   ];
 
   useEffect(() => {

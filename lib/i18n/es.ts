@@ -161,41 +161,63 @@ export const es: Translations = {
     sectionHeadline: "Preguntas frecuentes",
     noQuestion: "¿No ves tu pregunta?",
     contactUs: "Contáctanos",
+    viewMore: "Ver todas las preguntas y respuestas",
+  },
+  qa: {
+    title: "Preguntas y Respuestas",
+    subtitle:
+      "Respuestas de nuestra sesion informativa — todo lo que necesitas saber para participar.",
+    backToHome: "Volver al inicio",
     items: [
       {
-        question: "¿Necesito saber programar?",
+        question: "¿Hay limites en el alcance del prototipo?",
         answer:
-          "¡Para nada! Esto no es solo tech. Damos la bienvenida a desarrolladoras, diseñadoras, artistas, product builders, investigadoras y todo tipo de creadoras. Si puedes describir tu idea y lanzar algo, estás dentro.",
+          "No hay limites estrictos — depende de tu categoria. Las categorias creativas pueden usar Figma o herramientas de diseno similares. Las categorias de apps esperan un prototipo funcional. El requisito clave es entregar algo que la gente pueda usar o con lo que pueda interactuar: una app, un sitio web, un archivo de Figma, etc. Mientras mas completo sea tu prototipo, mejor sera tu pitch.",
       },
       {
-        question: "¿Es gratis participar?",
+        question: "¿Puedo participar sola o necesito un equipo?",
         answer:
-          "Sí, She Ships es completamente gratis. Creemos en eliminar todas las barreras para construir y lanzar.",
+          "¡Ambas opciones! Puedes ir sola o formar un equipo de hasta 4–5 personas. No hay restricciones de roles — tu equipo puede ser todo ingenieras, todo disenadoras, o una mezcla. Asignen roles organicamente segun las fortalezas de cada una.",
       },
       {
-        question: "¿Cuántas personas pueden participar?",
+        question: "¿Puedo formar equipo el dia del evento?",
         answer:
-          "Los cupos están limitados a 200 participantes en todo el mundo para asegurar una experiencia curada y colaborativa. ¡Regístrate temprano!",
+          "Si, pero te animamos a conectar antes a traves de nuestro grupo de WhatsApp — comparte tus intereses, habilidades y que categoria te interesa. Algunas ciudades tambien tendran meetups presenciales antes del hackathon para ayudarte a encontrar companeras de equipo.",
       },
       {
-        question: "¿Necesito un equipo?",
+        question: "¿Como se evalua el codigo vs. el diseno?",
         answer:
-          "Puedes participar sola o en equipo. Tendremos canales para ayudarte a encontrar compañeras si quieres colaborar.",
+          "Depende de la categoria. Las categorias creativas no requieren codigo — un diseno en Figma es perfectamente valido. Para categorias mas tecnicas, jueces con experiencia en ingenieria evaluaran en consecuencia. Cada categoria tiene su propio conjunto de mentoras y jueces asignados segun los entregables esperados.",
       },
       {
-        question: "¿Qué significa 'lanzar algo'?",
+        question: "¿Cuales son los criterios de evaluacion?",
         answer:
-          "Necesitas publicar algo real con un link público. Puede ser una app desplegada, un sitio web live, un diseño publicado, un cómic digital, un repo open source — cualquier cosa que exista y pueda ser accedida por otros.",
+          "Dos criterios principales: (1) Alineacion con el tema del 8M — los proyectos deben abordar problemas relacionados con el Dia Internacional de la Mujer como violencia de genero, brecha salarial, salud de la mujer, seguridad o expansion de oportunidades para mujeres. (2) Mejor uso de los productos de los sponsors — el producto del sponsor debe usarse como una funcionalidad central, no solo como un complemento. La creatividad y completitud tambien son muy valoradas.",
       },
       {
-        question: "¿Qué pasa el 8 de marzo?",
+        question: "¿Habra mentoria disponible?",
         answer:
-          "El 8 de marzo es el Día Internacional de la Mujer y nuestro día de showcase final. ¡Presentarás tu proyecto lanzado a la comunidad, jueces, y celebraremos lo que construiste!",
+          "¡Si! Tenemos mas de 10 mentoras de diferentes areas: producto, diseno, ingenieria, causas sociales, IA y emprendimiento. Todas las participantes confirmadas seran agregadas a un servidor de Discord donde las mentoras estaran disponibles en bloques de tiempo especificos durante todo el hackathon.",
       },
       {
-        question: "¿Cómo puedo ser sponsor o mentora?",
+        question: "¿Como funciona el proceso de aceptacion?",
         answer:
-          "Usa los botones en la navegación para aplicar como sponsor, community partner, juez o mentora. ¡Nos encantaría tenerte!",
+          "El registro es a traves de Luma de forma continua hasta el 2 de marzo de 2026. Cuando seas aceptada, recibiras un correo de confirmacion de Luma. Nuestra meta es 200 participantes en total.",
+      },
+      {
+        question: "¿Puedo enviar a multiples categorias?",
+        answer:
+          "Debes elegir una categoria principal al enviar tu proyecto. Tu proyecto puede abarcar multiples areas, pero elige la que mejor se ajuste. El formulario de envio pide: la URL de tu proyecto, un video demo y tu categoria elegida.",
+      },
+      {
+        question: "¿Se requiere un video o pitch?",
+        answer:
+          "Si, ambos son obligatorios. Debes grabar un video mostrando lo que construiste, como funciona, que problemas enfrentaste y como los resolviste. El video debe ser publico (TikTok, YouTube, LinkedIn, etc.). Las organizadoras amplificaran todos los envios en redes sociales para ayudar a las participantes a ganar visibilidad.",
+      },
+      {
+        question: "¿El proyecto tiene que enfocarse en temas de mujeres?",
+        answer:
+          "El tema principal son los problemas en la experiencia cotidiana de las mujeres — seguridad, brecha salarial, salud, oportunidades laborales, etc. Aunque esto se fomenta fuertemente, hay algo de flexibilidad en la interpretacion. Se compartiran ejemplos de hackathons anteriores con temas similares para inspirarte.",
       },
     ],
   },
