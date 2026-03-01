@@ -2,24 +2,28 @@
 
 import { SectionWrapper } from "@/components/decorative/section-wrapper";
 import { useTranslation } from "@/lib/i18n/context";
+import { track } from "@vercel/analytics";
 import Image from "next/image";
 
 const sponsors = [
   {
     name: "Featherless AI",
     logo: "/sponsors/featherless-full-dark.svg",
+    url: "https://featherless.ai/",
     width: 240,
     height: 60,
   },
   {
     name: "ElevenLabs",
     logo: "/sponsors/elevenlabs-logo-white.svg",
+    url: "https://elevenlabs.io/",
     width: 200,
     height: 60,
   },
   {
     name: "v0",
     logo: "/sponsors/v0-logo-dark.png",
+    url: "https://v0.app/",
     width: 160,
     height: 76,
     className: "max-w-[60px] md:max-w-[70px]",
@@ -27,6 +31,7 @@ const sponsors = [
   {
     name: "IEEE",
     logo: "/sponsors/ieee_logo_modular (1).png",
+    url: "https://www.ieee.org/",
     width: 340,
     height: 100,
     className: "h-auto w-auto max-w-[360px] md:max-w-[440px]",
@@ -34,18 +39,21 @@ const sponsors = [
   {
     name: "Topicalia",
     logo: "/sponsors/topicalia_white.png",
+    url: "https://www.linkedin.com/company/tropical-ia/",
     width: 240,
     height: 60,
   },
   {
     name: "PDS",
     logo: "/sponsors/LOGO PDS horizantal.png",
+    url: "https://www.purasduras.com/",
     width: 240,
     height: 60,
   },
   {
     name: "Pull Request",
     logo: "/sponsors/PULL_REQUEST_LOGO_2024_-_1-removebg-preview.png",
+    url: "https://www.linkedin.com/in/ignacior97/?locale=en",
     width: 240,
     height: 240,
     className: "h-auto w-auto max-w-[80px] md:max-w-[100px]",
@@ -53,6 +61,7 @@ const sponsors = [
   {
     name: "Ignacio Rueda",
     logo: "/sponsors/Ignacio Rueda.png",
+    url: "https://www.linkedin.com/in/ignacior97/?locale=en",
     width: 120,
     height: 120,
     className: "h-auto w-auto max-w-[100px] md:max-w-[120px]",
@@ -60,12 +69,14 @@ const sponsors = [
   {
     name: "Kebo",
     logo: "/sponsors/Kebo-Brand-WhitePurple.svg",
+    url: "https://kebo.app",
     width: 240,
     height: 60,
   },
   {
     name: "Moraleja",
     logo: "/sponsors/moraleja.svg",
+    url: "https://moraleja.co",
     width: 240,
     height: 60,
   },
@@ -88,14 +99,22 @@ export function Sponsors() {
 
       <div className="flex w-full flex-wrap items-center justify-center gap-16 md:gap-20 lg:gap-24">
         {sponsors.map((sponsor) => (
-          <Image
+          <a
             key={sponsor.name}
-            src={sponsor.logo}
-            alt={sponsor.name}
-            width={sponsor.width}
-            height={sponsor.height}
-            className={sponsor.className ?? "h-auto w-auto max-w-[200px] md:max-w-[240px]"}
-          />
+            href={sponsor.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => track("sponsor_click", { name: sponsor.name })}
+            className="transition-opacity hover:opacity-80"
+          >
+            <Image
+              src={sponsor.logo}
+              alt={sponsor.name}
+              width={sponsor.width}
+              height={sponsor.height}
+              className={sponsor.className ?? "h-auto w-auto max-w-[200px] md:max-w-[240px]"}
+            />
+          </a>
         ))}
       </div>
     </SectionWrapper>
