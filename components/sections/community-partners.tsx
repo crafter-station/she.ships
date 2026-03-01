@@ -5,30 +5,12 @@ import { useTranslation } from "@/lib/i18n/context";
 import Image from "next/image";
 
 const partners = [
-  {
-    name: "Friends of Figma",
-    logo: "/communities/fof.svg",
-    width: 200,
-    height: 60,
-  },
-  {
-    name: "Indies",
-    logo: "/communities/indies.png",
-    width: 200,
-    height: 60,
-  },
-  {
-    name: "Inspiratech",
-    logo: "/communities/inspiratech-logotipo.png",
-    width: 200,
-    height: 60,
-  },
-  {
-    name: "Empremafia",
-    logo: "/communities/EMPREMAFIA.png",
-    width: 200,
-    height: 60,
-  },
+  { name: "Friends of Figma", logo: "/communities/fof.svg" },
+  { name: "Indies", logo: "/communities/indies.png" },
+  { name: "Inspiratech", logo: "/communities/inspiratech-logotipo.png" },
+  { name: "Empremafia", logo: "/communities/EMPREMAFIA.png" },
+  { name: "Notion Peru", logo: "/communities/notion-peru.png" },
+  { name: "Comunidad Aliada", logo: "/communities/comunidad-aliada.png" },
 ];
 
 export function CommunityPartners() {
@@ -42,16 +24,28 @@ export function CommunityPartners() {
         </span>
       </div>
 
-      <div className="flex w-full flex-wrap items-center justify-center gap-12 md:gap-16 lg:gap-20">
+      <div
+        className="relative grid grid-cols-3 place-items-center gap-0 max-w-3xl mx-auto"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px)",
+          backgroundSize: "20px 20px",
+        }}
+      >
         {partners.map((partner) => (
-          <Image
+          <div
             key={partner.name}
-            src={partner.logo}
-            alt={partner.name}
-            width={partner.width}
-            height={partner.height}
-            className="h-auto w-auto max-w-[160px] md:max-w-[200px]"
-          />
+            className="relative flex items-center justify-center w-full aspect-square border border-white/[0.06] p-10 md:p-12"
+          >
+            <div className="relative w-full h-full">
+              <Image
+                src={partner.logo}
+                alt={partner.name}
+                fill
+                className="object-contain"
+              />
+            </div>
+          </div>
         ))}
       </div>
     </SectionWrapper>
