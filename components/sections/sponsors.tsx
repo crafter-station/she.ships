@@ -39,7 +39,7 @@ const sponsors = [
   {
     name: "Topicalia",
     logo: "/sponsors/topicalia_white.png",
-    url: "https://www.linkedin.com/company/tropical-ia/",
+    url: "https://www.tropicalia.dev/",
     width: 240,
     height: 60,
   },
