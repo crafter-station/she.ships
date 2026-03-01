@@ -149,7 +149,7 @@ export function Hero() {
               Global Hackathon
             </span>
             <span className="font-[family-name:var(--font-title)] text-base font-black uppercase tracking-wider text-primary-green">
-              7-8 March // Online
+              6-8 March // Online
             </span>
           </div>
         </div>
@@ -186,7 +186,7 @@ export function Hero() {
           {/* Spacer for the sheep in the center of the image */}
           <div className="shrink-0" style={{ width: `${greenGap}px` }} />
           <span className="font-[family-name:var(--font-title)] text-sm sm:text-lg md:text-2xl lg:text-3xl font-black uppercase tracking-wider text-primary-green">
-            7-8 March // Online
+            6-8 March // Online
           </span>
         </div>
 
