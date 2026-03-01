@@ -2,15 +2,16 @@
 
 import { SectionWrapper } from "@/components/decorative/section-wrapper";
 import { useTranslation } from "@/lib/i18n/context";
+import { track } from "@vercel/analytics";
 import Image from "next/image";
 
 const partners = [
-  { name: "Friends of Figma", logo: "/communities/fof.svg" },
-  { name: "Indies", logo: "/communities/indies.png" },
-  { name: "Inspiratech", logo: "/communities/inspiratech-logotipo.png" },
-  { name: "Empremafia", logo: "/communities/EMPREMAFIA.png" },
-  { name: "Notion Peru", logo: "/communities/notion-peru.png" },
-  { name: "Comunidad Aliada", logo: "/communities/comunidad-aliada.png" },
+  { name: "Friends of Figma", logo: "/communities/fof.svg", url: "https://friends.figma.com/lima/" },
+  { name: "Indies", logo: "/communities/indies.png", url: "https://indies.la" },
+  { name: "Inspiratech", logo: "/communities/inspiratech-logotipo.png", url: "https://www.instagram.com/inspiratech.la/" },
+  { name: "Empremafia", logo: "/communities/EMPREMAFIA.png", url: "https://empremafia.com/" },
+  { name: "Notion Peru", logo: "/communities/notion-peru.png", url: "https://notionperu.com" },
+  { name: "Comunidad Aliada", logo: "/communities/comunidad-aliada.png", url: "https://femaleforcelatam.com/" },
 ];
 
 export function CommunityPartners() {
@@ -33,9 +34,13 @@ export function CommunityPartners() {
         }}
       >
         {partners.map((partner) => (
-          <div
+          <a
             key={partner.name}
-            className="relative flex items-center justify-center w-full aspect-square border border-white/[0.06] p-10 md:p-12"
+            href={partner.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => track("community_partner_click", { name: partner.name })}
+            className="relative flex items-center justify-center w-full aspect-square border border-white/[0.06] p-10 md:p-12 transition-opacity hover:opacity-80"
           >
             <div className="relative w-full h-full">
               <Image
@@ -45,7 +50,7 @@ export function CommunityPartners() {
                 className="object-contain"
               />
             </div>
-          </div>
+          </a>
         ))}
       </div>
     </SectionWrapper>
