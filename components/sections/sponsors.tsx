@@ -26,13 +26,6 @@ const sponsors = [
   },
   {
     name: "IEEE",
-    logo: "/sponsors/ieee.png",
-    width: 340,
-    height: 100,
-    className: "h-auto w-auto max-w-[360px] md:max-w-[440px]",
-  },
-  {
-    name: "IEEE Modular",
     logo: "/sponsors/ieee_logo_modular (1).png",
     width: 340,
     height: 100,
@@ -66,7 +59,13 @@ const sponsors = [
   },
   {
     name: "Kebo",
-    logo: "/sponsors/Kebo-Brand-BlackPurple.svg",
+    logo: "/sponsors/Kebo-Brand-WhitePurple.svg",
+    width: 240,
+    height: 60,
+  },
+  {
+    name: "Moraleja",
+    logo: "/sponsors/moraleja.svg",
     width: 240,
     height: 60,
   },
