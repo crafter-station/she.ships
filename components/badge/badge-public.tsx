@@ -2,7 +2,8 @@
 
 import { useState, useEffect, useRef, useMemo } from "react";
 import dynamic from "next/dynamic";
-import { Twitter, Linkedin, Download, Video, Square } from "lucide-react";
+import Link from "next/link";
+import { Twitter, Linkedin, Download, Video, Square, Pencil } from "lucide-react";
 import {
   generateCardTexture,
   defaultDebugOffsets,
@@ -51,6 +52,14 @@ export default function BadgePublic({ badge }: BadgePublicProps) {
   );
 
   const { recording, countdown, hint, remaining, start, stop } = useRecorder(recorderInfo);
+
+  const [isOwner, setIsOwner] = useState(false);
+  useEffect(() => {
+    const stored = localStorage.getItem("badge_id");
+    if (stored === badge.id) {
+      setIsOwner(true);
+    }
+  }, [badge.id]);
 
   // Generate texture once
   const initialized = useRef(false);
@@ -231,6 +240,17 @@ export default function BadgePublic({ badge }: BadgePublicProps) {
                 </button>
               </div>
             </div>
+
+            {/* Edit link for badge owner */}
+            {isOwner && (
+              <Link
+                href={`/badge/${badge.id}/edit`}
+                className="inline-flex items-center gap-1.5 text-white/40 hover:text-white/70 text-xs font-bold uppercase tracking-wider transition-colors"
+              >
+                <Pencil className="w-3.5 h-3.5" />
+                Edit Badge
+              </Link>
+            )}
 
             {/* Branding */}
             <p className="text-white/20 text-[10px] md:text-xs tracking-widest uppercase">

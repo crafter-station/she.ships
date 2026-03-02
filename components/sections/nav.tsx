@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { GithubBadge } from "@/components/shared/github-badge";
 import { WhatsappBadge } from "@/components/shared/whatsapp-badge";
@@ -86,6 +87,11 @@ export function Nav() {
             <GithubBadge light={!scrolled} />
             <WhatsappBadge light={!scrolled} />
             <LanguageSwitcher light={!scrolled} />
+            <Button asChild variant="outline" size="sm">
+              <Link href="/badge">
+                {t.nav.myBadge}
+              </Link>
+            </Button>
             <Button asChild variant="pink" size="sm">
               <a
                 href="https://luma.com/ytl522gp"
@@ -172,6 +178,11 @@ export function Nav() {
                 <WhatsappBadge />
                 <LanguageSwitcher />
               </div>
+              <Button asChild variant="outline" size="lg">
+                <Link href="/badge" onClick={() => setMobileOpen(false)}>
+                  {t.nav.myBadge}
+                </Link>
+              </Button>
               <Button asChild variant="pink" size="lg">
                 <a
                   href="https://luma.com/ytl522gp"

@@ -3,33 +3,24 @@
 import { useState } from "react";
 import { useTranslation } from "@/lib/i18n/context";
 import { ArrowRight, Loader2 } from "lucide-react";
-import type { CardData } from "@/lib/badge/types";
 
 interface BadgeFormProps {
-  onSubmit: (data: CardData, secret: string) => void;
+  onSubmit: (email: string, organization: string | null) => void;
   error?: string | null;
   isLoading?: boolean;
 }
 
 export default function BadgeForm({ onSubmit, error, isLoading }: BadgeFormProps) {
   const { t } = useTranslation();
-  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [organization, setOrganization] = useState("");
-  const [secret, setSecret] = useState("");
 
-  const canSubmit = name.trim().length > 0 && secret.trim().length > 0 && !isLoading;
+  const canSubmit = email.trim().length > 0 && !isLoading;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!canSubmit) return;
-    onSubmit(
-      {
-        name: name.trim(),
-        role: "Hacker",
-        organization: organization.trim() || null,
-      },
-      secret.trim()
-    );
+    onSubmit(email.trim(), organization.trim() || null);
   };
 
   return (
@@ -49,21 +40,25 @@ export default function BadgeForm({ onSubmit, error, isLoading }: BadgeFormProps
       <div className="flex flex-col gap-4">
         <div>
           <label
-            htmlFor="badge-name"
+            htmlFor="badge-email"
             className="block text-sm font-bold uppercase tracking-wider text-white mb-2"
           >
-            {t.badge.nameLabel}
+            {t.badge.emailLabel}
           </label>
           <input
-            id="badge-name"
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder={t.badge.namePlaceholder}
-            maxLength={40}
+            id="badge-email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder={t.badge.emailPlaceholder}
             disabled={isLoading}
-            className="w-full px-4 py-3 bg-white/10 text-white placeholder:text-white/40 brutalist-border focus:outline-none focus:border-primary-pink transition-colors disabled:opacity-50"
+            className={`w-full px-4 py-3 bg-white/10 text-white placeholder:text-white/40 brutalist-border focus:outline-none focus:border-primary-pink transition-colors disabled:opacity-50 ${error ? "border-red-500" : ""}`}
           />
+          {error ? (
+            <p className="mt-1.5 text-red-400 text-xs font-medium">{error}</p>
+          ) : (
+            <p className="mt-1.5 text-white/30 text-xs">{t.badge.emailHint}</p>
+          )}
         </div>
 
         <div>
@@ -83,29 +78,6 @@ export default function BadgeForm({ onSubmit, error, isLoading }: BadgeFormProps
             disabled={isLoading}
             className="w-full px-4 py-3 bg-white/10 text-white placeholder:text-white/40 brutalist-border focus:outline-none focus:border-primary-pink transition-colors disabled:opacity-50"
           />
-        </div>
-
-        <div>
-          <label
-            htmlFor="badge-secret"
-            className="block text-sm font-bold uppercase tracking-wider text-white mb-2"
-          >
-            {t.badge.secretLabel}
-          </label>
-          <input
-            id="badge-secret"
-            type="text"
-            value={secret}
-            onChange={(e) => setSecret(e.target.value)}
-            placeholder={t.badge.secretPlaceholder}
-            disabled={isLoading}
-            className={`w-full px-4 py-3 bg-white/10 text-white placeholder:text-white/40 brutalist-border focus:outline-none focus:border-primary-pink transition-colors font-mono tracking-widest disabled:opacity-50 ${error ? "border-red-500" : ""}`}
-          />
-          {error ? (
-            <p className="mt-1.5 text-red-400 text-xs font-medium">{error}</p>
-          ) : (
-            <p className="mt-1.5 text-white/30 text-xs">{t.badge.secretHint}</p>
-          )}
         </div>
       </div>
 

@@ -1,19 +1,30 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { useTranslation } from "@/lib/i18n/context";
+import { ArrowRight } from "lucide-react";
 import { Footer } from "@/components/sections/footer";
 import BadgeForm from "@/components/badge/badge-form";
-import type { CardData } from "@/lib/badge/types";
 import { useCreateBadge, generateBadgeId } from "@/lib/badge/mutations";
 import { defaultParticleConfig, capConfigForMobile } from "@/lib/badge/particle-config";
 
 export default function BadgePage() {
   const router = useRouter();
+  const { t } = useTranslation();
   const createBadge = useCreateBadge();
   const [error, setError] = useState<string | null>(null);
+  const [existingBadgeId, setExistingBadgeId] = useState<string | null>(null);
 
-  const handleSubmit = async (data: CardData, secret: string) => {
+  useEffect(() => {
+    const stored = localStorage.getItem("badge_id");
+    if (stored) {
+      setExistingBadgeId(stored);
+    }
+  }, []);
+
+  const handleSubmit = async (email: string, organization: string | null) => {
     setError(null);
 
     const id = generateBadgeId();
@@ -25,20 +36,27 @@ export default function BadgePage() {
     createBadge.mutate(
       {
         id,
-        name: data.name,
-        role: data.role,
-        organization: data.organization ?? undefined,
+        role: "Hacker",
+        organization: organization ?? undefined,
         particleConfig,
-        secret,
+        email,
       },
       {
-        onSuccess: () => {
-          sessionStorage.setItem("badge_secret", secret);
-          router.push(`/badge/${id}/edit`);
+        onSuccess: ({ badge, created }) => {
+          sessionStorage.setItem("badge_email", email);
+          localStorage.setItem("badge_id", badge.id);
+
+          if (created) {
+            router.push(`/badge/${badge.id}/edit`);
+          } else {
+            router.push(`/badge/${badge.id}`);
+          }
         },
         onError: (err) => {
-          if (err.message === "Invalid secret") {
-            setError("Invalid code. Check your acceptance email and try again.");
+          if (err.message === "not_approved") {
+            setError(t.badge.errorNotApproved);
+          } else if (err.message === "not_found") {
+            setError(t.badge.errorNotFound);
           } else {
             setError("Something went wrong. Please try again.");
           }
@@ -50,11 +68,30 @@ export default function BadgePage() {
   return (
     <div className="min-h-screen flex flex-col bg-primary-black">
       <main className="flex-1 flex items-center justify-center px-6 py-24">
-        <BadgeForm
-          onSubmit={handleSubmit}
-          error={error}
-          isLoading={createBadge.isPending}
-        />
+        <div className="flex flex-col gap-6 w-full max-w-md items-center">
+          {existingBadgeId && (
+            <div className="w-full brutalist-border border-primary-pink/40 bg-primary-pink/5 p-4 flex flex-col gap-2">
+              <p className="text-white text-sm font-bold uppercase tracking-wider">
+                {t.badge.existingBadge}
+              </p>
+              <div className="flex items-center gap-2 flex-wrap">
+                <Link
+                  href={`/badge/${existingBadgeId}`}
+                  className="inline-flex items-center gap-1.5 text-primary-pink font-bold text-sm uppercase tracking-wider hover:underline"
+                >
+                  {t.badge.existingBadgeLink}
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+                <span className="text-white/40 text-xs">{t.badge.existingBadgeOr}</span>
+              </div>
+            </div>
+          )}
+          <BadgeForm
+            onSubmit={handleSubmit}
+            error={error}
+            isLoading={createBadge.isPending}
+          />
+        </div>
       </main>
       <Footer />
     </div>

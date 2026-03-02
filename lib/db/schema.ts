@@ -1,9 +1,10 @@
-import { pgTable, text, serial, jsonb, timestamp } from "drizzle-orm/pg-core";
+import { pgTable, text, integer, jsonb, timestamp } from "drizzle-orm/pg-core";
 import type { ParticleConfig } from "@/lib/badge/particle-config";
 
 export const badges = pgTable("badges", {
   id: text("id").primaryKey(),
-  number: serial("number").notNull().unique(),
+  number: integer("number").notNull().unique(),
+  email: text("email").unique(),
   name: text("name").notNull(),
   role: text("role").notNull(),
   organization: text("organization"),

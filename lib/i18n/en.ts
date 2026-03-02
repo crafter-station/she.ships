@@ -5,6 +5,7 @@ export const en = {
     categories: "Categories",
     faq: "FAQ",
     join: "Join",
+    myBadge: "My Badge",
     ctaSponsor: "Be a Sponsor",
     ctaCommunityPartner: "Be a Community Partner",
     ctaJudge: "Be a Judge",
@@ -265,13 +266,18 @@ export const en = {
     headline: "Welcome,",
     headlineAccent: "Hacker",
     description:
-      "You were selected from hundreds of applicants to hack at She Ships. Enter your details and the secret code from your acceptance email to claim your badge.",
-    nameLabel: "Full Name",
-    namePlaceholder: "Marie Curie",
-    secretLabel: "Secret Code",
-    secretPlaceholder: "Enter your code",
-    secretHint: "Check your acceptance email for this code.",
+      "You were selected from hundreds of applicants to hack at She Ships. Enter the email you registered with on Luma to claim your badge.",
+    emailLabel: "Email",
+    emailPlaceholder: "your@email.com",
+    emailHint: "Use the email you registered with on Luma.",
+    errorNotApproved:
+      "You haven't been accepted yet. Check your Luma status.",
+    errorNotFound:
+      "No registration found for this email. Register on Luma first.",
     generateButton: "Claim My Badge",
+    existingBadge: "You already have a badge!",
+    existingBadgeLink: "View my badge",
+    existingBadgeOr: "or create a new one below",
     resultHeadline: "I'm hacking at She Ships",
     resultDate: "March 6-8, 2026 — 48h Global Hackathon",
     resultDescription:
