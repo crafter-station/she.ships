@@ -42,15 +42,10 @@ export default function BadgePage() {
         email,
       },
       {
-        onSuccess: ({ badge, created }) => {
+        onSuccess: ({ badge }) => {
           sessionStorage.setItem("badge_email", email);
           localStorage.setItem("badge_id", badge.id);
-
-          if (created) {
-            router.push(`/badge/${badge.id}/edit`);
-          } else {
-            router.push(`/badge/${badge.id}`);
-          }
+          router.push(`/badge/${badge.id}/edit`);
         },
         onError: (err) => {
           if (err.message === "not_approved") {
