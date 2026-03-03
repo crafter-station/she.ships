@@ -178,8 +178,22 @@ function isFilterUnsupported(): boolean {
     const testCanvas = document.createElement("canvas")
     testCanvas.width = 1; testCanvas.height = 1
     const testCtx = testCanvas.getContext("2d")!
+
+    // Draw a red pixel without filter
+    testCtx.fillStyle = "red"
+    testCtx.fillRect(0, 0, 1, 1)
+    const before = testCtx.getImageData(0, 0, 1, 1).data[0] // R channel
+
+    // Draw a red pixel with grayscale filter
+    testCtx.clearRect(0, 0, 1, 1)
     testCtx.filter = "grayscale(100%)"
-    _filterSupported = testCtx.filter === "grayscale(100%)"
+    testCtx.fillStyle = "red"
+    testCtx.fillRect(0, 0, 1, 1)
+    testCtx.filter = "none"
+    const after = testCtx.getImageData(0, 0, 1, 1).data[0] // R channel
+
+    // If filter works, R channel should differ (red → gray reduces R)
+    _filterSupported = before !== after
   } catch {
     _filterSupported = false
   }

@@ -2,12 +2,13 @@
 
 import { useState, useRef, useCallback, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Download, Loader2, Share2 } from "lucide-react";
+import { Check, Download, Loader2, Share2 } from "lucide-react";
 import { PosterPreview } from "@/components/poster/poster-preview";
 import { PosterControlsPanel } from "@/components/poster/poster-controls-panel";
 import { detectFace } from "@/lib/poster/face-detection";
 import { exportPoster } from "@/lib/poster/canvas-renderer";
-import { useUploadPhoto, useUpdatePoster } from "@/lib/poster/mutations";
+import { downloadPosterBlob } from "@/lib/poster/download";
+import { useUploadPhoto, useUpdatePoster, useUploadRendered } from "@/lib/poster/mutations";
 import type {
   SpeakerData,
   FaceDetectionResult,
@@ -51,12 +52,15 @@ export default function PosterEditor({ poster }: PosterEditorProps) {
     "idle" | "loading" | "ready" | "error"
   >("idle");
 
+  const [saveStatus, setSaveStatus] = useState<"idle" | "saving" | "saved">("idle");
+
   const exportCanvasRef = useRef<HTMLCanvasElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const router = useRouter();
   const uploadPhoto = useUploadPhoto(poster.id);
   const updatePoster = useUpdatePoster(poster.id);
+  const uploadRendered = useUploadRendered(poster.id);
 
   // ── Debounced persistence for name/role ─────────────────────────
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -75,6 +79,7 @@ export default function PosterEditor({ poster }: PosterEditorProps) {
     (n: string) => {
       setName(n);
       persistNameRole(n, role);
+      dirtyRef.current = true;
     },
     [role, persistNameRole]
   );
@@ -83,8 +88,50 @@ export default function PosterEditor({ poster }: PosterEditorProps) {
     (r: string) => {
       setRole(r);
       persistNameRole(name, r);
+      dirtyRef.current = true;
     },
     [name, persistNameRole]
+  );
+
+  // ── Auto-save rendered image on user changes ─────────────────────
+  const dirtyRef = useRef(false);
+  const renderSaveRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const savedTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const handleRenderComplete = useCallback(() => {
+    if (!dirtyRef.current) return;
+    dirtyRef.current = false;
+
+    if (renderSaveRef.current) clearTimeout(renderSaveRef.current);
+    renderSaveRef.current = setTimeout(async () => {
+      const canvas = exportCanvasRef.current;
+      if (!canvas) return;
+      try {
+        const blob = await exportPoster(canvas);
+        setSaveStatus("saving");
+        uploadRendered.mutate(blob, {
+          onSuccess: () => {
+            setSaveStatus("saved");
+            if (savedTimerRef.current) clearTimeout(savedTimerRef.current);
+            savedTimerRef.current = setTimeout(() => setSaveStatus("idle"), 2000);
+          },
+          onError: () => {
+            setSaveStatus("idle");
+          },
+        });
+      } catch {
+        setSaveStatus("idle");
+      }
+    }, 500);
+  }, [uploadRendered]);
+
+  // ── Filter change (marks dirty for auto-save) ──────────────────
+  const handleFilterChange = useCallback(
+    (f: FilterSettings | ((prev: FilterSettings) => FilterSettings)) => {
+      setFilter(f);
+      dirtyRef.current = true;
+    },
+    []
   );
 
   // ── Template change (immediate persist) ─────────────────────────
@@ -92,6 +139,7 @@ export default function PosterEditor({ poster }: PosterEditorProps) {
     (t: TemplateType) => {
       setTemplate(t);
       updatePoster.mutate({ template: t });
+      dirtyRef.current = true;
     },
     [updatePoster]
   );
@@ -154,6 +202,7 @@ export default function PosterEditor({ poster }: PosterEditorProps) {
             setDetection(result);
             setModelStatus("ready");
             uploadPhoto.mutate(file);
+            dirtyRef.current = true;
           } else {
             setModelStatus("error");
           }
@@ -184,14 +233,8 @@ export default function PosterEditor({ poster }: PosterEditorProps) {
 
     try {
       const blob = await exportPoster(canvas);
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `${name.toLowerCase().replace(/\s+/g, "-")}-poster.png`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
+      const filename = `${name.toLowerCase().replace(/\s+/g, "-")}-poster.png`;
+      await downloadPosterBlob(blob, filename);
     } catch (err) {
       console.error("Export failed:", err);
     }
@@ -207,7 +250,7 @@ export default function PosterEditor({ poster }: PosterEditorProps) {
           template={template}
           onTemplateChange={handleTemplateChange}
           filter={filter}
-          onFilterChange={setFilter}
+          onFilterChange={handleFilterChange}
           name={name}
           onNameChange={handleNameChange}
           role={role}
@@ -228,10 +271,22 @@ export default function PosterEditor({ poster }: PosterEditorProps) {
                 <span className="text-[#E49BC2]">SS</span>
                 <span className="text-[#4ade80] text-sm">POSTER</span>
               </div>
-              {modelStatus === "ready" && (
+              {modelStatus === "ready" && saveStatus === "idle" && (
                 <span className="text-[10px] font-mono text-[#4ade80] flex items-center gap-1.5">
                   <span className="h-1.5 w-1.5 rounded-full bg-[#4ade80]" />
                   Ready
+                </span>
+              )}
+              {saveStatus === "saving" && (
+                <span className="text-[10px] font-mono text-[#999] flex items-center gap-1.5">
+                  <Loader2 className="h-2.5 w-2.5 animate-spin" />
+                  Saving...
+                </span>
+              )}
+              {saveStatus === "saved" && (
+                <span className="text-[10px] font-mono text-[#4ade80] flex items-center gap-1.5">
+                  <Check className="h-2.5 w-2.5" />
+                  Saved
                 </span>
               )}
               {modelStatus === "loading" && (
@@ -248,33 +303,31 @@ export default function PosterEditor({ poster }: PosterEditorProps) {
               )}
             </div>
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5 md:gap-2">
               <button
                 type="button"
                 onClick={handleExport}
                 disabled={!canExport || isProcessing}
-                className="flex items-center gap-2 rounded-lg border border-[#333] bg-[#1a1a1a] px-4 py-2 text-xs font-mono font-bold uppercase tracking-wider text-[#999] transition-all hover:border-[#555] hover:text-[#ccc] disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+                className="flex items-center justify-center gap-2 rounded-lg border border-[#333] bg-[#1a1a1a] p-2.5 md:px-4 md:py-2 text-xs font-mono font-bold uppercase tracking-wider text-[#999] transition-all hover:border-[#555] hover:text-[#ccc] disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
               >
                 {isProcessing ? (
-                  <>
-                    <Loader2 className="h-3.5 w-3.5 animate-spin" />
-                    Processing
-                  </>
+                  <Loader2 className="h-4 w-4 md:h-3.5 md:w-3.5 animate-spin" />
                 ) : (
-                  <>
-                    <Download className="h-3.5 w-3.5" />
-                    Download
-                  </>
+                  <Download className="h-4 w-4 md:h-3.5 md:w-3.5" />
                 )}
+                <span className="hidden md:inline">
+                  {isProcessing ? "Processing" : "Download"}
+                </span>
               </button>
               <button
                 type="button"
                 onClick={() => router.push(`/p/${poster.id}`)}
                 disabled={!canExport}
-                className="flex items-center gap-2 rounded-lg bg-[#E49BC2] px-4 py-2 text-xs font-mono font-bold uppercase tracking-wider text-[#1a1a1a] transition-all hover:bg-[#d488b3] disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+                className="flex items-center justify-center gap-2 rounded-lg bg-[#E49BC2] px-3 py-2.5 md:px-4 md:py-2 text-[10px] md:text-xs font-mono font-bold uppercase tracking-wider text-[#1a1a1a] transition-all hover:bg-[#d488b3] disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
               >
-                <Share2 className="h-3.5 w-3.5" />
-                Done — Share
+                <Share2 className="h-4 w-4 md:h-3.5 md:w-3.5" />
+                <span className="hidden md:inline">Done —</span>
+                Share
               </button>
             </div>
           </div>
@@ -290,6 +343,7 @@ export default function PosterEditor({ poster }: PosterEditorProps) {
             template={template}
             filter={filter}
             exportCanvasRef={exportCanvasRef}
+            onRenderComplete={handleRenderComplete}
           />
         </main>
       </div>
