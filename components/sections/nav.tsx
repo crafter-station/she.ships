@@ -88,7 +88,7 @@ export function Nav() {
             <WhatsappBadge light={!scrolled} />
             <LanguageSwitcher light={!scrolled} />
             <Button asChild variant="outline" size="sm">
-              <Link href="/badge">
+              <Link href="/p">
                 {t.nav.myBadge}
               </Link>
             </Button>
@@ -179,7 +179,7 @@ export function Nav() {
                 <LanguageSwitcher />
               </div>
               <Button asChild variant="outline" size="lg">
-                <Link href="/badge" onClick={() => setMobileOpen(false)}>
+                <Link href="/p" onClick={() => setMobileOpen(false)}>
                   {t.nav.myBadge}
                 </Link>
               </Button>

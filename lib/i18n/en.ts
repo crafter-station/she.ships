@@ -5,7 +5,7 @@ export const en = {
     categories: "Categories",
     faq: "FAQ",
     join: "Join",
-    myBadge: "My Badge",
+    myBadge: "My Poster",
     ctaSponsor: "Be a Sponsor",
     ctaCommunityPartner: "Be a Community Partner",
     ctaJudge: "Be a Judge",
