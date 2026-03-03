@@ -663,6 +663,7 @@ export function renderPoster(
   }
 }
 
+/** Export as lossless PNG — used for user downloads. */
 export function exportPoster(canvas: HTMLCanvasElement): Promise<Blob> {
   return new Promise((resolve, reject) => {
     canvas.toBlob(
@@ -672,6 +673,23 @@ export function exportPoster(canvas: HTMLCanvasElement): Promise<Blob> {
       },
       "image/png",
       1
+    );
+  });
+}
+
+/** Export as compressed JPEG — used for autosave / OG images (~10x smaller). */
+export function exportPosterJpeg(
+  canvas: HTMLCanvasElement,
+  quality = 0.82
+): Promise<Blob> {
+  return new Promise((resolve, reject) => {
+    canvas.toBlob(
+      (blob) => {
+        if (blob) resolve(blob);
+        else reject(new Error("Failed to export canvas as JPEG"));
+      },
+      "image/jpeg",
+      quality
     );
   });
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import { exportPoster } from "@/lib/poster/canvas-renderer";
+import { exportPosterJpeg } from "@/lib/poster/canvas-renderer";
 import type {
   SpeakerData,
   FaceDetectionResult,
@@ -156,11 +156,11 @@ export function usePosterAutosave({
       // Step 2: Re-render and upload poster image
       const canvas = exportCanvasRef.current;
       if (canvas && currentDetection) {
-        const blob = await exportPoster(canvas);
+        const blob = await exportPosterJpeg(canvas);
         if (signal.aborted) return;
 
         const formData = new FormData();
-        formData.append("poster", blob, "poster.png");
+        formData.append("poster", blob, "poster.jpg");
 
         const uploadRes = await fetch(`/api/badges/${badgeId}/poster`, {
           method: "POST",

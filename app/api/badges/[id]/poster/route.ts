@@ -46,15 +46,15 @@ export async function POST(
         .where(eq(badges.id, id));
     }
 
-    // Handle rendered poster upload
+    // Handle rendered poster upload (JPEG for fast OG loading)
     const posterFile = formData.get("poster") as File | null;
     if (posterFile) {
       const blob = await put(
-        `badges/${id}/poster-${uniqueSuffix()}.png`,
+        `badges/${id}/poster-${uniqueSuffix()}.jpg`,
         posterFile,
         {
           access: "public",
-          contentType: "image/png",
+          contentType: "image/jpeg",
         }
       );
       result.posterImageUrl = blob.url;
