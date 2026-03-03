@@ -4,11 +4,11 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import { Twitter, Linkedin, Download, Pencil } from "lucide-react";
 import { renderPoster, exportPoster } from "@/lib/poster/canvas-renderer";
+import { downloadPosterBlob } from "@/lib/poster/download";
 import { detectFace } from "@/lib/poster/face-detection";
 import { DEFAULT_FILTER } from "@/lib/poster/types";
 import type {
   SpeakerData,
-  FaceDetectionResult,
   TemplateType,
   FilterSettings,
 } from "@/lib/poster/types";
@@ -29,8 +29,8 @@ function loadImage(src: string): Promise<HTMLImageElement> {
 }
 
 export default function PosterPublic({ poster }: PosterPublicProps) {
-  const [rendered, setRendered] = useState(false);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const hasRendered = !!poster.renderedUrl;
+  const [canvasRendered, setCanvasRendered] = useState(false);
   const displayCanvasRef = useRef<HTMLCanvasElement>(null);
   const exportCanvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -46,9 +46,9 @@ export default function PosterPublic({ poster }: PosterPublicProps) {
     }
   }, [poster.id]);
 
-  // Load photo + render poster
+  // Canvas fallback: only runs if no renderedUrl
   useEffect(() => {
-    if (!poster.photoUrl) return;
+    if (hasRendered || !poster.photoUrl) return;
     let cancelled = false;
 
     async function render() {
@@ -89,7 +89,7 @@ export default function PosterPublic({ poster }: PosterPublicProps) {
           ctx.drawImage(exportCanvas, 0, 0, displayW, displayH);
         }
 
-        setRendered(true);
+        setCanvasRendered(true);
       } catch (err) {
         console.error("Failed to render poster:", err);
       }
@@ -97,7 +97,7 @@ export default function PosterPublic({ poster }: PosterPublicProps) {
 
     render();
     return () => { cancelled = true; };
-  }, [poster.photoUrl]);
+  }, [poster.photoUrl, hasRendered]);
 
   const shareUrl = `https://sheships.org/p/${poster.id}`;
 
@@ -121,40 +121,53 @@ export default function PosterPublic({ poster }: PosterPublicProps) {
   };
 
   const handleDownload = useCallback(async () => {
-    const canvas = exportCanvasRef.current;
-    if (!canvas) return;
+    const filename = `${poster.name.toLowerCase().replace(/\s+/g, "-")}-poster.png`;
     try {
-      const blob = await exportPoster(canvas);
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `${poster.name.toLowerCase().replace(/\s+/g, "-")}-poster.png`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
+      if (poster.renderedUrl) {
+        const res = await fetch(poster.renderedUrl);
+        const blob = await res.blob();
+        await downloadPosterBlob(blob, filename);
+      } else {
+        const canvas = exportCanvasRef.current;
+        if (!canvas) return;
+        const blob = await exportPoster(canvas);
+        await downloadPosterBlob(blob, filename);
+      }
     } catch (err) {
       console.error("Download failed:", err);
     }
-  }, [poster.name]);
+  }, [poster.name, poster.renderedUrl]);
+
+  const canDownload = hasRendered || canvasRendered;
 
   return (
     <section className="h-dvh flex flex-col overflow-hidden bg-black select-none">
-      {/* Poster canvas — fills available space */}
+      {/* Poster — fills available space */}
       <div className="flex flex-1 min-h-0 items-center justify-center p-4 md:p-8">
-        {poster.photoUrl && (
-          <canvas
-            ref={displayCanvasRef}
-            className="h-full max-h-full aspect-[4/5]"
-            style={{ imageRendering: "auto" }}
+        {hasRendered ? (
+          /* Pre-rendered image — no canvas, no face detection, instant load */
+          <img
+            src={poster.renderedUrl!}
+            alt={`${poster.name} – She Ships poster`}
+            className="h-full max-h-full aspect-[4/5] object-contain"
           />
+        ) : (
+          <>
+            {poster.photoUrl && (
+              <canvas
+                ref={displayCanvasRef}
+                className="h-full max-h-full aspect-[4/5]"
+                style={{ imageRendering: "auto" }}
+              />
+            )}
+            <canvas
+              ref={exportCanvasRef}
+              width={1080}
+              height={1350}
+              className="fixed -left-[9999px] top-0 pointer-events-none"
+            />
+          </>
         )}
-        <canvas
-          ref={exportCanvasRef}
-          width={1080}
-          height={1350}
-          className="fixed -left-[9999px] top-0 pointer-events-none"
-        />
       </div>
 
       {/* Bottom action bar */}
@@ -191,7 +204,7 @@ export default function PosterPublic({ poster }: PosterPublicProps) {
             </button>
             <button
               onClick={handleDownload}
-              disabled={!rendered}
+              disabled={!canDownload}
               className="flex items-center gap-1.5 rounded-lg bg-[#E49BC2] px-3 py-2 text-[10px] md:text-xs font-mono font-bold uppercase tracking-wider text-[#1a1a1a] transition-all hover:bg-[#d488b3] disabled:opacity-50 cursor-pointer"
             >
               <Download className="w-3.5 h-3.5" />

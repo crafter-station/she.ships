@@ -16,6 +16,37 @@ export async function GET(
     return new Response("Poster not found", { status: 404 });
   }
 
+  // If we have a pre-rendered poster image, use it directly
+  if (poster.renderedUrl) {
+    return new ImageResponse(
+      (
+        <div
+          style={{
+            width: "1200px",
+            height: "630px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            backgroundColor: "#000000",
+          }}
+        >
+          <img
+            src={poster.renderedUrl}
+            style={{
+              height: "100%",
+              objectFit: "contain",
+            }}
+          />
+        </div>
+      ),
+      {
+        width: 1200,
+        height: 630,
+      }
+    );
+  }
+
+  // Fallback: JSX-based OG image
   const pink = "#e49bc2";
   const green = "#4ade80";
 
