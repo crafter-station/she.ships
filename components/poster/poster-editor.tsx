@@ -39,7 +39,9 @@ export default function PosterEditor({ poster }: PosterEditorProps) {
   const [template, setTemplate] = useState<TemplateType>(
     (poster.template as TemplateType) || DEFAULT_TEMPLATE
   );
-  const [filter, setFilter] = useState<FilterSettings>(DEFAULT_FILTER);
+  const [filter, setFilter] = useState<FilterSettings>(
+    (poster.filterSettings as FilterSettings | null) || DEFAULT_FILTER
+  );
 
   const speaker: SpeakerData = { name, role };
 
@@ -98,6 +100,14 @@ export default function PosterEditor({ poster }: PosterEditorProps) {
   const renderSaveRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const savedTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  // Refs so handleRenderComplete always reads latest values without stale closures
+  const filterRef = useRef(filter);
+  filterRef.current = filter;
+  const detectionRef = useRef(detection);
+  detectionRef.current = detection;
+  const templateRef = useRef(template);
+  templateRef.current = template;
+
   const handleRenderComplete = useCallback(() => {
     if (!dirtyRef.current) return;
     dirtyRef.current = false;
@@ -109,16 +119,24 @@ export default function PosterEditor({ poster }: PosterEditorProps) {
       try {
         const blob = await exportPoster(canvas);
         setSaveStatus("saving");
-        uploadRendered.mutate(blob, {
-          onSuccess: () => {
-            setSaveStatus("saved");
-            if (savedTimerRef.current) clearTimeout(savedTimerRef.current);
-            savedTimerRef.current = setTimeout(() => setSaveStatus("idle"), 2000);
+        uploadRendered.mutate(
+          {
+            blob,
+            filter: filterRef.current,
+            detection: detectionRef.current ?? undefined,
+            template: templateRef.current,
           },
-          onError: () => {
-            setSaveStatus("idle");
-          },
-        });
+          {
+            onSuccess: () => {
+              setSaveStatus("saved");
+              if (savedTimerRef.current) clearTimeout(savedTimerRef.current);
+              savedTimerRef.current = setTimeout(() => setSaveStatus("idle"), 2000);
+            },
+            onError: () => {
+              setSaveStatus("idle");
+            },
+          }
+        );
       } catch {
         setSaveStatus("idle");
       }

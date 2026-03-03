@@ -40,9 +40,19 @@ export async function POST(
       allowOverwrite: true,
     });
 
+    const filterJson = formData.get("filterSettings") as string | null;
+    const detectionJson = formData.get("faceDetection") as string | null;
+    const templateVal = formData.get("template") as string | null;
+
     const [updated] = await db
       .update(posters)
-      .set({ renderedUrl: blob.url, updatedAt: new Date() })
+      .set({
+        renderedUrl: blob.url,
+        ...(filterJson && { filterSettings: JSON.parse(filterJson) }),
+        ...(detectionJson && { faceDetection: JSON.parse(detectionJson) }),
+        ...(templateVal && { template: templateVal }),
+        updatedAt: new Date(),
+      })
       .where(eq(posters.id, id))
       .returning();
 

@@ -1,5 +1,6 @@
 import { pgTable, text, integer, jsonb, timestamp } from "drizzle-orm/pg-core";
 import type { ParticleConfig } from "@/lib/badge/particle-config";
+import type { FilterSettings, FaceDetectionResult } from "@/lib/poster/types";
 
 export const badges = pgTable("badges", {
   id: text("id").primaryKey(),
@@ -26,7 +27,9 @@ export const posters = pgTable("posters", {
   organization: text("organization"),
   photoUrl: text("photo_url"),
   renderedUrl: text("rendered_url"),
-  template: text("template").notNull().default("eyes"),
+  filterSettings: jsonb("filter_settings").$type<FilterSettings>(),
+  faceDetection: jsonb("face_detection").$type<FaceDetectionResult>(),
+  template: text("template").notNull().default("half-face"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });

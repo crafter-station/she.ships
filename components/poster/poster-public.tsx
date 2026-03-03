@@ -34,8 +34,8 @@ export default function PosterPublic({ poster }: PosterPublicProps) {
   const displayCanvasRef = useRef<HTMLCanvasElement>(null);
   const exportCanvasRef = useRef<HTMLCanvasElement>(null);
 
-  const template = (poster.template as TemplateType) || "eyes";
-  const filter: FilterSettings = DEFAULT_FILTER;
+  const template = (poster.template as TemplateType) || "half-face";
+  const filter: FilterSettings = (poster.filterSettings as FilterSettings | null) || DEFAULT_FILTER;
   const speaker: SpeakerData = { name: poster.name, role: poster.role };
 
   const [isOwner, setIsOwner] = useState(false);
