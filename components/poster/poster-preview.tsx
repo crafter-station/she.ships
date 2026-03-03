@@ -17,6 +17,7 @@ interface PosterPreviewProps {
   template: TemplateType;
   filter: FilterSettings;
   exportCanvasRef: React.RefObject<HTMLCanvasElement | null>;
+  onRenderComplete?: () => void;
 }
 
 const POSTER_W = 1080;
@@ -30,6 +31,7 @@ export function PosterPreview({
   template,
   filter,
   exportCanvasRef,
+  onRenderComplete,
 }: PosterPreviewProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const displayCanvasRef = useRef<HTMLCanvasElement>(null);
@@ -73,7 +75,9 @@ export function PosterPreview({
       ctx.clearRect(0, 0, displayW, displayH);
       ctx.drawImage(exportCanvas, 0, 0, displayW, displayH);
     }
-  }, [speaker, image, bgImage, detection, template, filter, exportCanvasRef]);
+
+    onRenderComplete?.();
+  }, [speaker, image, bgImage, detection, template, filter, exportCanvasRef, onRenderComplete]);
 
   useEffect(() => {
     draw();
