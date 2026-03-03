@@ -16,12 +16,6 @@ export async function GET(
     return new Response("Badge not found", { status: 404 });
   }
 
-  // If a rendered poster image exists, redirect to it directly
-  if (badge.posterImageUrl) {
-    return Response.redirect(badge.posterImageUrl, 302);
-  }
-
-  // Fallback: generate a text-only OG card for badges without a poster
   const accentColor = "#e49bc2";
   const badgeNumber = `#${String(badge.number).padStart(7, "0")}`;
 
@@ -32,125 +26,159 @@ export async function GET(
           width: "1200px",
           height: "630px",
           display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "flex-start",
           backgroundColor: "#0e0e0e",
-          padding: "60px 80px",
           position: "relative",
           overflow: "hidden",
         }}
       >
+        {/* Left side: text content */}
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            padding: "50px 60px",
+            flex: 1,
+            minWidth: 0,
+          }}
+        >
+          {/* Badge number */}
+          <div
+            style={{
+              fontSize: "14px",
+              letterSpacing: "0.2em",
+              color: "rgba(255,255,255,0.35)",
+              fontFamily: "monospace",
+              textTransform: "uppercase",
+            }}
+          >
+            {badgeNumber}
+          </div>
+
+          {/* Name */}
+          <div
+            style={{
+              fontSize: "56px",
+              fontWeight: 700,
+              color: accentColor,
+              marginTop: "12px",
+              lineHeight: 1.05,
+              textTransform: "uppercase",
+            }}
+          >
+            {badge.name}
+          </div>
+
+          {/* Role */}
+          <div
+            style={{
+              fontSize: "22px",
+              fontWeight: 700,
+              color: "#ffffff",
+              textTransform: "uppercase",
+              letterSpacing: "0.08em",
+              marginTop: "10px",
+            }}
+          >
+            {badge.role}
+          </div>
+
+          {/* Organization */}
+          {badge.organization && (
+            <div
+              style={{
+                fontSize: "17px",
+                color: "rgba(255,255,255,0.45)",
+                marginTop: "6px",
+              }}
+            >
+              {badge.organization}
+            </div>
+          )}
+
+          {/* Tagline */}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
+              marginTop: "32px",
+            }}
+          >
+            <div
+              style={{
+                width: "20px",
+                height: "3px",
+                backgroundColor: accentColor,
+                opacity: 0.6,
+              }}
+            />
+            <div
+              style={{
+                fontSize: "16px",
+                color: "rgba(255,255,255,0.5)",
+              }}
+            >
+              SHE SHIPS HACKATHON 2026
+            </div>
+          </div>
+
+          {/* Footer branding */}
+          <div
+            style={{
+              fontSize: "13px",
+              color: "rgba(255,255,255,0.25)",
+              letterSpacing: "0.15em",
+              textTransform: "uppercase",
+              marginTop: "24px",
+            }}
+          >
+            sheships.org
+          </div>
+        </div>
+
+        {/* Right side: poster thumbnail (if available) */}
+        {badge.posterImageUrl && (
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "30px 40px 30px 0",
+              width: "400px",
+              flexShrink: 0,
+            }}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={badge.posterImageUrl}
+              alt=""
+              width={288}
+              height={360}
+              style={{
+                width: "288px",
+                height: "360px",
+                objectFit: "cover",
+                border: `2px solid ${accentColor}`,
+              }}
+            />
+          </div>
+        )}
+
         {/* Decorative blurred color blob */}
         <div
           style={{
             position: "absolute",
-            width: "400px",
-            height: "400px",
+            width: "350px",
+            height: "350px",
             borderRadius: "50%",
             background: accentColor,
-            opacity: 0.15,
-            filter: "blur(100px)",
-            top: "-100px",
-            right: "-50px",
+            opacity: 0.1,
+            filter: "blur(80px)",
+            top: "-80px",
+            right: "-40px",
           }}
         />
-
-        {/* Badge number */}
-        <div
-          style={{
-            fontSize: "16px",
-            letterSpacing: "0.2em",
-            color: "rgba(255,255,255,0.4)",
-            fontFamily: "monospace",
-            textTransform: "uppercase",
-          }}
-        >
-          {badgeNumber}
-        </div>
-
-        {/* Name */}
-        <div
-          style={{
-            fontSize: "72px",
-            fontWeight: 700,
-            color: accentColor,
-            marginTop: "16px",
-            lineHeight: 1.1,
-            textTransform: "uppercase",
-          }}
-        >
-          {badge.name}
-        </div>
-
-        {/* Role */}
-        <div
-          style={{
-            fontSize: "28px",
-            fontWeight: 700,
-            color: "#ffffff",
-            textTransform: "uppercase",
-            letterSpacing: "0.1em",
-            marginTop: "12px",
-          }}
-        >
-          {badge.role}
-        </div>
-
-        {/* Organization */}
-        {badge.organization && (
-          <div
-            style={{
-              fontSize: "20px",
-              color: "rgba(255,255,255,0.5)",
-              marginTop: "8px",
-            }}
-          >
-            {badge.organization}
-          </div>
-        )}
-
-        {/* Tagline */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "10px",
-            marginTop: "40px",
-          }}
-        >
-          <div
-            style={{
-              width: "24px",
-              height: "3px",
-              backgroundColor: accentColor,
-              opacity: 0.6,
-            }}
-          />
-          <div
-            style={{
-              fontSize: "20px",
-              color: "rgba(255,255,255,0.6)",
-            }}
-          >
-            SHE SHIPS HACKATHON 2026
-          </div>
-        </div>
-
-        {/* Footer branding */}
-        <div
-          style={{
-            position: "absolute",
-            bottom: "40px",
-            right: "80px",
-            fontSize: "18px",
-            color: "rgba(255,255,255,0.3)",
-            letterSpacing: "0.1em",
-            textTransform: "uppercase",
-          }}
-        >
-          sheships.org
-        </div>
       </div>
     ),
     {

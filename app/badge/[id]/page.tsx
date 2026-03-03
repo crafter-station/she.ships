@@ -17,11 +17,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!badge) return {};
 
-  const title = `${badge.name} is participating in She Ships!`;
-  const description = `${badge.name} (${badge.role}) is building and shipping at She Ships Hackathon.`;
-  const ogImageUrl = badge.posterImageUrl
-    ? badge.posterImageUrl
-    : `https://sheships.org/api/og/badge/${id}`;
+  const role = badge.organization
+    ? `${badge.role} @ ${badge.organization}`
+    : badge.role;
+  const title = `${badge.name} is hacking at She Ships — 48h Global Hackathon`;
+  const description = `${badge.name} (${role}) is building and shipping at She Ships Hackathon 2026. Join women and creators from around the world in 48 hours of building.`;
+  const ogImageUrl = `https://sheships.org/api/og/badge/${id}`;
 
   return {
     title,
