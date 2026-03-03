@@ -3,6 +3,19 @@ import { eq } from "drizzle-orm";
 import { db } from "@/lib/db";
 import { badges } from "@/lib/db/schema";
 
+/** Fetch an image and return it as a base64 data URI for Satori embedding. */
+async function toDataUri(url: string): Promise<string | null> {
+  try {
+    const res = await fetch(url, { signal: AbortSignal.timeout(4000) });
+    if (!res.ok) return null;
+    const buf = await res.arrayBuffer();
+    const contentType = res.headers.get("content-type") ?? "image/jpeg";
+    return `data:${contentType};base64,${Buffer.from(buf).toString("base64")}`;
+  } catch {
+    return null;
+  }
+}
+
 export async function GET(
   _request: Request,
   { params }: { params: Promise<{ id: string }> }
@@ -18,6 +31,11 @@ export async function GET(
 
   const accentColor = "#e49bc2";
   const badgeNumber = `#${String(badge.number).padStart(7, "0")}`;
+
+  // Pre-fetch poster image as data URI so Satori doesn't need external fetch
+  const posterDataUri = badge.posterImageUrl
+    ? await toDataUri(badge.posterImageUrl)
+    : null;
 
   return new ImageResponse(
     (
@@ -42,26 +60,26 @@ export async function GET(
             minWidth: 0,
           }}
         >
-          {/* Badge number */}
+          {/* Headline */}
           <div
             style={{
-              fontSize: "14px",
-              letterSpacing: "0.2em",
-              color: "rgba(255,255,255,0.35)",
-              fontFamily: "monospace",
+              fontSize: "18px",
+              fontWeight: 700,
+              color: "#ffffff",
               textTransform: "uppercase",
+              letterSpacing: "0.15em",
             }}
           >
-            {badgeNumber}
+            I&apos;m hacking at She Ships
           </div>
 
           {/* Name */}
           <div
             style={{
-              fontSize: "56px",
+              fontSize: "58px",
               fontWeight: 700,
               color: accentColor,
-              marginTop: "12px",
+              marginTop: "8px",
               lineHeight: 1.05,
               textTransform: "uppercase",
             }}
@@ -74,52 +92,59 @@ export async function GET(
             style={{
               fontSize: "22px",
               fontWeight: 700,
-              color: "#ffffff",
+              color: "rgba(255,255,255,0.8)",
               textTransform: "uppercase",
               letterSpacing: "0.08em",
               marginTop: "10px",
             }}
           >
             {badge.role}
+            {badge.organization ? ` @ ${badge.organization}` : ""}
           </div>
 
-          {/* Organization */}
-          {badge.organization && (
-            <div
-              style={{
-                fontSize: "17px",
-                color: "rgba(255,255,255,0.45)",
-                marginTop: "6px",
-              }}
-            >
-              {badge.organization}
-            </div>
-          )}
+          {/* Badge number */}
+          <div
+            style={{
+              fontSize: "13px",
+              letterSpacing: "0.2em",
+              color: "rgba(255,255,255,0.3)",
+              fontFamily: "monospace",
+              textTransform: "uppercase",
+              marginTop: "12px",
+            }}
+          >
+            {badgeNumber}
+          </div>
 
-          {/* Tagline */}
+          {/* CTA */}
           <div
             style={{
               display: "flex",
               alignItems: "center",
-              gap: "10px",
+              gap: "12px",
               marginTop: "32px",
             }}
           >
             <div
               style={{
-                width: "20px",
-                height: "3px",
-                backgroundColor: accentColor,
-                opacity: 0.6,
-              }}
-            />
-            <div
-              style={{
                 fontSize: "16px",
-                color: "rgba(255,255,255,0.5)",
+                fontWeight: 700,
+                color: "#1a1a1a",
+                backgroundColor: accentColor,
+                padding: "8px 20px",
+                textTransform: "uppercase",
+                letterSpacing: "0.1em",
               }}
             >
-              SHE SHIPS HACKATHON 2026
+              Join the hackathon
+            </div>
+            <div
+              style={{
+                fontSize: "14px",
+                color: "rgba(255,255,255,0.4)",
+              }}
+            >
+              March 6-8, 2026 — 48h
             </div>
           </div>
 
@@ -127,10 +152,10 @@ export async function GET(
           <div
             style={{
               fontSize: "13px",
-              color: "rgba(255,255,255,0.25)",
+              color: "rgba(255,255,255,0.2)",
               letterSpacing: "0.15em",
               textTransform: "uppercase",
-              marginTop: "24px",
+              marginTop: "20px",
             }}
           >
             sheships.org
@@ -138,7 +163,7 @@ export async function GET(
         </div>
 
         {/* Right side: poster thumbnail (if available) */}
-        {badge.posterImageUrl && (
+        {posterDataUri && (
           <div
             style={{
               display: "flex",
@@ -151,7 +176,7 @@ export async function GET(
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={badge.posterImageUrl}
+              src={posterDataUri}
               alt=""
               width={288}
               height={360}
