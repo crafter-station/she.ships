@@ -104,7 +104,7 @@ export async function POST(
     page.on("console", (msg) =>
       console.log(`[render-page ${msg.type()}]`, msg.text())
     );
-    page.on("pageerror", (err) =>
+    page.on("pageerror", (err: Error) =>
       console.error("[render-page error]", err.message)
     );
 
