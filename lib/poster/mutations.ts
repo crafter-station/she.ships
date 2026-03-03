@@ -96,3 +96,26 @@ export function useUploadPhoto(id: string) {
     },
   });
 }
+
+export function useUploadRendered(id: string) {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (blob: Blob) => {
+      const formData = new FormData();
+      formData.append("file", blob, "rendered.png");
+      const res = await fetch(`/api/posters/${id}/rendered`, {
+        method: "POST",
+        body: formData,
+      });
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err.error || "Failed to upload rendered image");
+      }
+      return res.json() as Promise<Poster>;
+    },
+    onSuccess: (poster) => {
+      queryClient.setQueryData(["poster", poster.id], poster);
+    },
+  });
+}
