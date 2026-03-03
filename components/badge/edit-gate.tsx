@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import BadgeView from "@/components/badge/badge-view";
+import PosterEditor from "@/components/poster/poster-editor";
 import type { Badge } from "@/lib/db/schema";
 
 interface EditGateProps {
@@ -70,7 +70,7 @@ export default function EditGate({ badge }: EditGateProps) {
   }
 
   if (authorized) {
-    return <BadgeView badge={badge} />;
+    return <PosterEditor badge={badge} />;
   }
 
   return (

@@ -289,18 +289,27 @@ export const es: Translations = {
     shareLabel: "Compartir en",
     shareText:
       "Voy a participar en el hackathon global She Ships — 48 horas construyendo y shippeando con mujeres y creadoras de todo el mundo. Sumate!",
-    particlePromptSuggestions: [
-      "Una insignia inspirada en la computación retro...",
-      "Partículas metálicas doradas con pequeñas brillantes azules...",
-      "Olas del océano — fluido turquesa con burbujas de espuma...",
-      "Cyberpunk neón con brillo rosa y púrpura...",
-      "Gemas de cristal mezcladas con gotas de mercurio líquido...",
-      "Estilo pixel art con cubos de colores...",
-      "Una galaxia de estrellas y polvo cósmico...",
-      "Lava fundida con fragmentos de obsidiana...",
-    ],
-    particlePromptCustom: "O describe las tuyas...",
-    particlePromptLoading: "Generando...",
+    poster: {
+      uploadPhoto: "Subir foto",
+      changePhoto: "Cambiar foto",
+      uploadHint: "Sube una foto para generar tu poster",
+      processing: "Procesando...",
+      detectingFace: "Detectando rostro...",
+      noFaceDetected: "No se detectó rostro. Intenta con una foto más clara.",
+      ready: "Listo",
+      cropStyle: "Estilo de Recorte",
+      positionZoom: "Posición y Zoom",
+      resetPosition: "Restablecer",
+
+      dragHint:
+        "Arrastra para reposicionar. Flechas para precisión (Shift para pasos más grandes).",
+      downloadPng: "Descargar PNG",
+      savePoster: "Guardar Poster",
+      saving: "Guardando...",
+      autoSaved: "Guardado",
+      safariWarning:
+        "Algunos efectos pueden verse diferentes aquí. Para mejores resultados usa Chrome o Firefox en escritorio.",
+    },
   },
   whatsappCommunity: {
     navAriaLabel: "Unirse a la comunidad de WhatsApp",

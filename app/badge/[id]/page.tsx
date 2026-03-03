@@ -3,7 +3,7 @@ import { eq } from "drizzle-orm";
 import { db } from "@/lib/db";
 import { badges } from "@/lib/db/schema";
 import type { Metadata } from "next";
-import BadgePublic from "@/components/badge/badge-public";
+import PosterStatic from "@/components/poster/poster-static";
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -19,7 +19,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const title = `${badge.name} is participating in She Ships!`;
   const description = `${badge.name} (${badge.role}) is building and shipping at She Ships Hackathon.`;
-  const ogImageUrl = `https://sheships.org/api/og/badge/${id}`;
+  const ogImageUrl = badge.posterImageUrl
+    ? badge.posterImageUrl
+    : `https://sheships.org/api/og/badge/${id}`;
 
   return {
     title,
@@ -48,5 +50,5 @@ export default async function BadgeIdPage({ params }: Props) {
 
   if (!badge) notFound();
 
-  return <BadgePublic badge={badge} />;
+  return <PosterStatic badge={badge} />;
 }

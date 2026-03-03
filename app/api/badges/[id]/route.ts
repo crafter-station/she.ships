@@ -3,7 +3,6 @@ import { z } from "zod";
 import { eq } from "drizzle-orm";
 import { db } from "@/lib/db";
 import { badges } from "@/lib/db/schema";
-import { particleConfigSchema } from "@/lib/badge/particle-config";
 
 export async function GET(
   _request: Request,
@@ -22,7 +21,9 @@ export async function GET(
 }
 
 const patchSchema = z.object({
-  particleConfig: particleConfigSchema.optional(),
+  posterConfig: z.any().optional(),
+  posterImageUrl: z.string().url().optional(),
+  photoUrl: z.string().url().optional(),
   name: z.string().min(1).max(40).optional(),
   role: z.string().min(1).optional(),
   organization: z.string().max(40).optional().nullable(),
@@ -53,6 +54,9 @@ export async function PATCH(
       return NextResponse.json({ error: error.issues }, { status: 400 });
     }
     console.error("Failed to update badge:", error);
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 }
+    );
   }
 }

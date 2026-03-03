@@ -285,18 +285,27 @@ export const en = {
     shareLabel: "Share on",
     shareText:
       "I'll be participating in the She Ships global hackathon — 48 hours of building and shipping with women and creators from around the world. Join us!",
-    particlePromptSuggestions: [
-      "A badge inspired by retro computing...",
-      "Golden metallic particles with tiny blue glowing ones...",
-      "Ocean waves — fluid teal with white foam bubbles...",
-      "Neon cyberpunk with pink and purple glow...",
-      "Crystal gems mixed with liquid mercury drops...",
-      "Pixel art vibes with colorful cubes...",
-      "A galaxy of stars and cosmic dust...",
-      "Molten lava with obsidian shards...",
-    ],
-    particlePromptCustom: "Or describe your own...",
-    particlePromptLoading: "Generating...",
+    poster: {
+      uploadPhoto: "Upload photo",
+      changePhoto: "Change photo",
+      uploadHint: "Upload a photo to generate your poster",
+      processing: "Processing...",
+      detectingFace: "Detecting face...",
+      noFaceDetected: "No face detected. Try a clearer photo.",
+      ready: "Ready",
+      cropStyle: "Crop Style",
+      positionZoom: "Position & Zoom",
+      resetPosition: "Reset",
+
+      dragHint:
+        "Drag to reposition. Arrow keys for precision (Shift for bigger steps).",
+      downloadPng: "Download PNG",
+      savePoster: "Save Poster",
+      saving: "Saving...",
+      autoSaved: "Saved",
+      safariWarning:
+        "Some effects may look different here. For best results try Chrome or Firefox on desktop.",
+    },
   },
   whatsappCommunity: {
     navAriaLabel: "Join WhatsApp community",

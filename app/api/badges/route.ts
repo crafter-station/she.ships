@@ -3,14 +3,12 @@ import { z } from "zod";
 import { eq, sql } from "drizzle-orm";
 import { db } from "@/lib/db";
 import { badges } from "@/lib/db/schema";
-import { particleConfigSchema } from "@/lib/badge/particle-config";
 import { getApprovedGuest } from "@/lib/luma";
 
 const createBadgeSchema = z.object({
   id: z.string().min(1),
   role: z.string().min(1),
   organization: z.string().max(40).optional(),
-  particleConfig: particleConfigSchema,
   email: z.string().email(),
 });
 
@@ -69,7 +67,6 @@ export async function POST(request: Request) {
         name: guest.name,
         role: data.role,
         organization: data.organization ?? null,
-        particleConfig: data.particleConfig,
       })
       .returning();
 

@@ -42,3 +42,10 @@ next-env.d.ts
 
 # clerk configuration (can include secrets)
 /.clerk/
+.env*.local
+
+# editor / agent state
+.opencode/
+
+# v0 prototype (reference only)
+v0-she-ships-poster/

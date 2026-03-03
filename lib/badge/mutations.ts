@@ -3,7 +3,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { nanoid } from "nanoid";
 import type { Badge } from "@/lib/db/schema";
-import type { ParticleConfig } from "@/lib/badge/particle-config";
 
 export function generateBadgeId() {
   return nanoid(12);
@@ -31,7 +30,6 @@ export function useCreateBadge() {
       id: string;
       role: string;
       organization?: string;
-      particleConfig: ParticleConfig;
       email: string;
     }) => {
       const res = await fetch("/api/badges", {
@@ -55,7 +53,7 @@ export function useUpdateBadge(id: string) {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async (data: { particleConfig?: ParticleConfig }) => {
+    mutationFn: async (data: Record<string, unknown>) => {
       const res = await fetch(`/api/badges/${id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },

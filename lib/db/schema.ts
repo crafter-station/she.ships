@@ -1,5 +1,5 @@
 import { pgTable, text, integer, jsonb, timestamp } from "drizzle-orm/pg-core";
-import type { ParticleConfig } from "@/lib/badge/particle-config";
+import type { PosterConfig } from "@/lib/poster/types";
 
 export const badges = pgTable("badges", {
   id: text("id").primaryKey(),
@@ -8,7 +8,10 @@ export const badges = pgTable("badges", {
   name: text("name").notNull(),
   role: text("role").notNull(),
   organization: text("organization"),
-  particleConfig: jsonb("particle_config").$type<ParticleConfig>().notNull(),
+  // Poster fields
+  photoUrl: text("photo_url"),
+  posterConfig: jsonb("poster_config").$type<PosterConfig>(),
+  posterImageUrl: text("poster_image_url"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });

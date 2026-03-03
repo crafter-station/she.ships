@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useTranslation } from "@/lib/i18n/context";
@@ -8,37 +8,27 @@ import { ArrowRight } from "lucide-react";
 import { Footer } from "@/components/sections/footer";
 import BadgeForm from "@/components/badge/badge-form";
 import { useCreateBadge, generateBadgeId } from "@/lib/badge/mutations";
-import { defaultParticleConfig, capConfigForMobile } from "@/lib/badge/particle-config";
 
 export default function BadgePage() {
   const router = useRouter();
   const { t } = useTranslation();
   const createBadge = useCreateBadge();
   const [error, setError] = useState<string | null>(null);
-  const [existingBadgeId, setExistingBadgeId] = useState<string | null>(null);
-
-  useEffect(() => {
-    const stored = localStorage.getItem("badge_id");
-    if (stored) {
-      setExistingBadgeId(stored);
-    }
-  }, []);
+  const [existingBadgeId] = useState<string | null>(() => {
+    if (typeof window === "undefined") return null;
+    return localStorage.getItem("badge_id");
+  });
 
   const handleSubmit = async (email: string, organization: string | null) => {
     setError(null);
 
     const id = generateBadgeId();
-    const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
-    const particleConfig = isMobile
-      ? capConfigForMobile(defaultParticleConfig)
-      : defaultParticleConfig;
 
     createBadge.mutate(
       {
         id,
         role: "Hacker",
         organization: organization ?? undefined,
-        particleConfig,
         email,
       },
       {

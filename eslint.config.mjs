@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Reference project (not part of our build):
+    "v0-she-ships-poster/**",
   ]),
 ]);
 

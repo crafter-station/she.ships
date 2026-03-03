@@ -2,7 +2,6 @@ import { ImageResponse } from "next/og";
 import { eq } from "drizzle-orm";
 import { db } from "@/lib/db";
 import { badges } from "@/lib/db/schema";
-import { pickAccentColor } from "@/lib/badge/texture-generator";
 
 export async function GET(
   _request: Request,
@@ -17,12 +16,14 @@ export async function GET(
     return new Response("Badge not found", { status: 404 });
   }
 
-  const colors = badge.particleConfig.groups.map((g) => g.color);
-  const accentColor = pickAccentColor(colors);
-  const badgeNumber = `#${String(badge.number).padStart(7, "0")}`;
+  // If a rendered poster image exists, redirect to it directly
+  if (badge.posterImageUrl) {
+    return Response.redirect(badge.posterImageUrl, 302);
+  }
 
-  // Use up to 3 colors for decorative blobs
-  const blobColors = colors.slice(0, 3);
+  // Fallback: generate a text-only OG card for badges without a poster
+  const accentColor = "#e49bc2";
+  const badgeNumber = `#${String(badge.number).padStart(7, "0")}`;
 
   return new ImageResponse(
     (
@@ -34,29 +35,26 @@ export async function GET(
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "flex-start",
-          backgroundColor: "#131414",
+          backgroundColor: "#0e0e0e",
           padding: "60px 80px",
           position: "relative",
           overflow: "hidden",
         }}
       >
-        {/* Decorative blurred color blobs */}
-        {blobColors.map((color, i) => (
-          <div
-            key={i}
-            style={{
-              position: "absolute",
-              width: "400px",
-              height: "400px",
-              borderRadius: "50%",
-              background: color,
-              opacity: 0.15,
-              filter: "blur(100px)",
-              top: i === 0 ? "-100px" : i === 1 ? "200px" : "100px",
-              right: i === 0 ? "-50px" : i === 1 ? "100px" : "-100px",
-            }}
-          />
-        ))}
+        {/* Decorative blurred color blob */}
+        <div
+          style={{
+            position: "absolute",
+            width: "400px",
+            height: "400px",
+            borderRadius: "50%",
+            background: accentColor,
+            opacity: 0.15,
+            filter: "blur(100px)",
+            top: "-100px",
+            right: "-50px",
+          }}
+        />
 
         {/* Badge number */}
         <div
@@ -79,6 +77,7 @@ export async function GET(
             color: accentColor,
             marginTop: "16px",
             lineHeight: 1.1,
+            textTransform: "uppercase",
           }}
         >
           {badge.name}
@@ -114,12 +113,28 @@ export async function GET(
         {/* Tagline */}
         <div
           style={{
-            fontSize: "20px",
-            color: "rgba(255,255,255,0.6)",
+            display: "flex",
+            alignItems: "center",
+            gap: "10px",
             marginTop: "40px",
           }}
         >
-          I&apos;m participating in She Ships Hackathon
+          <div
+            style={{
+              width: "24px",
+              height: "3px",
+              backgroundColor: accentColor,
+              opacity: 0.6,
+            }}
+          />
+          <div
+            style={{
+              fontSize: "20px",
+              color: "rgba(255,255,255,0.6)",
+            }}
+          >
+            SHE SHIPS HACKATHON 2026
+          </div>
         </div>
 
         {/* Footer branding */}
@@ -131,6 +146,7 @@ export async function GET(
             fontSize: "18px",
             color: "rgba(255,255,255,0.3)",
             letterSpacing: "0.1em",
+            textTransform: "uppercase",
           }}
         >
           sheships.org
