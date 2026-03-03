@@ -104,8 +104,8 @@ export async function POST(
     page.on("console", (msg) =>
       console.log(`[render-page ${msg.type()}]`, msg.text())
     );
-    page.on("pageerror", (err: Error) =>
-      console.error("[render-page error]", err.message)
+    page.on("pageerror", (err) =>
+      console.error("[render-page error]", (err as Error).message)
     );
 
     // networkidle0: waits for JS bundles, fonts, and images to finish loading.
@@ -143,7 +143,7 @@ export async function POST(
     const canvasEl = await page.$("#poster-canvas");
     if (!canvasEl) throw new Error("Canvas element not found after render");
 
-    const screenshot = await canvasEl.screenshot({ type: "png" });
+    const screenshot = Buffer.from(await canvasEl.screenshot({ type: "png" }));
 
     const blob = await put(`posters/${id}/rendered.png`, screenshot, {
       access: "public",
