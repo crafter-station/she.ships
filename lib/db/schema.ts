@@ -25,6 +25,7 @@ export const posters = pgTable("posters", {
   role: text("role").notNull(),
   organization: text("organization"),
   photoUrl: text("photo_url"),
+  renderedUrl: text("rendered_url"),
   template: text("template").notNull().default("eyes"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
