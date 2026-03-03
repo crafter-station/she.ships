@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import { exportPosterJpeg } from "@/lib/poster/canvas-renderer";
+import { exportPosterJpeg, exportOgImage } from "@/lib/poster/canvas-renderer";
 import type {
   SpeakerData,
   FaceDetectionResult,
@@ -153,14 +153,18 @@ export function usePosterAutosave({
 
       if (signal.aborted) return;
 
-      // Step 2: Re-render and upload poster image
+      // Step 2: Re-render and upload poster image + OG image
       const canvas = exportCanvasRef.current;
       if (canvas && currentDetection) {
-        const blob = await exportPosterJpeg(canvas);
+        const [posterBlob, ogBlob] = await Promise.all([
+          exportPosterJpeg(canvas),
+          exportOgImage(canvas),
+        ]);
         if (signal.aborted) return;
 
         const formData = new FormData();
-        formData.append("poster", blob, "poster.jpg");
+        formData.append("poster", posterBlob, "poster.jpg");
+        formData.append("og", ogBlob, "og.jpg");
 
         const uploadRes = await fetch(`/api/badges/${badgeId}/poster`, {
           method: "POST",
@@ -172,16 +176,22 @@ export function usePosterAutosave({
 
         if (uploadRes.ok) {
           const data = await uploadRes.json();
-          const newPosterUrl = data.posterImageUrl ?? data.photoUrl;
-          if (newPosterUrl) {
+          const patchBody: Record<string, string> = {};
+          if (data.posterImageUrl) {
+            patchBody.posterImageUrl = data.posterImageUrl;
+          }
+          if (data.ogImageUrl) {
+            patchBody.ogImageUrl = data.ogImageUrl;
+          }
+          if (Object.keys(patchBody).length > 0) {
             await fetch(`/api/badges/${badgeId}`, {
               method: "PATCH",
               headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ posterImageUrl: newPosterUrl }),
+              body: JSON.stringify(patchBody),
               signal,
             });
-            if (!signal.aborted) {
-              setPosterImageUrl(newPosterUrl);
+            if (!signal.aborted && data.posterImageUrl) {
+              setPosterImageUrl(data.posterImageUrl);
             }
           }
         }

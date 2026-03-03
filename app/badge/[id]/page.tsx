@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     : badge.role;
   const title = `${badge.name} is hacking at She Ships — 48h Global Hackathon`;
   const description = `${badge.name} (${role}) is building and shipping at She Ships Hackathon 2026. Join women and creators from around the world in 48 hours of building.`;
-  const ogImageUrl = `https://sheships.org/api/og/badge/${id}`;
+  const ogImageUrl = badge.ogImageUrl ?? `https://sheships.org/api/og/badge/${id}`;
 
   return {
     title,

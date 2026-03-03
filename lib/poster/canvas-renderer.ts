@@ -677,7 +677,7 @@ export function exportPoster(canvas: HTMLCanvasElement): Promise<Blob> {
   });
 }
 
-/** Export as compressed JPEG — used for autosave / OG images (~10x smaller). */
+/** Export as compressed JPEG — used for autosave (~10x smaller). */
 export function exportPosterJpeg(
   canvas: HTMLCanvasElement,
   quality = 0.82
@@ -687,6 +687,52 @@ export function exportPosterJpeg(
       (blob) => {
         if (blob) resolve(blob);
         else reject(new Error("Failed to export canvas as JPEG"));
+      },
+      "image/jpeg",
+      quality
+    );
+  });
+}
+
+const OG_W = 1200;
+const OG_H = 630;
+
+/**
+ * Generate a 1200x630 OG image with the poster centered on a dark background.
+ * Returns a compressed JPEG blob ready for upload.
+ */
+export function exportOgImage(
+  posterCanvas: HTMLCanvasElement,
+  quality = 0.85
+): Promise<Blob> {
+  const og = document.createElement("canvas");
+  og.width = OG_W;
+  og.height = OG_H;
+  const ctx = og.getContext("2d")!;
+
+  // Dark background
+  ctx.fillStyle = "#0e0e0e";
+  ctx.fillRect(0, 0, OG_W, OG_H);
+
+  // Scale poster to fit within the OG frame (height-constrained)
+  const posterW = posterCanvas.width;
+  const posterH = posterCanvas.height;
+  const pad = 16;
+  const maxH = OG_H - pad * 2;
+  const maxW = OG_W - pad * 2;
+  const scale = Math.min(maxW / posterW, maxH / posterH);
+  const drawW = Math.round(posterW * scale);
+  const drawH = Math.round(posterH * scale);
+  const drawX = Math.round((OG_W - drawW) / 2);
+  const drawY = Math.round((OG_H - drawH) / 2);
+
+  ctx.drawImage(posterCanvas, drawX, drawY, drawW, drawH);
+
+  return new Promise((resolve, reject) => {
+    og.toBlob(
+      (blob) => {
+        if (blob) resolve(blob);
+        else reject(new Error("Failed to export OG image"));
       },
       "image/jpeg",
       quality

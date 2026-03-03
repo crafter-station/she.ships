@@ -25,7 +25,7 @@ export async function POST(
 
     const formData = await request.formData();
 
-    const result: { photoUrl?: string; posterImageUrl?: string } = {};
+    const result: { photoUrl?: string; posterImageUrl?: string; ogImageUrl?: string } = {};
 
     // Handle photo upload (client converts to PNG before sending)
     const photoFile = formData.get("photo") as File | null;
@@ -62,6 +62,25 @@ export async function POST(
       await db
         .update(badges)
         .set({ posterImageUrl: blob.url, updatedAt: new Date() })
+        .where(eq(badges.id, id));
+    }
+
+    // Handle OG image upload (1200x630 JPEG for social sharing)
+    const ogFile = formData.get("og") as File | null;
+    if (ogFile) {
+      const blob = await put(
+        `badges/${id}/og-${uniqueSuffix()}.jpg`,
+        ogFile,
+        {
+          access: "public",
+          contentType: "image/jpeg",
+        }
+      );
+      result.ogImageUrl = blob.url;
+
+      await db
+        .update(badges)
+        .set({ ogImageUrl: blob.url, updatedAt: new Date() })
         .where(eq(badges.id, id));
     }
 

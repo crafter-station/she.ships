@@ -23,6 +23,7 @@ export async function GET(
 const patchSchema = z.object({
   posterConfig: z.any().optional(),
   posterImageUrl: z.string().url().optional(),
+  ogImageUrl: z.string().url().optional(),
   photoUrl: z.string().url().optional(),
   name: z.string().min(1).max(40).optional(),
   role: z.string().min(1).optional(),

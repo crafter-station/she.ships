@@ -12,6 +12,7 @@ export const badges = pgTable("badges", {
   photoUrl: text("photo_url"),
   posterConfig: jsonb("poster_config").$type<PosterConfig>(),
   posterImageUrl: text("poster_image_url"),
+  ogImageUrl: text("og_image_url"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
