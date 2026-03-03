@@ -7,6 +7,7 @@ export const es: Translations = {
     categories: "Categorías",
     faq: "FAQ",
     join: "Únete",
+    myBadge: "Mi Badge",
     ctaSponsor: "Sé Sponsor",
     ctaCommunityPartner: "Sé Community Partner",
     ctaJudge: "Sé Juez",
@@ -269,13 +270,18 @@ export const es: Translations = {
     headline: "Bienvenida,",
     headlineAccent: "Hacker",
     description:
-      "Fuiste seleccionada entre cientos de postulantes para hackear en She Ships. Ingresa tus datos y el código secreto de tu email de aceptación para reclamar tu badge.",
-    nameLabel: "Nombre Completo",
-    namePlaceholder: "Marie Curie",
-    secretLabel: "Código Secreto",
-    secretPlaceholder: "Ingresa tu código",
-    secretHint: "Revisa tu email de aceptación para encontrar este código.",
+      "Fuiste seleccionada entre cientos de postulantes para hackear en She Ships. Ingresa el correo con el que te registraste en Luma para reclamar tu badge.",
+    emailLabel: "Correo electrónico",
+    emailPlaceholder: "tu@correo.com",
+    emailHint: "Usa el correo con el que te registraste en Luma.",
+    errorNotApproved:
+      "Aún no has sido aceptada. Revisa tu estado en Luma.",
+    errorNotFound:
+      "No se encontró registro con este correo. Regístrate en Luma primero.",
     generateButton: "Reclamar Mi Badge",
+    existingBadge: "Ya tienes un badge!",
+    existingBadgeLink: "Ver mi badge",
+    existingBadgeOr: "o crea uno nuevo abajo",
     resultHeadline: "Voy a hackear en She Ships",
     resultDate: "6-8 de marzo, 2026 — Hackathon Global de 48h",
     resultDescription:

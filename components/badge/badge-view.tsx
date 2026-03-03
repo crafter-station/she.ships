@@ -2,6 +2,8 @@
 
 import { useState, useCallback, useEffect, useRef, useMemo } from "react";
 import dynamic from "next/dynamic";
+import Link from "next/link";
+import { Eye } from "lucide-react";
 import BadgeResult from "@/components/badge/badge-result";
 import ParticleInput from "@/components/badge/particle-input";
 import {
@@ -132,15 +134,24 @@ export default function BadgeView({ badge }: BadgeViewProps) {
             badgeNumber={badgeNumber}
             accentColor={accentColor}
           />
-          <div className="mt-2 md:mt-6">
-            <ParticleInput
-              onGenerate={handleGenerateParticles}
-              onPreset={handleParticleConfigChange}
-              isLoading={particleLoading}
-              isMobile={isMobile}
-              accentColor={accentColor}
-            />
+          <div className="mt-2 md:mt-4 flex items-center gap-3">
+            <div className="flex-1">
+              <ParticleInput
+                onGenerate={handleGenerateParticles}
+                onPreset={handleParticleConfigChange}
+                isLoading={particleLoading}
+                isMobile={isMobile}
+                accentColor={accentColor}
+              />
+            </div>
           </div>
+          <Link
+            href={`/badge/${badge.id}`}
+            className="mt-2 md:mt-3 inline-flex items-center gap-1.5 text-white/40 hover:text-white/70 text-xs font-bold uppercase tracking-wider transition-colors"
+          >
+            <Eye className="w-3.5 h-3.5" />
+            View Badge
+          </Link>
         </div>
       </div>
     </section>

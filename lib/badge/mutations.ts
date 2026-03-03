@@ -21,17 +21,18 @@ export function useBadge(id: string | null) {
   });
 }
 
+export type CreateBadgeResult = { badge: Badge; created: boolean };
+
 export function useCreateBadge() {
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: async (data: {
       id: string;
-      name: string;
       role: string;
       organization?: string;
       particleConfig: ParticleConfig;
-      secret: string;
+      email: string;
     }) => {
       const res = await fetch("/api/badges", {
         method: "POST",
@@ -42,9 +43,9 @@ export function useCreateBadge() {
         const err = await res.json().catch(() => ({}));
         throw new Error(err.error || "Failed to create badge");
       }
-      return res.json() as Promise<Badge>;
+      return res.json() as Promise<CreateBadgeResult>;
     },
-    onSuccess: (badge) => {
+    onSuccess: ({ badge }) => {
       queryClient.setQueryData(["badge", badge.id], badge);
     },
   });
