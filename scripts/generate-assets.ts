@@ -62,11 +62,12 @@ async function generateOG(width: number, height: number, filename: string) {
   <text x="600" y="180" fill="${ROSE_CORAL}" font-family="monospace" font-size="12" text-anchor="middle" letter-spacing="3">8 DE MARZO</text>
 
   <!-- Main headline -->
-  <text x="600" y="280" fill="${OFF_WHITE}" font-family="system-ui, sans-serif" font-size="72" font-weight="800" text-anchor="middle" letter-spacing="-2">Just</text>
-  <text x="600" y="370" fill="${ROSE_CORAL}" font-family="system-ui, sans-serif" font-size="72" font-weight="800" text-anchor="middle" letter-spacing="-2">Ship It.</text>
+  <text x="600" y="280" fill="${OFF_WHITE}" font-family="system-ui, sans-serif" font-size="70" font-weight="800" text-anchor="middle" letter-spacing="-2">She Ships</text>
+  <text x="600" y="360" fill="${ROSE_CORAL}" font-family="system-ui, sans-serif" font-size="52" font-weight="800" text-anchor="middle" letter-spacing="-1">48-Hour Hackathon</text>
 
-  <!-- Tagline -->
-  <text x="600" y="430" fill="${WARM_GRAY}" font-family="system-ui, sans-serif" font-size="20" text-anchor="middle">Donde las mujeres construyen y hacen ship</text>
+  <!-- Tagline + call to action -->
+  <text x="600" y="430" fill="${WARM_GRAY}" font-family="system-ui, sans-serif" font-size="20" text-anchor="middle">Where women build and launch with AI-native tools</text>
+  <text x="600" y="468" fill="${OFF_WHITE}" font-family="system-ui, sans-serif" font-size="24" font-weight="700" text-anchor="middle">Register now at sheships.org</text>
 
   <!-- Brand name -->
   <text x="555" y="520" fill="${OFF_WHITE}" font-family="system-ui, sans-serif" font-size="24" font-weight="700" text-anchor="middle">She</text>
@@ -78,11 +79,11 @@ async function generateOG(width: number, height: number, filename: string) {
 </svg>`;
 
   await sharp(Buffer.from(svg))
-    .jpeg({
+    .png({
+      compressionLevel: 9,
+      effort: 10,
+      palette: true,
       quality: 80,
-      mozjpeg: true,
-      progressive: true,
-      chromaSubsampling: "4:4:4",
     })
     .toFile(join(PUBLIC, filename));
   console.log(`Generated ${filename}`);
@@ -156,8 +157,8 @@ function buildIco(pngBuffers: Buffer[], sizes: number[]): Buffer {
 
 // Run
 async function main() {
-  await generateOG(1200, 630, "og-v2.jpg");
-  await generateOG(1200, 600, "og-twitter-v2.jpg");
+  await generateOG(1200, 630, "og.png");
+  await generateOG(1200, 600, "og-twitter.png");
   await generateFavicon();
   console.log("\nAll brand assets generated.");
 }

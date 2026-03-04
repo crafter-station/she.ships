@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     type: "website",
     url: "https://www.sheships.org",
     images: [
-      { url: "https://www.sheships.org/og-v2.jpg", width: 1200, height: 630 },
+      { url: "https://www.sheships.org/og.png", width: 1200, height: 630 },
     ],
   },
   twitter: {
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     title: "She Ships | 48-Hour Hackathon Where Women Build and Ship",
     description:
       "Join She Ships, a 48-hour hackathon where women build and launch real products with AI-native tools, mentorship, and a supportive community.",
-    images: ["https://www.sheships.org/og-twitter-v2.jpg"],
+    images: ["https://www.sheships.org/og-twitter.png"],
   },
   icons: {
     icon: "/favicon.ico",
