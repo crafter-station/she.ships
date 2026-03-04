@@ -38,7 +38,7 @@ function crosses(positions: [number, number][], color: string): string {
     .join("");
 }
 
-// --- OG Image (1200x630) ---
+// --- OG Image (social cards) ---
 async function generateOG(width: number, height: number, filename: string) {
   const svg = `
 <svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
@@ -77,7 +77,14 @@ async function generateOG(width: number, height: number, filename: string) {
   <text x="1060" y="620" fill="${WARM_GRAY}" font-family="monospace" font-size="10" opacity="0.5" letter-spacing="2">2026.03.08</text>
 </svg>`;
 
-  await sharp(Buffer.from(svg)).png({ quality: 95 }).toFile(join(PUBLIC, filename));
+  await sharp(Buffer.from(svg))
+    .jpeg({
+      quality: 80,
+      mozjpeg: true,
+      progressive: true,
+      chromaSubsampling: "4:4:4",
+    })
+    .toFile(join(PUBLIC, filename));
   console.log(`Generated ${filename}`);
 }
 
@@ -149,8 +156,8 @@ function buildIco(pngBuffers: Buffer[], sizes: number[]): Buffer {
 
 // Run
 async function main() {
-  await generateOG(1200, 630, "og.png");
-  await generateOG(1200, 600, "og-twitter.png");
+  await generateOG(1200, 630, "og-v2.jpg");
+  await generateOG(1200, 600, "og-twitter-v2.jpg");
   await generateFavicon();
   console.log("\nAll brand assets generated.");
 }

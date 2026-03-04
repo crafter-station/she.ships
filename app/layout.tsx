@@ -26,23 +26,26 @@ const monoblock = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "She Ships | Where Women Build and Ship",
+  title: "She Ships | 48-Hour Hackathon Where Women Build and Ship",
   description:
-    "Join women builders shipping real products with AI-native tools. Mentorship, community, and visibility. No code required.",
+    "Join She Ships, a 48-hour hackathon where women build and launch real products with AI-native tools, mentorship, and a supportive community.",
   metadataBase: new URL("https://www.sheships.org"),
   openGraph: {
-    title: "She Ships | Where Women Build and Ship",
+    title: "She Ships | 48-Hour Hackathon Where Women Build and Ship",
     description:
-      "Join women builders shipping real products with AI-native tools.",
+      "Join She Ships, a 48-hour hackathon where women build and launch real products with AI-native tools, mentorship, and a supportive community.",
     type: "website",
     url: "https://www.sheships.org",
     images: [
-      { url: "https://www.sheships.org/og.png", width: 1200, height: 630 },
+      { url: "https://www.sheships.org/og-v2.jpg", width: 1200, height: 630 },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    images: ["https://www.sheships.org/og-twitter.png"],
+    title: "She Ships | 48-Hour Hackathon Where Women Build and Ship",
+    description:
+      "Join She Ships, a 48-hour hackathon where women build and launch real products with AI-native tools, mentorship, and a supportive community.",
+    images: ["https://www.sheships.org/og-twitter-v2.jpg"],
   },
   icons: {
     icon: "/favicon.ico",
