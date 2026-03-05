@@ -66,7 +66,7 @@ export function Countdown() {
           ))}
         </div>
 
-        <p className="mt-12 font-[family-name:var(--font-title)] text-2xl font-bold text-primary-pink md:text-3xl">
+        <p className="mt-12 text-lg font-normal text-primary-cream md:text-xl">
           {t.countdown.tagline}
         </p>
       </div>
