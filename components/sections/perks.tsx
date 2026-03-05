@@ -68,7 +68,7 @@ export function Perks() {
         })}
       </div>
 
-      <div className="mt-14 pt-14 border-t-2 border-primary-pink/30 flex flex-col items-center gap-4">
+      <div className="mt-14 flex flex-col items-center gap-4">
         <Button asChild variant="pink" size="lg">
           <a href="https://luma.com/ytl522gp" target="_blank" rel="noopener noreferrer">
             {"<"}{t.nav.registerFree}{">"}
