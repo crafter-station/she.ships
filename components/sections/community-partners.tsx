@@ -20,7 +20,7 @@ export function CommunityPartners() {
   const { t } = useTranslation();
 
   return (
-    <SectionWrapper variant="dark" id="community-partners" className="min-h-fit -mt-px" innerClassName="pt-10 pb-20 md:pt-14 md:pb-28">
+    <SectionWrapper variant="dark" id="community-partners" className="min-h-fit !relative -mt-px" innerClassName="pt-10 pb-20 md:pt-14 md:pb-28">
       <div className="text-center mb-12">
         <span className="data-label mb-4 block text-neutral-gray uppercase">
           {t.communityPartners.label}
