@@ -35,8 +35,8 @@ export function FAQ() {
             >
               <Accordion.Trigger className="group flex w-full items-start justify-between gap-4 text-left">
                 <div className="flex items-start gap-4">
-                  <div className="w-8 h-8 bg-primary-pink flex-shrink-0" />
-                  <span className="font-[family-name:var(--font-title)] text-2xl font-bold text-primary-cream md:text-3xl">
+                  <div className="w-4 h-4 bg-primary-pink flex-shrink-0 mt-1" />
+                  <span className="font-[family-name:var(--font-title)] text-base font-normal text-primary-cream md:text-lg">
                     {item.question}
                   </span>
                 </div>
