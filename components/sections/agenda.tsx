@@ -29,7 +29,17 @@ const GRID_START = 9 * 60;   // 9:00
 const GRID_END   = 21 * 60;  // 21:00
 const SLOT       = 5;        // minutes per row
 const TOTAL_ROWS = (GRID_END - GRID_START) / SLOT; // 144 rows
-const ROW_HEIGHT = 3;        // px per row — total ~432px
+
+// Variable row heights: taller for 19:00–20:30 so events are readable
+const ROW_HEIGHT_NORMAL = 3;
+const ROW_HEIGHT_TALL   = 8;
+const TALL_START_ROW = (19 * 60 - GRID_START) / SLOT;      // 120 (0-indexed)
+const TALL_END_ROW   = (20.5 * 60 - GRID_START) / SLOT;    // 138 (0-indexed)
+const GRID_TEMPLATE_ROWS = [
+  `repeat(${TALL_START_ROW}, ${ROW_HEIGHT_NORMAL}px)`,
+  `repeat(${TALL_END_ROW - TALL_START_ROW}, ${ROW_HEIGHT_TALL}px)`,
+  `repeat(${TOTAL_ROWS - TALL_END_ROW}, ${ROW_HEIGHT_NORMAL}px)`,
+].join(" ");
 
 // ─── Time helpers ─────────────────────────────────────────────────────────────
 
@@ -84,9 +94,8 @@ const friday: Row[] = [
   { time: "18:55 – 19:00", activity: "Intro y llegada de participantes",                                           color: C.pink },
   { time: "19:00 – 19:25", activity: "Bienvenida por Natalia Jiménez, Founder de XAIA Lab",                        color: C.pink },
   { time: "19:25 – 19:30", activity: "Indicaciones de la hackathon, saludo a partners, sponsors y organizadores",  color: C.cream },
-  { time: "19:30 – 19:50", activity: "Keynote Sezzle — Sponsor Platinum oficial",                                  color: C.cream },
-  { time: "19:50 – 20:00", activity: "Ronda de preguntas",                                                         color: C.pink },
-  { time: "20:00",         activity: "🟢 ¡Inicia la hackathon!",                                                   color: C.green },
+  { time: "19:30 – 20:00", activity: "Keynote Sezzle — Sponsor Platinum oficial",                                  color: C.cream },
+  { time: "20:00 – 21:00", activity: "🟢 ¡Inicia la hackathon!",                                                   color: C.green },
 ];
 
 const saturdayByCity: Record<City, Row[]> = {
@@ -117,9 +126,8 @@ const saturdayByCity: Record<City, Row[]> = {
 const sunday: Row[] = [
   { time: "9:00 – 12:00",  activity: "Avance final de proyectos + último contacto con mentoras",  color: C.cream },
   { time: "12:00 – 13:00", activity: "Grabación de pitches y subida a Devpost",                   color: C.green },
-  { time: "13:00 – 13:05", activity: "Indicaciones finales y cierre",                             color: C.cream },
-  { time: "13:05 – 13:30", activity: "Mensaje de cierre por Larissa, GTM de ElevenLabs",          color: C.pink },
-  { time: "13:30",         activity: "🏁 Fin de la hackathon",                                     color: C.green },
+  { time: "13:00 – 13:30", activity: "Mensaje de cierre por Larissa, GTM de ElevenLabs",          color: C.pink },
+  { time: "13:30 – 14:00", activity: "🏁 Fin de la hackathon",                                     color: C.green },
 ];
 
 const cities: { id: City; label: string }[] = [
@@ -155,8 +163,8 @@ function DayHeader({ label, subtitle }: { label: string; subtitle?: string }) {
 function EventBlock({ row, column }: { row: Row; column: number }) {
   const [hovered, setHovered] = useState(false);
   const dur     = durationMins(row.time);
-  const isTiny  = dur < 10;
-  const isShort = dur < 25;
+  const isTiny  = dur < 15;
+  const isShort = dur < 40;
 
   const { start, end } = parseTimeRange(row.time);
   const rowStart = toGridRow(start);
@@ -172,6 +180,7 @@ function EventBlock({ row, column }: { row: Row; column: number }) {
   return (
     // Outer cell: occupies the grid position, provides 2px inset margin
     <div
+      title={`${displayTime} · ${row.activity}`}
       style={{
         gridRow:    `${rowStart} / ${rowEnd}`,
         gridColumn: column,
@@ -198,13 +207,15 @@ function EventBlock({ row, column }: { row: Row; column: number }) {
       {!isTiny && (
         <span
           style={{
-            fontSize:   isShort ? "8px" : "9px",
-            fontWeight: 700,
-            color:      textColor,
-            lineHeight: 1.2,
-            display:    "block",
-            overflow:   "hidden",
-            fontFamily: "var(--font-title)",
+            fontSize:    isShort ? "8px" : "9px",
+            fontWeight:  700,
+            color:       textColor,
+            lineHeight:  1.2,
+            display:     "block",
+            overflow:    "hidden",
+            whiteSpace:  "nowrap",
+            textOverflow:"ellipsis",
+            fontFamily:  "var(--font-title)",
           }}
         >
           {row.activity}
@@ -359,7 +370,7 @@ export function Agenda() {
         <div style={{
           display:             "grid",
           gridTemplateColumns: "44px 1fr 1fr 1fr",
-          gridTemplateRows:    `repeat(${TOTAL_ROWS}, ${ROW_HEIGHT}px)`,
+          gridTemplateRows:    GRID_TEMPLATE_ROWS,
           gap:                 0,
           minWidth:            "560px",
           backgroundColor:     BG,
