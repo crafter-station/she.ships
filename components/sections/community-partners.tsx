@@ -20,7 +20,7 @@ export function CommunityPartners() {
   const { t } = useTranslation();
 
   return (
-    <SectionWrapper variant="dark" bordered id="community-partners">
+    <SectionWrapper variant="dark" bordered id="community-partners" className="min-h-fit" innerClassName="pt-10 pb-20 md:pt-14 md:pb-28">
       <div className="text-center mb-12">
         <span className="data-label mb-4 block text-neutral-gray uppercase">
           {t.communityPartners.label}
@@ -28,7 +28,7 @@ export function CommunityPartners() {
       </div>
 
       <div
-        className="relative grid grid-cols-4 place-items-center gap-0 max-w-4xl mx-auto"
+        className="relative grid grid-cols-2 md:grid-cols-4 place-items-center gap-0 max-w-4xl mx-auto"
         style={{
           backgroundImage:
             "radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px)",
