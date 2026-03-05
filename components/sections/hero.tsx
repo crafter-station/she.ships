@@ -36,7 +36,7 @@ export function Hero() {
   const [btnScale, setBtnScale] = useState(0.96);
   // Layout
   const [btnGap, setBtnGap] = useState(32);
-  const [overlay, setOverlay] = useState(0);
+  const [overlay, setOverlay] = useState(30);
   // Text (encrypted)
   const [txtX, setTxtX] = useState(232);
   const [txtY, setTxtY] = useState(-131);
@@ -126,7 +126,7 @@ export function Hero() {
         {/* Encrypted text messages */}
         <div
           style={{ transform: `translate(${txtX}px, ${txtY}px)` }}
-          className="hidden md:flex flex-col items-start gap-1.5 sm:gap-2 mb-8 sm:mb-12"
+          className="hidden md:flex flex-col items-start gap-1.5 sm:gap-2 mb-8 sm:mb-12 bg-black/30 px-5 py-4"
         >
           {MESSAGES.map((msg, i) => (
             <p
@@ -169,7 +169,7 @@ export function Hero() {
         </div>
 
         {/* Mobile: encrypted light text — placed right before the button */}
-        <div className="flex flex-col items-center gap-1 mb-4 mt-80 md:hidden">
+        <div className="flex flex-col items-center gap-1 mb-4 mt-80 md:hidden bg-black/35 px-5 py-4 w-full">
           {MESSAGES.map((msg, i) => (
             <p
               key={i}
