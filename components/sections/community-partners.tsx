@@ -11,7 +11,7 @@ const partners = [
   { name: "Inspiratech", logo: "/communities/inspiratech-logotipo.png", url: "https://www.instagram.com/inspiratech.la/" },
   { name: "Empremafia", logo: "/communities/EMPREMAFIA.png", url: "https://empremafia.com/" },
   { name: "Notion Peru", logo: "/communities/notion-peru.png", url: "https://notionperu.com" },
-  { name: "Comunidad Aliada", logo: "/communities/comunidad-aliada.png", url: "https://femaleforcelatam.com/" },
+  { name: "Comunidad Aliada", logo: "/communities/comunidad-aliada.png", url: "" },
   { name: "Female Force", logo: "/sponsors/Female Force - Creme - Logo Padrão.png", url: "https://femaleforcelatam.com/" },
   { name: "Maker", logo: "/communities/maker.png", url: "https://maker.com/" },
 ];
@@ -35,15 +35,8 @@ export function CommunityPartners() {
           backgroundSize: "20px 20px",
         }}
       >
-        {partners.map((partner) => (
-          <a
-            key={partner.name}
-            href={partner.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => track("community_partner_click", { name: partner.name })}
-            className="relative flex items-center justify-center w-full aspect-square border border-white/[0.06] p-6 md:p-8 transition-opacity hover:opacity-80"
-          >
+        {partners.map((partner) => {
+          const inner = (
             <div className="relative w-full h-full">
               <Image
                 src={partner.logo}
@@ -52,8 +45,27 @@ export function CommunityPartners() {
                 className="object-contain"
               />
             </div>
-          </a>
-        ))}
+          );
+          return partner.url ? (
+            <a
+              key={partner.name}
+              href={partner.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => track("community_partner_click", { name: partner.name })}
+              className="relative flex items-center justify-center w-full aspect-square border border-white/[0.06] p-6 md:p-8 transition-opacity hover:opacity-80"
+            >
+              {inner}
+            </a>
+          ) : (
+            <div
+              key={partner.name}
+              className="relative flex items-center justify-center w-full aspect-square border border-white/[0.06] p-6 md:p-8"
+            >
+              {inner}
+            </div>
+          );
+        })}
       </div>
     </SectionWrapper>
   );
