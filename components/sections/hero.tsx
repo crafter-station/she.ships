@@ -6,24 +6,23 @@ import { EncryptedText } from "@/components/ui/encrypted-text";
 import { useTranslation } from "@/lib/i18n/context";
 import Image from "next/image";
 
-const MESSAGES = [
-  "WOMEN IN TECH,",
-  "DESIGN, ART, AND CULTURE_",
-  "BUILD WHAT THE WORLD HASN'T BUILT FOR US YET_",
-  "NO CODING REQUIRED. FROM IDEA TO PRODUCT IN 48H._",
+const MESSAGES: { text: string; accent?: boolean }[] = [
+  { text: "WOMEN IN TECH," },
+  { text: "DESIGN, ART, AND CULTURE_" },
+  { text: "BUILD WHAT THE WORLD HASN'T BUILT FOR US YET_" },
+  { text: "NO CODING REQUIRED.", accent: true },
+  { text: "FROM IDEA TO PRODUCT IN 48H._" },
 ];
 
 const REVEAL_MS_PER_CHAR = 40;
 const PAUSE_BETWEEN = 300;
 
-// Cumulative delay: each line waits for all previous lines to finish + pause
-// Lines 0-1 are one phrase, so no pause between them
 const MESSAGE_DELAYS = MESSAGES.reduce<number[]>((acc, msg, i) => {
   if (i === 0) {
     acc.push(0);
   } else {
     const prevStart = acc[i - 1];
-    const prevDuration = MESSAGES[i - 1].length * REVEAL_MS_PER_CHAR;
+    const prevDuration = MESSAGES[i - 1].text.length * REVEAL_MS_PER_CHAR;
     const pause = i === 1 ? 0 : PAUSE_BETWEEN;
     acc.push(prevStart + prevDuration + pause);
   }
@@ -132,12 +131,16 @@ export function Hero() {
           {MESSAGES.map((msg, i) => (
             <p
               key={i}
-              className="font-[family-name:var(--font-monoblock)] text-[8px] sm:text-[10px] md:text-xs lg:text-sm font-light tracking-wide uppercase"
+              className={
+                msg.accent
+                  ? "font-[family-name:var(--font-monoblock)] text-sm sm:text-base md:text-lg lg:text-xl font-black tracking-wide uppercase"
+                  : "font-[family-name:var(--font-monoblock)] text-[8px] sm:text-[10px] md:text-xs lg:text-sm font-light tracking-wide uppercase"
+              }
             >
               <EncryptedText
-                text={msg}
-                encryptedClassName="text-white/40"
-                revealedClassName="text-white"
+                text={msg.text}
+                encryptedClassName={msg.accent ? "text-primary-pink/40" : "text-white/40"}
+                revealedClassName={msg.accent ? "text-primary-pink" : "text-white"}
                 revealDelayMs={REVEAL_MS_PER_CHAR}
                 parentRevealDelayMs={MESSAGE_DELAYS[i]}
               />
@@ -170,12 +173,16 @@ export function Hero() {
           {MESSAGES.map((msg, i) => (
             <p
               key={i}
-              className="font-[family-name:var(--font-monoblock)] text-[10px] sm:text-xs font-light tracking-wide uppercase text-center"
+              className={
+                msg.accent
+                  ? "font-[family-name:var(--font-monoblock)] text-base sm:text-lg font-black tracking-wide uppercase text-center"
+                  : "font-[family-name:var(--font-monoblock)] text-[10px] sm:text-xs font-light tracking-wide uppercase text-center"
+              }
             >
               <EncryptedText
-                text={msg}
-                encryptedClassName="text-white/40"
-                revealedClassName="text-white"
+                text={msg.text}
+                encryptedClassName={msg.accent ? "text-primary-pink/40" : "text-white/40"}
+                revealedClassName={msg.accent ? "text-primary-pink" : "text-white"}
                 revealDelayMs={REVEAL_MS_PER_CHAR}
                 parentRevealDelayMs={MESSAGE_DELAYS[i]}
               />
