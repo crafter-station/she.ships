@@ -7,6 +7,7 @@ export const es: Translations = {
     categories: "Categorías",
     faq: "FAQ",
     join: "Únete",
+    registerFree: "Regístrate Gratis",
     myBadge: "Mi Poster",
     ctaSponsor: "Sé Sponsor",
     ctaCommunityPartner: "Sé Community Partner",

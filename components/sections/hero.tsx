@@ -215,7 +215,7 @@ export function Hero() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              {"<Register Free>"}
+              {"<"}{t.nav.registerFree}{">"}
             </a>
           </Button>
         </div>

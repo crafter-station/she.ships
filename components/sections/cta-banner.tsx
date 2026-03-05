@@ -8,7 +8,7 @@ export function CtaBanner({ label }: { label?: string }) {
     <div className="bg-primary-black py-14 flex flex-col items-center gap-4 border-t-2 border-primary-pink/30">
       <Button asChild variant="pink" size="lg">
         <a href="https://luma.com/ytl522gp" target="_blank" rel="noopener noreferrer">
-          {"<"}{label ?? "Register Free"}{">"}
+          {"<"}{label ?? t.nav.registerFree}{">"}
         </a>
       </Button>
       <p className="data-label text-neutral-gray uppercase">{t.hero.date} · {t.eventInfo.limited}</p>
