@@ -29,6 +29,10 @@ export const en = {
     ctaSponsor: "Be a Sponsor",
     ctaCommunity: "Be a Community Manager",
     by: "by",
+    greenLabel1: "Global Hackathon",
+    greenLabel2: "6-8 March // Online",
+    message1: "NO CODING REQUIRED.",
+    message2: "BUILD REAL SOLUTIONS FOR WOMEN IN 48H._",
   },
   countdown: {
     label: "The clock is ticking",

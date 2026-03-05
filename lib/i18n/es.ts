@@ -31,6 +31,10 @@ export const es: Translations = {
     ctaSponsor: "Sé Sponsor",
     ctaCommunity: "Sé Community Manager",
     by: "por",
+    greenLabel1: "Global Hackathon",
+    greenLabel2: "6-8 de marzo // Online",
+    message1: "NO SE REQUIERE CÓDIGO.",
+    message2: "DE IDEA A PRODUCTO EN 48H._",
   },
   countdown: {
     label: "El reloj no se detiene",

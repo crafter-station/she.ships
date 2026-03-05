@@ -6,25 +6,10 @@ import { EncryptedText } from "@/components/ui/encrypted-text";
 import { useTranslation } from "@/lib/i18n/context";
 import Image from "next/image";
 
-const MESSAGES: { text: string; accent?: boolean }[] = [
-  { text: "NO CODING REQUIRED.", accent: true },
-  { text: "BUILD REAL SOLUTIONS FOR WOMEN IN 48H._" },
-];
+// Messages are built dynamically from translations — see getMessages() inside Hero
 
 const REVEAL_MS_PER_CHAR = 40;
 const PAUSE_BETWEEN = 300;
-
-const MESSAGE_DELAYS = MESSAGES.reduce<number[]>((acc, msg, i) => {
-  if (i === 0) {
-    acc.push(0);
-  } else {
-    const prevStart = acc[i - 1];
-    const prevDuration = MESSAGES[i - 1].text.length * REVEAL_MS_PER_CHAR;
-    const pause = i === 1 ? 0 : PAUSE_BETWEEN;
-    acc.push(prevStart + prevDuration + pause);
-  }
-  return acc;
-}, []);
 
 export function Hero() {
   // Button
@@ -33,7 +18,7 @@ export function Hero() {
   const [btnScale, setBtnScale] = useState(0.96);
   // Layout
   const [btnGap, setBtnGap] = useState(32);
-  const [overlay, setOverlay] = useState(30);
+  const [overlay, setOverlay] = useState(0);
   // Text (encrypted)
   const [txtX, setTxtX] = useState(232);
   const [txtY, setTxtY] = useState(-175);
@@ -44,6 +29,22 @@ export function Hero() {
   const [greenML, setGreenML] = useState(64);
 
   const { t } = useTranslation();
+
+  const MESSAGES: { text: string; accent?: boolean }[] = [
+    { text: t.hero.message1, accent: true },
+    { text: t.hero.message2 },
+  ];
+
+  const MESSAGE_DELAYS = MESSAGES.reduce<number[]>((acc, msg, i) => {
+    if (i === 0) { acc.push(0); }
+    else {
+      const prevStart = acc[i - 1];
+      const prevDuration = MESSAGES[i - 1].text.length * REVEAL_MS_PER_CHAR;
+      const pause = i === 1 ? 0 : PAUSE_BETWEEN;
+      acc.push(prevStart + prevDuration + pause);
+    }
+    return acc;
+  }, []);
   const [panelOpen, setPanelOpen] = useState(true);
   const [activeTab, setActiveTab] = useState<"btn" | "layout" | "text" | "green">("btn");
   const [copied, setCopied] = useState<string | null>(null);
@@ -81,7 +82,7 @@ export function Hero() {
 
   const resetAll = () => {
     setBtnX(8); setBtnY(84); setBtnScale(0.96);
-    setBtnGap(32); setOverlay(0);
+    setBtnGap(32); setOverlay(0);  // overlay default is already 0
     setTxtX(232); setTxtY(-175);
     setGreenX(0); setGreenY(-109); setGreenGap(218); setGreenML(64);
   };
@@ -148,10 +149,10 @@ export function Hero() {
         {/* Mobile: green labels — absolute top, below nav, above sheep */}
         <div className="absolute top-20 left-0 right-0 flex flex-col items-center md:hidden">
           <span className="font-[family-name:var(--font-title)] text-base font-black uppercase tracking-wider text-primary-green">
-            Global Hackathon
+            {t.hero.greenLabel1}
           </span>
           <span className="font-[family-name:var(--font-title)] text-base font-black uppercase tracking-wider text-primary-green">
-            6-8 March // Online
+            {t.hero.greenLabel2}
           </span>
         </div>
 
@@ -195,12 +196,12 @@ export function Hero() {
           }}
         >
           <span className="font-[family-name:var(--font-title)] text-sm sm:text-lg md:text-2xl lg:text-3xl font-black uppercase tracking-wider text-primary-green">
-            Global Hackathon
+            {t.hero.greenLabel1}
           </span>
           {/* Spacer for the sheep in the center of the image */}
           <div className="shrink-0" style={{ width: `${greenGap}px` }} />
           <span className="font-[family-name:var(--font-title)] text-sm sm:text-lg md:text-2xl lg:text-3xl font-black uppercase tracking-wider text-primary-green">
-            6-8 March // Online
+            {t.hero.greenLabel2}
           </span>
         </div>
 
