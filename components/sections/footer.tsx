@@ -8,7 +8,7 @@ export function Footer() {
   const { t } = useTranslation();
 
   return (
-    <footer className="relative w-full border-t-4 border-primary-black bg-primary-black text-white overflow-hidden">
+    <footer className="relative z-[2] w-full border-t-4 border-primary-black bg-primary-black text-white overflow-hidden">
       <div className="bg-primary-black px-6 py-5">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 text-center md:flex-row md:text-left">
           <p className="text-xs font-bold uppercase tracking-wide text-white/60">
