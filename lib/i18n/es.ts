@@ -264,12 +264,10 @@ export const es: Translations = {
     mainCategories: [
       {
         title: "Mejor Solución Fintech para el Empoderamiento Económico de la Mujer",
-        prize: "$500 USD",
         description: "Proyectos que usen tecnología financiera para cerrar brechas económicas de género: acceso al crédito, independencia financiera, herramientas de ahorro o plataformas de comercio para mujeres emprendedoras.",
       },
       {
         title: "Mejor Solución de Inclusión Financiera para Mujeres",
-        prize: "$500 USD",
         description: "Proyectos enfocados en hacer más accesibles los pagos flexibles, transparencia salarial, acceso a préstamos y servicios financieros para mujeres en comunidades desatendidas.",
       },
     ],
