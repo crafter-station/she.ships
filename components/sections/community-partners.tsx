@@ -11,7 +11,7 @@ const partners = [
   { name: "Inspiratech", logo: "/communities/inspiratech-logotipo.png", url: "https://www.instagram.com/inspiratech.la/" },
   { name: "Empremafia", logo: "/communities/EMPREMAFIA.png", url: "https://empremafia.com/" },
   { name: "Notion Peru", logo: "/communities/notion-peru.png", url: "https://notionperu.com" },
-  { name: "Comunidad Aliada", logo: "/communities/comunidad-aliada.png", url: "" },
+  { name: "Comunidad Aliada", logo: "/communities/comunidad-aliada.png", url: "https://www.the502project.com/" },
   { name: "Female Force", logo: "/sponsors/Female Force - Creme - Logo Padrão.png", url: "https://femaleforcelatam.com/" },
   { name: "Maker", logo: "/communities/maker.png", url: "https://maker.com/" },
 ];
