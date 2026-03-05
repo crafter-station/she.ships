@@ -7,11 +7,8 @@ import { useTranslation } from "@/lib/i18n/context";
 import Image from "next/image";
 
 const MESSAGES: { text: string; accent?: boolean }[] = [
-  { text: "WOMEN IN TECH," },
-  { text: "DESIGN, ART, AND CULTURE_" },
-  { text: "SOLVE REAL PROBLEMS THAT AFFECT WOMEN_" },
   { text: "NO CODING REQUIRED.", accent: true },
-  { text: "FROM IDEA TO PRODUCT IN 48H._" },
+  { text: "BUILD REAL SOLUTIONS FOR WOMEN IN 48H._" },
 ];
 
 const REVEAL_MS_PER_CHAR = 40;
