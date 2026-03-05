@@ -80,9 +80,9 @@ export const es: Translations = {
     ],
   },
   agenda: {
-    label: "El Programa",
-    headline: "Qué",
-    headlineAccent: "Esperar",
+    label: "Agenda Oficial",
+    headline: "Agenda",
+    headlineAccent: "#SheShips",
     slots: [
       {
         time: "6 de marzo",

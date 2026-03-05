@@ -78,9 +78,9 @@ export const en = {
     ],
   },
   agenda: {
-    label: "The Schedule",
-    headline: "What to",
-    headlineAccent: "Expect",
+    label: "Official Schedule",
+    headline: "Agenda",
+    headlineAccent: "#SheShips",
     slots: [
       {
         time: "March 6",
