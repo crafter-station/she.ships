@@ -104,7 +104,7 @@ export function Hero() {
   };
 
   return (
-    <section id="hero" className="sticky top-0 min-h-screen w-full flex items-center justify-center overflow-hidden">
+    <section id="hero" className="sticky top-0 min-h-screen w-full flex items-end md:items-center justify-center overflow-hidden">
       {/* Background */}
       <Image
         src="https://res.cloudinary.com/dzohocmtc/image/upload/f_auto,q_auto,w_1920/v1771977266/hero_raw_4_iagzd2.jpg"
@@ -122,7 +122,7 @@ export function Hero() {
       />
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col items-center w-full max-w-6xl mx-auto px-4 sm:px-6">
+      <div className="relative z-10 flex flex-col items-center w-full max-w-6xl mx-auto px-4 sm:px-6 pb-10 md:pb-0">
         {/* Encrypted text messages */}
         <div
           style={{ transform: `translate(${txtX}px, ${txtY}px)` }}
@@ -148,9 +148,10 @@ export function Hero() {
           ))}
         </div>
 
-        {/* Mobile: green labels pinned to top of hero, below nav */}
-        <div className="absolute top-20 left-0 right-0 flex flex-col items-center md:hidden px-4">
-          <div className="flex flex-col items-center gap-1">
+        {/* Mobile: all content stacked at bottom — labels + messages + CTA */}
+        <div className="flex flex-col items-center gap-1 mb-4 md:hidden bg-black/35 px-5 py-4 w-full">
+          {/* Green labels */}
+          <div className="flex flex-col items-center gap-0.5 mb-3">
             <span className="font-[family-name:var(--font-title)] text-base font-black uppercase tracking-wider text-primary-green">
               Global Hackathon
             </span>
@@ -158,18 +159,6 @@ export function Hero() {
               6-8 March // Online
             </span>
           </div>
-          <p className="font-[family-name:var(--font-monoblock)] text-center text-[9px] w-full max-w-[320px] mx-auto mt-3 leading-loose uppercase break-words text-white/70">
-            {t.hero.descriptionPart1}
-            <span className="text-primary-green font-black">{t.hero.descriptionAccent1}</span>
-            {t.hero.descriptionPart2}
-            <span className="text-primary-pink font-black">{t.hero.descriptionAccent2}</span>
-            {t.hero.descriptionPart3}
-            <span className="text-primary-pink font-black">{t.hero.descriptionAccent3}</span>
-          </p>
-        </div>
-
-        {/* Mobile: encrypted light text — placed right before the button */}
-        <div className="flex flex-col items-center gap-1 mb-4 mt-80 md:hidden bg-black/35 px-5 py-4 w-full">
           {MESSAGES.map((msg, i) => (
             <p
               key={i}
@@ -188,6 +177,15 @@ export function Hero() {
               />
             </p>
           ))}
+
+          {/* Mobile CTA */}
+          <div className="mt-5">
+            <Button asChild size="lg" variant="pink">
+              <a href="https://luma.com/ytl522gp" target="_blank" rel="noopener noreferrer">
+                {"<"}{t.nav.registerFree}{">"}
+              </a>
+            </Button>
+          </div>
         </div>
 
         {/* Desktop: green text row — flanking center */}
@@ -208,10 +206,11 @@ export function Hero() {
           </span>
         </div>
 
-        <div style={{ height: `${btnGap}px` }} />
+        <div className="hidden md:block" style={{ height: `${btnGap}px` }} />
 
         {/* CTA */}
         <div
+          className="mt-4 md:mt-0 hidden md:block"
           style={{
             transform: `translate(${btnX}px, ${btnY}px) scale(${btnScale})`,
           }}
