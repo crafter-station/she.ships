@@ -304,6 +304,7 @@ export const es: Translations = {
     description: "+$20K USD en herramientas y créditos gratis para las 200 participantes.",
     inPerson: "Solo presencial",
     inPersonLima: "Presencial · Lima",
+    inPersonLimaBogota: "Presencial · Lima & Bogotá",
     items: [
       {
         sponsor: "v0",
@@ -340,6 +341,13 @@ export const es: Translations = {
         perk: "Comida y coffee break gratis",
         inPersonOnly: false,
         inPersonLima: true,
+        url: "",
+      },
+      {
+        sponsor: "She Ships",
+        perk: "Swag y stickers",
+        inPersonOnly: false,
+        inPersonLimaBogota: true,
         url: "",
       },
     ],

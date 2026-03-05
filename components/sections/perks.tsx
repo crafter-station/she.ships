@@ -38,6 +38,11 @@ export function Perks() {
                     {t.perks.inPersonLima}
                   </span>
                 )}
+                {item.inPersonLimaBogota && (
+                  <span className="inline-block w-fit bg-primary-green px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-primary-black">
+                    {t.perks.inPersonLimaBogota}
+                  </span>
+                )}
               </div>
             </>
           );

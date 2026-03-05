@@ -300,6 +300,7 @@ export const en = {
     description: "+$20K USD in free tools and credits for all 200 participants.",
     inPerson: "In-person only",
     inPersonLima: "In-person · Lima",
+    inPersonLimaBogota: "In-person · Lima & Bogotá",
     items: [
       {
         sponsor: "v0",
@@ -336,6 +337,13 @@ export const en = {
         perk: "Free food and coffee break",
         inPersonOnly: false,
         inPersonLima: true,
+        url: "",
+      },
+      {
+        sponsor: "She Ships",
+        perk: "Swag & stickers",
+        inPersonOnly: false,
+        inPersonLimaBogota: true,
         url: "",
       },
     ],
