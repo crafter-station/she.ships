@@ -260,10 +260,12 @@ export const en = {
     mainCategories: [
       {
         title: "Best Fintech Solution for Women's Economic Empowerment",
+        prize: "",
         description: "Projects using financial technology to close gender economic gaps: access to credit, financial independence, savings tools or commerce platforms for women entrepreneurs.",
       },
       {
         title: "Best Financial Inclusion Solution for Women",
+        prize: "",
         description: "Projects focused on making flexible payments, pay and wage transparency, loan access, and financial services more accessible to women in underserved communities.",
       },
     ],
