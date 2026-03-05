@@ -121,31 +121,6 @@ export function Hero() {
 
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center w-full max-w-6xl mx-auto px-4 sm:px-6">
-        {/* Encrypted text messages */}
-        <div
-          style={{ transform: `translate(${txtX}px, ${txtY}px)` }}
-          className="hidden md:flex flex-col items-start gap-1.5 sm:gap-2 mb-8 sm:mb-12"
-        >
-          {MESSAGES.map((msg, i) => (
-            <p
-              key={i}
-              className={
-                msg.accent
-                  ? "font-[family-name:var(--font-monoblock)] text-sm sm:text-base md:text-lg lg:text-xl font-black tracking-wide uppercase"
-                  : "font-[family-name:var(--font-monoblock)] text-[8px] sm:text-[10px] md:text-xs lg:text-sm font-light tracking-wide uppercase"
-              }
-            >
-              <EncryptedText
-                text={msg.text}
-                encryptedClassName={msg.accent ? "text-primary-green/40" : "text-white/40"}
-                revealedClassName={msg.accent ? "text-primary-green" : "text-white"}
-                revealDelayMs={REVEAL_MS_PER_CHAR}
-                parentRevealDelayMs={MESSAGE_DELAYS[i]}
-              />
-            </p>
-          ))}
-        </div>
-
         {/* Mobile: green labels — absolute top, below nav, above sheep */}
         <div className="absolute top-20 left-0 right-0 flex flex-col items-center md:hidden">
           <span className="font-[family-name:var(--font-title)] text-base font-black uppercase tracking-wider text-primary-green">
@@ -205,29 +180,36 @@ export function Hero() {
           </span>
         </div>
 
-        <div className="hidden md:block" style={{ height: `${btnGap}px` }} />
+      </div>
 
-        {/* Desktop CTA */}
-        <div
-          className="hidden md:block"
-          style={{
-            transform: `translate(${btnX}px, ${btnY}px) scale(${btnScale})`,
-          }}
-        >
-          <Button
-            asChild
-            size="lg"
-            variant="pink"
-            className=""
-          >
-            <a
-              href="https://luma.com/ytl522gp"
-              target="_blank"
-              rel="noopener noreferrer"
+      {/* Desktop: messages + CTA — anchored to bottom, sheep unobstructed */}
+      <div className="absolute bottom-20 lg:bottom-32 xl:bottom-44 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-4 z-10">
+        <div className="flex flex-col items-center gap-4 bg-black/35 px-8 py-5">
+        <div className="flex flex-col items-center gap-1.5">
+          {MESSAGES.map((msg, i) => (
+            <p
+              key={i}
+              className={
+                msg.accent
+                  ? "font-[family-name:var(--font-monoblock)] text-sm sm:text-base md:text-lg lg:text-xl font-black tracking-wide uppercase text-center"
+                  : "font-[family-name:var(--font-monoblock)] text-[8px] sm:text-[10px] md:text-xs lg:text-sm font-light tracking-wide uppercase text-center"
+              }
             >
-              {"<"}{t.nav.registerFree}{">"}
-            </a>
-          </Button>
+              <EncryptedText
+                text={msg.text}
+                encryptedClassName={msg.accent ? "text-primary-green/40" : "text-white/40"}
+                revealedClassName={msg.accent ? "text-primary-green" : "text-white"}
+                revealDelayMs={REVEAL_MS_PER_CHAR}
+                parentRevealDelayMs={MESSAGE_DELAYS[i]}
+              />
+            </p>
+          ))}
+        </div>
+        <Button asChild size="lg" variant="pink">
+          <a href="https://luma.com/ytl522gp" target="_blank" rel="noopener noreferrer">
+            {"<"}{t.nav.registerFree}{">"}
+          </a>
+        </Button>
         </div>
       </div>
 
