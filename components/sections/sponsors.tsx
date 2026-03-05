@@ -72,6 +72,7 @@ const sponsors = [
     url: "https://kebo.app",
     width: 240,
     height: 60,
+    className: "h-auto w-auto max-w-[140px] md:max-w-[170px]",
   },
   {
     name: "Moraleja",
@@ -79,6 +80,7 @@ const sponsors = [
     url: "https://moraleja.co",
     width: 240,
     height: 60,
+    className: "h-auto w-auto max-w-[140px] md:max-w-[170px]",
   },
 ];
 
