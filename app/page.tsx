@@ -23,8 +23,8 @@ export default function Home() {
         <Hero />
         <Countdown />
         <Sponsors />
-        <Perks />
         <Prizes />
+        <Perks />
         <WhatIsSheShips />
         <Agenda />
         <Categories />
