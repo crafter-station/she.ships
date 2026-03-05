@@ -148,8 +148,8 @@ export function Hero() {
           ))}
         </div>
 
-        {/* Mobile: green labels at top, encrypted text near button */}
-        <div className="flex flex-col items-center md:hidden w-full -mt-32">
+        {/* Mobile: green labels pinned to top of hero, below nav */}
+        <div className="absolute top-20 left-0 right-0 flex flex-col items-center md:hidden px-4">
           <div className="flex flex-col items-center gap-1">
             <span className="font-[family-name:var(--font-title)] text-base font-black uppercase tracking-wider text-primary-green">
               Global Hackathon
