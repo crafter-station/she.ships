@@ -282,6 +282,13 @@ export const es: Translations = {
         requirement: "El proyecto debe integrar la API de ElevenLabs.",
       },
       {
+        sponsor: "ElevenLabs",
+        title: "Equipo Ganador General — ElevenLabs Pick",
+        prize: "3 meses Pro tier / miembro",
+        value: "~$297 de valor",
+        requirement: null,
+      },
+      {
         sponsor: "Featherless AI",
         title: "Top Proyectos con Featherless AI",
         prize: "🥇 $300 · 🥈 $150 · 🥉 $75",

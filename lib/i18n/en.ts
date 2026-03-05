@@ -278,6 +278,13 @@ export const en = {
         requirement: "Must integrate the ElevenLabs API.",
       },
       {
+        sponsor: "ElevenLabs",
+        title: "Overall Winning Team — ElevenLabs Pick",
+        prize: "3 months Pro tier / member",
+        value: "~$297 value",
+        requirement: null,
+      },
+      {
         sponsor: "Featherless AI",
         title: "Top Projects Built with Featherless AI",
         prize: "🥇 $300 · 🥈 $150 · 🥉 $75",
