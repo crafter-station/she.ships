@@ -140,10 +140,7 @@ const citySubtitle: Record<City, string> = {
 
 function DayHeader({ label, subtitle }: { label: string; subtitle?: string }) {
   return (
-    <div
-      style={{ backgroundColor: BG, borderBottom: `1px solid rgba(255,255,255,0.15)` }}
-      className="px-3 py-2"
-    >
+    <div className="px-3 py-2">
       <p className="font-[family-name:var(--font-title)] text-xs font-black uppercase leading-tight"
          style={{ color: "#ffffff" }}>
         {label}
@@ -346,8 +343,9 @@ export function Agenda() {
           borderLeft:          "1px solid rgba(255,255,255,0.15)",
           borderTop:           "1px solid rgba(255,255,255,0.15)",
           borderRight:         "1px solid rgba(255,255,255,0.15)",
+          borderBottom:        "1px solid rgba(255,255,255,0.15)",
         }}>
-          <div style={{ backgroundColor: BG, borderRight: "1px solid rgba(255,255,255,0.15)" }} />
+          <div style={{ borderRight: "1px solid rgba(255,255,255,0.15)" }} />
           <DayHeader label="Vie 6 · Kick-off" />
           <div style={{ borderLeft: "1px solid rgba(255,255,255,0.15)" }}>
             <DayHeader label="Sáb 7 · Build Day" subtitle={citySubtitle[city]} />
