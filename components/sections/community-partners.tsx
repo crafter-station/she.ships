@@ -12,6 +12,7 @@ const partners = [
   { name: "Empremafia", logo: "/communities/EMPREMAFIA.png", url: "https://empremafia.com/" },
   { name: "Notion Peru", logo: "/communities/notion-peru.png", url: "https://notionperu.com" },
   { name: "Comunidad Aliada", logo: "/communities/comunidad-aliada.png", url: "https://femaleforcelatam.com/" },
+  { name: "Female Force", logo: "/sponsors/Female Force - Creme - Logo Padrão.png", url: "https://femaleforcelatam.com/" },
 ];
 
 export function CommunityPartners() {

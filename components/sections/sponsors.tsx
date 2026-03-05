@@ -7,6 +7,14 @@ import Image from "next/image";
 
 const sponsors = [
   {
+    name: "Sezzle",
+    logo: "/sponsors/Sezzle.svg",
+    url: "https://sezzle.com",
+    width: 798,
+    height: 200,
+    className: "h-auto w-auto max-w-[220px] md:max-w-[300px]",
+  },
+  {
     name: "Featherless AI",
     logo: "/sponsors/featherless-full-dark.svg",
     url: "https://featherless.ai/",
@@ -99,25 +107,44 @@ export function Sponsors() {
         </h2>
       </div>
 
-      <div className="flex w-full flex-wrap items-center justify-center gap-16 md:gap-20 lg:gap-24">
-        {sponsors.map((sponsor) => (
-          <a
-            key={sponsor.name}
-            href={sponsor.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => track("sponsor_click", { name: sponsor.name })}
-            className="transition-opacity hover:opacity-80"
-          >
-            <Image
-              src={sponsor.logo}
-              alt={sponsor.name}
-              width={sponsor.width}
-              height={sponsor.height}
-              className={sponsor.className ?? "h-auto w-auto max-w-[200px] md:max-w-[240px]"}
-            />
-          </a>
-        ))}
+      <div className="flex w-full flex-col items-center gap-12 md:gap-16">
+        {/* Featured sponsor */}
+        <a
+          href={sponsors[0].url}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => track("sponsor_click", { name: sponsors[0].name })}
+          className="transition-opacity hover:opacity-80"
+        >
+          <Image
+            src={sponsors[0].logo}
+            alt={sponsors[0].name}
+            width={sponsors[0].width}
+            height={sponsors[0].height}
+            className={sponsors[0].className ?? "h-auto w-auto max-w-[200px] md:max-w-[240px]"}
+          />
+        </a>
+        {/* Rest of sponsors */}
+        <div className="flex w-full flex-wrap items-center justify-center gap-16 md:gap-20 lg:gap-24">
+          {sponsors.slice(1).map((sponsor) => (
+            <a
+              key={sponsor.name}
+              href={sponsor.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => track("sponsor_click", { name: sponsor.name })}
+              className="transition-opacity hover:opacity-80"
+            >
+              <Image
+                src={sponsor.logo}
+                alt={sponsor.name}
+                width={sponsor.width}
+                height={sponsor.height}
+                className={sponsor.className ?? "h-auto w-auto max-w-[200px] md:max-w-[240px]"}
+              />
+            </a>
+          ))}
+        </div>
       </div>
     </SectionWrapper>
   );
