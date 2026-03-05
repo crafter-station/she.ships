@@ -107,25 +107,24 @@ export function Sponsors() {
         </h2>
       </div>
 
-      <div className="flex w-full flex-col items-center gap-12 md:gap-16">
+      <div className="flex w-full flex-col items-center gap-8 md:gap-10">
         {/* Featured sponsor */}
         <a
           href={sponsors[0].url}
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => track("sponsor_click", { name: sponsors[0].name })}
-          className="transition-opacity hover:opacity-80"
+          className="transition-opacity hover:opacity-80 inline-flex items-center"
         >
-          <Image
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
             src={sponsors[0].logo}
             alt={sponsors[0].name}
-            width={sponsors[0].width}
-            height={sponsors[0].height}
-            className={sponsors[0].className ?? "h-auto w-auto max-w-[200px] md:max-w-[240px]"}
+            className="h-20 w-auto md:h-28"
           />
         </a>
         {/* Rest of sponsors */}
-        <div className="flex w-full flex-wrap items-center justify-center gap-16 md:gap-20 lg:gap-24">
+        <div className="grid w-full grid-cols-5 gap-6 md:gap-8">
           {sponsors.slice(1).map((sponsor) => (
             <a
               key={sponsor.name}
@@ -133,14 +132,14 @@ export function Sponsors() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => track("sponsor_click", { name: sponsor.name })}
-              className="transition-opacity hover:opacity-80"
+              className="transition-opacity hover:opacity-80 flex items-center justify-center"
             >
               <Image
                 src={sponsor.logo}
                 alt={sponsor.name}
                 width={sponsor.width}
                 height={sponsor.height}
-                className={sponsor.className ?? "h-auto w-auto max-w-[200px] md:max-w-[240px]"}
+                className={sponsor.className ?? "h-auto w-auto max-w-[160px] md:max-w-[220px]"}
               />
             </a>
           ))}
