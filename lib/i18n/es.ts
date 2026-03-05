@@ -20,6 +20,12 @@ export const es: Translations = {
     headlineAccent: "Hazlo.",
     description:
       "Un hackathon global de 48 horas donde mujeres y creadoras multidisciplinarias construyen y publican algo real.",
+    descriptionPart1: "Un hackathon global de ",
+    descriptionAccent1: "48 horas",
+    descriptionPart2: " donde ",
+    descriptionAccent2: "mujeres",
+    descriptionPart3: " y creadoras multidisciplinarias construyen y ",
+    descriptionAccent3: "publican algo real.",
     date: "6-8 de marzo, 2026",
     ctaSpeaker: "Sé Speaker",
     ctaSponsor: "Sé Sponsor",

@@ -155,8 +155,13 @@ export function Hero() {
               6-8 March // Online
             </span>
           </div>
-          <p className="font-[family-name:var(--font-monoblock)] text-center text-white/90 text-[9px] w-full max-w-[320px] mx-auto mt-3 leading-loose uppercase break-words">
-            {t.hero.description}
+          <p className="font-[family-name:var(--font-monoblock)] text-center text-[9px] w-full max-w-[320px] mx-auto mt-3 leading-loose uppercase break-words text-white/70">
+            {t.hero.descriptionPart1}
+            <span className="text-primary-green font-black">{t.hero.descriptionAccent1}</span>
+            {t.hero.descriptionPart2}
+            <span className="text-primary-pink font-black">{t.hero.descriptionAccent2}</span>
+            {t.hero.descriptionPart3}
+            <span className="text-primary-pink font-black">{t.hero.descriptionAccent3}</span>
           </p>
         </div>
 

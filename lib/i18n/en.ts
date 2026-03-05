@@ -18,6 +18,12 @@ export const en = {
     headlineAccent: "Ship It.",
     description:
       "A 48-hour global hackathon where women and multidisciplinary creators build and publish something real.",
+    descriptionPart1: "A ",
+    descriptionAccent1: "48-hour",
+    descriptionPart2: " global hackathon where ",
+    descriptionAccent2: "women",
+    descriptionPart3: " and multidisciplinary creators build and ",
+    descriptionAccent3: "publish something real.",
     date: "March 6-8, 2026",
     ctaSpeaker: "Be a Speaker",
     ctaSponsor: "Be a Sponsor",
