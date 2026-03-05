@@ -46,6 +46,8 @@ export const en = {
     requirementLine: "There's only one requirement: 👉 Ship something.",
     requirementSub: "A public link. A real output. Something that exists.",
     limited: "Limited to 200 participants worldwide",
+    eightMLabel: "International Women's Day — March 8, 2026",
+    eightMLine: "We don't just celebrate it. We build on it.",
     where: {
       title: "100% Remote",
       description:
@@ -253,7 +255,7 @@ export const en = {
     headline: "Prizes &",
     headlineAccent: "Categories",
     stackNote: "Teams can win in multiple categories simultaneously.",
-    mainLabel: "Main Categories",
+    mainLabel: "Sponsor Categories",
     mainSponsor: "Powered by Sezzle",
     mainCategories: [
       {
@@ -303,9 +305,10 @@ export const en = {
     headline: "Perks for",
     headlineAccent: "Participants",
     description: "+$20K USD in free tools and credits for all 200 participants.",
-    inPerson: "In-person only",
-    inPersonLima: "In-person · Lima",
-    inPersonLimaBogota: "In-person · Lima & Bogotá",
+    globalNote: "All digital perks ship worldwide to all 200 participants.",
+    inPerson: "In-person events only",
+    inPersonLima: "🇵🇪 Lima in-person",
+    inPersonLimaBogota: "🇵🇪🇨🇴 Lima & Bogotá in-person",
     items: [
       {
         sponsor: "v0",

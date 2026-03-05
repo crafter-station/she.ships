@@ -17,6 +17,9 @@ export function Perks() {
           <span className="text-primary-pink">{t.perks.headlineAccent}</span>
         </h2>
         <p className="mt-3 text-neutral-gray text-base">{t.perks.description}</p>
+        <p className="mt-1 text-xs text-primary-green font-mono uppercase tracking-wide">
+          {t.perks.globalNote}
+        </p>
       </div>
 
       <div className="grid gap-0 sm:grid-cols-2 lg:grid-cols-4 border border-white/15">

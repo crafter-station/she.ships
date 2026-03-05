@@ -3,12 +3,14 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { EncryptedText } from "@/components/ui/encrypted-text";
+import { useTranslation } from "@/lib/i18n/context";
 import Image from "next/image";
 
 const MESSAGES = [
   "WOMEN IN TECH,",
   "DESIGN, ART, AND CULTURE_",
-  "BUILD AND SHIP REAL PROJECTS_",
+  "BUILD WHAT THE WORLD HASN'T BUILT FOR US YET_",
+  "NO CODING REQUIRED. FROM IDEA TO PRODUCT IN 48H._",
 ];
 
 const REVEAL_MS_PER_CHAR = 40;
@@ -45,6 +47,7 @@ export function Hero() {
   const [greenGap, setGreenGap] = useState(218);
   const [greenML, setGreenML] = useState(64);
 
+  const { t } = useTranslation();
   const [panelOpen, setPanelOpen] = useState(true);
   const [activeTab, setActiveTab] = useState<"btn" | "layout" | "text" | "green">("btn");
   const [copied, setCopied] = useState<string | null>(null);
@@ -144,7 +147,7 @@ export function Hero() {
 
         {/* Mobile: green labels at top, encrypted text near button */}
         <div className="flex flex-col items-center md:hidden w-full -mt-32">
-          <div className="flex flex-col items-center gap-1 mb-auto">
+          <div className="flex flex-col items-center gap-1">
             <span className="font-[family-name:var(--font-title)] text-base font-black uppercase tracking-wider text-primary-green">
               Global Hackathon
             </span>
@@ -152,6 +155,9 @@ export function Hero() {
               6-8 March // Online
             </span>
           </div>
+          <p className="text-center text-white/75 text-xs px-8 mt-3 leading-relaxed font-light">
+            {t.hero.description}
+          </p>
         </div>
 
         {/* Mobile: encrypted light text — placed right before the button */}
@@ -209,7 +215,7 @@ export function Hero() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              {"<Join Here>"}
+              {"<Register Free>"}
             </a>
           </Button>
         </div>

@@ -13,6 +13,7 @@ import { Organizers } from "@/components/sections/organizers";
 import { CommunityPartners } from "@/components/sections/community-partners";
 import { Footer } from "@/components/sections/footer";
 import { SideNav } from "@/components/sections/side-nav";
+import { CtaBanner } from "@/components/sections/cta-banner";
 
 export default function Home() {
   return (
@@ -22,13 +23,15 @@ export default function Home() {
       <main className="overflow-x-clip min-w-0">
         <Hero />
         <Countdown />
-        <Sponsors />
-        <Prizes />
-        <Perks />
         <WhatIsSheShips />
+        <Perks />
+        <CtaBanner />
+        <Prizes />
+        <Sponsors />
         <Agenda />
         <Categories />
         <FAQ />
+        <CtaBanner />
         <WhatsappCommunity />
         <Organizers />
         <CommunityPartners />

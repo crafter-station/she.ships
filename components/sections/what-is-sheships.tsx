@@ -8,11 +8,11 @@ import { useInView } from "motion/react";
 const TERMINAL_LINES = [
   "> Initializing she.ships hackathon...",
   "> Region: LATAM + USA + India",
-  "> Participants: 200 builders worldwide",
-  "> Format: 100% remote",
+  "> Welcome: women · designers · devs · artists",
+  "> Format: 100% remote — join from anywhere",
   "> Duration: 48 hours",
   "> Start date: March 6, 2026",
-  "> End date: March 8, 2026",
+  "> End date: March 8 (International Women's Day)",
   "> Requirement: ship something real",
   "> Status: OPEN FOR REGISTRATION ✓",
 ];
@@ -196,7 +196,8 @@ export function WhatIsSheShips() {
 
   return (
     <SectionWrapper variant="dark" id="what-is-sheships" className="min-h-fit overflow-hidden">
-      <div className="grid min-w-0 max-w-full md:grid-cols-2 gap-10 md:gap-16 items-center">
+      {/* Main 2-col grid */}
+      <div className="grid min-w-0 max-w-full md:grid-cols-2 gap-10 md:gap-16 items-start">
         {/* Left — headline + content */}
         <div className="min-w-0">
           <div className="inline-block brutalist-card bg-primary-green px-4 py-2 mb-6">
@@ -211,10 +212,43 @@ export function WhatIsSheShips() {
             <span className="text-primary-pink">{t.eventInfo.headlineAccent}</span>
           </h2>
 
+          <p className="text-neutral-gray leading-relaxed mb-6">
+            {t.eventInfo.paragraph2}
+          </p>
+
+          {/* 8M callout */}
+          <div className="border-l-4 border-primary-pink pl-4 mb-6">
+            <p className="data-label text-primary-pink mb-1">{t.eventInfo.eightMLabel}</p>
+            <p className="text-white/90 text-sm">{t.eventInfo.eightMLine}</p>
+          </div>
+
+          {/* Requirement callout */}
+          <div className="bg-white/5 border border-white/10 p-4">
+            <p className="font-[family-name:var(--font-title)] font-black text-primary-cream text-lg uppercase leading-tight">
+              {t.eventInfo.requirementLine}
+            </p>
+            <p className="text-neutral-gray text-sm mt-1">{t.eventInfo.requirementSub}</p>
+          </div>
         </div>
 
         {/* Right — terminal */}
         <TerminalAnimation />
+      </div>
+
+      {/* Info cards — full width */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-0 mt-12 border border-white/15">
+        {[
+          { title: t.eventInfo.where.title, desc: t.eventInfo.where.description, accent: "text-primary-green" },
+          { title: t.eventInfo.duration.title, desc: t.eventInfo.duration.description, accent: "text-primary-pink" },
+          { title: t.eventInfo.who.title, desc: t.eventInfo.who.description, accent: "text-primary-cream" },
+        ].map((card, i) => (
+          <div key={i} className="border border-white/15 p-6">
+            <p className={`font-[family-name:var(--font-title)] font-black text-xl uppercase ${card.accent} mb-2`}>
+              {card.title}
+            </p>
+            <p className="text-neutral-gray text-sm leading-relaxed">{card.desc}</p>
+          </div>
+        ))}
       </div>
     </SectionWrapper>
   );
