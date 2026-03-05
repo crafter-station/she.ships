@@ -104,7 +104,7 @@ export function Hero() {
   };
 
   return (
-    <section id="hero" className="sticky top-0 min-h-screen w-full flex items-end md:items-center justify-center overflow-hidden">
+    <section id="hero" className="sticky top-0 min-h-screen w-full flex items-center justify-center overflow-hidden">
       {/* Background */}
       <Image
         src="https://res.cloudinary.com/dzohocmtc/image/upload/f_auto,q_auto,w_1920/v1771977266/hero_raw_4_iagzd2.jpg"
@@ -122,7 +122,7 @@ export function Hero() {
       />
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col items-center w-full max-w-6xl mx-auto px-4 sm:px-6 pb-10 md:pb-0">
+      <div className="relative z-10 flex flex-col items-center w-full max-w-6xl mx-auto px-4 sm:px-6">
         {/* Encrypted text messages */}
         <div
           style={{ transform: `translate(${txtX}px, ${txtY}px)` }}
@@ -148,17 +148,18 @@ export function Hero() {
           ))}
         </div>
 
-        {/* Mobile: all content stacked at bottom — labels + messages + CTA */}
-        <div className="flex flex-col items-center gap-1 mb-4 md:hidden bg-black/35 px-5 py-4 w-full">
-          {/* Green labels */}
-          <div className="flex flex-col items-center gap-0.5 mb-3">
-            <span className="font-[family-name:var(--font-title)] text-base font-black uppercase tracking-wider text-primary-green">
-              Global Hackathon
-            </span>
-            <span className="font-[family-name:var(--font-title)] text-base font-black uppercase tracking-wider text-primary-green">
-              6-8 March // Online
-            </span>
-          </div>
+        {/* Mobile: green labels — absolute top, below nav, above sheep */}
+        <div className="absolute top-20 left-0 right-0 flex flex-col items-center md:hidden">
+          <span className="font-[family-name:var(--font-title)] text-base font-black uppercase tracking-wider text-primary-green">
+            Global Hackathon
+          </span>
+          <span className="font-[family-name:var(--font-title)] text-base font-black uppercase tracking-wider text-primary-green">
+            6-8 March // Online
+          </span>
+        </div>
+
+        {/* Mobile: messages + CTA — below sheep */}
+        <div className="flex flex-col items-center gap-1 mb-4 mt-80 md:hidden bg-black/35 px-5 py-4 w-full">
           {MESSAGES.map((msg, i) => (
             <p
               key={i}
@@ -208,9 +209,9 @@ export function Hero() {
 
         <div className="hidden md:block" style={{ height: `${btnGap}px` }} />
 
-        {/* CTA */}
+        {/* Desktop CTA */}
         <div
-          className="mt-4 md:mt-0 hidden md:block"
+          className="hidden md:block"
           style={{
             transform: `translate(${btnX}px, ${btnY}px) scale(${btnScale})`,
           }}
