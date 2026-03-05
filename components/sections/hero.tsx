@@ -126,7 +126,7 @@ export function Hero() {
         {/* Encrypted text messages */}
         <div
           style={{ transform: `translate(${txtX}px, ${txtY}px)` }}
-          className="hidden md:flex flex-col items-start gap-1.5 sm:gap-2 mb-8 sm:mb-12 bg-black/30 px-5 py-4"
+          className="hidden md:flex flex-col items-start gap-1.5 sm:gap-2 mb-8 sm:mb-12"
         >
           {MESSAGES.map((msg, i) => (
             <p
