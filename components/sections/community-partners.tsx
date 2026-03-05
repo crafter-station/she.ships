@@ -13,6 +13,7 @@ const partners = [
   { name: "Notion Peru", logo: "/communities/notion-peru.png", url: "https://notionperu.com" },
   { name: "Comunidad Aliada", logo: "/communities/comunidad-aliada.png", url: "https://femaleforcelatam.com/" },
   { name: "Female Force", logo: "/sponsors/Female Force - Creme - Logo Padrão.png", url: "https://femaleforcelatam.com/" },
+  { name: "Maker", logo: "/communities/maker.png", url: "https://maker.com/" },
 ];
 
 export function CommunityPartners() {
@@ -27,7 +28,7 @@ export function CommunityPartners() {
       </div>
 
       <div
-        className="relative grid grid-cols-3 place-items-center gap-0 max-w-3xl mx-auto"
+        className="relative grid grid-cols-4 place-items-center gap-0 max-w-4xl mx-auto"
         style={{
           backgroundImage:
             "radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px)",
@@ -41,7 +42,7 @@ export function CommunityPartners() {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => track("community_partner_click", { name: partner.name })}
-            className="relative flex items-center justify-center w-full aspect-square border border-white/[0.06] p-10 md:p-12 transition-opacity hover:opacity-80"
+            className="relative flex items-center justify-center w-full aspect-square border border-white/[0.06] p-6 md:p-8 transition-opacity hover:opacity-80"
           >
             <div className="relative w-full h-full">
               <Image
