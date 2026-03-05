@@ -37,8 +37,8 @@ export function Countdown() {
   ];
 
   return (
-    <SectionWrapper variant="dark" id="countdown">
-      <div className="text-center">
+    <SectionWrapper variant="dark" id="countdown" innerClassName="flex flex-col items-center justify-center min-h-screen py-20">
+      <div className="text-center w-full">
         <h2 className="mb-4 font-[family-name:var(--font-title)] text-3xl font-black tracking-tight text-primary-cream md:text-4xl lg:text-5xl uppercase">
           {t.countdown.headline}{" "}
           <span className="text-primary-pink">
