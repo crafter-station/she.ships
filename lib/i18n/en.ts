@@ -81,37 +81,46 @@ export const en = {
     label: "Official Schedule",
     headline: "Agenda",
     headlineAccent: "#SheShips",
-    slots: [
-      {
-        time: "March 6",
-        title: "Global Kickoff",
-        description:
-          "Welcome, introductions, and let's start building together.",
-      },
-      {
-        time: "Ongoing",
-        title: "Mentorship Spaces",
-        description:
-          "Get guidance from experienced builders throughout the hackathon.",
-      },
-      {
-        time: "Ongoing",
-        title: "Virtual Coworking Sessions",
-        description:
-          "Build alongside other participants in real-time sessions.",
-      },
-      {
-        time: "March 8",
-        title: "Final Showcase",
-        description:
-          "Present your shipped project on International Women's Day.",
-      },
-      {
-        time: "March 8",
-        title: "Resources & Perks",
-        description:
-          "Access to tools, resources and perks from educational and tech partners.",
-      },
+    allDay: "All day",
+    dayFriday: "Fri 6 · Kick-off",
+    daySaturday: "Sat 7 · Build Day",
+    daySunday: "Sun 8 · Demo Day",
+    cities: [
+      { id: "lima",      label: "Lima",      subtitle: "In-person · PUCP · GMT-5" },
+      { id: "bogota",    label: "Bogotá",    subtitle: "In-person · Globant Connecta · GMT-5" },
+      { id: "guatemala", label: "Guatemala", subtitle: "Virtual · GMT-6" },
+      { id: "remote",    label: "Remote",    subtitle: "Virtual · Your timezone" },
+    ],
+    friday: [
+      "Intro and participant arrival",
+      "Welcome by Natalia Jiménez, Founder of XAIA Lab",
+      "Hackathon instructions, greetings to partners, sponsors and organizers",
+      "Sezzle Keynote",
+      "🟢 Hackathon starts!",
+    ],
+    saturdayLima: [
+      "PUCP entrance and merch pickup",
+      "Breakfast / Coffee break",
+      "Mentor contact sessions",
+      "Lunch",
+      "Project work",
+      "Coffee break",
+      "Project work (day's final sprint)",
+    ],
+    saturdayBogota: [
+      "Globant Connecta entrance and merch pickup",
+      "Breakfast / Coffee break",
+      "Mentor contact sessions",
+      "Lunch",
+      "Project work",
+    ],
+    saturdayGuatemala: ["Project work from Guatemala"],
+    saturdayRemote: ["Project work from your location or remotely"],
+    sunday: [
+      "Final project progress + last mentor contact",
+      "Pitch recording and Devpost upload",
+      "Closing message by Larissa, ElevenLabs GTM",
+      "🏁 End of hackathon",
     ],
   },
   categories: {

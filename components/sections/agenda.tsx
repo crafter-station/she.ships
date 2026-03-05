@@ -56,8 +56,10 @@ function toMins(t: string): number {
   return h * 60 + m;
 }
 
+const ALL_DAY = "ALL_DAY";
+
 function parseTimeRange(timeStr: string): { start: number; end: number } {
-  if (timeStr === "Todo el día") return { start: toMins("9:00"), end: toMins("21:00") };
+  if (timeStr === ALL_DAY) return { start: toMins("9:00"), end: toMins("21:00") };
   const parts = timeStr.split(/\s*[–—-]\s*/);
   if (parts.length === 1) {
     const start = toMins(parts[0]);
@@ -83,66 +85,49 @@ function toGridRow(mins: number): number {
 }
 
 function durationMins(timeStr: string): number {
-  if (timeStr === "Todo el día") return 12 * 60;
+  if (timeStr === ALL_DAY) return 12 * 60;
   const { start, end } = parseTimeRange(timeStr);
   return end - start;
 }
 
-// ─── Schedule data ────────────────────────────────────────────────────────────
+// ─── Schedule structure (times + colors only — activities come from i18n) ─────
 
-const friday: Row[] = [
-  { time: "18:55 – 19:00", activity: "Intro y llegada de participantes",                                           color: C.pink },
-  { time: "19:00 – 19:25", activity: "Bienvenida por Natalia Jiménez, Founder de XAIA Lab",                        color: C.pink },
-  { time: "19:25 – 19:30", activity: "Indicaciones de la hackathon, saludo a partners, sponsors y organizadores",  color: C.cream },
-  { time: "19:30 – 20:00", activity: "Keynote Sezzle — Sponsor Platinum oficial",                                  color: C.cream },
-  { time: "20:00 – 21:00", activity: "🟢 ¡Inicia la hackathon!",                                                   color: C.green },
+const FRIDAY_STRUCTURE:   { time: string; color: string }[] = [
+  { time: "18:55 – 19:00", color: C.pink  },
+  { time: "19:00 – 19:25", color: C.pink  },
+  { time: "19:25 – 19:30", color: C.cream },
+  { time: "19:30 – 20:00", color: C.cream },
+  { time: "20:00 – 21:00", color: C.green },
 ];
 
-const saturdayByCity: Record<City, Row[]> = {
-  lima: [
-    { time: "9:00",           activity: "Entrada a PUCP y recojo de merch",                    color: C.pink },
-    { time: "9:00 – 11:00",   activity: "Desayuno / Coffee break",                             color: C.cream },
-    { time: "11:00 – 14:00",  activity: "Sesiones de contacto con mentoras",                   color: C.pink },
-    { time: "14:00 – 15:00",  activity: "Almuerzo",                                            color: C.green },
-    { time: "15:00 – 19:00",  activity: "Trabajo en proyectos",                                color: C.cream },
-    { time: "19:00 – 20:00",  activity: "Coffee break",                                        color: C.green },
-    { time: "20:00 – 21:00",  activity: "Trabajo en proyectos (sprint final del día)",         color: C.pink },
-  ],
-  bogota: [
-    { time: "9:00",           activity: "Entrada a Globant Connecta y recojo de merch",        color: C.pink },
-    { time: "9:00 – 11:00",   activity: "Desayuno / Coffee break",                             color: C.cream },
-    { time: "11:00 – 14:00",  activity: "Sesiones de contacto con mentoras",                   color: C.pink },
-    { time: "14:00 – 15:00",  activity: "Almuerzo",                                            color: C.green },
-    { time: "15:00 – 19:00",  activity: "Trabajo en proyectos",                                color: C.cream },
-  ],
-  guatemala: [
-    { time: "Todo el día", activity: "Trabajo en proyectos desde Guatemala",                   color: C.cream },
-  ],
-  remote: [
-    { time: "Todo el día", activity: "Trabajo en proyectos desde tu sede o de manera remota",  color: C.cream },
-  ],
-};
-
-const sunday: Row[] = [
-  { time: "9:00 – 12:00",  activity: "Avance final de proyectos + último contacto con mentoras",  color: C.cream },
-  { time: "12:00 – 13:00", activity: "Grabación de pitches y subida a Devpost",                   color: C.green },
-  { time: "13:00 – 13:30", activity: "Mensaje de cierre por Larissa, GTM de ElevenLabs",          color: C.pink },
-  { time: "13:30 – 14:00", activity: "🏁 Fin de la hackathon",                                     color: C.green },
+const SAT_LIMA_STRUCTURE: { time: string; color: string }[] = [
+  { time: "9:00",          color: C.pink  },
+  { time: "9:00 – 11:00",  color: C.cream },
+  { time: "11:00 – 14:00", color: C.pink  },
+  { time: "14:00 – 15:00", color: C.green },
+  { time: "15:00 – 19:00", color: C.cream },
+  { time: "19:00 – 20:00", color: C.green },
+  { time: "20:00 – 21:00", color: C.pink  },
 ];
 
-const cities: { id: City; label: string }[] = [
-  { id: "lima",      label: "Lima" },
-  { id: "bogota",    label: "Bogotá" },
-  { id: "guatemala", label: "Guatemala" },
-  { id: "remote",    label: "Remote" },
+const SAT_BOGOTA_STRUCTURE: { time: string; color: string }[] = [
+  { time: "9:00",          color: C.pink  },
+  { time: "9:00 – 11:00",  color: C.cream },
+  { time: "11:00 – 14:00", color: C.pink  },
+  { time: "14:00 – 15:00", color: C.green },
+  { time: "15:00 – 19:00", color: C.cream },
 ];
 
-const citySubtitle: Record<City, string> = {
-  lima:      "Presencial · PUCP · GMT-5",
-  bogota:    "Presencial · Globant Connecta · GMT-5",
-  guatemala: "Virtual · GMT-6",
-  remote:    "Virtual · Tu huso horario",
-};
+const SAT_OTHER_STRUCTURE: { time: string; color: string }[] = [
+  { time: ALL_DAY, color: C.cream },
+];
+
+const SUNDAY_STRUCTURE: { time: string; color: string }[] = [
+  { time: "9:00 – 12:00",  color: C.cream },
+  { time: "12:00 – 13:00", color: C.green },
+  { time: "13:00 – 13:30", color: C.pink  },
+  { time: "13:30 – 14:00", color: C.green },
+];
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
 
@@ -175,7 +160,7 @@ function EventBlock({ row, column }: { row: Row; column: number }) {
   const textColor = hovered ? "#ffffff" : C.black;
 
   // Format display time: strip seconds, show short range
-  const displayTime = row.time === "Todo el día" ? "9:00 – 21:00" : row.time;
+  const displayTime = row.time === ALL_DAY ? "9:00 – 21:00" : row.time;
 
   return (
     // Outer cell: occupies the grid position, provides 2px inset margin
@@ -309,7 +294,21 @@ function HourRules() {
 export function Agenda() {
   const { t } = useTranslation();
   const [city, setCity] = useState<City>("lima");
+
+  const friday = FRIDAY_STRUCTURE.map((s, i) => ({ ...s, activity: t.agenda.friday[i] }));
+  const sunday  = SUNDAY_STRUCTURE.map((s, i) => ({ ...s, activity: t.agenda.sunday[i] }));
+
+  const saturdayByCity: Record<City, Row[]> = {
+    lima:      SAT_LIMA_STRUCTURE.map((s, i)   => ({ ...s, activity: t.agenda.saturdayLima[i] })),
+    bogota:    SAT_BOGOTA_STRUCTURE.map((s, i) => ({ ...s, activity: t.agenda.saturdayBogota[i] })),
+    guatemala: SAT_OTHER_STRUCTURE.map((s, i)  => ({ ...s, activity: t.agenda.saturdayGuatemala[i] })),
+    remote:    SAT_OTHER_STRUCTURE.map((s, i)  => ({ ...s, activity: t.agenda.saturdayRemote[i] })),
+  };
   const satRows = saturdayByCity[city];
+
+  const citySubtitle: Record<City, string> = Object.fromEntries(
+    t.agenda.cities.map((c) => [c.id, c.subtitle])
+  ) as Record<City, string>;
 
   return (
     <SectionWrapper variant="dark" id="agenda" className="min-h-fit">
@@ -326,10 +325,10 @@ export function Agenda() {
 
       {/* City chips */}
       <div className="flex flex-wrap gap-2 mb-6">
-        {cities.map((c) => (
+        {t.agenda.cities.map((c) => (
           <button
             key={c.id}
-            onClick={() => setCity(c.id)}
+            onClick={() => setCity(c.id as City)}
             style={{
               backgroundColor: city === c.id ? C.pink : "transparent",
               color:           city === c.id ? C.black : C.cream,
@@ -357,12 +356,12 @@ export function Agenda() {
           borderBottom:        "1px solid rgba(255,255,255,0.15)",
         }}>
           <div style={{ borderRight: "1px solid rgba(255,255,255,0.15)" }} />
-          <DayHeader label="Vie 6 · Kick-off" />
+          <DayHeader label={t.agenda.dayFriday} />
           <div style={{ borderLeft: "1px solid rgba(255,255,255,0.15)" }}>
-            <DayHeader label="Sáb 7 · Build Day" subtitle={citySubtitle[city]} />
+            <DayHeader label={t.agenda.daySaturday} subtitle={citySubtitle[city]} />
           </div>
           <div style={{ borderLeft: "1px solid rgba(255,255,255,0.15)" }}>
-            <DayHeader label="Dom 8 · Demo Day" />
+            <DayHeader label={t.agenda.daySunday} />
           </div>
         </div>
 

@@ -83,37 +83,46 @@ export const es: Translations = {
     label: "Agenda Oficial",
     headline: "Agenda",
     headlineAccent: "#SheShips",
-    slots: [
-      {
-        time: "6 de marzo",
-        title: "Kickoff Global",
-        description:
-          "Bienvenida, presentaciones, y empecemos a construir juntas.",
-      },
-      {
-        time: "Continuo",
-        title: "Espacios de Mentoría",
-        description:
-          "Recibe guía de builders experimentadas durante todo el hackathon.",
-      },
-      {
-        time: "Continuo",
-        title: "Sesiones de Coworking Virtual",
-        description:
-          "Construye junto a otras participantes en sesiones en tiempo real.",
-      },
-      {
-        time: "8 de marzo",
-        title: "Showcase Final",
-        description:
-          "Presenta tu proyecto lanzado en el Día Internacional de la Mujer.",
-      },
-      {
-        time: "8 de marzo",
-        title: "Recursos y Beneficios",
-        description:
-          "Acceso a herramientas, recursos y beneficios de partners educativos y tech.",
-      },
+    allDay: "Todo el día",
+    dayFriday: "Vie 6 · Kick-off",
+    daySaturday: "Sáb 7 · Build Day",
+    daySunday: "Dom 8 · Demo Day",
+    cities: [
+      { id: "lima",      label: "Lima",      subtitle: "Presencial · PUCP · GMT-5" },
+      { id: "bogota",    label: "Bogotá",    subtitle: "Presencial · Globant Connecta · GMT-5" },
+      { id: "guatemala", label: "Guatemala", subtitle: "Virtual · GMT-6" },
+      { id: "remote",    label: "Remote",    subtitle: "Virtual · Tu huso horario" },
+    ],
+    friday: [
+      "Intro y llegada de participantes",
+      "Bienvenida por Natalia Jiménez, Founder de XAIA Lab",
+      "Indicaciones de la hackathon, saludo a partners, sponsors y organizadores",
+      "Keynote Sezzle",
+      "🟢 ¡Inicia la hackathon!",
+    ],
+    saturdayLima: [
+      "Entrada a PUCP y recojo de merch",
+      "Desayuno / Coffee break",
+      "Sesiones de contacto con mentoras",
+      "Almuerzo",
+      "Trabajo en proyectos",
+      "Coffee break",
+      "Trabajo en proyectos (sprint final del día)",
+    ],
+    saturdayBogota: [
+      "Entrada a Globant Connecta y recojo de merch",
+      "Desayuno / Coffee break",
+      "Sesiones de contacto con mentoras",
+      "Almuerzo",
+      "Trabajo en proyectos",
+    ],
+    saturdayGuatemala: ["Trabajo en proyectos desde Guatemala"],
+    saturdayRemote: ["Trabajo en proyectos desde tu sede o de manera remota"],
+    sunday: [
+      "Avance final de proyectos + último contacto con mentoras",
+      "Grabación de pitches y subida a Devpost",
+      "Mensaje de cierre por Larissa, GTM de ElevenLabs",
+      "🏁 Fin de la hackathon",
     ],
   },
   categories: {
