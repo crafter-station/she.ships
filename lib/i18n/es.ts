@@ -350,6 +350,12 @@ export const es: Translations = {
         inPersonLimaBogota: true,
         url: "",
       },
+      {
+        sponsor: "Crafter",
+        perk: "1 mes gratis · +3 proveedores LLM en un solo espacio (~$100 de valor)",
+        inPersonOnly: false,
+        url: "https://c3.crafter.run/",
+      },
     ],
   },
   sponsors: {

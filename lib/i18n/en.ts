@@ -346,6 +346,12 @@ export const en = {
         inPersonLimaBogota: true,
         url: "",
       },
+      {
+        sponsor: "Crafter",
+        perk: "1 month free · 3+ LLM providers in one place (~$100 value)",
+        inPersonOnly: false,
+        url: "https://c3.crafter.run/",
+      },
     ],
   },
   sponsors: {
