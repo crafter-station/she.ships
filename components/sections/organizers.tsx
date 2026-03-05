@@ -17,8 +17,8 @@ export function Organizers() {
   ];
 
   return (
-    <SectionWrapper variant="dark" id="organizers" className="min-h-fit" innerClassName="pt-10 pb-6 md:pt-14 md:pb-8">
-      <div className="text-center mb-12">
+    <SectionWrapper variant="dark" id="organizers" className="min-h-fit" innerClassName="!pt-8 !pb-6 md:!pt-12 md:!pb-8">
+      <div className="text-center mb-6">
         <span className="data-label mb-4 block text-neutral-gray uppercase">
           {t.organizers.label}
         </span>

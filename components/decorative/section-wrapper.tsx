@@ -42,7 +42,7 @@ export function SectionWrapper({
       ref={ref}
       id={id}
       className={cn(
-        "sticky w-full min-h-screen",
+        "sticky w-full min-h-screen z-[1]",
         variantStyles[variant],
         bordered && "border-t-4 border-b-4 border-primary-black",
         className,
