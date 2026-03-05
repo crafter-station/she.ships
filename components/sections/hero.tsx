@@ -139,8 +139,8 @@ export function Hero() {
             >
               <EncryptedText
                 text={msg.text}
-                encryptedClassName={msg.accent ? "text-primary-pink/40" : "text-white/40"}
-                revealedClassName={msg.accent ? "text-primary-pink" : "text-white"}
+                encryptedClassName={msg.accent ? "text-primary-green/40" : "text-white/40"}
+                revealedClassName={msg.accent ? "text-primary-green" : "text-white"}
                 revealDelayMs={REVEAL_MS_PER_CHAR}
                 parentRevealDelayMs={MESSAGE_DELAYS[i]}
               />
@@ -171,8 +171,8 @@ export function Hero() {
             >
               <EncryptedText
                 text={msg.text}
-                encryptedClassName={msg.accent ? "text-primary-pink/40" : "text-white/40"}
-                revealedClassName={msg.accent ? "text-primary-pink" : "text-white"}
+                encryptedClassName={msg.accent ? "text-primary-green/40" : "text-white/40"}
+                revealedClassName={msg.accent ? "text-primary-green" : "text-white"}
                 revealDelayMs={REVEAL_MS_PER_CHAR}
                 parentRevealDelayMs={MESSAGE_DELAYS[i]}
               />
