@@ -30,22 +30,10 @@ export function Countdown() {
   }, []);
 
   const blocks = [
-    { value: time.days, label: t.countdown.days, color: "bg-primary-pink" },
-    {
-      value: time.hours,
-      label: t.countdown.hours,
-      color: "bg-primary-green",
-    },
-    {
-      value: time.minutes,
-      label: t.countdown.minutes,
-      color: "bg-primary-black",
-    },
-    {
-      value: time.seconds,
-      label: t.countdown.seconds,
-      color: "bg-primary-pink",
-    },
+    { value: time.days, label: t.countdown.days },
+    { value: time.hours, label: t.countdown.hours },
+    { value: time.minutes, label: t.countdown.minutes },
+    { value: time.seconds, label: t.countdown.seconds },
   ];
 
   return (
@@ -58,15 +46,20 @@ export function Countdown() {
           </span>
         </h2>
 
-        <div className="mx-auto mt-12 flex max-w-5xl flex-wrap justify-center gap-6">
+        <div className={`mx-auto mt-12 flex max-w-5xl flex-wrap justify-center items-end gap-4 md:gap-8 ${mounted ? "opacity-100" : "opacity-0"}`}>
           {blocks.map((block, i) => (
-            <div key={block.label} className="flex-1 min-w-[140px]">
-              <div className={`brutalist-card ${block.color} p-8`}>
-                <p className={`font-[family-name:var(--font-title)] text-4xl font-black text-white md:text-5xl lg:text-6xl ${mounted ? "opacity-100" : "opacity-0"}`}>
+            <div key={block.label} className="flex flex-col items-center">
+              <div className="flex items-center gap-4 md:gap-8">
+                <p className="font-[family-name:var(--font-title)] text-4xl font-black text-primary-cream sm:text-5xl md:text-6xl lg:text-8xl leading-none">
                   {String(block.value).padStart(2, "0")}
                 </p>
+                {i < blocks.length - 1 && (
+                  <span className="font-[family-name:var(--font-title)] text-4xl font-black text-primary-cream sm:text-5xl md:text-6xl lg:text-8xl leading-none self-start mt-1">
+                    :
+                  </span>
+                )}
               </div>
-              <p className="mt-4 font-bold uppercase tracking-widest text-primary-cream text-sm">
+              <p className="mt-3 font-bold uppercase tracking-widest text-primary-cream text-xs md:text-sm">
                 {block.label}
               </p>
             </div>
