@@ -39,7 +39,7 @@ export function Hero() {
   const [overlay, setOverlay] = useState(30);
   // Text (encrypted)
   const [txtX, setTxtX] = useState(232);
-  const [txtY, setTxtY] = useState(-131);
+  const [txtY, setTxtY] = useState(-175);
   // Green text
   const [greenX, setGreenX] = useState(0);
   const [greenY, setGreenY] = useState(-109);
@@ -85,7 +85,7 @@ export function Hero() {
   const resetAll = () => {
     setBtnX(8); setBtnY(84); setBtnScale(0.96);
     setBtnGap(32); setOverlay(0);
-    setTxtX(232); setTxtY(-131);
+    setTxtX(232); setTxtY(-175);
     setGreenX(0); setGreenY(-109); setGreenGap(218); setGreenML(64);
   };
 
