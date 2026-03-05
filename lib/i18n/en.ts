@@ -31,7 +31,7 @@ export const en = {
     hours: "Hours",
     minutes: "Minutes",
     seconds: "Seconds",
-    tagline: "March 6-8, 2026 — This 8M, we build and we ship. 💜",
+    tagline: "March 6-8, 2026. This 8M, we build and we ship. 💜",
   },
   eventInfo: {
     label: "What to expect",
@@ -42,7 +42,7 @@ export const en = {
     paragraph1:
       "She Ships is a 48-hour Global Hackathon where women and multidisciplinary creators come together to build and publish something real.",
     paragraph2:
-      "From March 6-8, we celebrate International Women's Day by creating. This is not just tech — we welcome developers, designers, artists, product builders, researchers, and all types of creators.",
+      "From March 6-8, we celebrate International Women's Day by creating. This is not just tech. We welcome developers, designers, artists, product builders, researchers, and all types of creators.",
     requirementLine: "There's only one requirement: 👉 Ship something.",
     requirementSub: "A public link. A real output. Something that exists.",
     limited: "Limited to 200 participants worldwide",
@@ -163,7 +163,7 @@ export const en = {
   qa: {
     title: "Q&A",
     subtitle:
-      "Answers from our info session — everything you need to know about participating.",
+      "Answers from our info session. Everything you need to know about participating.",
     backToHome: "Back to home",
     items: [
       // — Is this for me? —
@@ -180,39 +180,39 @@ export const en = {
       {
         question: "Can I participate solo or do I need a team?",
         answer:
-          "Both! You can go solo or form a team of up to 4–5 people. There are no restrictions on roles — your team can be all engineers, all designers, or a mix. Assign roles organically based on everyone's strengths.",
+          "Both! You can go solo or form a team of up to 4–5 people. There are no restrictions on roles. Your team can be all engineers, all designers, or a mix. Assign roles organically based on everyone's strengths.",
       },
       {
         question: "Can I form a team on the day of the event?",
         answer:
-          "Yes, but we encourage you to connect beforehand through our WhatsApp group — share your interests, skills, and what category you're interested in. Some cities will also have in-person meetups before the hackathon to help you find teammates.",
+          "Yes, but we encourage you to connect beforehand through our WhatsApp group. Share your interests, skills, and what category you're interested in. Some cities will also have in-person meetups before the hackathon to help you find teammates.",
       },
       // — What do I build? —
       {
         question: "What does 'ship something' mean?",
         answer:
-          "You need to publish something real with a public link. It could be a deployed app, a live website, a published design, a digital comic, an open source repo — anything that exists and can be accessed by others.",
+          "You need to publish something real with a public link. It could be a deployed app, a live website, a published design, a digital comic, an open source repo, anything that exists and can be accessed by others.",
       },
       {
         question: "Are there limits on the prototype scope?",
         answer:
-          "No strict limits — it depends on your category. Creative categories can use Figma or similar design tools. App categories expect a functional prototype. The key requirement is to ship something people can use or interact with: a live app, a website, a Figma file, etc. The more complete your prototype, the better your pitch will be.",
+          "No strict limits, it depends on your category. Creative categories can use Figma or similar design tools. App categories expect a functional prototype. The key requirement is to ship something people can use or interact with: a live app, a website, a Figma file, etc. The more complete your prototype, the better your pitch will be.",
       },
       {
         question: "Does the project have to focus on women's issues?",
         answer:
-          "The main theme is problems in the day-to-day experience of women — safety, pay gap, health, labor opportunities, etc. While this is strongly encouraged, there's some flexibility in interpretation. Examples from previous hackathons with similar themes will be shared for inspiration.",
+          "The main theme is problems in the day-to-day experience of women: safety, pay gap, health, labor opportunities, etc. While this is strongly encouraged, there's some flexibility in interpretation. Examples from previous hackathons with similar themes will be shared for inspiration.",
       },
       // — How am I evaluated? —
       {
         question: "What are the judging criteria?",
         answer:
-          "Two main criteria: (1) Alignment with the 8M theme — projects must address problems related to International Women's Day such as gender violence, pay gap, women's health, safety, or expanding opportunities for women. (2) Best use of sponsor products — the sponsor's product should be used as a core feature, not just an add-on. Creativity and completeness are also highly valued.",
+          "Two main criteria: (1) Alignment with the 8M theme: projects must address problems related to International Women's Day such as gender violence, pay gap, women's health, safety, or expanding opportunities for women. (2) Best use of sponsor products: the sponsor's product should be used as a core feature, not just an add-on. Creativity and completeness are also highly valued.",
       },
       {
         question: "How is code vs. design weighted in scoring?",
         answer:
-          "It depends on the category. Creative categories don't require code — a Figma design is perfectly valid. For more technical categories, judges with engineering backgrounds will evaluate accordingly. Each category has its own set of mentors and judges matched to the expected deliverables.",
+          "It depends on the category. Creative categories don't require code, a Figma design is perfectly valid. For more technical categories, judges with engineering backgrounds will evaluate accordingly. Each category has its own set of mentors and judges matched to the expected deliverables.",
       },
       {
         question: "Is a video or pitch required?",
@@ -279,16 +279,16 @@ export const en = {
     existingBadgeLink: "View my badge",
     existingBadgeOr: "or create a new one below",
     resultHeadline: "I'm hacking at She Ships",
-    resultDate: "March 6-8, 2026 — 48h Global Hackathon",
+    resultDate: "March 6-8, 2026. 48h Global Hackathon",
     resultDescription:
       "I'll be participating in the She Ships global hackathon, representing my country and building something real in 48 hours. Share it and let the world know you're shipping.",
     shareLabel: "Share on",
     shareText:
-      "I'll be participating in the She Ships global hackathon — 48 hours of building and shipping with women and creators from around the world. Join us!",
+      "I'll be participating in the She Ships global hackathon, 48 hours of building and shipping with women and creators from around the world. Join us!",
     particlePromptSuggestions: [
       "A badge inspired by retro computing...",
       "Golden metallic particles with tiny blue glowing ones...",
-      "Ocean waves — fluid teal with white foam bubbles...",
+      "Ocean waves, fluid teal with white foam bubbles...",
       "Neon cyberpunk with pink and purple glow...",
       "Crystal gems mixed with liquid mercury drops...",
       "Pixel art vibes with colorful cubes...",

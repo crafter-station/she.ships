@@ -33,7 +33,7 @@ export const es: Translations = {
     hours: "Horas",
     minutes: "Minutos",
     seconds: "Segundos",
-    tagline: "6-8 de marzo, 2026 — Este 8M, construimos y lanzamos. 💜",
+    tagline: "6-8 de marzo, 2026. Este 8M, construimos y lanzamos. 💜",
   },
   eventInfo: {
     label: "Qué esperar",
@@ -167,7 +167,7 @@ export const es: Translations = {
   qa: {
     title: "Preguntas y Respuestas",
     subtitle:
-      "Respuestas de nuestra sesion informativa — todo lo que necesitas saber para participar.",
+      "Respuestas de nuestra sesion informativa. Todo lo que necesitas saber para participar.",
     backToHome: "Volver al inicio",
     items: [
       // — ¿Es para mi? —
@@ -184,39 +184,39 @@ export const es: Translations = {
       {
         question: "¿Puedo participar sola o necesito un equipo?",
         answer:
-          "¡Ambas opciones! Puedes ir sola o formar un equipo de hasta 4–5 personas. No hay restricciones de roles — tu equipo puede ser todo ingenieras, todo disenadoras, o una mezcla. Asignen roles organicamente segun las fortalezas de cada una.",
+          "¡Ambas opciones! Puedes ir sola o formar un equipo de hasta 4–5 personas. No hay restricciones de roles. Tu equipo puede ser todo ingenieras, todo disenadoras, o una mezcla. Asignen roles organicamente segun las fortalezas de cada una.",
       },
       {
         question: "¿Puedo formar equipo el dia del evento?",
         answer:
-          "Si, pero te animamos a conectar antes a traves de nuestro grupo de WhatsApp — comparte tus intereses, habilidades y que categoria te interesa. Algunas ciudades tambien tendran meetups presenciales antes del hackathon para ayudarte a encontrar companeras de equipo.",
+          "Si, pero te animamos a conectar antes a traves de nuestro grupo de WhatsApp. Comparte tus intereses, habilidades y que categoria te interesa. Algunas ciudades tambien tendran meetups presenciales antes del hackathon para ayudarte a encontrar companeras de equipo.",
       },
       // — ¿Que construyo? —
       {
         question: "¿Que significa 'lanzar algo'?",
         answer:
-          "Necesitas publicar algo real con un link publico. Puede ser una app desplegada, un sitio web live, un diseno publicado, un comic digital, un repo open source — cualquier cosa que exista y pueda ser accedida por otros.",
+          "Necesitas publicar algo real con un link publico. Puede ser una app desplegada, un sitio web live, un diseno publicado, un comic digital, un repo open source, cualquier cosa que exista y pueda ser accedida por otros.",
       },
       {
         question: "¿Hay limites en el alcance del prototipo?",
         answer:
-          "No hay limites estrictos — depende de tu categoria. Las categorias creativas pueden usar Figma o herramientas de diseno similares. Las categorias de apps esperan un prototipo funcional. El requisito clave es entregar algo que la gente pueda usar o con lo que pueda interactuar: una app, un sitio web, un archivo de Figma, etc. Mientras mas completo sea tu prototipo, mejor sera tu pitch.",
+          "No hay limites estrictos, depende de tu categoria. Las categorias creativas pueden usar Figma o herramientas de diseno similares. Las categorias de apps esperan un prototipo funcional. El requisito clave es entregar algo que la gente pueda usar o con lo que pueda interactuar: una app, un sitio web, un archivo de Figma, etc. Mientras mas completo sea tu prototipo, mejor sera tu pitch.",
       },
       {
         question: "¿El proyecto tiene que enfocarse en temas de mujeres?",
         answer:
-          "El tema principal son los problemas en la experiencia cotidiana de las mujeres — seguridad, brecha salarial, salud, oportunidades laborales, etc. Aunque esto se fomenta fuertemente, hay algo de flexibilidad en la interpretacion. Se compartiran ejemplos de hackathons anteriores con temas similares para inspirarte.",
+          "El tema principal son los problemas en la experiencia cotidiana de las mujeres: seguridad, brecha salarial, salud, oportunidades laborales, etc. Aunque esto se fomenta fuertemente, hay algo de flexibilidad en la interpretacion. Se compartiran ejemplos de hackathons anteriores con temas similares para inspirarte.",
       },
       // — ¿Como me evaluan? —
       {
         question: "¿Cuales son los criterios de evaluacion?",
         answer:
-          "Dos criterios principales: (1) Alineacion con el tema del 8M — los proyectos deben abordar problemas relacionados con el Dia Internacional de la Mujer como violencia de genero, brecha salarial, salud de la mujer, seguridad o expansion de oportunidades para mujeres. (2) Mejor uso de los productos de los sponsors — el producto del sponsor debe usarse como una funcionalidad central, no solo como un complemento. La creatividad y completitud tambien son muy valoradas.",
+          "Dos criterios principales: (1) Alineacion con el tema del 8M: los proyectos deben abordar problemas relacionados con el Dia Internacional de la Mujer como violencia de genero, brecha salarial, salud de la mujer, seguridad o expansion de oportunidades para mujeres. (2) Mejor uso de los productos de los sponsors: el producto del sponsor debe usarse como una funcionalidad central, no solo como un complemento. La creatividad y completitud tambien son muy valoradas.",
       },
       {
         question: "¿Como se evalua el codigo vs. el diseno?",
         answer:
-          "Depende de la categoria. Las categorias creativas no requieren codigo — un diseno en Figma es perfectamente valido. Para categorias mas tecnicas, jueces con experiencia en ingenieria evaluaran en consecuencia. Cada categoria tiene su propio conjunto de mentoras y jueces asignados segun los entregables esperados.",
+          "Depende de la categoria. Las categorias creativas no requieren codigo, un diseno en Figma es perfectamente valido. Para categorias mas tecnicas, jueces con experiencia en ingenieria evaluaran en consecuencia. Cada categoria tiene su propio conjunto de mentoras y jueces asignados segun los entregables esperados.",
       },
       {
         question: "¿Se requiere un video o pitch?",
@@ -283,16 +283,16 @@ export const es: Translations = {
     existingBadgeLink: "Ver mi badge",
     existingBadgeOr: "o crea uno nuevo abajo",
     resultHeadline: "Voy a hackear en She Ships",
-    resultDate: "6-8 de marzo, 2026 — Hackathon Global de 48h",
+    resultDate: "6-8 de marzo, 2026. Hackathon Global de 48h",
     resultDescription:
       "Voy a participar en el hackathon global She Ships, representando a mi país y construyendo algo real en 48 horas. Compartilo y que el mundo sepa que vas a shippear.",
     shareLabel: "Compartir en",
     shareText:
-      "Voy a participar en el hackathon global She Ships — 48 horas construyendo y shippeando con mujeres y creadoras de todo el mundo. Sumate!",
+      "Voy a participar en el hackathon global She Ships, 48 horas construyendo y shippeando con mujeres y creadoras de todo el mundo. Sumate!",
     particlePromptSuggestions: [
       "Una insignia inspirada en la computación retro...",
       "Partículas metálicas doradas con pequeñas brillantes azules...",
-      "Olas del océano — fluido turquesa con burbujas de espuma...",
+      "Olas del océano, fluido turquesa con burbujas de espuma...",
       "Cyberpunk neón con brillo rosa y púrpura...",
       "Gemas de cristal mezcladas con gotas de mercurio líquido...",
       "Estilo pixel art con cubos de colores...",
