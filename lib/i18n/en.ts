@@ -248,6 +248,44 @@ export const en = {
       },
     ],
   },
+  prizes: {
+    label: "Win big",
+    headline: "Prizes &",
+    headlineAccent: "Categories",
+    stackNote: "Teams can win in multiple categories simultaneously.",
+    mainLabel: "Main Categories",
+    mainSponsor: "Powered by Sezzle",
+    techLabel: "Tech Awards",
+    techNote: "Win a tech award on top of a main category.",
+    mainCategories: [
+      {
+        title: "Best Fintech Solution for Women's Economic Empowerment",
+        prize: "$500 USD",
+        description: "Projects using financial technology to close gender economic gaps: access to credit, financial independence, savings tools or commerce platforms for women entrepreneurs.",
+      },
+      {
+        title: "Best Financial Inclusion Solution for Women",
+        prize: "$500 USD",
+        description: "Projects focused on making flexible payments, pay and wage transparency, loan access, and financial services more accessible to women in underserved communities.",
+      },
+    ],
+    techAwards: [
+      {
+        sponsor: "ElevenLabs",
+        title: "Best Project Built with ElevenLabs",
+        prize: "6 months Scale tier / member",
+        value: "~$1,980 value",
+        requirement: "Must integrate the ElevenLabs API.",
+      },
+      {
+        sponsor: "Featherless AI",
+        title: "Top Projects Built with Featherless AI",
+        prize: "🥇 $300 · 🥈 $150 · 🥉 $75",
+        value: "in Featherless credits",
+        requirement: "Must use Featherless AI models.",
+      },
+    ],
+  },
   perks: {
     label: "What you get",
     headline: "Perks for",

@@ -7,6 +7,7 @@ import { Agenda } from "@/components/sections/agenda";
 import { Categories } from "@/components/sections/categories";
 import { FAQ } from "@/components/sections/faq";
 import { Perks } from "@/components/sections/perks";
+import { Prizes } from "@/components/sections/prizes";
 import { WhatsappCommunity } from "@/components/sections/whatsapp-community";
 import { Organizers } from "@/components/sections/organizers";
 import { CommunityPartners } from "@/components/sections/community-partners";
@@ -23,6 +24,7 @@ export default function Home() {
         <Countdown />
         <Sponsors />
         <Perks />
+        <Prizes />
         <WhatIsSheShips />
         <Agenda />
         <Categories />
