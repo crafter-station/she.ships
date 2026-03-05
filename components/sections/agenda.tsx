@@ -81,11 +81,11 @@ function durationMins(timeStr: string): number {
 // ─── Schedule data ────────────────────────────────────────────────────────────
 
 const friday: Row[] = [
-  { time: "18:55 – 19:00", activity: "Intro y llegada de participantes",                                           color: C.cream },
+  { time: "18:55 – 19:00", activity: "Intro y llegada de participantes",                                           color: C.pink },
   { time: "19:00 – 19:25", activity: "Bienvenida por Natalia Jiménez, Founder de XAIA Lab",                        color: C.pink },
   { time: "19:25 – 19:30", activity: "Indicaciones de la hackathon, saludo a partners, sponsors y organizadores",  color: C.cream },
-  { time: "19:30 – 19:50", activity: "Keynote Sezzle — Sponsor Platinum oficial",                                  color: C.green },
-  { time: "19:50 – 20:00", activity: "Ronda de preguntas",                                                         color: C.cream },
+  { time: "19:30 – 19:50", activity: "Keynote Sezzle — Sponsor Platinum oficial",                                  color: C.cream },
+  { time: "19:50 – 20:00", activity: "Ronda de preguntas",                                                         color: C.pink },
   { time: "20:00",         activity: "🟢 ¡Inicia la hackathon!",                                                   color: C.green },
 ];
 
@@ -94,16 +94,16 @@ const saturdayByCity: Record<City, Row[]> = {
     { time: "9:00",           activity: "Entrada a PUCP y recojo de merch",                    color: C.pink },
     { time: "9:00 – 11:00",   activity: "Desayuno / Coffee break",                             color: C.cream },
     { time: "11:00 – 14:00",  activity: "Sesiones de contacto con mentoras",                   color: C.pink },
-    { time: "14:00 – 15:00",  activity: "Almuerzo",                                            color: C.cream },
+    { time: "14:00 – 15:00",  activity: "Almuerzo",                                            color: C.green },
     { time: "15:00 – 19:00",  activity: "Trabajo en proyectos",                                color: C.cream },
-    { time: "19:00 – 20:00",  activity: "Coffee break",                                        color: C.cream },
-    { time: "20:00 – 21:00",  activity: "Trabajo en proyectos (sprint final del día)",         color: C.cream },
+    { time: "19:00 – 20:00",  activity: "Coffee break",                                        color: C.green },
+    { time: "20:00 – 21:00",  activity: "Trabajo en proyectos (sprint final del día)",         color: C.pink },
   ],
   bogota: [
     { time: "9:00",           activity: "Entrada a Globant Connecta y recojo de merch",        color: C.pink },
     { time: "9:00 – 11:00",   activity: "Desayuno / Coffee break",                             color: C.cream },
     { time: "11:00 – 14:00",  activity: "Sesiones de contacto con mentoras",                   color: C.pink },
-    { time: "14:00 – 15:00",  activity: "Almuerzo",                                            color: C.cream },
+    { time: "14:00 – 15:00",  activity: "Almuerzo",                                            color: C.green },
     { time: "15:00 – 19:00",  activity: "Trabajo en proyectos",                                color: C.cream },
   ],
   guatemala: [
@@ -165,32 +165,38 @@ function EventBlock({ row, column }: { row: Row; column: number }) {
   const rowStart = toGridRow(start);
   const rowEnd   = toGridRow(end);
 
-  // Blocks are always cream-filled by default (like the reference), colored on hover
-  const bgColor   = hovered ? row.color : C.cream;
-  const isHoverLight = row.color === C.cream;
-  const textColor = hovered ? (isHoverLight ? C.black : C.black) : C.black;
+  // All blocks: show their color by default, darken on hover
+  const bgColor   = hovered ? C.black : row.color;
+  const textColor = hovered ? "#ffffff" : C.black;
 
   // Format display time: strip seconds, show short range
   const displayTime = row.time === "Todo el día" ? "9:00 – 21:00" : row.time;
 
   return (
+    // Outer cell: occupies the grid position, provides 2px inset margin
     <div
       style={{
-        gridRow:         `${rowStart} / ${rowEnd}`,
-        gridColumn:      column,
+        gridRow:    `${rowStart} / ${rowEnd}`,
+        gridColumn: column,
+        padding:    "2px",
+        zIndex:     1,
+      }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+    {/* Inner visual block: rounded via clip-path (overrides border-radius: 0 !important) */}
+    <div style={{
+        height:          "100%",
         backgroundColor: bgColor,
-        border:          "1px solid rgba(255,255,255,0.2)",
-        padding:         isTiny ? "1px 4px" : isShort ? "2px 6px" : "4px 8px",
+        clipPath:        "inset(0 round 4px)",
+        padding:         isTiny ? "1px 4px" : isShort ? "2px 5px" : "4px 6px",
         overflow:        "hidden",
         display:         "flex",
         flexDirection:   "column",
         justifyContent:  "flex-start",
-        zIndex:          1,
         cursor:          "default",
         transition:      "background-color 0.12s ease",
       }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
     >
       {!isTiny && (
         <span
@@ -223,6 +229,7 @@ function EventBlock({ row, column }: { row: Row; column: number }) {
           {displayTime}
         </span>
       )}
+    </div>
     </div>
   );
 }
