@@ -56,6 +56,8 @@ export const en = {
     eightMLabel: "International Women's Day — March 8, 2026",
     eightMLinePart1: "We don't just celebrate it.",
     eightMLineAccent: "We build on it.",
+    themeLabel: "The Theme",
+    themeDescription: "Safety. Health. Pay gap. Financial independence. Career opportunities. Build a real product that solves a problem women face every day.",
     where: {
       title: "100% Remote",
       description:

@@ -227,6 +227,16 @@ export function WhatIsSheShips() {
             </p>
           </div>
 
+          {/* Theme callout */}
+          <div className="bg-primary-pink/10 border border-primary-pink/30 p-4 mb-6">
+            <p className="text-[10px] font-black uppercase tracking-widest text-primary-pink mb-2">
+              {t.eventInfo.themeLabel}
+            </p>
+            <p className="font-[family-name:var(--font-monoblock)] text-xs text-primary-cream/90 uppercase leading-relaxed">
+              {t.eventInfo.themeDescription}
+            </p>
+          </div>
+
           {/* Requirement callout */}
           <div className="bg-white/5 border border-white/10 p-4">
             <p className="font-[family-name:var(--font-title)] font-black text-lg uppercase leading-tight">

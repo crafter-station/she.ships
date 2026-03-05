@@ -9,7 +9,7 @@ import Image from "next/image";
 const MESSAGES: { text: string; accent?: boolean }[] = [
   { text: "WOMEN IN TECH," },
   { text: "DESIGN, ART, AND CULTURE_" },
-  { text: "BUILD WHAT THE WORLD HASN'T BUILT FOR US YET_" },
+  { text: "SOLVE REAL PROBLEMS THAT AFFECT WOMEN_" },
   { text: "NO CODING REQUIRED.", accent: true },
   { text: "FROM IDEA TO PRODUCT IN 48H._" },
 ];

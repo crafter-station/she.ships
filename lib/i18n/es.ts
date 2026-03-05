@@ -58,6 +58,8 @@ export const es: Translations = {
     eightMLabel: "Día Internacional de la Mujer — 8 de marzo, 2026",
     eightMLinePart1: "No solo lo celebramos.",
     eightMLineAccent: "Construimos en él.",
+    themeLabel: "El Tema",
+    themeDescription: "Seguridad. Salud. Brecha salarial. Independencia financiera. Oportunidades laborales. Construye un producto real que resuelva un problema que las mujeres enfrentan todos los días.",
     where: {
       title: "100% Remoto",
       description:
