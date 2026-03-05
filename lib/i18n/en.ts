@@ -248,6 +248,53 @@ export const en = {
       },
     ],
   },
+  perks: {
+    label: "What you get",
+    headline: "Perks for",
+    headlineAccent: "Participants",
+    description: "+$20K USD in free tools and credits for all 200 participants.",
+    inPerson: "In-person only",
+    inPersonLima: "In-person · Lima",
+    items: [
+      {
+        sponsor: "v0",
+        perk: "$30 USD in v0 credits during hack days",
+        inPersonOnly: false,
+        url: "https://v0.app/",
+      },
+      {
+        sponsor: "Featherless AI",
+        perk: "1 month of free inference",
+        inPersonOnly: false,
+        url: "https://featherless.ai/",
+      },
+      {
+        sponsor: "ElevenLabs",
+        perk: "1 month free Creator tier (normally $22/mo)",
+        inPersonOnly: true,
+        url: "https://elevenlabs.io/",
+      },
+      {
+        sponsor: "Make",
+        perk: "1 month free",
+        inPersonOnly: false,
+        url: "https://www.make.com/en",
+      },
+      {
+        sponsor: "Tropicalia",
+        perk: "Free credits on signup + unlimited uses Mar 6–8.",
+        inPersonOnly: false,
+        url: "https://www.tropicalia.dev/",
+      },
+      {
+        sponsor: "She Ships",
+        perk: "Free food and coffee break",
+        inPersonOnly: false,
+        inPersonLima: true,
+        url: "",
+      },
+    ],
+  },
   sponsors: {
     label: "Made possible by",
     headline: "Our",

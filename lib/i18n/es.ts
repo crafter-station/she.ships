@@ -252,6 +252,53 @@ export const es: Translations = {
       },
     ],
   },
+  perks: {
+    label: "Qué te llevas",
+    headline: "Perks para",
+    headlineAccent: "Participantes",
+    description: "+$20K USD en herramientas y créditos gratis para las 200 participantes.",
+    inPerson: "Solo presencial",
+    inPersonLima: "Presencial · Lima",
+    items: [
+      {
+        sponsor: "v0",
+        perk: "$30 USD en créditos de v0 durante los días del hack",
+        inPersonOnly: false,
+        url: "https://v0.app/",
+      },
+      {
+        sponsor: "Featherless AI",
+        perk: "1 mes de inferencia gratuita",
+        inPersonOnly: false,
+        url: "https://featherless.ai/",
+      },
+      {
+        sponsor: "ElevenLabs",
+        perk: "1 mes gratis del tier Creator (normalmente $22/mes)",
+        inPersonOnly: true,
+        url: "https://elevenlabs.io/",
+      },
+      {
+        sponsor: "Make",
+        perk: "1 mes gratis",
+        inPersonOnly: false,
+        url: "https://www.make.com/en",
+      },
+      {
+        sponsor: "Tropicalia",
+        perk: "Créditos gratis al crear cuenta + usos ilimitados del 6 al 8 de mar.",
+        inPersonOnly: false,
+        url: "https://www.tropicalia.dev/",
+      },
+      {
+        sponsor: "She Ships",
+        perk: "Comida y coffee break gratis",
+        inPersonOnly: false,
+        inPersonLima: true,
+        url: "",
+      },
+    ],
+  },
   sponsors: {
     label: "Posible gracias a",
     headline: "Nuestros",
