@@ -36,10 +36,10 @@ export function Prizes() {
               key={i}
               className="border border-primary-green/40 p-6 flex flex-col gap-3"
             >
-              <p className="font-[family-name:var(--font-title)] text-base font-black text-primary-cream uppercase leading-tight">
+              <p className="font-[family-name:var(--font-title)] text-base font-black text-primary-green uppercase leading-tight">
                 {cat.title}
               </p>
-              <p className="text-sm text-primary-cream/60 leading-relaxed">
+              <p className="text-sm text-primary-cream/80 leading-relaxed font-medium">
                 {cat.description}
               </p>
             </div>
@@ -120,14 +120,14 @@ export function Prizes() {
 
         <div className="border border-white/15 p-6 flex flex-col gap-2">
           <span className="data-label text-neutral-gray">{specialAward.sponsor}</span>
-          <p className="font-[family-name:var(--font-title)] text-sm font-bold text-primary-cream uppercase leading-tight">
+          <p className="font-[family-name:var(--font-title)] text-base font-black text-primary-cream uppercase leading-tight">
             {specialAward.title}
           </p>
           <p className="font-[family-name:var(--font-title)] text-xl font-black text-primary-pink mt-1">
             {specialAward.prize}
           </p>
-          <p className="text-xs text-primary-cream/50">{specialAward.value}</p>
-          <p className="text-xs text-neutral-gray mt-1 border-t border-white/10 pt-2">
+          <p className="text-xs font-bold uppercase tracking-widest text-primary-pink/70">{specialAward.value}</p>
+          <p className="text-xs font-medium text-neutral-gray mt-1 border-t border-white/10 pt-2">
             {specialAward.requirement}
           </p>
         </div>

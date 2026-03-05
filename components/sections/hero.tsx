@@ -155,7 +155,7 @@ export function Hero() {
               6-8 March // Online
             </span>
           </div>
-          <p className="text-center text-white/75 text-xs px-8 mt-3 leading-relaxed font-light">
+          <p className="text-center text-white/90 text-sm font-bold px-6 mt-3 leading-snug">
             {t.hero.description}
           </p>
         </div>
@@ -165,7 +165,7 @@ export function Hero() {
           {MESSAGES.map((msg, i) => (
             <p
               key={i}
-              className="font-[family-name:var(--font-monoblock)] text-[8px] font-light tracking-wide uppercase text-center"
+              className="font-[family-name:var(--font-monoblock)] text-[10px] sm:text-xs font-light tracking-wide uppercase text-center"
             >
               <EncryptedText
                 text={msg}

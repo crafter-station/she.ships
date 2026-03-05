@@ -218,16 +218,22 @@ export function WhatIsSheShips() {
 
           {/* 8M callout */}
           <div className="border-l-4 border-primary-pink pl-4 mb-6">
-            <p className="data-label text-primary-pink mb-1">{t.eventInfo.eightMLabel}</p>
-            <p className="text-white/90 text-sm">{t.eventInfo.eightMLine}</p>
+            <p className="text-[10px] font-black uppercase tracking-widest text-primary-pink mb-2">
+              {t.eventInfo.eightMLabel}
+            </p>
+            <p className="font-[family-name:var(--font-title)] font-black text-xl uppercase leading-tight">
+              <span className="text-white">{t.eventInfo.eightMLinePart1} </span>
+              <span className="text-primary-pink">{t.eventInfo.eightMLineAccent}</span>
+            </p>
           </div>
 
           {/* Requirement callout */}
           <div className="bg-white/5 border border-white/10 p-4">
-            <p className="font-[family-name:var(--font-title)] font-black text-primary-cream text-lg uppercase leading-tight">
-              {t.eventInfo.requirementLine}
+            <p className="font-[family-name:var(--font-title)] font-black text-lg uppercase leading-tight">
+              <span className="text-white">{t.eventInfo.requirementLine.split("👉")[0]}</span>
+              <span className="text-primary-green">👉 {t.eventInfo.requirementLine.split("👉")[1]}</span>
             </p>
-            <p className="text-neutral-gray text-sm mt-1">{t.eventInfo.requirementSub}</p>
+            <p className="text-neutral-gray text-sm mt-2 font-medium">{t.eventInfo.requirementSub}</p>
           </div>
         </div>
 

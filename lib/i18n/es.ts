@@ -50,7 +50,8 @@ export const es: Translations = {
     requirementSub: "Un enlace público. Un resultado real. Algo que exista.",
     limited: "Limitado a 200 participantes en todo el mundo",
     eightMLabel: "Día Internacional de la Mujer — 8 de marzo, 2026",
-    eightMLine: "No solo lo celebramos. Construimos en él.",
+    eightMLinePart1: "No solo lo celebramos.",
+    eightMLineAccent: "Construimos en él.",
     where: {
       title: "100% Remoto",
       description:

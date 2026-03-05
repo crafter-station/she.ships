@@ -48,7 +48,8 @@ export const en = {
     requirementSub: "A public link. A real output. Something that exists.",
     limited: "Limited to 200 participants worldwide",
     eightMLabel: "International Women's Day — March 8, 2026",
-    eightMLine: "We don't just celebrate it. We build on it.",
+    eightMLinePart1: "We don't just celebrate it.",
+    eightMLineAccent: "We build on it.",
     where: {
       title: "100% Remote",
       description:

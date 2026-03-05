@@ -11,7 +11,9 @@ export function CtaBanner({ label }: { label?: string }) {
           {"<"}{label ?? t.nav.registerFree}{">"}
         </a>
       </Button>
-      <p className="data-label text-neutral-gray uppercase">{t.hero.date} · {t.eventInfo.limited}</p>
+      <p className="text-xs font-black uppercase tracking-widest text-neutral-gray/80">
+        {t.hero.date} · <span className="text-primary-pink">{t.eventInfo.limited}</span>
+      </p>
     </div>
   );
 }
