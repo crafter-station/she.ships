@@ -17,7 +17,6 @@ export function Nav() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const links = [
-    { label: t.nav.event, href: "#event-info" },
     { label: t.nav.agenda, href: "#agenda" },
     { label: t.nav.categories, href: "#categories" },
     { label: t.nav.faq, href: "/qa" },

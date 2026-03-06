@@ -1,6 +1,7 @@
 "use client";
 
 import { SectionWrapper } from "@/components/decorative/section-wrapper";
+import { Button } from "@/components/ui/button";
 import { useTranslation } from "@/lib/i18n/context";
 
 export function Perks() {
@@ -17,6 +18,9 @@ export function Perks() {
           <span className="text-primary-pink">{t.perks.headlineAccent}</span>
         </h2>
         <p className="mt-3 text-neutral-gray text-base">{t.perks.description}</p>
+        <p className="mt-1 text-xs font-black text-primary-green font-mono uppercase tracking-widest">
+          {t.perks.globalNote}
+        </p>
       </div>
 
       <div className="grid gap-0 sm:grid-cols-2 lg:grid-cols-4 border border-white/15">
@@ -29,17 +33,17 @@ export function Perks() {
               </p>
               <div className="flex flex-wrap gap-1.5">
                 {item.inPersonOnly && (
-                  <span className="inline-block w-fit bg-primary-pink px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-primary-black">
+                  <span className="inline-block w-fit bg-primary-pink px-2 py-0.5 text-xs font-black uppercase tracking-wider text-primary-black">
                     {t.perks.inPerson}
                   </span>
                 )}
                 {item.inPersonLima && (
-                  <span className="inline-block w-fit bg-primary-green px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-primary-black">
+                  <span className="inline-block w-fit bg-primary-green px-2 py-0.5 text-xs font-black uppercase tracking-wider text-primary-black">
                     {t.perks.inPersonLima}
                   </span>
                 )}
                 {item.inPersonLimaBogota && (
-                  <span className="inline-block w-fit bg-primary-green px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-primary-black">
+                  <span className="inline-block w-fit bg-primary-green px-2 py-0.5 text-xs font-black uppercase tracking-wider text-primary-black">
                     {t.perks.inPersonLimaBogota}
                   </span>
                 )}
@@ -62,6 +66,17 @@ export function Perks() {
             </div>
           );
         })}
+      </div>
+
+      <div className="mt-14 flex flex-col items-center gap-4">
+        <Button asChild variant="pink" size="lg">
+          <a href="https://luma.com/ytl522gp" target="_blank" rel="noopener noreferrer">
+            {"<"}{t.nav.registerFree}{">"}
+          </a>
+        </Button>
+        <p className="text-xs font-black uppercase tracking-widest text-neutral-gray/80">
+          {t.hero.date} · <span className="text-primary-pink">{t.eventInfo.limited}</span>
+        </p>
       </div>
     </SectionWrapper>
   );

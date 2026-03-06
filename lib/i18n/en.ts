@@ -5,6 +5,7 @@ export const en = {
     categories: "Categories",
     faq: "FAQ",
     join: "Join",
+    registerFree: "Claim Your Spot",
     myBadge: "My Poster",
     ctaSponsor: "Be a Sponsor",
     ctaCommunityPartner: "Be a Community Partner",
@@ -17,11 +18,21 @@ export const en = {
     headlineAccent: "Ship It.",
     description:
       "A 48-hour global hackathon where women and multidisciplinary creators build and publish something real.",
+    descriptionPart1: "A ",
+    descriptionAccent1: "48-hour",
+    descriptionPart2: " global hackathon where ",
+    descriptionAccent2: "women",
+    descriptionPart3: " and multidisciplinary creators build and ",
+    descriptionAccent3: "publish something real.",
     date: "March 6-8, 2026",
     ctaSpeaker: "Be a Speaker",
     ctaSponsor: "Be a Sponsor",
     ctaCommunity: "Be a Community Manager",
     by: "by",
+    greenLabel1: "Global Hackathon",
+    greenLabel2: "6-8 March // Online",
+    message1: "NO CODING REQUIRED.",
+    message2: "BUILD REAL SOLUTIONS FOR WOMEN IN 48H._",
   },
   countdown: {
     label: "The clock is ticking",
@@ -46,6 +57,11 @@ export const en = {
     requirementLine: "There's only one requirement: 👉 Ship something.",
     requirementSub: "A public link. A real output. Something that exists.",
     limited: "Limited to 200 participants worldwide",
+    eightMLabel: "International Women's Day — March 8, 2026",
+    eightMLinePart1: "We don't just celebrate it.",
+    eightMLineAccent: "We build on it.",
+    themeLabel: "The Theme",
+    themeDescription: "Safety. Health. Pay gap. Financial independence. Career opportunities. Build a real product that solves a problem women face every day.",
     where: {
       title: "100% Remote",
       description:
@@ -262,7 +278,7 @@ export const en = {
     headline: "Prizes &",
     headlineAccent: "Categories",
     stackNote: "Teams can win in multiple categories simultaneously.",
-    mainLabel: "Main Categories",
+    mainLabel: "Sponsor Categories",
     mainSponsor: "Powered by Sezzle",
     mainCategories: [
       {
@@ -312,9 +328,10 @@ export const en = {
     headline: "Perks for",
     headlineAccent: "Participants",
     description: "+$20K USD in free tools and credits for all 200 participants.",
-    inPerson: "In-person only",
-    inPersonLima: "In-person · Lima",
-    inPersonLimaBogota: "In-person · Lima & Bogotá",
+    globalNote: "All digital perks ship worldwide to all 200 participants.",
+    inPerson: "In-person events only",
+    inPersonLima: "🇵🇪 Lima in-person",
+    inPersonLimaBogota: "🇵🇪🇨🇴 Lima & Bogotá in-person",
     items: [
       {
         sponsor: "v0",

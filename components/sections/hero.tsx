@@ -3,30 +3,13 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { EncryptedText } from "@/components/ui/encrypted-text";
+import { useTranslation } from "@/lib/i18n/context";
 import Image from "next/image";
 
-const MESSAGES = [
-  "WOMEN IN TECH,",
-  "DESIGN, ART, AND CULTURE_",
-  "BUILD AND SHIP REAL PROJECTS_",
-];
+// Messages are built dynamically from translations — see getMessages() inside Hero
 
 const REVEAL_MS_PER_CHAR = 40;
 const PAUSE_BETWEEN = 300;
-
-// Cumulative delay: each line waits for all previous lines to finish + pause
-// Lines 0-1 are one phrase, so no pause between them
-const MESSAGE_DELAYS = MESSAGES.reduce<number[]>((acc, msg, i) => {
-  if (i === 0) {
-    acc.push(0);
-  } else {
-    const prevStart = acc[i - 1];
-    const prevDuration = MESSAGES[i - 1].length * REVEAL_MS_PER_CHAR;
-    const pause = i === 1 ? 0 : PAUSE_BETWEEN;
-    acc.push(prevStart + prevDuration + pause);
-  }
-  return acc;
-}, []);
 
 export function Hero() {
   // Button
@@ -38,13 +21,30 @@ export function Hero() {
   const [overlay, setOverlay] = useState(0);
   // Text (encrypted)
   const [txtX, setTxtX] = useState(232);
-  const [txtY, setTxtY] = useState(-131);
+  const [txtY, setTxtY] = useState(-175);
   // Green text
   const [greenX, setGreenX] = useState(0);
   const [greenY, setGreenY] = useState(-109);
   const [greenGap, setGreenGap] = useState(218);
   const [greenML, setGreenML] = useState(64);
 
+  const { t } = useTranslation();
+
+  const MESSAGES: { text: string; accent?: boolean }[] = [
+    { text: t.hero.message1, accent: true },
+    { text: t.hero.message2 },
+  ];
+
+  const MESSAGE_DELAYS = MESSAGES.reduce<number[]>((acc, msg, i) => {
+    if (i === 0) { acc.push(0); }
+    else {
+      const prevStart = acc[i - 1];
+      const prevDuration = MESSAGES[i - 1].text.length * REVEAL_MS_PER_CHAR;
+      const pause = i === 1 ? 0 : PAUSE_BETWEEN;
+      acc.push(prevStart + prevDuration + pause);
+    }
+    return acc;
+  }, []);
   const [panelOpen, setPanelOpen] = useState(true);
   const [activeTab, setActiveTab] = useState<"btn" | "layout" | "text" | "green">("btn");
   const [copied, setCopied] = useState<string | null>(null);
@@ -82,8 +82,8 @@ export function Hero() {
 
   const resetAll = () => {
     setBtnX(8); setBtnY(84); setBtnScale(0.96);
-    setBtnGap(32); setOverlay(0);
-    setTxtX(232); setTxtY(-131);
+    setBtnGap(32); setOverlay(0);  // overlay default is already 0
+    setTxtX(232); setTxtY(-175);
     setGreenX(0); setGreenY(-109); setGreenGap(218); setGreenML(64);
   };
 
@@ -121,55 +121,45 @@ export function Hero() {
 
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center w-full max-w-6xl mx-auto px-4 sm:px-6">
-        {/* Encrypted text messages */}
-        <div
-          style={{ transform: `translate(${txtX}px, ${txtY}px)` }}
-          className="hidden md:flex flex-col items-start gap-1.5 sm:gap-2 mb-8 sm:mb-12"
-        >
+        {/* Mobile: green labels — absolute top, below nav, above sheep */}
+        <div className="absolute top-20 left-0 right-0 flex flex-col items-center md:hidden">
+          <span className="font-[family-name:var(--font-title)] text-base font-black uppercase tracking-wider text-primary-green">
+            {t.hero.greenLabel1}
+          </span>
+          <span className="font-[family-name:var(--font-title)] text-base font-black uppercase tracking-wider text-primary-green">
+            {t.hero.greenLabel2}
+          </span>
+        </div>
+
+        {/* Mobile: messages + CTA — below sheep */}
+        <div className="flex flex-col items-center gap-1 mb-4 mt-80 md:hidden bg-black/35 px-5 py-4 w-full">
           {MESSAGES.map((msg, i) => (
             <p
               key={i}
-              className="font-[family-name:var(--font-monoblock)] text-[8px] sm:text-[10px] md:text-xs lg:text-sm font-light tracking-wide uppercase"
+              className={
+                msg.accent
+                  ? "font-[family-name:var(--font-monoblock)] text-base sm:text-lg font-black tracking-wide uppercase text-center"
+                  : "font-[family-name:var(--font-monoblock)] text-[10px] sm:text-xs font-light tracking-wide uppercase text-center"
+              }
             >
               <EncryptedText
-                text={msg}
-                encryptedClassName="text-white/40"
-                revealedClassName="text-white"
+                text={msg.text}
+                encryptedClassName={msg.accent ? "text-primary-green/40" : "text-white/40"}
+                revealedClassName={msg.accent ? "text-primary-green" : "text-white"}
                 revealDelayMs={REVEAL_MS_PER_CHAR}
                 parentRevealDelayMs={MESSAGE_DELAYS[i]}
               />
             </p>
           ))}
-        </div>
 
-        {/* Mobile: green labels at top, encrypted text near button */}
-        <div className="flex flex-col items-center md:hidden w-full -mt-32">
-          <div className="flex flex-col items-center gap-1 mb-auto">
-            <span className="font-[family-name:var(--font-title)] text-base font-black uppercase tracking-wider text-primary-green">
-              Global Hackathon
-            </span>
-            <span className="font-[family-name:var(--font-title)] text-base font-black uppercase tracking-wider text-primary-green">
-              6-8 March // Online
-            </span>
+          {/* Mobile CTA */}
+          <div className="mt-5">
+            <Button asChild size="lg" variant="pink">
+              <a href="https://luma.com/ytl522gp" target="_blank" rel="noopener noreferrer">
+                {"<"}{t.nav.registerFree}{">"}
+              </a>
+            </Button>
           </div>
-        </div>
-
-        {/* Mobile: encrypted light text — placed right before the button */}
-        <div className="flex flex-col items-center gap-1 mb-4 mt-80 md:hidden">
-          {MESSAGES.map((msg, i) => (
-            <p
-              key={i}
-              className="font-[family-name:var(--font-monoblock)] text-[8px] font-light tracking-wide uppercase text-center"
-            >
-              <EncryptedText
-                text={msg}
-                encryptedClassName="text-white/40"
-                revealedClassName="text-white"
-                revealDelayMs={REVEAL_MS_PER_CHAR}
-                parentRevealDelayMs={MESSAGE_DELAYS[i]}
-              />
-            </p>
-          ))}
         </div>
 
         {/* Desktop: green text row — flanking center */}
@@ -181,37 +171,45 @@ export function Hero() {
           }}
         >
           <span className="font-[family-name:var(--font-title)] text-sm sm:text-lg md:text-2xl lg:text-3xl font-black uppercase tracking-wider text-primary-green">
-            Global Hackathon
+            {t.hero.greenLabel1}
           </span>
           {/* Spacer for the sheep in the center of the image */}
           <div className="shrink-0" style={{ width: `${greenGap}px` }} />
           <span className="font-[family-name:var(--font-title)] text-sm sm:text-lg md:text-2xl lg:text-3xl font-black uppercase tracking-wider text-primary-green">
-            6-8 March // Online
+            {t.hero.greenLabel2}
           </span>
         </div>
 
-        <div style={{ height: `${btnGap}px` }} />
+      </div>
 
-        {/* CTA */}
-        <div
-          style={{
-            transform: `translate(${btnX}px, ${btnY}px) scale(${btnScale})`,
-          }}
-        >
-          <Button
-            asChild
-            size="lg"
-            variant="pink"
-            className=""
-          >
-            <a
-              href="https://luma.com/ytl522gp"
-              target="_blank"
-              rel="noopener noreferrer"
+      {/* Desktop: messages + CTA — anchored to bottom, sheep unobstructed */}
+      <div className="absolute bottom-20 lg:bottom-32 xl:bottom-44 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-4 z-10">
+        <div className="flex flex-col items-center gap-4 bg-black/35 px-8 py-5">
+        <div className="flex flex-col items-center gap-1.5">
+          {MESSAGES.map((msg, i) => (
+            <p
+              key={i}
+              className={
+                msg.accent
+                  ? "font-[family-name:var(--font-monoblock)] text-sm sm:text-base md:text-lg lg:text-xl font-black tracking-wide uppercase text-center"
+                  : "font-[family-name:var(--font-monoblock)] text-[8px] sm:text-[10px] md:text-xs lg:text-sm font-light tracking-wide uppercase text-center"
+              }
             >
-              {"<Join Here>"}
-            </a>
-          </Button>
+              <EncryptedText
+                text={msg.text}
+                encryptedClassName={msg.accent ? "text-primary-green/40" : "text-white/40"}
+                revealedClassName={msg.accent ? "text-primary-green" : "text-white"}
+                revealDelayMs={REVEAL_MS_PER_CHAR}
+                parentRevealDelayMs={MESSAGE_DELAYS[i]}
+              />
+            </p>
+          ))}
+        </div>
+        <Button asChild size="lg" variant="pink">
+          <a href="https://luma.com/ytl522gp" target="_blank" rel="noopener noreferrer">
+            {"<"}{t.nav.registerFree}{">"}
+          </a>
+        </Button>
         </div>
       </div>
 

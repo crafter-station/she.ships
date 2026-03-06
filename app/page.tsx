@@ -22,10 +22,10 @@ export default function Home() {
       <main className="overflow-x-clip min-w-0">
         <Hero />
         <Countdown />
-        <Sponsors />
-        <Prizes />
-        <Perks />
         <WhatIsSheShips />
+        <Perks />
+        <Prizes />
+        <Sponsors />
         <Agenda />
         <Categories />
         <FAQ />

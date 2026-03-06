@@ -124,7 +124,7 @@ export function Sponsors() {
           />
         </a>
         {/* Rest of sponsors */}
-        <div className="grid w-full grid-cols-5 gap-6 md:gap-8">
+        <div className="grid w-full grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8 md:gap-8 place-items-center">
           {sponsors.slice(1).map((sponsor) => (
             <a
               key={sponsor.name}

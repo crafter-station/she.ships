@@ -7,6 +7,7 @@ export const es: Translations = {
     categories: "Categorías",
     faq: "FAQ",
     join: "Únete",
+    registerFree: "Reserva tu Lugar",
     myBadge: "Mi Poster",
     ctaSponsor: "Sé Sponsor",
     ctaCommunityPartner: "Sé Community Partner",
@@ -19,11 +20,21 @@ export const es: Translations = {
     headlineAccent: "Hazlo.",
     description:
       "Un hackathon global de 48 horas donde mujeres y creadoras multidisciplinarias construyen y publican algo real.",
+    descriptionPart1: "Un hackathon global de ",
+    descriptionAccent1: "48 horas",
+    descriptionPart2: " donde ",
+    descriptionAccent2: "mujeres",
+    descriptionPart3: " y creadoras multidisciplinarias construyen y ",
+    descriptionAccent3: "publican algo real.",
     date: "6-8 de marzo, 2026",
     ctaSpeaker: "Sé Speaker",
     ctaSponsor: "Sé Sponsor",
     ctaCommunity: "Sé Community Manager",
     by: "por",
+    greenLabel1: "Global Hackathon",
+    greenLabel2: "6-8 de marzo // Online",
+    message1: "NO SE REQUIERE CÓDIGO.",
+    message2: "DE IDEA A PRODUCTO EN 48H._",
   },
   countdown: {
     label: "El reloj no se detiene",
@@ -48,6 +59,11 @@ export const es: Translations = {
     requirementLine: "Solo hay un requisito: 👉 Lanza algo.",
     requirementSub: "Un enlace público. Un resultado real. Algo que exista.",
     limited: "Limitado a 200 participantes en todo el mundo",
+    eightMLabel: "Día Internacional de la Mujer — 8 de marzo, 2026",
+    eightMLinePart1: "No solo lo celebramos.",
+    eightMLineAccent: "Construimos en él.",
+    themeLabel: "El Tema",
+    themeDescription: "Seguridad. Salud. Brecha salarial. Independencia financiera. Oportunidades laborales. Construye un producto real que resuelva un problema que las mujeres enfrentan todos los días.",
     where: {
       title: "100% Remoto",
       description:
@@ -266,7 +282,7 @@ export const es: Translations = {
     headline: "Premios y",
     headlineAccent: "Categorías",
     stackNote: "Los equipos pueden ganar en múltiples categorías simultáneamente.",
-    mainLabel: "Categorías Principales",
+    mainLabel: "Categorías del Sponsor",
     mainSponsor: "Powered by Sezzle",
     mainCategories: [
       {
@@ -316,9 +332,10 @@ export const es: Translations = {
     headline: "Perks para",
     headlineAccent: "Participantes",
     description: "+$20K USD en herramientas y créditos gratis para las 200 participantes.",
-    inPerson: "Solo presencial",
-    inPersonLima: "Presencial · Lima",
-    inPersonLimaBogota: "Presencial · Lima & Bogotá",
+    globalNote: "Todos los perks digitales llegan a las 200 participantes en todo el mundo.",
+    inPerson: "Solo eventos presenciales",
+    inPersonLima: "🇵🇪 Lima presencial",
+    inPersonLimaBogota: "🇵🇪🇨🇴 Lima & Bogotá presencial",
     items: [
       {
         sponsor: "v0",
