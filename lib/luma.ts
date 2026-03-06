@@ -12,16 +12,11 @@ type GetApprovedGuestResult =
   | { approved: true; name: string }
   | { approved: false; error: "not_found" | "not_approved" };
 
-export async function getApprovedGuest(
+async function checkEventGuest(
+  apiKey: string,
+  eventId: string,
   email: string
 ): Promise<GetApprovedGuestResult> {
-  const apiKey = process.env.LUMA_API_KEY;
-  const eventId = process.env.LUMA_EVENT_ID;
-
-  if (!apiKey || !eventId) {
-    throw new Error("Missing LUMA_API_KEY or LUMA_EVENT_ID env vars");
-  }
-
   const url = new URL("https://public-api.luma.com/v1/event/get-guest");
   url.searchParams.set("event_id", eventId);
   url.searchParams.set("id", email);
@@ -44,4 +39,28 @@ export async function getApprovedGuest(
   }
 
   return { approved: true, name: data.guest.user_name };
+}
+
+export async function getApprovedGuest(
+  email: string
+): Promise<GetApprovedGuestResult> {
+  const apiKey = process.env.LUMA_API_KEY;
+  const eventId = process.env.LUMA_EVENT_ID;
+
+  if (!apiKey || !eventId) {
+    throw new Error("Missing LUMA_API_KEY or LUMA_EVENT_ID env vars");
+  }
+
+  const eventIds = [eventId, process.env.LUMA_EVENT_ID_2].filter(
+    (id): id is string => !!id
+  );
+
+  for (const id of eventIds) {
+    const result = await checkEventGuest(apiKey, id, email);
+    if (result.approved) {
+      return result;
+    }
+  }
+
+  return { approved: false, error: "not_found" };
 }
