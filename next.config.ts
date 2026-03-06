@@ -29,6 +29,11 @@ const nextConfig: NextConfig = {
         destination: "https://luma.com/cej2uy3n",
         permanent: false,
       },
+      {
+        source: "/init",
+        destination: "https://meet.google.com/vuz-mvxo-gdo",
+        permanent: false,
+      },
     ];
   },
 };
