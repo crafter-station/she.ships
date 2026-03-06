@@ -1,5 +1,5 @@
 import type { PosterOptions, FaceBox, FilterSettings } from "./types"
-import { getPosterBadgeLabel } from "./semantics"
+import { getPosterBadgeLabel, isMentorRole } from "./semantics"
 
 // ── Font loading (cached) ───────────────────────────────────────────
 let fontsLoaded: Promise<void> | null = null
@@ -542,7 +542,9 @@ export async function renderPoster(canvas: HTMLCanvasElement, options: PosterOpt
   // "I'M PARTICIPATING IN SHE SHIPS" heading + subtitle
   const headingFontSize = Math.round(width * 0.032)
   const subtitleFontSize = Math.round(width * 0.02)
-  const headingLines = ["I'M PARTICIPATING", "IN SHE SHIPS"]
+  const headingLines = isMentorRole(speaker.role)
+    ? ["I'M MENTORING", "IN SHE SHIPS"]
+    : ["I'M PARTICIPATING", "IN SHE SHIPS"]
   const subtitleLines = ["March 6-8, 2026", "48h Global Hackathon"]
 
   const headingLineH = headingFontSize * 1.3
