@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { SectionWrapper } from "@/components/decorative/section-wrapper";
 import { useTranslation } from "@/lib/i18n/context";
 
-const TARGET_DATE = new Date("2026-03-08T00:00:00Z").getTime();
+const TARGET_DATE = new Date("2026-03-06T19:00:00").getTime();
 
 function getTimeLeft() {
   const now = Date.now();
