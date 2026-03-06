@@ -18,7 +18,6 @@ export function Prizes() {
           {t.prizes.headline}{" "}
           <span className="text-primary-pink">{t.prizes.headlineAccent}</span>
         </h2>
-        <p className="mt-3 text-neutral-gray text-sm">{t.prizes.stackNote}</p>
       </div>
 
       {/* ── MAIN CATEGORIES ── */}
