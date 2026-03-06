@@ -21,11 +21,11 @@ export default function Home() {
       <SideNav />
       <main className="overflow-x-clip min-w-0">
         <Hero />
+        <Sponsors />
         <Countdown />
         <WhatIsSheShips />
         <Perks />
         <Prizes />
-        <Sponsors />
         <Agenda />
         <Categories />
         <FAQ />
