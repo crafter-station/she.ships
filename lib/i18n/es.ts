@@ -415,6 +415,7 @@ export const es: Translations = {
       "Aún no has sido aceptada. Revisa tu estado en Luma.",
     errorNotFound:
       "No se encontró registro con este correo. Regístrate en Luma primero.",
+    genericError: "Algo salió mal. Inténtalo de nuevo.",
     generateButton: "Reclamar Mi Badge",
     existingBadge: "Ya tienes un badge!",
     existingBadgeLink: "Ver mi badge",
@@ -438,6 +439,16 @@ export const es: Translations = {
     ],
     particlePromptCustom: "O describe las tuyas...",
     particlePromptLoading: "Generando...",
+    mentorAuth: {
+      label: "Acceso Admin",
+      title: "Portal de Posters de Mentoría",
+      description: "Ingresa la contraseña de admin para crear y gestionar posters de mentoría.",
+      passwordLabel: "Contraseña",
+      passwordPlaceholder: "Ingresa la contraseña de admin",
+      submit: "Desbloquear",
+      verifying: "Verificando...",
+      invalidPassword: "Contraseña inválida.",
+    },
   },
   whatsappCommunity: {
     navAriaLabel: "Unirse a la comunidad de WhatsApp",

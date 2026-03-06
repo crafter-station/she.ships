@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import chromium from "@sparticuz/chromium";
 import puppeteer from "puppeteer-core";
 import { put } from "@vercel/blob";
@@ -6,6 +6,11 @@ import { eq } from "drizzle-orm";
 import { z } from "zod";
 import { db } from "@/lib/db";
 import { posters } from "@/lib/db/schema";
+import {
+  hasValidMentorBadgeSession,
+  MENTOR_BADGE_SESSION_COOKIE,
+} from "@/lib/auth/mentor-badge-session";
+import { isMentorRole } from "@/lib/poster/semantics";
 
 // Requires Vercel Pro (60s) — rendering takes ~5-10s with Chromium cold start
 export const maxDuration = 60;
@@ -59,7 +64,7 @@ async function getExecutablePath(): Promise<string> {
 }
 
 export async function POST(
-  request: Request,
+  request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
   const { id } = await params;
@@ -70,6 +75,15 @@ export async function POST(
 
   if (!poster || !poster.photoUrl) {
     return NextResponse.json({ error: "Poster not found" }, { status: 404 });
+  }
+
+  if (isMentorRole(poster.role)) {
+    const token = request.cookies.get(MENTOR_BADGE_SESSION_COOKIE)?.value;
+    const authenticated = await hasValidMentorBadgeSession(token);
+
+    if (!authenticated) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
   }
 
   let body: z.infer<typeof bodySchema>;

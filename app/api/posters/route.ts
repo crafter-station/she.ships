@@ -1,9 +1,14 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { eq, sql } from "drizzle-orm";
 import { db } from "@/lib/db";
 import { posters } from "@/lib/db/schema";
 import { getApprovedGuest } from "@/lib/luma";
+import {
+  hasValidMentorBadgeSession,
+  MENTOR_BADGE_SESSION_COOKIE,
+} from "@/lib/auth/mentor-badge-session";
+import { isMentorRole } from "@/lib/poster/semantics";
 
 const createPosterSchema = z.object({
   id: z.string().min(1),
@@ -12,10 +17,20 @@ const createPosterSchema = z.object({
   email: z.string().email(),
 });
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     const data = createPosterSchema.parse(body);
+    const creatingMentorPoster = isMentorRole(data.role);
+
+    if (creatingMentorPoster) {
+      const token = request.cookies.get(MENTOR_BADGE_SESSION_COOKIE)?.value;
+      const authenticated = await hasValidMentorBadgeSession(token);
+
+      if (!authenticated) {
+        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      }
+    }
 
     const guest = await getApprovedGuest(data.email);
 
@@ -31,10 +46,16 @@ export async function POST(request: Request) {
       .limit(1);
 
     if (existing) {
+      const existingMentorPoster = isMentorRole(existing.role);
+      if (existingMentorPoster !== creatingMentorPoster) {
+        return NextResponse.json({ error: "role_conflict" }, { status: 409 });
+      }
+
       const [updated] = await db
         .update(posters)
         .set({
           name: guest.name,
+          role: data.role,
           organization: data.organization ?? null,
           updatedAt: new Date(),
         })

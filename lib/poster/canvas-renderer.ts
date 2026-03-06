@@ -1,4 +1,5 @@
 import type { PosterOptions, FaceBox, FilterSettings } from "./types"
+import { getPosterBadgeLabel } from "./semantics"
 
 // ── Font loading (cached) ───────────────────────────────────────────
 let fontsLoaded: Promise<void> | null = null
@@ -451,7 +452,7 @@ export async function renderPoster(canvas: HTMLCanvasElement, options: PosterOpt
 
   // 3) BADGE
   {
-    const badgeText = "SHIPPER"
+    const badgeText = getPosterBadgeLabel(speaker.role)
     const badgeFontSize = Math.round(width * 0.016)
     ctx.font = `800 ${badgeFontSize}px "Monoblock", sans-serif`
     const textW = ctx.measureText(badgeText).width

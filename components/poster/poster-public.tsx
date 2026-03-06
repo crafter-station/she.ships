@@ -7,15 +7,13 @@ import { renderPoster, exportPoster } from "@/lib/poster/canvas-renderer";
 import { downloadPosterBlob } from "@/lib/poster/download";
 import { detectFace } from "@/lib/poster/face-detection";
 import { DEFAULT_FILTER } from "@/lib/poster/types";
-import type {
-  SpeakerData,
-  TemplateType,
-  FilterSettings,
-} from "@/lib/poster/types";
+import type { TemplateType, FilterSettings } from "@/lib/poster/types";
 import type { Poster } from "@/lib/db/schema";
 
 interface PosterPublicProps {
   poster: Poster;
+  basePath?: string;
+  ownerStorageKey?: string;
 }
 
 function loadImage(src: string): Promise<HTMLImageElement> {
@@ -28,7 +26,11 @@ function loadImage(src: string): Promise<HTMLImageElement> {
   });
 }
 
-export default function PosterPublic({ poster }: PosterPublicProps) {
+export default function PosterPublic({
+  poster,
+  basePath = "/p",
+  ownerStorageKey = "poster_id",
+}: PosterPublicProps) {
   const hasRendered = !!poster.renderedUrl;
   const [canvasRendered, setCanvasRendered] = useState(false);
   const displayCanvasRef = useRef<HTMLCanvasElement>(null);
@@ -36,15 +38,11 @@ export default function PosterPublic({ poster }: PosterPublicProps) {
 
   const template = (poster.template as TemplateType) || "half-face";
   const filter: FilterSettings = (poster.filterSettings as FilterSettings | null) || DEFAULT_FILTER;
-  const speaker: SpeakerData = { name: poster.name, role: poster.role };
 
-  const [isOwner, setIsOwner] = useState(false);
-  useEffect(() => {
-    const stored = localStorage.getItem("poster_id");
-    if (stored === poster.id) {
-      setIsOwner(true);
-    }
-  }, [poster.id]);
+  const [isOwner] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return localStorage.getItem(ownerStorageKey) === poster.id;
+  });
 
   // Canvas fallback: only runs if no renderedUrl
   useEffect(() => {
@@ -66,7 +64,7 @@ export default function PosterPublic({ poster }: PosterPublicProps) {
         if (!exportCanvas) return;
 
         await renderPoster(exportCanvas, {
-          speaker,
+          speaker: { name: poster.name, role: poster.role },
           image: img,
           bgImage: bgImg,
           detection,
@@ -97,9 +95,9 @@ export default function PosterPublic({ poster }: PosterPublicProps) {
 
     render();
     return () => { cancelled = true; };
-  }, [poster.photoUrl, hasRendered]);
+  }, [poster.photoUrl, poster.name, poster.role, hasRendered, template, filter]);
 
-  const shareUrl = `https://sheships.org/p/${poster.id}`;
+  const shareUrl = `https://sheships.org${basePath}/${poster.id}`;
 
   const shareOnTwitter = () => {
     const text = encodeURIComponent(
@@ -176,8 +174,8 @@ export default function PosterPublic({ poster }: PosterPublicProps) {
           {/* Left: edit link for owner */}
           <div className="w-20">
             {isOwner && (
-              <Link
-                href={`/p/${poster.id}/edit`}
+                <Link
+                href={`${basePath}/${poster.id}/edit`}
                 className="inline-flex items-center gap-1.5 text-[#666] hover:text-[#999] text-xs font-mono font-bold uppercase tracking-wider transition-colors"
               >
                 <Pencil className="w-3.5 h-3.5" />
@@ -189,6 +187,7 @@ export default function PosterPublic({ poster }: PosterPublicProps) {
           {/* Center: share buttons */}
           <div className="flex items-center gap-2">
             <button
+              type="button"
               onClick={shareOnTwitter}
               className="flex items-center gap-1.5 rounded-lg border border-[#333] bg-[#1a1a1a] px-3 py-2 text-[10px] md:text-xs font-mono font-bold uppercase tracking-wider text-[#999] transition-all hover:border-[#555] hover:text-white cursor-pointer"
             >
@@ -196,6 +195,7 @@ export default function PosterPublic({ poster }: PosterPublicProps) {
               <span className="hidden md:inline">Twitter / X</span>
             </button>
             <button
+              type="button"
               onClick={shareOnLinkedIn}
               className="flex items-center gap-1.5 rounded-lg border border-[#333] bg-[#1a1a1a] px-3 py-2 text-[10px] md:text-xs font-mono font-bold uppercase tracking-wider text-[#999] transition-all hover:border-[#555] hover:text-white cursor-pointer"
             >
@@ -203,6 +203,7 @@ export default function PosterPublic({ poster }: PosterPublicProps) {
               <span className="hidden md:inline">LinkedIn</span>
             </button>
             <button
+              type="button"
               onClick={handleDownload}
               disabled={!canDownload}
               className="flex items-center gap-1.5 rounded-lg bg-[#E49BC2] px-3 py-2 text-[10px] md:text-xs font-mono font-bold uppercase tracking-wider text-[#1a1a1a] transition-all hover:bg-[#d488b3] disabled:opacity-50 cursor-pointer"

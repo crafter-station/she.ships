@@ -1,8 +1,13 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { eq } from "drizzle-orm";
 import { db } from "@/lib/db";
 import { posters } from "@/lib/db/schema";
+import {
+  hasValidMentorBadgeSession,
+  MENTOR_BADGE_SESSION_COOKIE,
+} from "@/lib/auth/mentor-badge-session";
+import { isMentorRole } from "@/lib/poster/semantics";
 
 export async function GET(
   _request: Request,
@@ -29,7 +34,7 @@ const patchSchema = z.object({
 });
 
 export async function PATCH(
-  request: Request,
+  request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
@@ -37,15 +42,29 @@ export async function PATCH(
     const body = await request.json();
     const data = patchSchema.parse(body);
 
+    const existing = await db.query.posters.findFirst({
+      where: eq(posters.id, id),
+    });
+
+    if (!existing) {
+      return NextResponse.json({ error: "Poster not found" }, { status: 404 });
+    }
+
+    const updatingMentorPoster = isMentorRole(existing.role) || isMentorRole(data.role);
+    if (updatingMentorPoster) {
+      const token = request.cookies.get(MENTOR_BADGE_SESSION_COOKIE)?.value;
+      const authenticated = await hasValidMentorBadgeSession(token);
+
+      if (!authenticated) {
+        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      }
+    }
+
     const [updated] = await db
       .update(posters)
       .set({ ...data, updatedAt: new Date() })
       .where(eq(posters.id, id))
       .returning();
-
-    if (!updated) {
-      return NextResponse.json({ error: "Poster not found" }, { status: 404 });
-    }
 
     return NextResponse.json(updated);
   } catch (error) {
