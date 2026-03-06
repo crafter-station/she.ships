@@ -45,6 +45,7 @@ export const es: Translations = {
     minutes: "Minutos",
     seconds: "Segundos",
     tagline: "6-8 de marzo, 2026. Este 8M, construimos y lanzamos. 💜",
+    joinMeet: "Únete al Google Meet",
   },
   eventInfo: {
     label: "Qué esperar",

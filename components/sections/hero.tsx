@@ -153,12 +153,23 @@ export function Hero() {
           ))}
 
           {/* Mobile CTA */}
-          <div className="mt-5">
+          <div className="mt-5 flex flex-col items-center gap-3">
             <Button asChild size="lg" variant="pink">
               <a href="https://luma.com/ytl522gp" target="_blank" rel="noopener noreferrer">
                 {"<"}{t.nav.registerFree}{">"}
               </a>
             </Button>
+            <a
+              href="https://meet.google.com/vuz-mvxo-gdo"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full bg-primary-green px-6 py-3 text-sm font-bold text-primary-black uppercase tracking-wide transition-transform hover:scale-105 animate-pulse"
+            >
+              <svg viewBox="0 0 24 24" className="h-5 w-5 fill-current" aria-hidden="true">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z" />
+              </svg>
+              {t.countdown.joinMeet}
+            </a>
           </div>
         </div>
 
@@ -210,6 +221,17 @@ export function Hero() {
             {"<"}{t.nav.registerFree}{">"}
           </a>
         </Button>
+        <a
+          href="https://meet.google.com/vuz-mvxo-gdo"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 rounded-full bg-primary-green px-8 py-3 text-base font-bold text-primary-black uppercase tracking-wide transition-transform hover:scale-105 animate-pulse"
+        >
+          <svg viewBox="0 0 24 24" className="h-6 w-6 fill-current" aria-hidden="true">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z" />
+          </svg>
+          {t.countdown.joinMeet}
+        </a>
         </div>
       </div>
 

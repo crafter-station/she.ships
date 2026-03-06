@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import { SectionWrapper } from "@/components/decorative/section-wrapper";
 import { useTranslation } from "@/lib/i18n/context";
 
-const TARGET_DATE = new Date("2026-03-06T19:00:00").getTime();
+const TARGET_DATE = new Date("2026-03-06T18:45:00-05:00").getTime();
+const GOOGLE_MEET_URL = "https://meet.google.com/vuz-mvxo-gdo";
 
 function getTimeLeft() {
   const now = Date.now();
@@ -69,6 +70,18 @@ export function Countdown() {
         <p className="mt-12 text-lg font-normal text-primary-cream md:text-xl">
           {t.countdown.tagline}
         </p>
+
+        <a
+          href={GOOGLE_MEET_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-8 inline-flex items-center gap-3 rounded-full bg-primary-pink px-8 py-4 text-lg font-bold text-primary-cream transition-transform hover:scale-105 md:text-xl"
+        >
+          <svg viewBox="0 0 24 24" className="h-6 w-6 fill-current" aria-hidden="true">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z" />
+          </svg>
+          {t.countdown.joinMeet}
+        </a>
       </div>
     </SectionWrapper>
   );

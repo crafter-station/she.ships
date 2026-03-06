@@ -43,6 +43,7 @@ export const en = {
     minutes: "Minutes",
     seconds: "Seconds",
     tagline: "March 6-8, 2026. This 8M, we build and we ship. 💜",
+    joinMeet: "Join Google Meet",
   },
   eventInfo: {
     label: "What to expect",
