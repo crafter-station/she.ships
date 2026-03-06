@@ -47,7 +47,7 @@ export async function POST(request: NextRequest) {
 
     if (existing) {
       const existingMentorPoster = isMentorRole(existing.role);
-      if (existingMentorPoster !== creatingMentorPoster) {
+      if (!creatingMentorPoster && existingMentorPoster) {
         return NextResponse.json({ error: "role_conflict" }, { status: 409 });
       }
 
