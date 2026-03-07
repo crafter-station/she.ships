@@ -1,9 +1,10 @@
 export function isMentorRole(role: string | null | undefined) {
-  return role?.trim().toLowerCase() === "mentor";
+  const normalized = role?.trim().toLowerCase();
+  return normalized === "mentor" || normalized === "organizer";
 }
 
 export function getPosterBadgeLabel(role: string | null | undefined) {
-  return isMentorRole(role) ? "MENTOR" : "SHIPPER";
+  return isMentorRole(role) ? "ORGANIZER" : "SHIPPER";
 }
 
 export const POSTER_PINK = "#e49bc2";

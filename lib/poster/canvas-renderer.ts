@@ -553,7 +553,7 @@ export async function renderPoster(canvas: HTMLCanvasElement, options: PosterOpt
   const headingFontSize = Math.round(width * 0.032)
   const subtitleFontSize = Math.round(width * 0.02)
   const headingLines = isMentorRole(speaker.role)
-    ? ["I'M MENTORING", "IN SHE SHIPS"]
+    ? ["I'M ORGANIZING", "IN SHE SHIPS"]
     : ["I'M PARTICIPATING", "IN SHE SHIPS"]
   const subtitleLines = ["March 6-8, 2026", "48h Global Hackathon"]
 
