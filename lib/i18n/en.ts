@@ -445,6 +445,8 @@ export const en = {
       submit: "Unlock",
       verifying: "Verifying...",
       invalidPassword: "Invalid password.",
+      configError: "Admin auth is not configured correctly.",
+      serverError: "Unable to verify password right now. Try again shortly.",
     },
   },
   whatsappCommunity: {

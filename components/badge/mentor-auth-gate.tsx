@@ -28,7 +28,18 @@ export default function MentorAuthGate({ onAuthenticated }: MentorAuthGateProps)
       });
 
       if (!response.ok) {
-        setError(t.badge.mentorAuth.invalidPassword);
+        const payload = (await response.json().catch(() => null)) as
+          | { error?: { code?: string } }
+          | null;
+        const code = payload?.error?.code;
+
+        if (response.status === 401 && code === "INVALID_PASSWORD") {
+          setError(t.badge.mentorAuth.invalidPassword);
+        } else if (response.status === 500 && code?.startsWith("AUTH_CONFIG_")) {
+          setError(t.badge.mentorAuth.configError);
+        } else {
+          setError(t.badge.mentorAuth.serverError);
+        }
         return;
       }
 

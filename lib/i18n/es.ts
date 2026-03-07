@@ -449,6 +449,8 @@ export const es: Translations = {
       submit: "Desbloquear",
       verifying: "Verificando...",
       invalidPassword: "Contraseña inválida.",
+      configError: "La autenticación de admin no está configurada correctamente.",
+      serverError: "No se pudo verificar la contraseña ahora. Inténtalo de nuevo en breve.",
     },
   },
   whatsappCommunity: {

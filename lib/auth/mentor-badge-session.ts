@@ -1,11 +1,31 @@
 export const MENTOR_BADGE_SESSION_COOKIE = "mentor_badge_session";
 export const MENTOR_BADGE_SESSION_MAX_AGE_SECONDS = 60 * 60 * 12;
 
-function getSessionSecret() {
-  const secret = process.env.ADMIN_BADGE_SESSION_SECRET;
-  if (!secret) {
-    throw new Error("Missing ADMIN_BADGE_SESSION_SECRET");
+function normalizeEnvValue(value?: string) {
+  if (!value) return null;
+
+  let normalized = value.trim();
+  if (
+    (normalized.startsWith('"') && normalized.endsWith('"')) ||
+    (normalized.startsWith("'") && normalized.endsWith("'"))
+  ) {
+    normalized = normalized.slice(1, -1).trim();
   }
+
+  normalized = normalized.replace(/\\\$/g, "$");
+  return normalized.length > 0 ? normalized : null;
+}
+
+function getSessionSecret() {
+  const secret = normalizeEnvValue(process.env.ADMIN_BADGE_SESSION_SECRET);
+  if (!secret) {
+    throw new Error("AUTH_CONFIG_MISSING_SECRET");
+  }
+
+  if (secret.length < 32) {
+    throw new Error("AUTH_CONFIG_INVALID_SECRET");
+  }
+
   return secret;
 }
 

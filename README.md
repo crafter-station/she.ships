@@ -51,6 +51,18 @@ bun install
 bun run dev
 ```
 
+## Admin Auth Env Vars
+
+For the organizer poster admin gate (`/m`), configure these variables:
+
+- `ADMIN_BADGE_PASSWORD_HASH` - bcrypt hash of the admin password
+- `ADMIN_BADGE_SESSION_SECRET` - random secret used to sign session cookies
+
+Vercel format note:
+
+- correct: `$2b$12$...` (raw hash, no quotes, no backslashes)
+- incorrect: `\$2b\$12\$...` (escaped form used in local `.env` files)
+
 ## Stack
 
 - **Next.js 16** + App Router
