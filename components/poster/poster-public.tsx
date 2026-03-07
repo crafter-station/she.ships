@@ -64,7 +64,11 @@ export default function PosterPublic({
         if (!exportCanvas) return;
 
         await renderPoster(exportCanvas, {
-          speaker: { name: poster.name, role: poster.role },
+          speaker: {
+            name: poster.name,
+            role: poster.role,
+            organization: poster.organization,
+          },
           image: img,
           bgImage: bgImg,
           detection,
@@ -95,7 +99,7 @@ export default function PosterPublic({
 
     render();
     return () => { cancelled = true; };
-  }, [poster.photoUrl, poster.name, poster.role, hasRendered, template, filter]);
+  }, [poster.photoUrl, poster.name, poster.role, poster.organization, hasRendered, template, filter]);
 
   const shareUrl = `https://sheships.org${basePath}/${poster.id}`;
 

@@ -160,27 +160,16 @@ export async function GET(
             {poster.name}
           </div>
 
-          {/* Role */}
-          <div
-            style={{
-              fontSize: "20px",
-              fontWeight: 700,
-              color: green,
-              textTransform: "uppercase",
-              letterSpacing: "0.08em",
-              marginTop: "14px",
-            }}
-          >
-            {poster.role}
-          </div>
-
           {/* Organization */}
           {poster.organization && (
             <div
               style={{
-                fontSize: "16px",
-                color: "rgba(255,255,255,0.4)",
-                marginTop: "8px",
+                fontSize: "20px",
+                fontWeight: 700,
+                color: green,
+                textTransform: "uppercase",
+                letterSpacing: "0.08em",
+                marginTop: "14px",
               }}
             >
               {poster.organization}

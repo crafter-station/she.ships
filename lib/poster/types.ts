@@ -1,6 +1,7 @@
 export interface SpeakerData {
   name: string
   role: string
+  organization?: string | null
 }
 
 export interface FilterSettings {

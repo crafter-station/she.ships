@@ -35,6 +35,7 @@ export default async function RenderPage({
         photoUrl={poster.photoUrl}
         name={poster.name}
         role={poster.role}
+        organization={poster.organization}
         template={poster.template as TemplateType}
         filter={poster.filterSettings}
         detection={poster.faceDetection}

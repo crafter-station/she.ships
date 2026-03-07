@@ -513,16 +513,17 @@ export async function renderPoster(canvas: HTMLCanvasElement, options: PosterOpt
     ctx.drawImage(bgImage, bgCover.sx, bgCover.sy, bgCover.sw, bgCover.sh, bgPad, bgPad, width - bgPad * 2, height - bgPad * 2)
   }
 
-  // 5) BOTTOM SECTION: portrait + name + role
+  // 5) BOTTOM SECTION: portrait + name + organization
   const nameFontSize = Math.round(width * 0.075)
-  const roleFontSize = Math.round(width * 0.026)
+  const detailFontSize = Math.round(width * 0.026)
   const bottomMargin = margin + width * 0.04
   const textX = bottomMargin
   const textMaxW = width * 0.46
 
-  ctx.font = `400 ${roleFontSize}px "Monoblock", sans-serif`
-  const roleLines = wrapText(ctx, speaker.role.toUpperCase(), textMaxW)
-  const roleBlockH = roleLines.length * roleFontSize * 1.4
+  const detailText = speaker.organization?.trim().toUpperCase() ?? ""
+  ctx.font = `400 ${detailFontSize}px "Monoblock", sans-serif`
+  const detailLines = detailText ? wrapText(ctx, detailText, textMaxW) : []
+  const detailBlockH = detailLines.length * detailFontSize * 1.4
 
   ctx.font = `800 ${nameFontSize}px "Monoblock", sans-serif`
   const nameWords = speaker.name.toUpperCase().split(" ")
@@ -545,9 +546,9 @@ export async function renderPoster(canvas: HTMLCanvasElement, options: PosterOpt
   else { pH = pScale; pW = pScale * imgAspect }
 
   const bottomEdge = height * 0.93
-  const roleStartY = bottomEdge - roleBlockH
+  const detailStartY = bottomEdge - detailBlockH
   const nameRoleGap = nameFontSize * 0.6
-  const nameBottomY = roleStartY - nameRoleGap
+  const nameBottomY = detailStartY - nameRoleGap
   const nameTopY = nameBottomY - nameBlockH + nameFontSize
   // "I'M PARTICIPATING IN SHE SHIPS" heading + subtitle
   const headingFontSize = Math.round(width * 0.032)
@@ -621,11 +622,11 @@ export async function renderPoster(canvas: HTMLCanvasElement, options: PosterOpt
     ctx.fillText(nameLines[i], textX, nameTopY + i * nameFontSize * 1.1)
   }
 
-  // Draw role
+  // Draw organization
   ctx.fillStyle = areaColors.greenArea
-  ctx.font = `400 ${roleFontSize}px "Monoblock", sans-serif`
-  for (let i = 0; i < roleLines.length; i++) {
-    ctx.fillText(roleLines[i], textX, roleStartY + i * roleFontSize * 1.4)
+  ctx.font = `400 ${detailFontSize}px "Monoblock", sans-serif`
+  for (let i = 0; i < detailLines.length; i++) {
+    ctx.fillText(detailLines[i], textX, detailStartY + i * detailFontSize * 1.4)
   }
 
   // 6) cs_gg.png — top-left and bottom-right (screen blend, drawn last)

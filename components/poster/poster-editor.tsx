@@ -36,7 +36,8 @@ function loadImage(src: string): Promise<HTMLImageElement> {
 export default function PosterEditor({ poster, basePath = "/p" }: PosterEditorProps) {
   // ── Editable state ──────────────────────────────────────────────
   const [name, setName] = useState(poster.name);
-  const [role, setRole] = useState(poster.role);
+  const [organization, setOrganization] = useState(poster.organization ?? "");
+  const role = poster.role;
   const [template, setTemplate] = useState<TemplateType>(
     (poster.template as TemplateType) || DEFAULT_TEMPLATE
   );
@@ -44,7 +45,7 @@ export default function PosterEditor({ poster, basePath = "/p" }: PosterEditorPr
     (poster.filterSettings as FilterSettings | null) || DEFAULT_FILTER
   );
 
-  const speaker: SpeakerData = { name, role };
+  const speaker: SpeakerData = { name, role, organization };
 
   // ── Image / detection state ─────────────────────────────────────
   const [image, setImage] = useState<HTMLImageElement | null>(null);
@@ -65,14 +66,17 @@ export default function PosterEditor({ poster, basePath = "/p" }: PosterEditorPr
   const updatePoster = useUpdatePoster(poster.id);
   const uploadRendered = useUploadRendered(poster.id);
 
-  // ── Debounced persistence for name/role ─────────────────────────
+  // ── Debounced persistence for name/organization ────────────────
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const persistNameRole = useCallback(
-    (n: string, r: string) => {
+  const persistName = useCallback(
+    (n: string, org: string) => {
       if (debounceRef.current) clearTimeout(debounceRef.current);
       debounceRef.current = setTimeout(() => {
-        updatePoster.mutate({ name: n, role: r });
+        updatePoster.mutate({
+          name: n,
+          organization: org.trim().length > 0 ? org : null,
+        });
       }, 500);
     },
     [updatePoster]
@@ -81,19 +85,19 @@ export default function PosterEditor({ poster, basePath = "/p" }: PosterEditorPr
   const handleNameChange = useCallback(
     (n: string) => {
       setName(n);
-      persistNameRole(n, role);
+      persistName(n, organization);
       dirtyRef.current = true;
     },
-    [role, persistNameRole]
+    [organization, persistName]
   );
 
-  const handleRoleChange = useCallback(
-    (r: string) => {
-      setRole(r);
-      persistNameRole(name, r);
+  const handleOrganizationChange = useCallback(
+    (org: string) => {
+      setOrganization(org);
+      persistName(name, org);
       dirtyRef.current = true;
     },
-    [name, persistNameRole]
+    [name, persistName]
   );
 
   // ── Auto-save rendered image on user changes ─────────────────────
@@ -270,13 +274,13 @@ export default function PosterEditor({ poster, basePath = "/p" }: PosterEditorPr
           onTemplateChange={handleTemplateChange}
           filter={filter}
           onFilterChange={handleFilterChange}
-          name={name}
-          onNameChange={handleNameChange}
-          role={role}
-          onRoleChange={handleRoleChange}
-          hasImage={!!image}
-          onUploadClick={() => fileInputRef.current?.click()}
-          isProcessing={isProcessing}
+            name={name}
+            onNameChange={handleNameChange}
+            organization={organization}
+            onOrganizationChange={handleOrganizationChange}
+            hasImage={!!image}
+            onUploadClick={() => fileInputRef.current?.click()}
+            isProcessing={isProcessing}
         />
       </aside>
 

@@ -12,6 +12,7 @@ interface RenderCanvasProps {
   photoUrl: string;
   name: string;
   role: string;
+  organization?: string | null;
   template: TemplateType;
   filter: FilterSettings;
   detection: FaceDetectionResult;
@@ -31,6 +32,7 @@ export function RenderCanvas({
   photoUrl,
   name,
   role,
+  organization,
   template,
   filter,
   detection,
@@ -48,7 +50,7 @@ export function RenderCanvas({
       ]);
 
       await renderPoster(canvas!, {
-        speaker: { name, role },
+        speaker: { name, role, organization },
         image,
         bgImage,
         detection,
@@ -67,9 +69,7 @@ export function RenderCanvas({
       // Signal Puppeteer so it can fail fast instead of timing out
       if (canvas) canvas.dataset.error = String(err);
     });
-  // Props are stable (passed from server, never change)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [detection, filter, name, organization, photoUrl, role, template]);
 
   return (
     <canvas

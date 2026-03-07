@@ -14,8 +14,8 @@ interface PosterControlsPanelProps {
   onFilterChange: (f: FilterSettings) => void;
   name: string;
   onNameChange: (name: string) => void;
-  role: string;
-  onRoleChange: (role: string) => void;
+  organization: string;
+  onOrganizationChange: (organization: string) => void;
   hasImage: boolean;
   onUploadClick: () => void;
   isProcessing: boolean;
@@ -28,8 +28,8 @@ export function PosterControlsPanel({
   onFilterChange,
   name,
   onNameChange,
-  role,
-  onRoleChange,
+  organization,
+  onOrganizationChange,
   hasImage,
   onUploadClick,
   isProcessing,
@@ -72,8 +72,8 @@ export function PosterControlsPanel({
             isProcessing={isProcessing}
             name={name}
             onNameChange={onNameChange}
-            role={role}
-            onRoleChange={onRoleChange}
+            organization={organization}
+            onOrganizationChange={onOrganizationChange}
           />
         )}
         {activeTab === "style" && (
@@ -98,16 +98,16 @@ function InfoTab({
   isProcessing,
   name,
   onNameChange,
-  role,
-  onRoleChange,
+  organization,
+  onOrganizationChange,
 }: {
   hasImage: boolean;
   onUploadClick: () => void;
   isProcessing: boolean;
   name: string;
   onNameChange: (name: string) => void;
-  role: string;
-  onRoleChange: (role: string) => void;
+  organization: string;
+  onOrganizationChange: (organization: string) => void;
 }) {
   return (
     <div className="flex flex-col gap-5">
@@ -135,10 +135,14 @@ function InfoTab({
 
       {/* Name */}
       <div>
-        <label className="text-[10px] font-mono uppercase tracking-widest text-[#666] mb-1.5 block">
+        <label
+          htmlFor="poster-name"
+          className="text-[10px] font-mono uppercase tracking-widest text-[#666] mb-1.5 block"
+        >
           Name
         </label>
         <input
+          id="poster-name"
           type="text"
           value={name}
           onChange={(e) => onNameChange(e.target.value)}
@@ -148,16 +152,21 @@ function InfoTab({
         />
       </div>
 
-      {/* Role */}
+      {/* Organization */}
       <div>
-        <label className="text-[10px] font-mono uppercase tracking-widest text-[#666] mb-1.5 block">
-          Role
+        <label
+          htmlFor="poster-organization"
+          className="text-[10px] font-mono uppercase tracking-widest text-[#666] mb-1.5 block"
+        >
+          Organization
         </label>
         <input
+          id="poster-organization"
           type="text"
-          value={role}
-          onChange={(e) => onRoleChange(e.target.value)}
-          placeholder="Your role"
+          value={organization}
+          onChange={(e) => onOrganizationChange(e.target.value)}
+          maxLength={100}
+          placeholder="Your organization"
           className="w-full rounded-lg border border-[#2a2a2a] bg-[#141414] px-3 py-2.5 text-sm text-[#f0f0f0] font-mono placeholder:text-[#444] focus:border-[#E49BC2] focus:outline-none transition-colors"
         />
       </div>
