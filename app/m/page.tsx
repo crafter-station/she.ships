@@ -60,7 +60,7 @@ export default function MentorPosterPage() {
     createPoster.mutate(
       {
         id,
-        role: "Mentor",
+        role: "Organizer",
         organization: organization ?? undefined,
         email,
       },
@@ -102,7 +102,7 @@ export default function MentorPosterPage() {
               {existingPosterId && (
                 <div className="w-full brutalist-border border-primary-pink/40 bg-primary-pink/5 p-4 flex flex-col gap-2">
                   <p className="text-white text-sm font-bold uppercase tracking-wider">
-                    You already have a mentor poster
+                    You already have an organizer poster
                   </p>
                   <div className="flex items-center gap-2 flex-wrap">
                     <Link

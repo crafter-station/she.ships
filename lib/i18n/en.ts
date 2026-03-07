@@ -437,8 +437,8 @@ export const en = {
     particlePromptLoading: "Generating...",
     mentorAuth: {
       label: "Admin Access",
-      title: "Mentor Poster Portal",
-      description: "Enter the admin password to create and manage mentor posters.",
+      title: "Organizer Poster Portal",
+      description: "Enter the admin password to create and manage organizer posters.",
       passwordLabel: "Password",
       passwordPlaceholder: "Enter admin password",
       submit: "Unlock",

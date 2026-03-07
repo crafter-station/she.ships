@@ -441,8 +441,8 @@ export const es: Translations = {
     particlePromptLoading: "Generando...",
     mentorAuth: {
       label: "Acceso Admin",
-      title: "Portal de Posters de Mentoría",
-      description: "Ingresa la contraseña de admin para crear y gestionar posters de mentoría.",
+      title: "Portal de Posters de Organización",
+      description: "Ingresa la contraseña de admin para crear y gestionar posters de organización.",
       passwordLabel: "Contraseña",
       passwordPlaceholder: "Ingresa la contraseña de admin",
       submit: "Desbloquear",
