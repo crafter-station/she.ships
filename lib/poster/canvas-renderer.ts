@@ -1,5 +1,11 @@
 import type { PosterOptions, FaceBox, FilterSettings } from "./types"
-import { getPosterBadgeLabel, isMentorRole } from "./semantics"
+import {
+  getPosterAreaColors,
+  getPosterBadgeLabel,
+  isMentorRole,
+  resolvePosterAccentColor,
+  resolvePosterFaceTintColor,
+} from "./semantics"
 
 // ── Font loading (cached) ───────────────────────────────────────────
 let fontsLoaded: Promise<void> | null = null
@@ -344,6 +350,10 @@ function drawBackground(
 export async function renderPoster(canvas: HTMLCanvasElement, options: PosterOptions): Promise<void> {
   await Promise.all([loadPosterFonts(), loadCsGg(), loadFrame()])
   const { speaker, image, bgImage, detection, template, filter, width, height } = options
+  const areaColors = getPosterAreaColors(speaker.role)
+  const accentColor = resolvePosterAccentColor(speaker.role, filter.accentColor)
+  const faceTintHex = resolvePosterFaceTintColor(speaker.role, filter.faceTintHex)
+  const resolvedFilter = { ...filter, faceTintHex }
   const ctx = canvas.getContext("2d")!
   canvas.width = width
   canvas.height = height
@@ -436,7 +446,7 @@ export async function renderPoster(canvas: HTMLCanvasElement, options: PosterOpt
   // 2) TINTED FACE CROP BOX
   const tc = renderGrayscaleTinted(
     image, clamped.x, clamped.y, clamped.width, clamped.height,
-    boxW, boxH, filter
+    boxW, boxH, resolvedFilter
   )
   ctx.save()
   ctx.beginPath()
@@ -446,27 +456,27 @@ export async function renderPoster(canvas: HTMLCanvasElement, options: PosterOpt
   tileGrain(ctx, boxX, boxY, boxW, boxH, filter.faceGrain)
   ctx.restore()
 
-  ctx.strokeStyle = filter.accentColor
+  ctx.strokeStyle = accentColor
   ctx.lineWidth = 2
   ctx.strokeRect(boxX, boxY, boxW, boxH)
 
   // 3) BADGE
   {
     const badgeText = getPosterBadgeLabel(speaker.role)
-    const badgeFontSize = Math.round(width * 0.016)
+    const badgeFontSize = Math.round(width * 0.0175)
     ctx.font = `800 ${badgeFontSize}px "Monoblock", sans-serif`
     const textW = ctx.measureText(badgeText).width
 
     if (template === "half-face") {
       // Vertical badge to the right of the crop box
-      const badgePadY = badgeFontSize * 1.2
-      const badgeW = width * 0.042
+      const badgePadY = badgeFontSize * 1.35
+      const badgeW = width * 0.046
       const badgeH = textW + badgePadY * 2
       const badgeX = boxX + boxW
-      const badgeY = boxY
+      const badgeY = boxY - 1
 
       ctx.save()
-      ctx.fillStyle = filter.accentColor
+      ctx.fillStyle = accentColor
       ctx.fillRect(badgeX, badgeY, badgeW, badgeH)
       ctx.translate(badgeX + badgeW / 2, badgeY + badgeH / 2)
       ctx.rotate(-Math.PI / 2)
@@ -478,14 +488,14 @@ export async function renderPoster(canvas: HTMLCanvasElement, options: PosterOpt
       ctx.restore()
     } else {
       // Horizontal badge on top of the crop box, right-aligned
-      const badgePadX = badgeFontSize * 1.2
-      const badgeH = width * 0.042
+      const badgePadX = badgeFontSize * 1.35
+      const badgeH = width * 0.046
       const badgeW = textW + badgePadX * 2
       const badgeX = boxX + boxW - badgeW
       const badgeY = boxY - badgeH
 
       ctx.save()
-      ctx.fillStyle = filter.accentColor
+      ctx.fillStyle = accentColor
       ctx.fillRect(badgeX, badgeY, badgeW, badgeH)
       ctx.fillStyle = "#1a1a1a"
       ctx.font = `800 ${badgeFontSize}px "Monoblock", sans-serif`
@@ -583,13 +593,13 @@ export async function renderPoster(canvas: HTMLCanvasElement, options: PosterOpt
   // Draw portrait
   {
     const tp = renderGrayscaleTinted(
-      image, 0, 0, image.width, image.height, pW, pH, filter
+      image, 0, 0, image.width, image.height, pW, pH, resolvedFilter
     )
     ctx.drawImage(tp, pX, pY)
     tileGrain(ctx, pX, pY, pW, pH, filter.faceGrain)
 
     const bPad = 8, bLen = 14
-    ctx.strokeStyle = "#4ade80"
+    ctx.strokeStyle = areaColors.greenArea
     ctx.lineWidth = 2
     ctx.beginPath()
     ctx.moveTo(pX + pW + bPad - bLen, pY - bPad)
@@ -612,7 +622,7 @@ export async function renderPoster(canvas: HTMLCanvasElement, options: PosterOpt
   }
 
   // Draw role
-  ctx.fillStyle = "#4ade80"
+  ctx.fillStyle = areaColors.greenArea
   ctx.font = `400 ${roleFontSize}px "Monoblock", sans-serif`
   for (let i = 0; i < roleLines.length; i++) {
     ctx.fillText(roleLines[i], textX, roleStartY + i * roleFontSize * 1.4)
