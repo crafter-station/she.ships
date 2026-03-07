@@ -1,10 +1,30 @@
-// import { clerkMiddleware } from "@clerk/nextjs/server";
+import { NextRequest, NextResponse } from "next/server";
+import {
+  hasValidMentorBadgeSession,
+  MENTOR_BADGE_SESSION_COOKIE,
+} from "@/lib/auth/mentor-badge-session";
 
-// export default clerkMiddleware();
+export default async function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
 
-// Clerk middleware disabled
-export default function middleware() {
-  // No-op middleware
+  const isMentorRoot = pathname === "/m" || pathname === "/m/";
+  const isProtectedMentorPath = pathname.startsWith("/m/") && !isMentorRoot;
+
+  if (!isProtectedMentorPath) {
+    return NextResponse.next();
+  }
+
+  const token = request.cookies.get(MENTOR_BADGE_SESSION_COOKIE)?.value;
+  const authenticated = await hasValidMentorBadgeSession(token);
+
+  if (authenticated) {
+    return NextResponse.next();
+  }
+
+  const redirectUrl = request.nextUrl.clone();
+  redirectUrl.pathname = "/m";
+  redirectUrl.searchParams.set("from", pathname);
+  return NextResponse.redirect(redirectUrl);
 }
 
 export const config = {

@@ -2,6 +2,7 @@ import { ImageResponse } from "next/og";
 import { eq } from "drizzle-orm";
 import { db } from "@/lib/db";
 import { posters } from "@/lib/db/schema";
+import { getPosterAreaColors, getPosterBadgeLabel } from "@/lib/poster/semantics";
 
 export async function GET(
   _request: Request,
@@ -32,6 +33,7 @@ export async function GET(
         >
           <img
             src={poster.renderedUrl}
+            alt={`${poster.name} poster`}
             style={{
               height: "100%",
               objectFit: "contain",
@@ -47,8 +49,9 @@ export async function GET(
   }
 
   // Fallback: JSX-based OG image
-  const pink = "#e49bc2";
-  const green = "#4ade80";
+  const areaColors = getPosterAreaColors(poster.role);
+  const pink = areaColors.pinkArea;
+  const green = areaColors.greenArea;
 
   return new ImageResponse(
     (
@@ -76,6 +79,7 @@ export async function GET(
           >
             <img
               src={poster.photoUrl}
+              alt={poster.name}
               style={{
                 width: "100%",
                 height: "100%",
@@ -139,7 +143,7 @@ export async function GET(
                 textTransform: "uppercase",
               }}
             >
-              SHIPPER
+              {getPosterBadgeLabel(poster.role)}
             </div>
           </div>
 

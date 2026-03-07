@@ -412,6 +412,7 @@ export const en = {
       "You haven't been accepted yet. Check your Luma status.",
     errorNotFound:
       "No registration found for this email. Register on Luma first.",
+    genericError: "Something went wrong. Please try again.",
     generateButton: "Claim My Badge",
     existingBadge: "You already have a badge!",
     existingBadgeLink: "View my badge",
@@ -435,6 +436,16 @@ export const en = {
     ],
     particlePromptCustom: "Or describe your own...",
     particlePromptLoading: "Generating...",
+    mentorAuth: {
+      label: "Admin Access",
+      title: "Mentor Poster Portal",
+      description: "Enter the admin password to create and manage mentor posters.",
+      passwordLabel: "Password",
+      passwordPlaceholder: "Enter admin password",
+      submit: "Unlock",
+      verifying: "Verifying...",
+      invalidPassword: "Invalid password.",
+    },
   },
   whatsappCommunity: {
     navAriaLabel: "Join WhatsApp community",

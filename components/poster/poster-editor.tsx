@@ -20,6 +20,7 @@ import type { Poster } from "@/lib/db/schema";
 
 interface PosterEditorProps {
   poster: Poster;
+  basePath?: string;
 }
 
 function loadImage(src: string): Promise<HTMLImageElement> {
@@ -32,7 +33,7 @@ function loadImage(src: string): Promise<HTMLImageElement> {
   });
 }
 
-export default function PosterEditor({ poster }: PosterEditorProps) {
+export default function PosterEditor({ poster, basePath = "/p" }: PosterEditorProps) {
   // ── Editable state ──────────────────────────────────────────────
   const [name, setName] = useState(poster.name);
   const [role, setRole] = useState(poster.role);
@@ -339,7 +340,7 @@ export default function PosterEditor({ poster }: PosterEditorProps) {
               </button>
               <button
                 type="button"
-                onClick={() => router.push(`/p/${poster.id}`)}
+                onClick={() => router.push(`${basePath}/${poster.id}`)}
                 disabled={!canExport}
                 className="flex items-center justify-center gap-2 rounded-lg bg-[#E49BC2] px-3 py-2.5 md:px-4 md:py-2 text-[10px] md:text-xs font-mono font-bold uppercase tracking-wider text-[#1a1a1a] transition-all hover:bg-[#d488b3] disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
               >
