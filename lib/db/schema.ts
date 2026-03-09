@@ -36,3 +36,14 @@ export const posters = pgTable("posters", {
 
 export type Poster = typeof posters.$inferSelect;
 export type NewPoster = typeof posters.$inferInsert;
+
+export const socialSubmissions = pgTable("social_submissions", {
+  id: text("id").primaryKey(),
+  projectName: text("project_name").notNull(),
+  category: text("category").notNull(), // "instagram" | "linkedin"
+  postUrl: text("post_url").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export type SocialSubmission = typeof socialSubmissions.$inferSelect;
+export type NewSocialSubmission = typeof socialSubmissions.$inferInsert;
