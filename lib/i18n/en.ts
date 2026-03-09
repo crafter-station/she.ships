@@ -459,6 +459,50 @@ export const en = {
     cta: "Join WhatsApp Group",
   },
   apply: {
+    // Hero
+    heroTag: "Side Quest",
+    heroHeadline: "She Ships",
+    heroHeadlineAccent: "Side Quest",
+    heroDescription: "You built at the hackathon. Now show it to the world — and win.",
+    // Section 1 — The challenge
+    challengeLabel: "The Challenge",
+    challengeHeadline: "Your project doesn't have to",
+    challengeHeadlineAccent: "stay on Devpost.",
+    challengeText: "She Ships is over, but your project doesn't have to stay on Devpost. Post about what you built on Instagram or LinkedIn, and the team with the most reactions wins real prizes.",
+    // Section 2 — How to participate
+    howLabel: "How to Participate",
+    howHeadline: "Post your project on",
+    howHeadlineAccent: "Instagram or LinkedIn.",
+    howIntro: "Your post must include:",
+    howItems: [
+      "A visual piece — demo video, screen recording or photo of your project",
+      "A link to your app, live demo or Devpost",
+      "Tag the organizers: Crafter Station (crafters.chat) and The Glitch Girls",
+      "Tag the sponsors: Sezzle, ElevenLabs, v0, featherless.ai, Moraleja",
+      "The hashtag #SheShips",
+    ],
+    howIcons: ["video", "link", "tag", "tag", "hashtag"],
+    // Section 3 — Prizes
+    prizesLabel: "Prizes",
+    prizesHeadline: "Two winning teams",
+    prizesHeadlineAccent: "— one per platform.",
+    prizesDescription: "The post with the most reactions on each platform wins.",
+    prizesItems: [
+      { amount: "$100 USD", detail: "in Cursor credits" },
+      { amount: "$20 USD", detail: "in Claude Code credits" },
+    ],
+    prizesBonus: "3 months of C3",
+    prizesBonusDetail: "Access to 3+ LLM providers",
+    // Section 4 — Dates
+    datesLabel: "Dates",
+    datesHeadline: "Important",
+    datesHeadlineAccent: "Dates",
+    datesRegistration: "Registration deadline",
+    datesRegistrationDate: "March 15 · 7:00 PM",
+    datesWinners: "Winners announcement",
+    datesWinnersDate: "March 15 · 9:00 PM",
+    datesCta: "Register your post here",
+    // Form (kept from before)
     label: "Side Contest",
     headline: "Social Media",
     headlineAccent: "Contest",
@@ -475,6 +519,7 @@ export const en = {
     errorGeneric: "Something went wrong. Please try again.",
     successTitle: "Submitted!",
     successDescription: "Your post has been submitted to the social media side-contest. Good luck!",
+    termsLabel: "I accept the terms and conditions of the She Ships social media side-contest.",
   },
   footer: {
     brandDescription:

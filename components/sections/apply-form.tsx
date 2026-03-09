@@ -60,7 +60,7 @@ export function ApplyForm() {
   }
 
   return (
-    <SectionWrapper variant="cream" bordered className="min-h-[60vh] flex items-center">
+    <SectionWrapper variant="cream" bordered className="min-h-[60vh] flex items-center" id="register">
       <div className="max-w-2xl mx-auto w-full">
         <div className="text-center mb-10">
           <span className="data-label text-primary-pink mb-4 block">
@@ -153,6 +153,18 @@ export function ApplyForm() {
               placeholder="https://"
               className="w-full h-12 px-4 bg-neutral-light border-3 border-primary-black text-primary-black placeholder:text-neutral-gray/50 focus:outline-none focus:ring-2 focus:ring-primary-pink font-medium"
             />
+          </div>
+
+          {/* T&C checkbox */}
+          <div className="flex items-start gap-3 px-2">
+            <input
+              type="checkbox"
+              id="terms"
+              className="mt-1 h-5 w-5 shrink-0 appearance-none border-3 border-primary-black bg-white checked:bg-primary-pink cursor-pointer"
+            />
+            <label htmlFor="terms" className="text-sm text-neutral-gray cursor-pointer select-none">
+              {t.apply.termsLabel}
+            </label>
           </div>
 
           {/* Error */}
