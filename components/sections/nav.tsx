@@ -19,9 +19,6 @@ export function Nav() {
   const links = [
     { label: t.nav.sponsors, href: "#sponsors" },
     { label: t.nav.whoWeAre, href: "#organizers" },
-    { label: t.nav.agenda, href: "#agenda" },
-    { label: t.nav.categories, href: "#categories" },
-    { label: t.nav.faq, href: "/qa" },
   ];
 
   useEffect(() => {
