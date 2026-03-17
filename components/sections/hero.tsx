@@ -131,47 +131,6 @@ export function Hero() {
           </span>
         </div>
 
-        {/* Mobile: messages + CTA — below sheep */}
-        <div className="flex flex-col items-center gap-1 mb-4 mt-80 md:hidden bg-black/35 px-5 py-4 w-full">
-          {MESSAGES.map((msg, i) => (
-            <p
-              key={i}
-              className={
-                msg.accent
-                  ? "font-[family-name:var(--font-monoblock)] text-base sm:text-lg font-black tracking-wide uppercase text-center"
-                  : "font-[family-name:var(--font-monoblock)] text-[10px] sm:text-xs font-light tracking-wide uppercase text-center"
-              }
-            >
-              <EncryptedText
-                text={msg.text}
-                encryptedClassName={msg.accent ? "text-primary-green/40" : "text-white/40"}
-                revealedClassName={msg.accent ? "text-primary-green" : "text-white"}
-                revealDelayMs={REVEAL_MS_PER_CHAR}
-                parentRevealDelayMs={MESSAGE_DELAYS[i]}
-              />
-            </p>
-          ))}
-
-          {/* Mobile CTA */}
-          <div className="mt-5 flex flex-col items-center gap-3">
-            <Button asChild size="lg" variant="pink">
-              <a href="https://luma.com/ytl522gp" target="_blank" rel="noopener noreferrer">
-                {"<"}{t.nav.registerFree}{">"}
-              </a>
-            </Button>
-            <a
-              href="https://meet.google.com/vuz-mvxo-gdo"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-primary-green px-6 py-3 text-sm font-bold text-primary-black uppercase tracking-wide transition-transform hover:scale-105 animate-pulse"
-            >
-              <svg viewBox="0 0 24 24" className="h-5 w-5 fill-current" aria-hidden="true">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z" />
-              </svg>
-              {t.countdown.joinMeet}
-            </a>
-          </div>
-        </div>
 
         {/* Desktop: green text row — flanking center */}
         <div
@@ -193,47 +152,6 @@ export function Hero() {
 
       </div>
 
-      {/* Desktop: messages + CTA — anchored to bottom, sheep unobstructed */}
-      <div className="absolute bottom-20 lg:bottom-32 xl:bottom-44 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-4 z-10">
-        <div className="flex flex-col items-center gap-4 bg-black/35 px-8 py-5">
-        <div className="flex flex-col items-center gap-1.5">
-          {MESSAGES.map((msg, i) => (
-            <p
-              key={i}
-              className={
-                msg.accent
-                  ? "font-[family-name:var(--font-monoblock)] text-sm sm:text-base md:text-lg lg:text-xl font-black tracking-wide uppercase text-center"
-                  : "font-[family-name:var(--font-monoblock)] text-[8px] sm:text-[10px] md:text-xs lg:text-sm font-light tracking-wide uppercase text-center"
-              }
-            >
-              <EncryptedText
-                text={msg.text}
-                encryptedClassName={msg.accent ? "text-primary-green/40" : "text-white/40"}
-                revealedClassName={msg.accent ? "text-primary-green" : "text-white"}
-                revealDelayMs={REVEAL_MS_PER_CHAR}
-                parentRevealDelayMs={MESSAGE_DELAYS[i]}
-              />
-            </p>
-          ))}
-        </div>
-        <Button asChild size="lg" variant="pink">
-          <a href="https://luma.com/ytl522gp" target="_blank" rel="noopener noreferrer">
-            {"<"}{t.nav.registerFree}{">"}
-          </a>
-        </Button>
-        <a
-          href="https://meet.google.com/vuz-mvxo-gdo"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-full bg-primary-green px-8 py-3 text-base font-bold text-primary-black uppercase tracking-wide transition-transform hover:scale-105 animate-pulse"
-        >
-          <svg viewBox="0 0 24 24" className="h-6 w-6 fill-current" aria-hidden="true">
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z" />
-          </svg>
-          {t.countdown.joinMeet}
-        </a>
-        </div>
-      </div>
 
       {/* Bottom gradient fade to black */}
       <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-b from-transparent to-primary-black/60 z-10" />
