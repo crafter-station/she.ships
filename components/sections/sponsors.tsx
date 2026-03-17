@@ -90,6 +90,14 @@ const sponsors = [
     height: 60,
     className: "h-auto w-auto max-w-[140px] md:max-w-[170px]",
   },
+  {
+    name: "Make",
+    logo: "/sponsors/make.png",
+    url: "https://www.make.com/en?pc=lovetxm&gad_source=1",
+    width: 240,
+    height: 60,
+    className: "h-auto w-auto max-w-[140px] md:max-w-[170px]",
+  },
 ];
 
 export function Sponsors() {
@@ -125,7 +133,7 @@ export function Sponsors() {
         </a>
         {/* Rest of sponsors */}
         <div className="grid w-full grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8 md:gap-8 place-items-center">
-          {sponsors.slice(1).map((sponsor) => (
+          {sponsors.slice(1, -1).map((sponsor) => (
             <a
               key={sponsor.name}
               href={sponsor.url}
@@ -144,6 +152,27 @@ export function Sponsors() {
             </a>
           ))}
         </div>
+        {/* Make — centered on its own row */}
+        {(() => {
+          const last = sponsors[sponsors.length - 1];
+          return (
+            <a
+              href={last.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => track("sponsor_click", { name: last.name })}
+              className="transition-opacity hover:opacity-80 flex items-center justify-center"
+            >
+              <Image
+                src={last.logo}
+                alt={last.name}
+                width={last.width}
+                height={last.height}
+                className={last.className ?? "h-auto w-auto max-w-[160px] md:max-w-[220px]"}
+              />
+            </a>
+          );
+        })()}
       </div>
     </SectionWrapper>
   );
