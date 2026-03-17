@@ -4,6 +4,8 @@ export const en = {
     agenda: "Agenda",
     categories: "Categories",
     faq: "FAQ",
+    sponsors: "Sponsors",
+    whoWeAre: "Who We Are",
     join: "Join",
     registerFree: "Claim Your Spot",
     myBadge: "My Poster",

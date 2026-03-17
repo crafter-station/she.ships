@@ -6,6 +6,8 @@ export const es: Translations = {
     agenda: "Agenda",
     categories: "Categorías",
     faq: "FAQ",
+    sponsors: "Sponsors",
+    whoWeAre: "Quiénes Somos",
     join: "Únete",
     registerFree: "Reserva tu Lugar",
     myBadge: "Mi Poster",

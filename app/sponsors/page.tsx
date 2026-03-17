@@ -43,22 +43,26 @@ const whatYouFund = [
   {
     emoji: "🎤",
     title: "Eventos presenciales",
-    description: "Sedes en Lima, Bogotá y Guatemala con infraestructura, comida y espacio para que las participantes construyan sin distracciones.",
+    description:
+      "Sedes en Lima, Bogotá y Guatemala con infraestructura, comida y espacio para que las participantes construyan sin distracciones.",
   },
   {
     emoji: "🧠",
     title: "Mentoría especializada",
-    description: "Mentoras de producto, diseño, ingeniería e IA que guían a las builders durante el hackathon y más allá.",
+    description:
+      "Mentoras de producto, diseño, ingeniería e IA que guían a las builders durante el hackathon y más allá.",
   },
   {
     emoji: "🛠️",
     title: "Herramientas y créditos",
-    description: "Acceso a herramientas reales para que las participantes puedan lanzar sin barreras económicas — desde APIs hasta créditos en la nube.",
+    description:
+      "Acceso a herramientas reales para que las participantes puedan lanzar sin barreras económicas — desde APIs hasta créditos en la nube.",
   },
   {
     emoji: "📣",
     title: "Amplificación de proyectos",
-    description: "Cada proyecto que se lanza en She Ships se amplifica en redes. Más visibilidad = más motivación para seguir construyendo.",
+    description:
+      "Cada proyecto que se lanza en She Ships se amplifica en redes. Más visibilidad = más motivación para seguir construyendo.",
   },
 ];
 
@@ -66,8 +70,6 @@ const tiers = [
   {
     icon: "💎",
     name: "Platinum",
-    price: "$5,000 USD",
-    highlight: true,
     color: "bg-primary-green",
     tag: "Máxima visibilidad",
     benefits: [
@@ -84,8 +86,6 @@ const tiers = [
   {
     icon: "🥇",
     name: "Gold",
-    price: "$2,500 USD",
-    highlight: false,
     color: "bg-sunny-yellow",
     tag: "Alta visibilidad",
     benefits: [
@@ -100,8 +100,6 @@ const tiers = [
   {
     icon: "🥈",
     name: "Silver",
-    price: "$1,000 USD",
-    highlight: false,
     color: "bg-neutral-light",
     tag: "Presencia de marca",
     benefits: [
@@ -128,7 +126,7 @@ const perks = [
   },
 ];
 
-export default function SponsorPage() {
+export default function SponsorsPage() {
   return (
     <>
       <Nav />
@@ -144,11 +142,15 @@ export default function SponsorPage() {
               <span className="text-white">construyen.</span>
             </h1>
             <p className="text-xl text-primary-black/80 mb-10 max-w-2xl mx-auto font-medium leading-relaxed">
-              She Ships es el espacio donde mujeres builders diseñan, lanzan y aprenden juntas. Apóyanos y lleva tu marca al corazón del movimiento.
+              She Ships es el espacio donde mujeres builders diseñan, lanzan y
+              aprenden juntas. Apóyanos y lleva tu marca al corazón del
+              movimiento.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild variant="default" size="lg">
-                <a href={`mailto:${CONTACT_EMAIL}?subject=Quiero ser sponsor de She Ships`}>
+                <a
+                  href={`mailto:${CONTACT_EMAIL}?subject=Quiero ser sponsor de She Ships`}
+                >
                   Habla con nosotras
                 </a>
               </Button>
@@ -160,7 +162,12 @@ export default function SponsorPage() {
         </SectionWrapper>
 
         {/* Stats */}
-        <SectionWrapper variant="dark" bordered className="min-h-0" innerClassName="py-12 md:py-16">
+        <SectionWrapper
+          variant="dark"
+          bordered
+          className="min-h-0"
+          innerClassName="py-12 md:py-16"
+        >
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat) => (
               <div key={stat.label} className="text-center">
@@ -219,7 +226,8 @@ export default function SponsorPage() {
                 <span className="text-primary-pink">lo hace posible</span>
               </h2>
               <p className="text-primary-cream/60 mt-4 max-w-xl mx-auto">
-                Cada dólar que pones en She Ships se traduce en oportunidades reales para mujeres builders en LATAM y el mundo.
+                Cada dólar que pones en She Ships se traduce en oportunidades
+                reales para mujeres builders en LATAM y el mundo.
               </p>
             </div>
 
@@ -261,22 +269,15 @@ export default function SponsorPage() {
                   key={tier.name}
                   className={`${tier.color} border-4 border-primary-black p-8 md:p-10`}
                 >
-                  <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-8">
-                    <div>
-                      <div className="flex items-center gap-3 mb-1">
-                        <span className="text-4xl">{tier.icon}</span>
-                        <h3 className="font-[family-name:var(--font-title)] text-4xl font-black text-primary-black uppercase">
-                          {tier.name}
-                        </h3>
-                      </div>
-                      <span className="font-[family-name:var(--font-mono)] text-xs uppercase tracking-widest text-primary-black/50">
-                        {tier.tag}
-                      </span>
-                    </div>
-                    <p className="font-[family-name:var(--font-title)] text-3xl font-bold text-primary-black shrink-0">
-                      {tier.price}
-                    </p>
+                  <div className="flex items-center gap-3 mb-1">
+                    <span className="text-4xl">{tier.icon}</span>
+                    <h3 className="font-[family-name:var(--font-title)] text-4xl font-black text-primary-black uppercase">
+                      {tier.name}
+                    </h3>
                   </div>
+                  <span className="font-[family-name:var(--font-mono)] text-xs uppercase tracking-widest text-primary-black/50 mb-8 block">
+                    {tier.tag}
+                  </span>
 
                   <ul className="space-y-3 mb-8">
                     {tier.benefits.map((benefit, i) => (
@@ -331,16 +332,23 @@ export default function SponsorPage() {
         </SectionWrapper>
 
         {/* Final CTA */}
-        <SectionWrapper variant="green" className="min-h-0" innerClassName="py-20 md:py-28">
+        <SectionWrapper
+          variant="green"
+          className="min-h-0"
+          innerClassName="py-20 md:py-28"
+        >
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="font-[family-name:var(--font-title)] text-4xl md:text-6xl font-black uppercase tracking-tight text-primary-black mb-6">
               ¿Lista para sumarte?
             </h2>
             <p className="text-primary-black/80 text-xl mb-10 leading-relaxed">
-              Escríbenos y diseñamos juntas un paquete que tenga sentido para tu marca y tus objetivos. Sin formalidades — solo builders y aliados.
+              Escríbenos y diseñamos juntas un paquete que tenga sentido para tu
+              marca y tus objetivos. Sin formalidades — solo builders y aliados.
             </p>
             <Button asChild variant="default" size="lg">
-              <a href={`mailto:${CONTACT_EMAIL}?subject=Quiero ser sponsor de She Ships`}>
+              <a
+                href={`mailto:${CONTACT_EMAIL}?subject=Quiero ser sponsor de She Ships`}
+              >
                 Escríbenos a {CONTACT_EMAIL}
               </a>
             </Button>
