@@ -207,6 +207,24 @@ export function Nav() {
                   {link.label}
                 </motion.a>
               ))}
+              <motion.div
+                className="flex flex-col items-center gap-3"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ delay: 0.05 * links.length, duration: 0.25 }}
+              >
+                <span className="font-[family-name:var(--font-title)] text-3xl font-bold text-primary-black/40 uppercase">
+                  Hackathons
+                </span>
+                <Link
+                  href="/hackathons/2026"
+                  onClick={() => setMobileOpen(false)}
+                  className="font-[family-name:var(--font-title)] text-xl font-bold text-primary-pink hover:text-primary-black transition-colors"
+                >
+                  2026
+                </Link>
+              </motion.div>
             </div>
 
             <motion.div
