@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Menu, X } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -15,6 +15,18 @@ export function Nav() {
   const { t } = useTranslation();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [hackathonsOpen, setHackathonsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setHackathonsOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const links = [
     { label: t.nav.sponsors, href: "#sponsors" },
@@ -78,6 +90,44 @@ export function Nav() {
                 {link.label}
               </a>
             ))}
+
+            {/* Hackathons dropdown */}
+            <div ref={dropdownRef} className="relative">
+              <button
+                onClick={() => setHackathonsOpen((prev) => !prev)}
+                className={`flex items-center gap-1 font-[family-name:var(--font-title)] text-sm transition-colors duration-300 ${
+                  scrolled
+                    ? "text-primary-black/70 hover:text-primary-black"
+                    : "text-white/80 hover:text-white"
+                }`}
+              >
+                Hackathons
+                <ChevronDown
+                  size={14}
+                  className={`transition-transform duration-200 ${hackathonsOpen ? "rotate-180" : ""}`}
+                />
+              </button>
+
+              <AnimatePresence>
+                {hackathonsOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -6 }}
+                    transition={{ duration: 0.15 }}
+                    className="absolute top-full left-0 mt-2 min-w-[120px] bg-primary-black border border-white/10 shadow-xl z-50"
+                  >
+                    <Link
+                      href="/hackathons/2026"
+                      onClick={() => setHackathonsOpen(false)}
+                      className="block px-5 py-3 font-[family-name:var(--font-title)] text-sm text-primary-cream hover:bg-white/10 transition-colors"
+                    >
+                      2026
+                    </Link>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
           </div>
 
           {/* Desktop actions */}
