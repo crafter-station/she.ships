@@ -85,11 +85,6 @@ export function Nav() {
             <GithubBadge light={!scrolled} />
             <WhatsappBadge light={!scrolled} />
             <LanguageSwitcher light={!scrolled} />
-            <Button asChild variant="outline" size="sm">
-              <Link href="/p">
-                {t.nav.myBadge}
-              </Link>
-            </Button>
             <Button asChild variant="pink" size="sm">
               <a
                 href="https://luma.com/ytl522gp"
@@ -176,11 +171,6 @@ export function Nav() {
                 <WhatsappBadge />
                 <LanguageSwitcher />
               </div>
-              <Button asChild variant="outline" size="lg">
-                <Link href="/p" onClick={() => setMobileOpen(false)}>
-                  {t.nav.myBadge}
-                </Link>
-              </Button>
               <Button asChild variant="pink" size="lg">
                 <a
                   href="https://luma.com/ytl522gp"
