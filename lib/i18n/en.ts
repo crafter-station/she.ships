@@ -1,7 +1,7 @@
 export const en = {
   landing: {
     // Hero
-    heroTagline: "Changing the ratio in tech",
+    heroTagline: "",
     heroHeadline: "She",
     heroHeadlineAccent: "Ships",
     heroDescription: "Out of every 30 people at a tech event, only 3 are women. We're here to change that.",
