@@ -1,7 +1,5 @@
 "use client";
 
-import { CrafterStationLogo } from "@/components/logos/crafter-station";
-import { MoralejaDesignLogo } from "@/components/logos/moraleja-design";
 import { useTranslation } from "@/lib/i18n/context";
 
 export function Footer() {
@@ -14,26 +12,6 @@ export function Footer() {
           <p className="text-xs font-bold uppercase tracking-wide text-white/60">
             &copy; {new Date().getFullYear()} {t.footer.copyright}
           </p>
-          <div className="flex items-center gap-4">
-            <a
-              href="https://www.crafterstation.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wide text-white/70 transition-colors hover:text-primary-pink"
-            >
-              <CrafterStationLogo className="size-4" />
-              Crafter Station
-            </a>
-            <a
-              href="https://moraleja.co"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wide text-white/70 transition-colors hover:text-primary-pink"
-            >
-              <MoralejaDesignLogo className="size-4" />
-              Moraleja
-            </a>
-          </div>
         </div>
       </div>
 

@@ -545,8 +545,8 @@ export const es: Translations = {
     howItems: [
       "Una pieza visual — video demo, grabacion de pantalla o foto de tu proyecto",
       "Un enlace a tu app, demo en vivo o Devpost",
-      "Etiqueta a los organizadores: Crafter Station (crafters.chat) y The Glitch Girls",
-      "Etiqueta a los sponsors: Sezzle, ElevenLabs, v0, featherless.ai, Moraleja",
+      "Etiqueta a los organizadores: The Glitch Girls",
+      "Etiqueta a los sponsors: Sezzle, ElevenLabs, v0, featherless.ai",
       "El hashtag #SheShips",
     ],
     howIcons: ["video", "link", "tag", "tag", "hashtag"],

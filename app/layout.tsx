@@ -30,31 +30,74 @@ const siteUrl = process.env.VERCEL_URL
   : "http://localhost:3000";
 
 export const metadata: Metadata = {
-  title: "She Ships | 48-Hour Hackathon Where Women Build and Ship",
+  title: {
+    default: "She Ships | Women's Tech Hub - Events, Tools & Community",
+    template: "%s | She Ships",
+  },
   description:
-    "Join She Ships, a 48-hour hackathon where women build and launch real products with AI-native tools, mentorship, and a supportive community.",
+    "She Ships is a women's tech hub organizing hackathons, workshops, and events. Access cutting-edge tools, mentorship, and join a community of women building and leading in technology.",
   metadataBase: new URL(siteUrl),
+  keywords: [
+    "women in tech",
+    "women hackathon",
+    "tech events for women",
+    "women developers",
+    "women engineers",
+    "tech community",
+    "hackathon",
+    "women founders",
+    "diversity in tech",
+    "women coding",
+    "tech workshops",
+    "STEM women",
+    "female developers",
+    "women builders",
+  ],
+  authors: [{ name: "She Ships" }],
+  creator: "She Ships",
+  publisher: "She Ships",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   openGraph: {
-    title: "She Ships | 48-Hour Hackathon Where Women Build and Ship",
-    description:
-      "Join She Ships, a 48-hour hackathon where women build and launch real products with AI-native tools, mentorship, and a supportive community.",
     type: "website",
+    locale: "en_US",
+    alternateLocale: "es_ES",
     url: siteUrl,
+    siteName: "She Ships",
+    title: "She Ships | Women's Tech Hub - Events, Tools & Community",
+    description:
+      "Join She Ships, a women's tech hub with hackathons, workshops, and a global community. Access sponsor tools, mentorship, and real opportunities in tech.",
     images: [
-      { url: "/og.png", width: 1200, height: 630 },
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "She Ships - Women's Tech Hub",
+      },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "She Ships | 48-Hour Hackathon Where Women Build and Ship",
+    title: "She Ships | Women's Tech Hub",
     description:
-      "Join She Ships, a 48-hour hackathon where women build and launch real products with AI-native tools, mentorship, and a supportive community.",
+      "Hackathons, workshops, tools & community for women in tech. Join us and ship something real.",
     images: ["/og-twitter.png"],
+    creator: "@sheships",
   },
   icons: {
     icon: "/favicon.ico",
     apple: "/apple-touch-icon.png",
   },
+  category: "technology",
 };
 
 export default function RootLayout({

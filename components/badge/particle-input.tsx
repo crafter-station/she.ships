@@ -164,16 +164,6 @@ const STYLE_PRESETS: Preset[] = [
     },
   },
   {
-    label: "Moraleja",
-    emoji: "💚",
-    config: {
-      groups: [
-        { color: "#00FF7F", count: 1600, size: 0.012, shape: "sphere", metalness: 0.95, roughness: 0.2, emissive: "#00FF7F", emissiveIntensity: 0.7, clearcoat: 0.9, opacity: 1, transmission: 0, fluid: false },
-        { color: "#0A0C0C", count: 900, size: 0.010, shape: "sphere", metalness: 0.95, roughness: 0.3, emissive: "#000000", emissiveIntensity: 0, clearcoat: 0.8, opacity: 1, transmission: 0, fluid: false },
-      ],
-    },
-  },
-  {
     label: "Kebo",
     emoji: "🐨",
     config: {

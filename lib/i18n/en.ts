@@ -541,8 +541,8 @@ export const en = {
     howItems: [
       "A visual piece — demo video, screen recording or photo of your project",
       "A link to your app, live demo or Devpost",
-      "Tag the organizers: Crafter Station (crafters.chat) and The Glitch Girls",
-      "Tag the sponsors: Sezzle, ElevenLabs, v0, featherless.ai, Moraleja",
+      "Tag the organizers: The Glitch Girls",
+      "Tag the sponsors: Sezzle, ElevenLabs, v0, featherless.ai",
       "The hashtag #SheShips",
     ],
     howIcons: ["video", "link", "tag", "tag", "hashtag"],
