@@ -1,37 +1,23 @@
 import { Nav } from "@/components/sections/nav";
-import { Hero } from "@/components/sections/hero";
-import { Countdown } from "@/components/sections/countdown";
-import { Sponsors } from "@/components/sections/sponsors";
-import { WhatIsSheShips } from "@/components/sections/what-is-sheships";
-import { Agenda } from "@/components/sections/agenda";
-import { Categories } from "@/components/sections/categories";
-import { FAQ } from "@/components/sections/faq";
-import { Perks } from "@/components/sections/perks";
-import { Prizes } from "@/components/sections/prizes";
-import { WhatsappCommunity } from "@/components/sections/whatsapp-community";
-import { Organizers } from "@/components/sections/organizers";
-import { CommunityPartners } from "@/components/sections/community-partners";
+import { LandingHero } from "@/components/sections/landing-hero";
+import { LandingAbout } from "@/components/sections/landing-about";
+import { LandingUpcomingEvents } from "@/components/sections/landing-upcoming-events";
+import { LandingPastEvents } from "@/components/sections/landing-past-events";
+import { LandingSponsors } from "@/components/sections/landing-sponsors";
+import { LandingCommunity } from "@/components/sections/landing-community";
 import { Footer } from "@/components/sections/footer";
-import { SideNav } from "@/components/sections/side-nav";
 
 export default function Home() {
   return (
     <>
       <Nav />
-      <SideNav />
       <main className="overflow-x-clip min-w-0">
-        <Hero />
-        <Sponsors />
-        <Countdown />
-        <WhatIsSheShips />
-        <Perks />
-        <Prizes />
-        <Agenda />
-        <Categories />
-        <FAQ />
-        <WhatsappCommunity />
-        <Organizers />
-        <CommunityPartners />
+        <LandingHero />
+        <LandingAbout />
+        <LandingUpcomingEvents />
+        <LandingPastEvents />
+        <LandingSponsors />
+        <LandingCommunity />
         <Footer />
       </main>
     </>

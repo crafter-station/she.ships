@@ -29,8 +29,9 @@ export function Nav() {
   }, []);
 
   const links = [
-    { label: t.nav.sponsors, href: "#sponsors" },
-    { label: t.nav.whoWeAre, href: "#organizers" },
+    { label: t.landing.upcomingLabel, href: "/#upcoming-events" },
+    { label: t.landing.sponsorsLabel, href: "/#sponsors" },
+    { label: t.landing.communityLabel, href: "/#community" },
   ];
 
   useEffect(() => {
@@ -63,7 +64,7 @@ export function Nav() {
       >
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
           {/* Logo */}
-          <a href="/">
+          <Link href="/">
             <Image
               src="/brand/she-ships-one-line-logo.svg"
               alt="She Ships"
@@ -73,12 +74,12 @@ export function Nav() {
                 scrolled ? "brightness-0" : ""
               }`}
             />
-          </a>
+          </Link>
 
           {/* Desktop links */}
           <div className="hidden md:flex items-center gap-8">
             {links.map((link) => (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
                 className={`font-[family-name:var(--font-title)] text-sm transition-colors duration-300 ${
@@ -88,7 +89,7 @@ export function Nav() {
                 }`}
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
 
             {/* Hackathons dropdown */}
@@ -115,14 +116,14 @@ export function Nav() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -6 }}
                     transition={{ duration: 0.15 }}
-                    className="absolute top-full left-0 mt-2 min-w-[120px] bg-primary-black border border-white/10 shadow-xl z-50"
+                    className="absolute top-full left-0 mt-2 min-w-[180px] bg-primary-black border border-white/10 shadow-xl z-50"
                   >
                     <Link
                       href="/hackathons/2026"
                       onClick={() => setHackathonsOpen(false)}
                       className="block px-5 py-3 font-[family-name:var(--font-title)] text-sm text-primary-cream hover:bg-white/10 transition-colors"
                     >
-                      2026
+                      8M Hackathon 2026
                     </Link>
                   </motion.div>
                 )}
@@ -136,13 +137,9 @@ export function Nav() {
             <WhatsappBadge light={!scrolled} />
             <LanguageSwitcher light={!scrolled} />
             <Button asChild variant="pink" size="sm">
-              <a
-                href="https://luma.com/ytl522gp"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <Link href="/#upcoming-events">
                 {t.nav.join}
-              </a>
+              </Link>
             </Button>
           </div>
 
@@ -194,18 +191,21 @@ export function Nav() {
           >
             <div className="flex flex-col items-center gap-8">
               {links.map((link, i) => (
-                <motion.a
+                <motion.div
                   key={link.href}
-                  href={link.href}
-                  onClick={() => setMobileOpen(false)}
-                  className="font-[family-name:var(--font-title)] text-3xl font-bold text-primary-black/70 hover:text-primary-black transition-colors"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ delay: 0.05 * i, duration: 0.25 }}
                 >
-                  {link.label}
-                </motion.a>
+                  <Link
+                    href={link.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="font-[family-name:var(--font-title)] text-3xl font-bold text-primary-black/70 hover:text-primary-black transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </motion.div>
               ))}
               <motion.div
                 className="flex flex-col items-center gap-3"
@@ -222,7 +222,7 @@ export function Nav() {
                   onClick={() => setMobileOpen(false)}
                   className="font-[family-name:var(--font-title)] text-xl font-bold text-primary-pink hover:text-primary-black transition-colors"
                 >
-                  2026
+                  8M 2026
                 </Link>
               </motion.div>
             </div>
@@ -240,13 +240,9 @@ export function Nav() {
                 <LanguageSwitcher />
               </div>
               <Button asChild variant="pink" size="lg">
-                <a
-                  href="https://luma.com/ytl522gp"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <Link href="/#upcoming-events" onClick={() => setMobileOpen(false)}>
                   {t.nav.join}
-                </a>
+                </Link>
               </Button>
             </motion.div>
           </motion.div>
