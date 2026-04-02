@@ -83,14 +83,6 @@ const sponsors = [
     className: "h-auto w-auto max-w-[140px] md:max-w-[170px]",
   },
   {
-    name: "Moraleja",
-    logo: "/sponsors/moraleja.svg",
-    url: "https://moraleja.co",
-    width: 240,
-    height: 60,
-    className: "h-auto w-auto max-w-[140px] md:max-w-[170px]",
-  },
-  {
     name: "Make",
     logo: "/sponsors/make.png",
     url: "https://www.make.com/en?pc=lovetxm&gad_source=1",
