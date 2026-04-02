@@ -9,7 +9,6 @@ import { FAQ } from "@/components/sections/faq";
 import { Perks } from "@/components/sections/perks";
 import { Prizes } from "@/components/sections/prizes";
 import { WhatsappCommunity } from "@/components/sections/whatsapp-community";
-import { Organizers } from "@/components/sections/organizers";
 import { CommunityPartners } from "@/components/sections/community-partners";
 import { Footer } from "@/components/sections/footer";
 import { SideNav } from "@/components/sections/side-nav";
@@ -30,7 +29,6 @@ export default function Hackathon2026Page() {
         <Categories />
         <FAQ />
         <WhatsappCommunity />
-        <Organizers />
         <CommunityPartners />
         <Footer />
       </main>
