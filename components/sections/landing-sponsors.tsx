@@ -45,7 +45,7 @@ export function LandingSponsors() {
   ];
 
   return (
-    <SectionWrapper variant="light" id="sponsors" className="min-h-fit">
+    <SectionWrapper variant="dark" id="sponsors" className="min-h-fit">
       {/* Header */}
       <div className="text-center mb-12">
         <div className="inline-block brutalist-card bg-primary-green px-4 py-2 mb-6">
@@ -54,7 +54,7 @@ export function LandingSponsors() {
           </span>
         </div>
 
-        <h2 className="font-[family-name:var(--font-title)] text-3xl md:text-4xl lg:text-5xl font-black text-primary-black leading-tight mb-4">
+        <h2 className="font-[family-name:var(--font-title)] text-3xl md:text-4xl lg:text-5xl font-black text-primary-cream leading-tight mb-4">
           {t.landing.sponsorsHeadline}{" "}
           <span className="text-primary-pink">{t.landing.sponsorsHeadlineAccent}</span>
         </h2>
@@ -86,7 +86,7 @@ export function LandingSponsors() {
 
       {/* Sponsorship Tiers */}
       <div className="mb-12">
-        <p className="text-center font-[family-name:var(--font-title)] text-lg font-bold text-primary-black uppercase tracking-wider mb-8">
+        <p className="text-center font-[family-name:var(--font-title)] text-lg font-bold text-primary-cream uppercase tracking-wider mb-8">
           {t.landing.sponsorTiersTitle}
         </p>
         <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
