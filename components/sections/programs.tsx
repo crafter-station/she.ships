@@ -14,7 +14,7 @@ const programs = [
   {
     icon: "🛠",
     title: "Workshops",
-    description: "Sesiones prácticas donde aprendés a construir con herramientas reales. Salís con un proyecto funcional en 2 horas. El primero fue con v0.",
+    description: "Sesiones prácticas donde aprendes a construir con herramientas reales. Sales con un proyecto funcional en 2 horas. El primero fue con v0.",
     status: "activo",
     href: "#workshops",
     accent: "bg-primary-green",

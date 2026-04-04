@@ -97,12 +97,6 @@ export function PastEvents() {
               </Button>
             </div>
 
-            {/* Placeholder for photos */}
-            <div className="border-t-3 border-primary-black bg-primary-black/5 px-8 py-6">
-              <p className="text-[10px] font-black uppercase tracking-widest text-primary-black/30 text-center">
-                📸 Fotos del evento — próximamente
-              </p>
-            </div>
           </div>
         ))}
       </div>

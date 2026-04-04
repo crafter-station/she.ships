@@ -15,19 +15,19 @@ export function OrgStory() {
           </div>
 
           <h2 className="font-[family-name:var(--font-title)] text-3xl md:text-4xl lg:text-5xl font-black uppercase leading-tight text-white mb-6">
-            Vio el problema.<br />
-            <span className="text-primary-pink">Creó el espacio.</span>
+            El problema existía.<br />
+            <span className="text-primary-pink">She Ships es la respuesta.</span>
           </h2>
 
           <div className="space-y-5 text-white/70 leading-relaxed">
             <p>
-              En los eventos tech que Shiara visitaba, las mujeres eran pocas. Pero no solo pocas — la mayoría de los hombres participaban activamente, hablaban, compartían ideas cool. Las pocas mujeres presentes casi no tenían participación.
+              En los eventos tech de LATAM, las mujeres eran pocas. Pero no solo pocas: la mayoría de los hombres participaban activamente, hablaban, compartían ideas. Las pocas mujeres presentes casi no tenían participación.
             </p>
             <p>
-              She Ships nació de esa observación. Un espacio donde las mujeres no son la minoría silenciosa — son las que construyen, presentan, y lanzan.
+              She Ships nació de esa observación. Es un espacio donde las mujeres no son la minoría silenciosa, sino las que construyen, presentan y lanzan.
             </p>
             <p>
-              Hoy somos una comunidad de <span className="text-primary-green font-bold">300+ mujeres</span> en LATAM y más allá, con hackathons, workshops, mentorías, y más.
+              Hoy es una comunidad de <span className="text-primary-green font-bold">300+ mujeres</span> con base en LATAM, con hackathons, workshops, mentorías y más.
             </p>
           </div>
 
@@ -38,7 +38,7 @@ export function OrgStory() {
               <span className="text-primary-pink">sino en el escenario."</span>
             </p>
             <p className="text-xs font-bold uppercase tracking-widest text-white/40 mt-3">
-              — Shiara, fundadora de she.ships
+              Shiara, fundadora de she.ships
             </p>
           </div>
         </div>

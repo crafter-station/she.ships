@@ -17,8 +17,8 @@ export default function Home() {
         <OrgHero />
         <OrgStory />
         <Programs />
-        <Workshops />
         <LandingUpcomingEvents />
+        <Workshops />
         <PastEvents />
         <CommunityJoin />
         <LandingSponsors />

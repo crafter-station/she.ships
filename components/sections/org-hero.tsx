@@ -43,7 +43,7 @@ export function OrgHero() {
         </h1>
 
         <p className="text-white/70 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed">
-          She Ships nació para que más mujeres no solo asistan a los eventos tech — sino que sean las protagonistas.
+          She Ships nació para que más mujeres no solo asistan a los eventos tech, sino que sean las protagonistas.
         </p>
 
         {/* CTAs */}
