@@ -1,10 +1,12 @@
 import { Nav } from "@/components/sections/nav";
-import { LandingHero } from "@/components/sections/landing-hero";
-import { LandingAbout } from "@/components/sections/landing-about";
+import { OrgHero } from "@/components/sections/org-hero";
+import { OrgStory } from "@/components/sections/org-story";
+import { Programs } from "@/components/sections/programs";
+import { Workshops } from "@/components/sections/workshops";
 import { LandingUpcomingEvents } from "@/components/sections/landing-upcoming-events";
-import { LandingPastEvents } from "@/components/sections/landing-past-events";
+import { PastEvents } from "@/components/sections/past-events";
+import { CommunityJoin } from "@/components/sections/community-join";
 import { LandingSponsors } from "@/components/sections/landing-sponsors";
-import { LandingCommunity } from "@/components/sections/landing-community";
 import { Footer } from "@/components/sections/footer";
 
 export default function Home() {
@@ -12,12 +14,14 @@ export default function Home() {
     <>
       <Nav />
       <main className="overflow-x-clip min-w-0">
-        <LandingHero />
-        <LandingAbout />
+        <OrgHero />
+        <OrgStory />
+        <Programs />
+        <Workshops />
         <LandingUpcomingEvents />
-        <LandingPastEvents />
+        <PastEvents />
+        <CommunityJoin />
         <LandingSponsors />
-        <LandingCommunity />
         <Footer />
       </main>
     </>

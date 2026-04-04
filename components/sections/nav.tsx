@@ -29,9 +29,10 @@ export function Nav() {
   }, []);
 
   const links = [
-    { label: t.landing.upcomingLabel, href: "/#upcoming-events" },
-    { label: t.landing.sponsorsLabel, href: "/#sponsors" },
-    { label: t.landing.communityLabel, href: "/#community" },
+    { label: "Quiénes Somos", href: "#story" },
+    { label: "Programas", href: "#programs" },
+    { label: "Workshops", href: "#workshops" },
+    { label: "Comunidad", href: "#community" },
   ];
 
   useEffect(() => {
@@ -137,7 +138,7 @@ export function Nav() {
             <WhatsappBadge light={!scrolled} />
             <LanguageSwitcher light={!scrolled} />
             <Button asChild variant="pink" size="sm">
-              <Link href="/#upcoming-events">
+              <Link href="#community">
                 {t.nav.join}
               </Link>
             </Button>
@@ -240,7 +241,7 @@ export function Nav() {
                 <LanguageSwitcher />
               </div>
               <Button asChild variant="pink" size="lg">
-                <Link href="/#upcoming-events" onClick={() => setMobileOpen(false)}>
+                <Link href="#community" onClick={() => setMobileOpen(false)}>
                   {t.nav.join}
                 </Link>
               </Button>
