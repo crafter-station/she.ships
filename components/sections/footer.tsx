@@ -12,6 +12,12 @@ export function Footer() {
           <p className="text-xs font-bold uppercase tracking-wide text-white/60">
             &copy; {new Date().getFullYear()} {t.footer.copyright}
           </p>
+          <a
+            href="mailto:shiara@sheships.org"
+            className="text-xs font-bold uppercase tracking-wide text-white/60 hover:text-primary-pink transition-colors"
+          >
+            shiara@sheships.org
+          </a>
         </div>
       </div>
 
