@@ -9,7 +9,6 @@ const programs = [
     description: "Eventos intensivos de 48-72hs donde mujeres construyen productos reales desde cero. El más grande hasta ahora: 200 builders, 56 proyectos, en el 8M.",
     status: "activo",
     href: "/hackathons/2026",
-    accent: "bg-primary-pink",
   },
   {
     icon: "🛠",
@@ -17,7 +16,6 @@ const programs = [
     description: "Sesiones prácticas donde aprendes a construir con herramientas reales. Sales con un proyecto funcional en 2 horas. El primero fue con v0.",
     status: "activo",
     href: "#workshops",
-    accent: "bg-primary-green",
   },
   {
     icon: "🧭",
@@ -25,7 +23,6 @@ const programs = [
     description: "Sesiones 1:1 y grupales con personas del mundo tech. Para orientarte, crecer, y tomar decisiones con más claridad.",
     status: "activo",
     href: "#community",
-    accent: "bg-primary-cream",
   },
   {
     icon: "🎤",
@@ -33,7 +30,6 @@ const programs = [
     description: "Aprende a dar charlas, preparar tu pitch, y presentar tu trabajo con confianza. Porque tu voz importa.",
     status: "próximo",
     href: "#",
-    accent: "bg-primary-pink",
   },
   {
     icon: "✨",
@@ -41,7 +37,6 @@ const programs = [
     description: "Espacios donde las builders muestran lo que construyeron. Visibilidad real para proyectos reales.",
     status: "próximo",
     href: "#",
-    accent: "bg-primary-green",
   },
 ];
 
@@ -64,7 +59,7 @@ export function Programs() {
           <a
             key={p.title}
             href={p.href}
-            className={`group border-3 border-primary-black p-6 flex flex-col gap-4 bg-white hover:${p.accent} transition-colors duration-200 ${p.status === "próximo" ? "opacity-70" : ""}`}
+            className={`group border-3 border-primary-black p-6 flex flex-col gap-4 transition-colors duration-200 ${p.status === "próximo" ? "bg-white opacity-70 cursor-default" : "bg-white hover:bg-primary-pink"}`}
             aria-disabled={p.status === "próximo"}
             onClick={p.status === "próximo" ? (e) => e.preventDefault() : undefined}
           >
