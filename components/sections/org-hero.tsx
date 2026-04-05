@@ -30,6 +30,14 @@ export function OrgHero() {
       {/* Content — offset below nav (64px) */}
       <div className="relative z-10 flex flex-col items-center text-center w-full max-w-5xl mx-auto px-6 pt-28 pb-16 flex-1 justify-center">
 
+        {/* Label */}
+        <div className="inline-flex items-center gap-2 mb-6">
+          <span className="w-2 h-2 bg-primary-green" />
+          <span className="font-[family-name:var(--font-title)] text-xs font-black uppercase tracking-widest text-primary-green">
+            Con base en LATAM
+          </span>
+        </div>
+
         {/* Headline */}
         <h1 className="font-[family-name:var(--font-title)] text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase leading-tight tracking-tight text-white mb-6">
           El lugar donde<br />
@@ -47,7 +55,7 @@ export function OrgHero() {
               Únete a la comunidad
             </a>
           </Button>
-          <Button asChild size="lg" className="bg-white text-primary-black hover:bg-primary-cream font-black uppercase tracking-wide">
+          <Button asChild variant="green" size="lg">
             <a href="#workshops">
               Ver Workshops
             </a>
@@ -61,7 +69,7 @@ export function OrgHero() {
               key={stat.label}
               className={`flex flex-col items-center px-8 py-5 ${i < stats.length - 1 ? "border-b-2 sm:border-b-0 sm:border-r-2 border-white/20" : ""}`}
             >
-              <span className="font-[family-name:var(--font-title)] text-4xl font-black text-primary-pink">
+              <span className={`font-[family-name:var(--font-title)] text-4xl font-black ${i === 1 ? "text-primary-green" : "text-primary-pink"}`}>
                 {stat.value}
               </span>
               <span className="text-xs font-bold uppercase tracking-widest text-white/60 mt-1">
