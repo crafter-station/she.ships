@@ -175,10 +175,10 @@ export default function QuienesSomosPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild variant="default" size="lg">
-                <Link href="/#community">Unirse a la comunidad</Link>
+                <Link href="/comunidad">Unirse a la comunidad</Link>
               </Button>
               <Button asChild variant="outline" size="lg" className="border-primary-black text-primary-black hover:bg-primary-black hover:text-white">
-                <Link href="/#programs">Ver programas</Link>
+                <Link href="/eventos">Ver programas</Link>
               </Button>
             </div>
           </div>
