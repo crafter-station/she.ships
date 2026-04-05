@@ -21,13 +21,10 @@ export function OrgStory() {
 
           <div className="space-y-5 text-white/70 leading-relaxed">
             <p>
-              En los eventos tech de LATAM, las mujeres eran pocas. Pero no solo pocas: la mayoría de los hombres participaban activamente, hablaban, compartían ideas. Las pocas mujeres presentes casi no tenían participación.
+              En los eventos tech, las mujeres estaban pero no participaban. Escuchaban. She Ships nació para cambiar eso.
             </p>
             <p>
-              She Ships nació de esa observación. Es un espacio donde las mujeres no son la minoría silenciosa, sino las que construyen, presentan y lanzan.
-            </p>
-            <p>
-              Hoy es una comunidad de <span className="text-primary-green font-bold">300+ mujeres</span> con base en LATAM, con hackathons, workshops, mentorías y más.
+              Hoy somos <span className="text-primary-green font-bold">300+ mujeres</span> en LATAM que construyen, presentan y lanzan.
             </p>
           </div>
 
