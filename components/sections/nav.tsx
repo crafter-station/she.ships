@@ -137,11 +137,6 @@ export function Nav() {
             <GithubBadge light={!scrolled} />
             <WhatsappBadge light={!scrolled} />
             <LanguageSwitcher light={!scrolled} />
-            <Button asChild variant="pink" size="sm">
-              <Link href="#community">
-                {t.nav.join}
-              </Link>
-            </Button>
           </div>
 
           {/* Mobile hamburger */}
@@ -235,16 +230,11 @@ export function Nav() {
               exit={{ opacity: 0, y: -10 }}
               transition={{ delay: 0.05 * links.length, duration: 0.25 }}
             >
-              <div className="flex items-center gap-4 mb-4">
+              <div className="flex items-center gap-4">
                 <GithubBadge />
                 <WhatsappBadge />
                 <LanguageSwitcher />
               </div>
-              <Button asChild variant="pink" size="lg">
-                <Link href="#community" onClick={() => setMobileOpen(false)}>
-                  {t.nav.join}
-                </Link>
-              </Button>
             </motion.div>
           </motion.div>
         )}
