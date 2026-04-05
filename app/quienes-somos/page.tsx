@@ -2,6 +2,7 @@ import { Nav } from "@/components/sections/nav";
 import { Footer } from "@/components/sections/footer";
 import { SectionWrapper } from "@/components/decorative/section-wrapper";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 import Link from "next/link";
 
 export const metadata = {
@@ -94,11 +95,13 @@ export default function QuienesSomosPage() {
         <SectionWrapper variant="dark" className="min-h-fit">
           <div className="max-w-5xl mx-auto">
             <div className="grid md:grid-cols-2 gap-12 items-start mb-16">
-              {/* Placeholder photo */}
-              <div className="brutalist-card bg-primary-pink/10 border-3 border-primary-pink/30 aspect-square flex items-center justify-center">
-                <span className="text-primary-pink/40 font-[family-name:var(--font-title)] text-xl font-black uppercase tracking-widest">
-                  Foto de Shiara
-                </span>
+              <div className="brutalist-card overflow-hidden aspect-square relative">
+                <Image
+                  src="/shiara.jpeg"
+                  alt="Shiara, fundadora de She Ships"
+                  fill
+                  className="object-cover object-top"
+                />
               </div>
 
               <div>
