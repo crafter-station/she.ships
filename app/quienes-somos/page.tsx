@@ -6,8 +6,32 @@ import Link from "next/link";
 
 export const metadata = {
   title: "Quiénes Somos | She Ships",
-  description: "Conoce la historia detrás de She Ships y a Shiara, su fundadora.",
+  description: "Conoce la historia detrás de She Ships y a Shiara, su fundadora. Software engineer, product designer y builder de comunidades en LATAM.",
 };
+
+const projects = [
+  {
+    name: "She Ships",
+    role: "Fundadora",
+    description: "Organización para mujeres builders en LATAM. Hackathons, workshops, mentorías y comunidad.",
+    stat: "300+ mujeres",
+    color: "bg-primary-pink",
+  },
+  {
+    name: "Crafter Station",
+    role: "Cofundadora",
+    description: "Comunidad de builders en LATAM donde se construye, aprende y conecta en público.",
+    stat: "500+ builders",
+    color: "bg-primary-green",
+  },
+  {
+    name: "Glitch Girls",
+    role: "Cofundadora",
+    description: "Indie game dev studio. Juegos creados por mujeres, para todos.",
+    stat: "5+ juegos publicados",
+    color: "bg-primary-cream",
+  },
+];
 
 export default function QuienesSomosPage() {
   return (
@@ -68,41 +92,68 @@ export default function QuienesSomosPage() {
 
         {/* Founder */}
         <SectionWrapper variant="dark" className="min-h-fit">
-          <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-            {/* Placeholder photo */}
-            <div className="brutalist-card bg-primary-pink/10 border-3 border-primary-pink/30 aspect-square flex items-center justify-center">
-              <span className="text-primary-pink/40 font-[family-name:var(--font-title)] text-xl font-black uppercase tracking-widest">
-                Foto de Shiara
-              </span>
-            </div>
-
-            <div>
-              <div className="inline-block brutalist-card bg-primary-green px-4 py-2 mb-4">
-                <span className="font-[family-name:var(--font-title)] text-xs font-black uppercase tracking-widest text-primary-black">
-                  La fundadora
+          <div className="max-w-5xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-12 items-start mb-16">
+              {/* Placeholder photo */}
+              <div className="brutalist-card bg-primary-pink/10 border-3 border-primary-pink/30 aspect-square flex items-center justify-center">
+                <span className="text-primary-pink/40 font-[family-name:var(--font-title)] text-xl font-black uppercase tracking-widest">
+                  Foto de Shiara
                 </span>
               </div>
-              <h2 className="font-[family-name:var(--font-title)] text-3xl md:text-4xl font-black uppercase text-white mb-4">
-                Shiara
-              </h2>
-              <div className="space-y-4 text-white/70 leading-relaxed">
-                <p>
-                  Shiara es la fundadora de She Ships. Vio el problema, decidio actuar, y creo el espacio que queria ver existir.
-                </p>
-                <p>
-                  Su vision es simple: que mas mujeres en LATAM no solo consuman tecnologia, sino que la construyan. Que participen, que hablen, que lancen.
-                </p>
-              </div>
 
-              <div className="grid grid-cols-3 gap-3 mt-8">
-                {[
-                  { val: "200+", label: "Builders" },
-                  { val: "56", label: "Proyectos" },
-                  { val: "300+", label: "Comunidad" },
-                ].map((s) => (
-                  <div key={s.label} className="border border-white/10 p-4 text-center">
-                    <div className="font-[family-name:var(--font-title)] text-2xl font-black text-primary-pink">{s.val}</div>
-                    <div className="text-[10px] uppercase tracking-widest text-white/40 mt-1">{s.label}</div>
+              <div>
+                <div className="inline-block brutalist-card bg-primary-green px-4 py-2 mb-4">
+                  <span className="font-[family-name:var(--font-title)] text-xs font-black uppercase tracking-widest text-primary-black">
+                    La fundadora
+                  </span>
+                </div>
+                <h2 className="font-[family-name:var(--font-title)] text-4xl md:text-5xl font-black uppercase text-white mb-2">
+                  Shiara
+                </h2>
+
+                {/* Roles */}
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {["Software Engineer", "Product Designer", "Tech Builder"].map((role) => (
+                    <span key={role} className="border border-white/20 text-white/60 text-xs font-bold uppercase tracking-wide px-3 py-1">
+                      {role}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="space-y-4 text-white/70 leading-relaxed">
+                  <p>
+                    Shiara es software engineer, product designer y builder. Ha dedicado su carrera a crear cosas: productos, comunidades y espacios donde otros pueden hacer lo mismo.
+                  </p>
+                  <p>
+                    Lo que la mueve es la comunidad. Crear los espacios que no existían, especialmente para mujeres en LATAM que quieren entrar al mundo tech pero no encuentran donde empezar.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Projects */}
+            <div>
+              <p className="text-xs font-black uppercase tracking-widest text-white/30 mb-6">Lo que ha construido</p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border-3 border-white/10">
+                {projects.map((p, i) => (
+                  <div
+                    key={p.name}
+                    className={`p-6 flex flex-col gap-3 ${i < projects.length - 1 ? "border-b-3 md:border-b-0 md:border-r-3 border-white/10" : ""}`}
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className={`${p.color} text-primary-black text-[10px] font-black uppercase tracking-widest px-2 py-1`}>
+                        {p.role}
+                      </span>
+                    </div>
+                    <h3 className="font-[family-name:var(--font-title)] text-xl font-black uppercase text-white">
+                      {p.name}
+                    </h3>
+                    <p className="text-white/50 text-sm leading-relaxed flex-1">
+                      {p.description}
+                    </p>
+                    <span className={`font-[family-name:var(--font-title)] text-lg font-black ${p.color === "bg-primary-pink" ? "text-primary-pink" : p.color === "bg-primary-green" ? "text-primary-green" : "text-primary-cream"}`}>
+                      {p.stat}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -117,7 +168,7 @@ export default function QuienesSomosPage() {
               Nuestra misión
             </h2>
             <p className="text-primary-black/80 text-xl leading-relaxed mb-10">
-              Crear los espacios que necesitamos para que mas mujeres en LATAM construyan, lancen, y sean visibles en el mundo tech.
+              Crear los espacios que necesitamos para que más mujeres en LATAM construyan, lancen y sean visibles en el mundo tech.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild variant="default" size="lg">
