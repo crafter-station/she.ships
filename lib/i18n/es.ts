@@ -26,12 +26,12 @@ export const es: Translations = {
     upcomingLabel: "Próximos Eventos",
     upcomingHeadline: "Qué",
     upcomingHeadlineAccent: "viene",
-    event1Title: "Building with v0",
+    event1Title: "Construye con v0",
     event1Date: "11 de abril, 2026",
     event1Desc: "Aprende a construir con v0, la herramienta de generación de UI con IA de Vercel.",
     event2Title: "Road to Makers 2026",
     event2Date: "8 de abril, 2026",
-    event2Desc: "Prepárate para Makers 2026 y aprende lo que se necesita para shippear un producto.",
+    event2Desc: "Prepárate para Makers 2026 y aprende lo que se necesita para lanzar un producto.",
     registerNow: "Registrarse en Luma",
     // Past Events
     pastLabel: "Eventos Pasados",
@@ -60,7 +60,7 @@ export const es: Translations = {
     communityLabel: "Comunidad",
     communityHeadline: "Únete al",
     communityHeadlineAccent: "movimiento",
-    communityDescription: "Conecta con mujeres que buildean, aprenden y shippean juntas.",
+    communityDescription: "Conecta con mujeres que construyen, aprenden y lanzan juntas.",
     joinWhatsApp: "Unirse al Grupo de WhatsApp",
   },
   nav: {
