@@ -608,7 +608,7 @@ export const es: Translations = {
       body1: "En los eventos tech, las mujeres estaban pero no participaban. Escuchaban. She Ships nació para cambiar eso.",
       body2Start: "Hoy somos",
       body2Community: "300+ mujeres",
-      body2End: "en LATAM que construyen, presentan y lanzan.",
+      body2End: "en LATAM que construyen, presentan y comparten.",
       quote: "Quería ver más mujeres no solo en el público,",
       quoteAccent: "sino en el escenario.",
       quoteAuthor: "Shiara, fundadora de she.ships",

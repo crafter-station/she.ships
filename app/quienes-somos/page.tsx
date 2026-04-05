@@ -68,7 +68,7 @@ export default function QuienesSomosPage() {
                 En los eventos tech de LATAM, las mujeres eran pocas. Pero no solo pocas: la mayoría de los hombres participaban activamente, hablaban, compartían ideas. Las pocas mujeres presentes casi no tenían participación.
               </p>
               <p>
-                She Ships nació de esa observación. Es un espacio donde las mujeres no son la minoría silenciosa, sino las que construyen, presentan y lanzan.
+                She Ships nació de esa observación. Es un espacio donde las mujeres no son la minoría silenciosa, sino las que construyen, presentan y comparten.
               </p>
               <p>
                 El primer gran evento fue una hackathon el 8 de marzo de 2026, el Día Internacional de la Mujer. 200 builders, 56 proyectos lanzados en 72 horas. Todo remoto, todo real.
