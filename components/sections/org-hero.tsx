@@ -14,7 +14,7 @@ export function OrgHero() {
     <section id="hero" className="sticky top-0 min-h-screen w-full flex flex-col overflow-hidden">
       {/* Background */}
       <Image
-        src="https://res.cloudinary.com/dzohocmtc/image/upload/f_auto,q_auto,w_1920/v1771977266/hero_raw_4_iagzd2.jpg"
+        src="/brand/hero_image_sheep.jpg"
         alt=""
         fill
         className="object-cover"
