@@ -2,21 +2,25 @@
 
 import { SectionWrapper } from "@/components/decorative/section-wrapper";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "@/lib/i18n/context";
 
 export function CommunityJoin() {
+  const { t } = useTranslation();
+  const c = t.org.community;
+
   return (
     <SectionWrapper variant="dark" id="community" className="min-h-fit">
       <div className="text-center mb-12">
         <div className="inline-block brutalist-card bg-primary-green px-4 py-2 mb-4">
           <span className="font-[family-name:var(--font-title)] text-xs font-black uppercase tracking-widest text-primary-black">
-            300+ mujeres te esperan
+            {c.memberCount}
           </span>
         </div>
         <h2 className="font-[family-name:var(--font-title)] text-4xl md:text-5xl font-black uppercase leading-tight text-white">
-          Únete a la <span className="text-primary-green">comunidad</span>
+          {c.headline1} <span className="text-primary-green">{c.headline2}</span>
         </h2>
         <p className="text-white/60 mt-4 max-w-xl mx-auto">
-          Un espacio donde no tenés que demostrar nada para pertenecer. Solo construir.
+          {c.subtitle}
         </p>
       </div>
 
@@ -33,12 +37,12 @@ export function CommunityJoin() {
               Discord
             </h3>
             <p className="text-white/50 text-sm">
-              Canales por temas, eventos en vivo, y tu crew de builders.
+              {c.discordDesc}
             </p>
           </div>
           <Button asChild variant="outline" className="border-[#5865F2] text-[#5865F2] hover:bg-[#5865F2] hover:text-white w-full">
             <a href="https://discord.gg/n6nNAqMu" target="_blank" rel="noopener noreferrer">
-              Unirse al Discord
+              {c.discordCta}
             </a>
           </Button>
         </div>
@@ -55,12 +59,12 @@ export function CommunityJoin() {
               WhatsApp
             </h3>
             <p className="text-white/50 text-sm">
-              Comunidad activa, novedades, y conexiones directas.
+              {c.whatsappDesc}
             </p>
           </div>
           <Button asChild variant="outline" className="border-[#25D366] text-[#25D366] hover:bg-[#25D366] hover:text-white w-full">
             <a href="https://chat.whatsapp.com/GTVHD19bsw7D7GGMgEieYQ" target="_blank" rel="noopener noreferrer">
-              Unirse al WhatsApp
+              {c.whatsappCta}
             </a>
           </Button>
         </div>

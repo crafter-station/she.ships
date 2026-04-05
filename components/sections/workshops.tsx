@@ -2,21 +2,31 @@
 
 import { SectionWrapper } from "@/components/decorative/section-wrapper";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "@/lib/i18n/context";
 
 export function Workshops() {
+  const { t } = useTranslation();
+  const w = t.org.workshops;
+
+  const stats = [
+    { val: "2h", label: w.durationLabel },
+    { val: "v0", label: w.toolLabel },
+    { val: "1 app", label: w.takeawayLabel },
+  ];
+
   return (
     <SectionWrapper variant="dark" id="workshops" className="min-h-fit">
       <div className="text-center mb-12">
         <div className="inline-block brutalist-card bg-primary-green px-4 py-2 mb-4">
           <span className="font-[family-name:var(--font-title)] text-xs font-black uppercase tracking-widest text-primary-black">
-            Aprende construyendo
+            {w.label}
           </span>
         </div>
         <h2 className="font-[family-name:var(--font-title)] text-4xl md:text-5xl font-black uppercase leading-tight text-white">
-          Workshops para <span className="text-primary-green">builders</span>
+          {w.headline1} <span className="text-primary-green">{w.headline2}</span>
         </h2>
         <p className="text-white/60 mt-4 max-w-xl mx-auto">
-          Sesiones prácticas donde pasas de idea a proyecto funcional. Sin rodeos.
+          {w.subtitle}
         </p>
       </div>
 
@@ -25,25 +35,21 @@ export function Workshops() {
         <div className="border-3 border-primary-green/40 p-8 flex flex-col gap-5 bg-primary-green/5">
           <div className="flex items-center justify-between">
             <span className="brutalist-card bg-primary-green text-primary-black text-[10px] font-black uppercase tracking-widest px-3 py-1">
-              Gratis · 11 de abril
+              {w.freeBadge}
             </span>
             <span className="text-white/30 text-xs font-mono uppercase tracking-widest">Vol. 01</span>
           </div>
 
           <h3 className="font-[family-name:var(--font-title)] text-2xl font-black uppercase text-white">
-            Construye tu primera app con v0
+            {w.workshop1Title}
           </h3>
 
           <p className="text-white/60 leading-relaxed text-sm">
-            En 2 horas construyes una página interactiva conectada a Supabase, sin experiencia previa. El objetivo es que compruebes que puedes construir algo real, hoy, con las herramientas que existen.
+            {w.workshop1Desc}
           </p>
 
           <div className="grid grid-cols-3 gap-3 mt-2">
-            {[
-              { val: "2h", label: "Duración" },
-              { val: "v0", label: "Herramienta" },
-              { val: "1 app", label: "Lo que te llevas" },
-            ].map((s) => (
+            {stats.map((s) => (
               <div key={s.label} className="border border-white/10 p-3 text-center">
                 <div className="font-[family-name:var(--font-title)] text-xl font-black text-primary-green">{s.val}</div>
                 <div className="text-[10px] uppercase tracking-widest text-white/40 mt-1">{s.label}</div>
@@ -53,7 +59,7 @@ export function Workshops() {
 
           <Button asChild variant="green" className="mt-auto">
             <a href="https://luma.com/9vdfez99" target="_blank" rel="noopener noreferrer">
-              Reserva tu lugar
+              {w.registerCta}
             </a>
           </Button>
         </div>
@@ -62,17 +68,17 @@ export function Workshops() {
         <div className="border-3 border-primary-pink/40 p-8 flex flex-col gap-5 bg-primary-pink/5">
           <div className="flex items-center justify-between">
             <span className="brutalist-card bg-primary-pink text-primary-black text-[10px] font-black uppercase tracking-widest px-3 py-1">
-              Proximo · Pago
+              {w.paidBadge}
             </span>
             <span className="text-white/30 text-xs font-mono uppercase tracking-widest">Vol. 02</span>
           </div>
 
           <h3 className="font-[family-name:var(--font-title)] text-2xl font-black uppercase text-white">
-            Proximo workshop <span className="text-primary-pink">en camino</span>
+            {w.workshop2Title} <span className="text-primary-pink">{w.workshop2Accent}</span>
           </h3>
 
           <p className="text-white/60 leading-relaxed text-sm">
-            El proximo workshop es pago. Mismo formato, muy practico y muy concreto, pero con mas profundidad y acompanamiento. Deja tu email para ser la primera en enterarte.
+            {w.workshop2Desc}
           </p>
 
           {/* Waitlist form */}
@@ -96,7 +102,7 @@ export function Workshops() {
               type="submit"
               className="bg-primary-pink text-primary-black font-black text-xs uppercase tracking-widest px-5 py-3 hover:bg-primary-cream transition-colors"
             >
-              Avisame
+              {w.waitlistCta}
             </button>
           </form>
         </div>

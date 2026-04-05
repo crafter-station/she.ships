@@ -1,8 +1,18 @@
 "use client";
 
 import { SectionWrapper } from "@/components/decorative/section-wrapper";
+import { useTranslation } from "@/lib/i18n/context";
 
 export function OrgStory() {
+  const { t } = useTranslation();
+  const s = t.org.story;
+
+  const statBlocks = [
+    { num: "2026", label: s.stat1Label, color: "bg-primary-pink" },
+    { num: "300+", label: s.stat2Label, color: "bg-primary-black" },
+    { num: "LATAM", label: s.stat3Label, color: "bg-primary-green" },
+  ];
+
   return (
     <SectionWrapper variant="dark" id="story" className="min-h-fit">
       <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
@@ -10,44 +20,37 @@ export function OrgStory() {
         <div>
           <div className="inline-block brutalist-card bg-primary-pink px-4 py-2 mb-6">
             <span className="font-[family-name:var(--font-title)] text-xs font-black uppercase tracking-widest text-primary-black">
-              Por qué existimos
+              {s.label}
             </span>
           </div>
 
           <h2 className="font-[family-name:var(--font-title)] text-3xl md:text-4xl lg:text-5xl font-black uppercase leading-tight text-white mb-6">
-            El problema existía.<br />
-            <span className="text-primary-pink">She Ships es la respuesta.</span>
+            {s.headline1}<br />
+            <span className="text-primary-pink">{s.headline2}</span>
           </h2>
 
           <div className="space-y-5 text-white/70 leading-relaxed">
+            <p>{s.body1}</p>
             <p>
-              En los eventos tech, las mujeres estaban pero no participaban. Escuchaban. She Ships nació para cambiar eso.
-            </p>
-            <p>
-              Hoy somos <span className="text-primary-green font-bold">300+ mujeres</span> en LATAM que construyen, presentan y lanzan.
+              {s.body2Start} <span className="text-primary-green font-bold">{s.body2Community}</span> {s.body2End}
             </p>
           </div>
 
           {/* Quote */}
           <div className="border-l-4 border-primary-pink pl-6 mt-8">
             <p className="font-[family-name:var(--font-title)] text-xl font-black uppercase text-white">
-              "Quería ver más mujeres no solo en el público,{" "}
-              <span className="text-primary-pink">sino en el escenario."</span>
+              &ldquo;{s.quote}{" "}
+              <span className="text-primary-pink">{s.quoteAccent}&rdquo;</span>
             </p>
             <p className="text-xs font-bold uppercase tracking-widest text-white/40 mt-3">
-              Shiara, fundadora de she.ships
+              {s.quoteAuthor}
             </p>
           </div>
         </div>
 
         {/* Right — visual */}
         <div className="brutalist-card bg-primary-cream flex flex-col gap-0 overflow-hidden">
-          {/* Stat blocks */}
-          {[
-            { num: "2026", label: "Año de fundación", color: "bg-primary-pink" },
-            { num: "300+", label: "Mujeres en comunidad", color: "bg-primary-black" },
-            { num: "LATAM", label: "Y más allá", color: "bg-primary-green" },
-          ].map((item, i) => (
+          {statBlocks.map((item, i) => (
             <div
               key={i}
               className={`${item.color} border-b-3 border-primary-black last:border-b-0 px-8 py-6 flex items-center justify-between`}
