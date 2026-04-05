@@ -30,9 +30,9 @@ export function Nav() {
 
   const links = [
     { label: "Quiénes Somos", href: "/quienes-somos" },
-    { label: "Programas", href: "#programs" },
-    { label: "Workshops", href: "#workshops" },
-    { label: "Comunidad", href: "#community" },
+    { label: "Programas", href: "/programas" },
+    { label: "Workshops", href: "/workshops" },
+    { label: "Comunidad", href: "/comunidad" },
   ];
 
   useEffect(() => {
