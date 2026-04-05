@@ -11,7 +11,7 @@ const stats = [
 
 export function OrgHero() {
   return (
-    <section id="hero" className="sticky top-0 min-h-screen w-full flex flex-col items-center justify-center overflow-hidden">
+    <section id="hero" className="sticky top-0 min-h-screen w-full flex flex-col overflow-hidden">
       {/* Background */}
       <Image
         src="https://res.cloudinary.com/dzohocmtc/image/upload/f_auto,q_auto,w_1920/v1771977266/hero_raw_4_iagzd2.jpg"
@@ -22,27 +22,21 @@ export function OrgHero() {
         sizes="100vw"
       />
       {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black/50" />
+      <div className="absolute inset-0 bg-black/55" />
 
       {/* Bottom fade */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-primary-black z-10" />
 
-      {/* Content */}
-      <div className="relative z-10 flex flex-col items-center text-center w-full max-w-5xl mx-auto px-6">
-        {/* Label */}
-        <div className="inline-block border-2 border-primary-green px-4 py-1 mb-6">
-          <span className="font-[family-name:var(--font-title)] text-xs font-black uppercase tracking-widest text-primary-green">
-            Una organización para mujeres que construyen
-          </span>
-        </div>
+      {/* Content — offset below nav (64px) */}
+      <div className="relative z-10 flex flex-col items-center text-center w-full max-w-5xl mx-auto px-6 pt-28 pb-16 flex-1 justify-center">
 
         {/* Headline */}
-        <h1 className="font-[family-name:var(--font-title)] text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase leading-none tracking-tight text-white mb-6">
-          El lugar donde las<br />
-          <span className="text-primary-pink">mujeres construyen</span>
+        <h1 className="font-[family-name:var(--font-title)] text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase leading-tight tracking-tight text-white mb-6">
+          El lugar donde<br />
+          <span className="text-primary-pink">las mujeres construyen</span>
         </h1>
 
-        <p className="text-white/70 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed">
+        <p className="text-white/70 text-base md:text-lg max-w-xl mb-10 leading-relaxed">
           She Ships nació para que más mujeres no solo asistan a los eventos tech, sino que sean las protagonistas.
         </p>
 
@@ -53,7 +47,7 @@ export function OrgHero() {
               Únete a la comunidad
             </a>
           </Button>
-          <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-primary-black">
+          <Button asChild size="lg" className="bg-white text-primary-black hover:bg-primary-cream font-black uppercase tracking-wide">
             <a href="#workshops">
               Ver Workshops
             </a>
