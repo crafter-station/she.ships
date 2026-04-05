@@ -18,10 +18,12 @@ type LanguageContextValue = {
 const LanguageContext = createContext<LanguageContextValue | null>(null);
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>("en");
+  const [locale, setLocaleState] = useState<Locale>("es");
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    const saved = localStorage.getItem("locale") as Locale | null;
+    if (saved === "en" || saved === "es") setLocaleState(saved);
     setMounted(true);
   }, []);
 
