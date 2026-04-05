@@ -15,25 +15,23 @@ export function Nav() {
   const { t } = useTranslation();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [hackathonsOpen, setHackathonsOpen] = useState(false);
+  const [eventosOpen, setEventosOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const links = [
+    { label: "Quiénes Somos", href: "/quienes-somos" },
+    { label: "Comunidad", href: "/comunidad" },
+  ];
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
-        setHackathonsOpen(false);
+        setEventosOpen(false);
       }
     }
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
-
-  const links = [
-    { label: "Quiénes Somos", href: "/quienes-somos" },
-    { label: "Programas", href: "/programas" },
-    { label: "Workshops", href: "/workshops" },
-    { label: "Comunidad", href: "/comunidad" },
-  ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
@@ -42,7 +40,6 @@ export function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     if (mobileOpen) {
       document.body.style.overflow = "hidden";
@@ -93,39 +90,51 @@ export function Nav() {
               </Link>
             ))}
 
-            {/* Hackathons dropdown */}
+            {/* Eventos dropdown */}
             <div ref={dropdownRef} className="relative">
               <button
-                onClick={() => setHackathonsOpen((prev) => !prev)}
+                onClick={() => setEventosOpen((prev) => !prev)}
                 className={`flex items-center gap-1 font-[family-name:var(--font-title)] text-sm transition-colors duration-300 ${
                   scrolled
                     ? "text-primary-black/70 hover:text-primary-black"
                     : "text-white/80 hover:text-white"
                 }`}
               >
-                Hackathons
+                Eventos
                 <ChevronDown
                   size={14}
-                  className={`transition-transform duration-200 ${hackathonsOpen ? "rotate-180" : ""}`}
+                  className={`transition-transform duration-200 ${eventosOpen ? "rotate-180" : ""}`}
                 />
               </button>
 
               <AnimatePresence>
-                {hackathonsOpen && (
+                {eventosOpen && (
                   <motion.div
                     initial={{ opacity: 0, y: -6 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -6 }}
                     transition={{ duration: 0.15 }}
-                    className="absolute top-full left-0 mt-2 min-w-[180px] bg-primary-black border border-white/10 shadow-xl z-50"
+                    className="absolute top-full left-0 mt-2 min-w-[220px] bg-primary-black border border-white/10 shadow-xl z-50"
                   >
                     <Link
-                      href="/hackathons/2026"
-                      onClick={() => setHackathonsOpen(false)}
+                      href="/eventos/proximos"
+                      onClick={() => setEventosOpen(false)}
                       className="block px-5 py-3 font-[family-name:var(--font-title)] text-sm text-primary-cream hover:bg-white/10 transition-colors"
                     >
-                      8M Hackathon 2026
+                      Próximos eventos
                     </Link>
+                    <div className="border-t border-white/10">
+                      <p className="px-5 pt-3 pb-1 text-[10px] font-black uppercase tracking-widest text-white/30">
+                        Pasados
+                      </p>
+                      <Link
+                        href="/hackathons/2026"
+                        onClick={() => setEventosOpen(false)}
+                        className="block px-5 py-3 font-[family-name:var(--font-title)] text-sm text-primary-pink hover:bg-white/10 transition-colors"
+                      >
+                        She Ships 8M Hackathon 2026
+                      </Link>
+                    </div>
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -203,22 +212,31 @@ export function Nav() {
                   </Link>
                 </motion.div>
               ))}
+
+              {/* Eventos section mobile */}
               <motion.div
-                className="flex flex-col items-center gap-3"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ delay: 0.05 * links.length, duration: 0.25 }}
+                className="flex flex-col items-center gap-3"
               >
                 <span className="font-[family-name:var(--font-title)] text-3xl font-bold text-primary-black/40 uppercase">
-                  Hackathons
+                  Eventos
                 </span>
+                <Link
+                  href="/eventos/proximos"
+                  onClick={() => setMobileOpen(false)}
+                  className="font-[family-name:var(--font-title)] text-xl font-bold text-primary-black/70 hover:text-primary-black transition-colors"
+                >
+                  Próximos
+                </Link>
                 <Link
                   href="/hackathons/2026"
                   onClick={() => setMobileOpen(false)}
                   className="font-[family-name:var(--font-title)] text-xl font-bold text-primary-pink hover:text-primary-black transition-colors"
                 >
-                  8M 2026
+                  8M Hackathon 2026
                 </Link>
               </motion.div>
             </div>
@@ -228,7 +246,7 @@ export function Nav() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
-              transition={{ delay: 0.05 * links.length, duration: 0.25 }}
+              transition={{ delay: 0.05 * (links.length + 1), duration: 0.25 }}
             >
               <div className="flex items-center gap-4">
                 <GithubBadge />
