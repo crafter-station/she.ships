@@ -214,31 +214,26 @@ export function Nav() {
               ))}
 
               {/* Eventos section mobile */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ delay: 0.05 * links.length, duration: 0.25 }}
-                className="flex flex-col items-center gap-3"
-              >
-                <span className="font-[family-name:var(--font-title)] text-3xl font-bold text-primary-black/40 uppercase">
-                  Eventos
-                </span>
-                <Link
-                  href="/eventos/proximos"
-                  onClick={() => setMobileOpen(false)}
-                  className="font-[family-name:var(--font-title)] text-xl font-bold text-primary-black/70 hover:text-primary-black transition-colors"
+              {[
+                { label: "Eventos", href: "/eventos/proximos" },
+                { label: "8M Hackathon 2026", href: "/hackathons/2026" },
+              ].map((link, i) => (
+                <motion.div
+                  key={link.href}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ delay: 0.05 * (links.length + i), duration: 0.25 }}
                 >
-                  Próximos
-                </Link>
-                <Link
-                  href="/hackathons/2026"
-                  onClick={() => setMobileOpen(false)}
-                  className="font-[family-name:var(--font-title)] text-xl font-bold text-primary-pink hover:text-primary-black transition-colors"
-                >
-                  8M Hackathon 2026
-                </Link>
-              </motion.div>
+                  <Link
+                    href={link.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="font-[family-name:var(--font-title)] text-3xl font-bold text-primary-black/70 hover:text-primary-black transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </motion.div>
+              ))}
             </div>
 
             <motion.div
